@@ -13,11 +13,25 @@
   background-color: transparent;
   transition: all 0.3s ease;
 
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    background-color: #64603C;
+    color: #C5CF98;
+    border-color: #64603C;
+  }
+
   &.secondary {
     color: #fff;
     border-color: #fff;
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      background-color: #fff;
+      color: #000;
+      border-color: #fff;
+    }
   }
-} 
+}
 
 @media (max-width: $breakpoint-lg) {
   .btn {
