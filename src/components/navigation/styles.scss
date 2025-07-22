@@ -29,20 +29,17 @@
 }
 
 .nav-container {
-  max-width: min(calc(1570px + 3rem), 100%);
-  padding: 0 1.5rem;
+  // max-width: min(calc(1570px + 3rem), 100%);
+  padding: 28px 2rem;
   width: 100%;
   margin: 0 auto;
-  padding-top: 28px;
-  padding-bottom: 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 
   @media (max-width: $breakpoint-lg) {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 1rem;
   }
 }
 
