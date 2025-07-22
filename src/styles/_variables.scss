@@ -1,0 +1,54 @@
+// Color variables
+$primary-color: #3182ce;
+$secondary-color: #2b6cb0;
+$text-color: #000000;
+$text-light: #353536;
+$background-color: #ffffff;
+$border-color: #e2e8f0;
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+// Typography colors
+$text-primary: #000000;
+$text-secondary: #353536;
+$text-muted: #a0aec0;
+$text-inverse: #ffffff;
+
+// Background colors
+$bg-primary: #ffffff;
+$bg-secondary: #f7fafc;
+$bg-muted: #edf2f7;
+
+// Spacing variables
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 3rem;
+
+// Border radius variables
+$radius-sm: 0.25rem;
+$radius-md: 0.5rem;
+$radius-lg: 0.75rem;
+$radius-xl: 1rem;
+
+// Transition variables
+$transition-fast: 0.15s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+// Z-index layers
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070; 

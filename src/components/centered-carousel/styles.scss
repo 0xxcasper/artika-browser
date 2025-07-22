@@ -1,0 +1,223 @@
+@import '../../styles/variables';
+@import '../../styles/fonts';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 250px;
+  width: 100%;
+  max-width: 100vw;
+
+  h1 {
+    @include heading-1;
+    @include font-primary;
+    text-align: center;
+    white-space: pre-line;
+  }
+}
+
+.centered-carousel-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 720px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  
+  // Desktop Carousel (768px and up)
+  .desktop-carousel {
+    display: block;
+    width: 100%;
+    height: 100%;
+    
+    .slick-slider {
+      height: 100%;
+      width: 100%;
+    }
+    
+    .slick-list {
+      height: 100%;
+    }
+    
+    .slick-track {
+      display: flex !important;
+      align-items: center;
+      height: 100%;
+    }
+    
+    .slick-slide {
+      margin: 0 32px;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .slide-item {
+      width: 300px;
+      height: 360px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0.7;
+      flex-shrink: 0;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+    
+    // Center slide - gấp đôi kích thước
+    .slick-center .slide-item {
+      width: 600px;
+      height: 720px;
+      opacity: 1;
+      z-index: 2;
+    }
+    
+    // Ensure side slides stay in their position
+    .slick-slide:not(.slick-center) .slide-item {
+      position: relative;
+      z-index: 1;
+    }
+  }
+  
+  // Mobile Carousel (below 768px)
+  .mobile-carousel {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    
+    .slick-slider {
+      height: 100%;
+      width: 100%;
+    }
+    
+    .slick-list {
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .slick-track {
+      display: flex !important;
+      align-items: center;
+      height: 100%;
+    }
+    
+    .slick-slide {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      width: 100% !important;
+    }
+    
+    .slide-item.mobile-slide {
+      width: 100%;
+      height: 70vh;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 1;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
+
+// Arrow styles
+.desktop-arrow {
+  display: block !important;
+}
+
+.mobile-arrow {
+  display: block !important;
+}
+
+// Responsive breakpoints
+@media (max-width: $breakpoint-xl) {
+  .centered-carousel-container {
+    height: 70vh;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    
+    .desktop-carousel {
+      display: none;
+      
+      .desktop-arrow {
+        display: none !important;
+      }
+    }
+    
+    .mobile-carousel {
+      display: block;
+      width: 100%;
+      
+      .mobile-arrow {
+        display: block !important;
+      }
+    }
+  }
+  
+  .container {
+    margin-top: 8rem;
+    gap: 2rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .centered-carousel-container {
+    height: 60vh;
+    width: 100%;
+    
+    .mobile-carousel {
+      .slick-slide {
+        padding: 0;
+        width: 100% !important;
+      }
+      
+      .slide-item.mobile-slide {
+        height: 60vh;
+        width: 100%;
+      }
+      
+      .mobile-arrow {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 24px !important;
+      }
+    }
+  }
+  
+  .container {
+    margin-top: 100px;
+    gap: 1.5rem;
+    width: 100%;
+  }
+}

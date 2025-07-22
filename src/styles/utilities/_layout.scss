@@ -1,0 +1,59 @@
+// Layout utility classes
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+// Spacing utilities
+.space-x-8 > * + * {
+  margin-left: $spacing-xl;
+}
+
+.space-x-4 > * + * {
+  margin-left: $spacing-lg;
+}
+
+.space-x-2 > * + * {
+  margin-left: $spacing-sm;
+}
+
+.space-y-8 > * + * {
+  margin-top: $spacing-xl;
+}
+
+.space-y-4 > * + * {
+  margin-top: $spacing-lg;
+} 

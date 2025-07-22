@@ -1,0 +1,228 @@
+@import '../../styles/variables';
+
+// Navigation styles
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  transition: all 0.5s ease;
+  
+  &.nav-scrolled {
+    background: hsla(0,0%,100%,.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+    backdrop-filter: blur(20px);
+  }
+  
+  &.nav-transparent {
+    background: transparent;
+  }
+
+
+  @media (max-width: $breakpoint-xl) {
+    // link tag display none
+    .nav-link {
+      display: none;
+    }
+  }
+}
+
+.nav-container {
+  max-width: min(calc(1570px + 3rem), 100%);
+  padding: 0 1.5rem;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: clamp(3.875rem, 5vw, 4.875rem);
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.nav-logo {
+  position: absolute;
+  // center horizontally
+  left: 50%;
+  transform: translateX(calc(-50% - 2px));
+  bottom: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.5s ease;
+  text-decoration: none;
+  position: relative;
+
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+  
+  &:hover::after,
+  &.active::after {
+    width: 100%;
+  }
+  
+  &.nav-link-scrolled {
+    color: #000;
+    
+    &:hover {
+      color: #000;
+    }
+  }
+  
+  &.nav-link-transparent {
+    color: white;
+    
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.nav-link-drawer {
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.5s ease;
+  text-decoration: none;
+  position: relative;
+  color: #000;
+  width: fit-content;
+
+  &.active {
+    color: #000;
+  }
+
+  &:hover::after,
+  &.active::after {
+    width: 100%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+}
+
+// Hamburger menu (mobile)
+.nav-hamburger {
+  // display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1101;
+
+  span {
+    display: block;
+    width: 1.5rem;
+    height: 4px;
+    background: #fff;
+    margin: 0.3rem 0;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  @media (max-width: $breakpoint-xl) {
+    display: flex;
+  }
+
+  &.nav-hamburger-scrolled {
+    span {
+      background: #000;
+    }
+  }
+}
+
+// Sidebar overlay
+.nav-sidebar-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #000;
+  opacity: 0.4;
+  z-index: 1100;
+}
+
+// Sidebar
+.nav-sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 80vw;
+  max-width: 520px;
+  height: 100vh;
+  background: hsla(0,0%,100%,.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 4px 0 32px rgba(0,0,0,0.18);
+  z-index: 1101;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  animation: slideInLeft 0.3s;
+
+  @media (max-width: $breakpoint-sm) {
+    max-width: 320px;
+  }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.nav-sidebar-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  align-self: flex-end;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.nav-sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+// Hide desktop nav links on mobile
+.nav-links-desktop {
+  @media (max-width: $breakpoint-xl) {
+    display: none !important;
+  }
+}
+
+// Show hamburger only on mobile
+@media (max-width: $breakpoint-xl) {
+  .nav-hamburger {
+    display: flex;
+  }
+}

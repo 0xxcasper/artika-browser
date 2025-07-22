@@ -1,0 +1,155 @@
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Image } from '@chakra-ui/react';
+import './styles.scss';
+
+export interface GridCard {
+  id: number;
+  image: string;
+  title?: string;
+  description?: string;
+  hasOverlay?: boolean;
+  overlayText?: {
+    title: string;
+    body: string;
+  };
+}
+
+export interface GridImagesProps {
+  className?: string;
+  title?: string;
+  cards?: GridCard[];
+}
+
+const defaultCards: GridCard[] = [
+  {
+    id: 1,
+    image: '/images/home/banner-1.png',
+    hasOverlay: false
+  },
+  {
+    id: 2,
+    image: '/images/home/banner-2.png',
+    hasOverlay: true,
+    overlayText: {
+      title: 'Discover our new menu',
+      body: 'Discover our seasonal masterpieces and specialties, with a color palette of dark charcoal, wood tones, and forest greens.'
+    }
+  },
+  {
+    id: 3,
+    image: '/images/home/focus-banner.jpg',
+    hasOverlay: false
+  },
+  {
+    id: 4,
+    image: '/images/gallery/focus-banner.jpg',
+    hasOverlay: false
+  },
+  {
+    id: 5,
+    image: '/images/gallery/gallery-bg.jpg',
+    hasOverlay: false
+  }
+];
+
+export default function GridImages({ className = '', title = '', cards = defaultCards }: GridImagesProps) {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.2,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.4,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  return (
+    <section className={`grid-images ${className}`}>
+      {title && (
+        <motion.h2 
+          className="grid-images__title"
+          variants={titleVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {title}
+        </motion.h2>
+      )}
+      <div className="grid-images__container">
+        <motion.div 
+          className="grid-images__grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {cards.map((card) => (
+            <motion.div
+              key={card.id}
+              className={`grid-images__card ${card.hasOverlay ? 'grid-images__card--overlay' : ''}`}
+              variants={cardVariants}
+              whileHover={{ 
+                scale: 1.02, 
+                transition: { 
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 25,
+                  mass: 0.5
+                }
+              }}
+            >
+              <div className="grid-images__card-inner">
+                <div className="grid-images__image-container">
+                  <Image
+                    src={card.image}
+                    alt={card.overlayText?.title || `Restaurant interior ${card.id}`}
+                    className="grid-images__image"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                
+                {card.hasOverlay && card.overlayText && (
+                  <div className="grid-images__overlay">
+                    <div className="grid-images__overlay-content">
+                      <h3 className="grid-images__overlay-title">
+                        {card.overlayText.title}
+                      </h3>
+                      <p className="grid-images__overlay-body">
+                        {card.overlayText.body}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}

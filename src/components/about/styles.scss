@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+@import '../../styles/fonts';
+
+.about {
+  padding-top: 230px;
+
+  @media (max-width: $breakpoint-lg) {
+    padding-top: 100px;
+  }
+
+  max-width: 1428px;
+  margin: 0 auto;
+  gap: 100px;
+  .about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+
+    h1 {
+      @include heading-1;
+      @include font-primary;
+      text-align: center;
+      white-space: pre-line;
+    }
+    
+    p {
+      margin-top: 54px;
+      @include heading-2;
+      @include font-primary;
+      text-align: center;
+
+      @media (max-width: $breakpoint-lg) {
+        margin-top: 24px;
+        @include body-large;
+      }
+    }
+
+    .about-button {
+      margin-top: 46px;
+      @media (max-width: $breakpoint-lg) {
+        margin-top: 24px;
+      }
+    }
+  }
+}

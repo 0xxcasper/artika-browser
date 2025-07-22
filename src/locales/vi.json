@@ -1,0 +1,87 @@
+{
+  "navigation": {
+    "home": "TRANG CHỦ",
+    "stay": "LƯU TRÚ",
+    "experiences": "TRẢI NGHIỆM",
+    "dine": "ẨM THỰC",
+    "wellness": "CHĂM SÓC SỨC KHỎE",
+    "wedding": "TIỆC CƯỚI",
+    "gallery": "THƯ VIỆN ẢNH",
+    "offer": "ƯU ĐÃI"
+  },
+  "pages": {
+    "home": {
+      "title": "TRANG CHỦ",
+      "description": "Chào mừng đến với khu nghỉ dưỡng sang trọng của chúng tôi",
+      "hero": {
+        "title": "Trải Nghiệm Sang Trọng",
+        "subtitle": "Điểm đến nghỉ dưỡng hoàn hảo của bạn",
+        "cta": "Đặt Ngay"
+      }
+    },
+    "stay": {
+      "title": "LƯU TRÚ",
+      "description": "Nơi lưu trú sang trọng cho kỳ nghỉ hoàn hảo của bạn",
+      "rooms": {
+        "title": "Phòng Nghỉ",
+        "description": "Chọn từ bộ sưu tập phòng sang trọng của chúng tôi"
+      }
+    },
+    "experiences": {
+      "title": "TRẢI NGHIỆM",
+      "description": "Những trải nghiệm và hoạt động khó quên",
+      "activities": {
+        "title": "Hoạt Động",
+        "description": "Khám phá các hoạt động thú vị của chúng tôi"
+      }
+    },
+    "dine": {
+      "title": "ẨM THỰC",
+      "description": "Trải nghiệm ẩm thực tinh tế",
+      "restaurants": {
+        "title": "Nhà Hàng",
+        "description": "Khám phá các nhà hàng đẳng cấp thế giới"
+      }
+    },
+    "wellness": {
+      "title": "CHĂM SÓC SỨC KHỎE",
+      "description": "Tái tạo tâm trí và cơ thể của bạn",
+      "spa": {
+        "title": "Spa & Chăm Sóc Sức Khỏe",
+        "description": "Thư giãn và tái tạo với các dịch vụ spa"
+      }
+    },
+    "wedding": {
+      "title": "TIỆC CƯỚI",
+      "description": "Điểm đến tiệc cưới hoàn hảo của bạn",
+      "venues": {
+        "title": "Địa Điểm Tiệc Cưới",
+        "description": "Những địa điểm đẹp cho ngày đặc biệt của bạn"
+      }
+    },
+    "gallery": {
+      "title": "THƯ VIỆN ẢNH",
+      "description": "Khám phá khu nghỉ dưỡng đẹp của chúng tôi qua những bức ảnh",
+      "photos": {
+        "title": "Thư Viện Ảnh",
+        "description": "Xem qua những bức ảnh tuyệt đẹp của chúng tôi"
+      }
+    },
+    "offer": {
+      "title": "ƯU ĐÃI",
+      "description": "Ưu đãi và gói dịch vụ đặc biệt",
+      "packages": {
+        "title": "Gói Đặc Biệt",
+        "description": "Các gói độc quyền cho khách của chúng tôi"
+      }
+    }
+  },
+  "common": {
+    "language": "Ngôn ngữ",
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt",
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công"
+  }
+} 

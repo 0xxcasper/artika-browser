@@ -1,0 +1,249 @@
+// Font Face Declarations
+// Load fonts from public/fonts directory
+@import './variables';
+
+@font-face {
+  font-family: 'Baskervville';
+  src: url('/fonts/Baskervville-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; // Optimize font loading performance
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap; // Optimize font loading performance
+}
+
+@font-face {
+  font-family: 'Graphik';
+  src: url('/fonts/Graphik-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; // Optimize font loading performance
+}
+
+// Font Variables
+$font-primary: 'Baskervville';
+$font-secondary: 'Raleway';
+$font-tertiary: 'Graphik';
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Font Sizes
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 1.875rem;  // 30px
+$font-size-4xl: 2.25rem;   // 36px
+$font-size-5xl: 2.5rem;    // 40px
+$font-size-6xl: 4rem;      // 64px
+
+// Line Heights
+$line-height-tight: 1.25;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// Letter Spacing
+$letter-spacing-tighter: -0.05em;
+$letter-spacing-tight: -0.025em;
+$letter-spacing-normal: 0em;
+$letter-spacing-wide: 0.025em;
+$letter-spacing-wider: 0.05em;
+$letter-spacing-widest: 0.1em;
+
+// Typography Mixins
+@mixin font-primary {
+  font-family: $font-primary;
+}
+
+@mixin font-secondary {
+  font-family: $font-secondary;
+}
+
+@mixin font-tertiary {
+  font-family: $font-tertiary;
+}
+
+
+@mixin text-xs {
+  font-size: $font-size-xs;
+  line-height: $line-height-normal;
+}
+
+@mixin text-sm {
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+}
+
+@mixin text-base {
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+}
+
+@mixin text-lg {
+  font-size: clamp(1rem, 3vw, $font-size-lg);
+  line-height: $line-height-relaxed;
+}
+
+@mixin text-xl {
+  font-size: clamp(1.125rem, 3vw, $font-size-xl);
+  line-height: $line-height-relaxed;
+}
+
+@mixin text-2xl {
+  font-size: clamp(1.25rem, 3vw, $font-size-2xl);
+  line-height: $line-height-snug;
+}
+
+@mixin text-3xl {
+  font-size: clamp(1.5rem, 3vw, $font-size-3xl);
+  line-height: $line-height-tight;
+}
+
+@mixin text-4xl {
+  font-size: clamp(1.875rem, 3vw, $font-size-4xl);
+  line-height: $line-height-tight;
+}
+
+@mixin text-5xl {
+  font-size: $font-size-5xl;
+  line-height: $line-height-tight;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: $font-size-4xl;
+  }
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-3xl;
+  }
+}
+
+@mixin text-6xl {
+  font-size: $font-size-6xl;
+  line-height: $line-height-tight;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: $font-size-5xl;
+  }
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-4xl;
+  }
+}
+
+// Heading Styles
+@mixin heading-1 {
+  @include font-primary;
+  @include text-6xl;
+  font-weight: $font-weight-normal;
+  letter-spacing: $letter-spacing-tight;
+}
+
+@mixin heading-2 {
+  @include font-primary;
+  @include text-5xl;
+  font-weight: $font-weight-normal;
+  letter-spacing: $letter-spacing-tight;
+}
+
+@mixin heading-3 {
+  @include font-primary;
+  @include text-4xl;
+  font-weight: $font-weight-normal;
+  letter-spacing: $letter-spacing-normal;
+}
+
+@mixin heading-4 {
+  @include font-primary;
+  @include text-3xl;
+  font-weight: $font-weight-normal;
+  letter-spacing: $letter-spacing-normal;
+}
+
+@mixin heading-5 {
+  @include font-primary;
+  @include text-2xl;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-normal;
+}
+
+@mixin heading-6 {
+  @include font-primary;
+  @include text-xl;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-normal;
+}
+
+// Body Text Styles
+@mixin body-large {
+  @include font-secondary;
+  @include text-lg;
+  font-weight: $font-weight-normal;
+  letter-spacing: $letter-spacing-normal;
+}
+
+@mixin body-base {
+  @include font-secondary;
+  @include text-base;
+  font-weight: $font-weight-normal;
+  letter-spacing: $letter-spacing-normal;
+}
+
+@mixin body-small {
+  @include font-secondary;
+  @include text-sm;
+  font-weight: $font-weight-normal;
+  letter-spacing: $letter-spacing-normal;
+}
+
+@mixin body-xs {
+  @include font-secondary;
+  @include text-xs;
+  font-weight: $font-weight-normal;
+  letter-spacing: $letter-spacing-normal;
+}
+
+// Utility Classes
+.font-primary {
+  @include font-primary;
+}
+
+.font-secondary {
+  @include font-secondary;
+}
+
+.text-xs { @include text-xs; }
+.text-sm { @include text-sm; }
+.text-base { @include text-base; }
+.text-lg { @include text-lg; }
+.text-xl { @include text-xl; }
+.text-2xl { @include text-2xl; }
+.text-3xl { @include text-3xl; }
+.text-4xl { @include text-4xl; }
+.text-5xl { @include text-5xl; }
+.text-6xl { @include text-6xl; }
+
+.heading-1 { @include heading-1; }
+.heading-2 { @include heading-2; }
+.heading-3 { @include heading-3; }
+.heading-4 { @include heading-4; }
+.heading-5 { @include heading-5; }
+.heading-6 { @include heading-6; }
+
+.body-large { @include body-large; }
+.body-base { @include body-base; }
+.body-small { @include body-small; }
+.body-xs { @include body-xs; } 

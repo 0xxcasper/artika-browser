@@ -1,0 +1,57 @@
+// Language switcher styles
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  
+  .language-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    
+    &.scrolled {
+      color: #2d3748;
+    }
+    
+    &.transparent {
+      color: #2d3748;
+    }
+  }
+  
+  .language-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .language-btn {
+    padding: 0.25rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    
+    &.active {
+      background-color: #3182ce;
+      color: white;
+    }
+    
+    &.inactive-scrolled {
+      background-color: #f7fafc;
+      color: #2d3748;
+      
+      &:hover {
+        background-color: #edf2f7;
+      }
+    }
+    
+    &.inactive-transparent {
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #2d3748;
+      
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+} 

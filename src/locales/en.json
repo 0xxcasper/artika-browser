@@ -1,0 +1,106 @@
+{
+  "navigation": {
+    "home": "HOME",
+    "stay": "STAY",
+    "experiences": "EXPERIENCES",
+    "dine": "DINE",
+    "wellness": "WELLNESS",
+    "wedding": "WEDDING",
+    "gallery": "GALLERY",
+    "offer": "OFFER"
+  },
+  "pages": {
+    "home": {
+      "title": "HOME",
+      "hero": {
+        "title": "Inspiration Awaits in Sapa",
+        "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "about": {
+        "title": "Brand Story",
+        "description": "Immerse yourself in the serene beauty and vibrant adventure of our resort. Nestled in breathtaking landscapes, our retreat blends luxurious comfort with nature’s tranquility. Whether you seek relaxation or exploration, each moment promises to be a unique and enchanting experience.",
+        "button": "BOOK YOUR STAY"
+      },
+      "arts": {
+        "title": "Every space is a\nWork of art"
+      },
+      "focus": {
+        "title": "Nourish to flourish.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "button": "Explore"
+      },
+      "infos": [
+        {
+          "id": "gallery",
+          "title": "The Showcase of\nReimagined Space",
+          "description": "Step into a world where creativity knows no bounds. Our gallery is a haven for art enthusiasts, culture lovers, and curious minds alike. Experience a vibrant collection of masterpieces that span across eras, styles, and cultures, each telling its own unique story.\n\nFrom the bold strokes of contemporary art to the timeless elegance of classical works, there's something to captivate every visitor.",
+          "ctaText": "VISIT US TODAY - LET ART MOVE YOU",
+          "image": "/images/home/banner-1.png",
+          "imageAlt": "Art gallery interior",
+          "textFirst": false 
+        },
+        {
+          "id": "spa", 
+          "title": "Escape to Bliss,\nEmbrace Pure Relaxation",
+          "description": "Unwind and rejuvenate at our resort spa, where luxury and serenity come together in perfect harmony. Indulge in a range of pampering treatments designed to refresh your body and mind.\n\nSurrounded by tranquil landscapes, our spa offers a serene retreat from everyday stress, allowing you to embrace relaxation and emerge renewed. Discover the ultimate escape and let every moment of your spa experience soothe and invigorate.",
+          "ctaText": "CHECK OUT OUR LATEST EVENTS",
+          "image": "/images/home/banner-2.png", 
+          "imageAlt": "Yoga pose by pool",
+          "textFirst": true
+        }
+      ],
+      "gridImages": {
+        "title": "Latest news & events"
+      }
+    },
+    "gallery": {
+      "title": "GALLERY",
+      "description": "Art Gallery",
+      "hero": {
+        "title": "Inspiring Minds,\nOne Masterpiece at a Time",
+        "subtitle": "Explore a diverse collection of masterpieces, from timeless classics to innovative contemporary works."
+      },
+      "about": {
+        "title": "Our unique Experiences",
+        "description": "Wander through our thoughtfully curated exhibits and immerse yourself in the colors, textures, and emotions that only art can evoke. Whether you are seeking inspiration, a moment of reflection, or a fresh perspective, our gallery offers a space where art meets soul.",
+        "button": "BOOK YOUR EXPERIENCE"
+      },
+      "focus": {
+        "title": "Embrace Wellness,\nTransform Your Life",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua.",
+        "button": "Explore"
+      },
+      "infos": [
+        {
+          "id": "gallery",
+          "title": "The Showcase of\nReimagined Space",
+          "description": "Step into a world where creativity knows no bounds. Our gallery is a haven for art enthusiasts, culture lovers, and curious minds alike. Experience a vibrant collection of masterpieces that span across eras, styles, and cultures, each telling its own unique story.\n\nFrom the bold strokes of contemporary art to the timeless elegance of classical works, there's something to captivate every visitor.",
+          "ctaText": "VISIT US TODAY - LET ART MOVE YOU",
+          "image": "/images/home/banner-1.png",
+          "imageAlt": "Art gallery interior",
+          "textFirst": false 
+        },
+        {
+          "id": "spa", 
+          "title": "Escape to Bliss,\nEmbrace Pure Relaxation",
+          "description": "Unwind and rejuvenate at our resort spa, where luxury and serenity come together in perfect harmony. Indulge in a range of pampering treatments designed to refresh your body and mind.\n\nSurrounded by tranquil landscapes, our spa offers a serene retreat from everyday stress, allowing you to embrace relaxation and emerge renewed. Discover the ultimate escape and let every moment of your spa experience soothe and invigorate.",
+          "ctaText": "CHECK OUT OUR LATEST EVENTS",
+          "image": "/images/home/banner-2.png", 
+          "imageAlt": "Yoga pose by pool",
+          "textFirst": true
+        }
+      ], 
+      "gridImages": {
+        "title": "Latest news & events"
+      }
+    }
+  },
+  "common": {
+    "language": "Language",
+    "english": "English",
+    "vietnamese": "Vietnamese",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  }
+} 

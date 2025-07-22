@@ -1,0 +1,34 @@
+// Import fonts first
+@import 'fonts';
+
+// Import variables
+@import 'variables';
+
+// Import utilities
+@import 'utilities/reset';
+@import 'utilities/layout';
+@import 'utilities/responsive';
+
+// Import components
+// Components now have their own styles.scss files in their folders
+
+// Import layouts
+@import 'layouts/content';
+
+// Import animations
+@import 'animations/keyframes';
+
+// Global styles
+body {
+  @include font-secondary;
+  @include body-base;
+  color: $text-primary;
+  background-color: $bg-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // hide scrollbar
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

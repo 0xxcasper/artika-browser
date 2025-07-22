@@ -1,0 +1,63 @@
+@import '../../styles/variables';
+@import '../../styles/fonts';
+
+.focus-banner {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-top: 150px;
+
+  @media (max-width: $breakpoint-lg) {
+    margin-top: 100px;
+  }
+}
+
+.banner-background {
+  width: 100%;
+  min-height: 580px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  
+  background-color: #2c5530;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-content {
+  text-align: center;
+  max-width: 800px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-title {
+  @include font-primary;
+  @include heading-1;
+  font-weight: 400;
+  color: white;
+}
+
+.banner-description {
+  @include font-secondary;
+  @include body-large;
+  color: white;
+  max-width: 600px;
+  margin: 0 2rem 30px 2rem;
+  @media (max-width: $breakpoint-lg) {
+    margin-bottom: 24px;
+  }
+}
