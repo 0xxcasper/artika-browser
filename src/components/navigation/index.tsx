@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import './styles.scss';
-import { Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -91,19 +90,19 @@ export default function Navigation() {
     exit: { opacity: 0, transition: { duration: 0.2 } }
   };
 
-  const renderNavLink = (link: NavLink, onClick?: () => void) => {
-    const isActive = pathname === link.href && pathname !== '/';
-    return (
-      <Link 
-        href={link.href} 
-        key={link.label} 
-        className={`nav-link ${isScrolled ? 'nav-link-scrolled' : 'nav-link-transparent'} ${isActive ? 'active' : ''}`}
-        onClick={onClick}
-      >
-        {t(link.label)}
-      </Link>
-    );
-  };
+  // const renderNavLink = (link: NavLink, onClick?: () => void) => {
+  //   const isActive = pathname === link.href && pathname !== '/';
+  //   return (
+  //     <Link 
+  //       href={link.href} 
+  //       key={link.label} 
+  //       className={`nav-link ${isScrolled ? 'nav-link-scrolled' : 'nav-link-transparent'} ${isActive ? 'active' : ''}`}
+  //       onClick={onClick}
+  //     >
+  //       {t(link.label)}
+  //     </Link>
+  //   );
+  // };
 
   const renderNavLinkDrawer = (link: NavLink, onClick?: () => void) => {
     const isActive = pathname === link.href && pathname !== '/';
