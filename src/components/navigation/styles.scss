@@ -33,12 +33,17 @@
   padding: 0 1.5rem;
   width: 100%;
   margin: 0 auto;
-  padding-top: clamp(3.875rem, 5vw, 4.875rem);
-  padding-bottom: 0.5rem;
+  padding-top: 28px;
+  padding-bottom: 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
+
+  @media (max-width: $breakpoint-lg) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 }
 
 .nav-logo {
@@ -46,7 +51,7 @@
   // center horizontally
   left: 50%;
   transform: translateX(calc(-50% - 2px));
-  bottom: 0.5rem;
+  
 }
 
 .nav-links {
