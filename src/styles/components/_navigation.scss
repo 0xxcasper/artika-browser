@@ -1,0 +1,42 @@
+// Navigation styles
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-fixed;
+  transition: all $transition-normal;
+  
+  &.nav-scrolled {
+    background-color: white;
+    box-shadow: 0 4px 6px $shadow-color;
+  }
+  
+  &.nav-transparent {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), transparent);
+  }
+}
+
+.nav-link {
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color $transition-normal;
+  
+  &.nav-link-scrolled {
+    color: $text-color;
+    
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  
+  &.nav-link-transparent {
+    color: $text-color;
+    
+    &:hover {
+      color: $primary-color;
+    }
+  }
+} 
