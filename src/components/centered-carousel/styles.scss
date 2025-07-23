@@ -10,6 +10,7 @@
   margin-top: 250px;
   width: 100%;
   max-width: 100vw;
+  background-color: transparent !important;
 
   h1 {
     @include heading-1;
