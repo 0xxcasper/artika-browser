@@ -8,8 +8,8 @@ import Providers from './providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Artika',
-  description: 'Experience luxury and comfort',
+  // title: 'Artika',
+  // description: 'Experience luxury and comfort',
 };
 
 export default function RootLayout({

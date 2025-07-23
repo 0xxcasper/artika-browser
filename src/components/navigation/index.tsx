@@ -136,7 +136,7 @@ export default function Navigation() {
             {navLinksLeft.map((link) => renderNavLink(link))}
           </Flex> */}
           <Link href="/" className="nav-logo" draggable={false}>
-            <Image src="/artika.svg" alt="Artika" width={101} height={32} style={{ filter: isScrolled ? 'invert(1)' : 'invert(0)' }} />
+            <Image src="/artika.svg" alt="Artika" width={101} height={32} style={{ filter: isScrolled ? 'invert(1)' : 'invert(0)' }} draggable={false} />
           </Link>
           {/* <Flex alignItems="flex-end" gap="2rem" className="nav-links-desktop">
             {navLinksRight.map((link) => renderNavLink(link))}
