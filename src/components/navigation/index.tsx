@@ -20,7 +20,7 @@ const navLinksLeft: NavLink[] = [
   },
   {
     label: 'navigation.gallery',
-    href: '/gallery'
+    href: '/artwalk'
   },
   // {
   //   label: 'navigation.experiences',

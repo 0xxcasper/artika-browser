@@ -4,6 +4,7 @@ import Navigation from '@/components/navigation';
 import '@/styles/global.scss';
 import Preloader from '@/components/preloader';
 import Providers from './providers';
+import Footer from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -45,6 +46,7 @@ export default function RootLayout({
             <main>
               {children}
             </main>
+            <Footer />
           </Preloader>
         </Providers>
       </body>

@@ -1,13 +1,13 @@
 {
   "navigation": {
-    "home": "HOME",
-    "stay": "STAY",
-    "experiences": "EXPERIENCES",
-    "dine": "DINE",
-    "wellness": "WELLNESS",
-    "wedding": "WEDDING",
-    "gallery": "GALLERY",
-    "offer": "OFFER"
+    "stay": {
+      "title": "STAY",
+      "href": "/"
+    },
+    "artwalk": {
+      "title": "ARTWALK",
+      "href": "/artwalk"
+    }
   },
   "pages": {
     "home": {
@@ -54,8 +54,8 @@
       }
     },
     "gallery": {
-      "title": "GALLERY",
-      "description": "Art Gallery",
+      "title": "ARTWALK",
+      "description": "Art Walk",
       "hero": {
         "title": "Inspiring Minds,\nOne Masterpiece at a Time",
         "subtitle": "Explore a diverse collection of masterpieces, from timeless classics to innovative contemporary works."
@@ -92,6 +92,10 @@
       ], 
       "gridImages": {
         "title": "Latest news & events"
+      },
+      "sub-menus": {
+        "gallery": "Gallery",
+        "artwalk": "Art Walk"
       }
     }
   },
