@@ -7,6 +7,7 @@ import About from '@/components/about';
 import SplitBanner, { SplitBannerSection } from '@/components/split-banner';
 import FocusBanner from '@/components/focus-banner';
 import GridImages from '@/components/grid-images';
+import HorizontalList from '@/components/horizontal-list';
 
 export default function GalleryPage() {
   const { t } = useLanguage();
@@ -24,6 +25,7 @@ export default function GalleryPage() {
         description={t('pages.gallery.about.description')}
         button={t('pages.gallery.about.button')}
       />
+      <HorizontalList />
       <FocusBanner
         title={t('pages.gallery.focus.title')}
         description={t('pages.gallery.focus.description')}
@@ -33,7 +35,6 @@ export default function GalleryPage() {
       />
       <SplitBanner sections={t('pages.gallery.infos') as unknown as Array<SplitBannerSection>} />
       <GridImages title={t('pages.gallery.gridImages.title')} />
-
       <div style={{ height: '30vh', width: '100vw', backgroundColor: 'transparent' }} />
     </div>
   );
