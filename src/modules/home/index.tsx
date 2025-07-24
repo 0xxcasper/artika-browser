@@ -43,7 +43,7 @@ export default function HomePage() {
       />
       <SplitBanner sections={t('pages.home.infos') as unknown as Array<SplitBannerSection>} />
       <GridImages title={t('pages.home.gridImages.title')} />
-      <div style={{ height: '30vh', width: '100vw', backgroundColor: 'transparent' }} />
+      <div style={{ height: '10vh', width: '100vw', backgroundColor: 'transparent' }} />
     </div>
   );
 } 

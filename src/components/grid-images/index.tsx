@@ -26,12 +26,12 @@ export interface GridImagesProps {
 const defaultCards: GridCard[] = [
   {
     id: 1,
-    image: '/images/home/banner-1.png',
+    image: '/images/home/news/news-1.jpg',
     hasOverlay: false
   },
   {
     id: 2,
-    image: '/images/home/banner-2.png',
+    image: '/images/home/news/news-2.jpg',
     hasOverlay: true,
     overlayText: {
       title: 'Discover our new menu',
@@ -40,17 +40,17 @@ const defaultCards: GridCard[] = [
   },
   {
     id: 3,
-    image: '/images/home/focus-banner.jpg',
+    image: '/images/home/news/news-3.jpg',
     hasOverlay: false
   },
   {
     id: 4,
-    image: '/images/gallery/focus-banner.jpg',
+    image: '/images/home/news/news-4.jpg',
     hasOverlay: false
   },
   {
     id: 5,
-    image: '/images/gallery/gallery-bg.jpg',
+    image: '/images/home/news/news-5.jpg',
     hasOverlay: false
   }
 ];
