@@ -4,19 +4,18 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/hero';
 import './styles.scss';
 import About from '@/components/about';
-import CenteredCarousel from '@/components/centered-carousel';
 import FocusBanner from '@/components/focus-banner';
 import SplitBanner, { SplitBannerSection } from '@/components/split-banner';
 import GridImages from '@/components/grid-images';
 
-const images = [
-  '/images/home/arts/art-1.jpg',
-  '/images/home/arts/art-2.jpg',
-  '/images/home/arts/art-3.jpg',
-  '/images/home/arts/art-1.jpg',
-  '/images/home/arts/art-2.jpg',
-  '/images/home/arts/art-3.jpg',
-];
+// const images = [
+//   '/images/home/arts/art-1.jpg',
+//   '/images/home/arts/art-2.jpg',
+//   '/images/home/arts/art-3.jpg',
+//   '/images/home/arts/art-1.jpg',
+//   '/images/home/arts/art-2.jpg',
+//   '/images/home/arts/art-3.jpg',
+// ];
 
 
 export default function HomePage() {
