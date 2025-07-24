@@ -82,7 +82,7 @@ const GalleryPage = () => {
         {COLLECTIONS.map((collection, index) => (
           <motion.div 
             className="gallery-container__grids__item" 
-            key={collection.title}
+            key={`${collection.title}-${index}`}
             variants={itemVariants}
             whileHover={{ 
               y: -10,
