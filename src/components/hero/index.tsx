@@ -161,8 +161,8 @@ export default function Hero({
           transition={{ delay: 0.4 }}
           src="/logo.svg"
           alt="Logo"
-          width={"58px"}
-          height={"58px"}
+          width={"48px"}
+          height={"48px"}
           className="hero-logo"
           draggable={false}
         >

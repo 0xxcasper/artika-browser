@@ -150,34 +150,15 @@ const Preloader: React.FC<PreloaderProps> = ({
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 9999,
-            backdropFilter: "blur(10px)",
           }}
         >
           <motion.img
-            initial={{
-              rotate: 0,
-              scale: 0.9,
-              opacity: 0.3,
-            }}
-            animate={{
-              rotate: 360,
-              scale: [0.9, 1, 1.02, 1, 0.9],
-              opacity: [0.3, 0.5, 1, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 1.3,
-              repeat: Infinity,
-              ease: "linear"
-            }}
             style={{
-              width: 64,
-              height: 64,
-              filter: "invert(1)"
+              width: 80,
+              height: 80,
             }}
-            src="/logo.svg" 
+            src="/logo.gif" 
             alt="Artika" 
-            width={64} 
-            height={64} 
           />
         </motion.div>
       ) : (
