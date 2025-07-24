@@ -45,11 +45,11 @@ $font-size-sm: 0.875rem;   // 14px
 $font-size-base: 1rem;     // 16px
 $font-size-lg: 1.125rem;   // 18px
 $font-size-xl: 1.25rem;    // 20px
-$font-size-2xl: 1.5rem;    // 24px
+$font-size-2xl: 1.75rem;   // 28px
 $font-size-3xl: 1.875rem;  // 30px
 $font-size-4xl: 2.25rem;   // 36px
 $font-size-5xl: 2.5rem;    // 40px
-$font-size-6xl: 4rem;      // 64px
+$font-size-6xl: 3rem;      // 48px
 
 // Line Heights
 $line-height-tight: 1.25;
@@ -96,8 +96,12 @@ $letter-spacing-widest: 0.1em;
 }
 
 @mixin text-lg {
-  font-size: clamp(1rem, 3vw, $font-size-lg);
+  font-size: $font-size-lg;
   line-height: $line-height-relaxed;
+
+  @media screen and (max-width: $breakpoint-sm) {
+    font-size: $font-size-base;
+  }
 }
 
 @mixin text-xl {
@@ -106,8 +110,12 @@ $letter-spacing-widest: 0.1em;
 }
 
 @mixin text-2xl {
-  font-size: clamp(1.25rem, 3vw, $font-size-2xl);
+  font-size: $font-size-2xl;
   line-height: $line-height-snug;
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-xl;
+  }
 }
 
 @mixin text-3xl {
@@ -116,7 +124,7 @@ $letter-spacing-widest: 0.1em;
 }
 
 @mixin text-4xl {
-  font-size: clamp(1.875rem, 3vw, $font-size-4xl);
+  font-size: $font-size-4xl;
   line-height: $line-height-tight;
 }
 
@@ -140,7 +148,7 @@ $letter-spacing-widest: 0.1em;
     font-size: $font-size-5xl;
   }
   @media (max-width: $breakpoint-sm) {
-    font-size: $font-size-4xl;
+    font-size: $font-size-3xl;
   }
 }
 
@@ -176,7 +184,7 @@ $letter-spacing-widest: 0.1em;
 @mixin heading-5 {
   @include font-primary;
   @include text-2xl;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-normal;
   letter-spacing: $letter-spacing-normal;
 }
 

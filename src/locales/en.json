@@ -32,19 +32,19 @@
       "infos": [
         {
           "id": "gallery",
-          "title": "The Showcase of\nReimagined Space",
+          "title": "Some title for Art Walk",
           "description": "Step into a world where creativity knows no bounds. Our gallery is a haven for art enthusiasts, culture lovers, and curious minds alike. Experience a vibrant collection of masterpieces that span across eras, styles, and cultures, each telling its own unique story.\n\nFrom the bold strokes of contemporary art to the timeless elegance of classical works, there's something to captivate every visitor.",
-          "ctaText": "VISIT US TODAY - LET ART MOVE YOU",
-          "image": "/images/home/banner-1.png",
+          "ctaText": "VISIT US TO DAY",
+          "image": "/images/home/banner-1.jpg",
           "imageAlt": "Art gallery interior",
           "textFirst": false 
         },
         {
           "id": "spa", 
-          "title": "Escape to Bliss,\nEmbrace Pure Relaxation",
-          "description": "Unwind and rejuvenate at our resort spa, where luxury and serenity come together in perfect harmony. Indulge in a range of pampering treatments designed to refresh your body and mind.\n\nSurrounded by tranquil landscapes, our spa offers a serene retreat from everyday stress, allowing you to embrace relaxation and emerge renewed. Discover the ultimate escape and let every moment of your spa experience soothe and invigorate.",
-          "ctaText": "CHECK OUT OUR LATEST EVENTS",
-          "image": "/images/home/banner-2.png", 
+          "title": "Some title for Forest Bathing",
+          "description": "Step into a world where creativity knows no bounds. Our gallery is a haven for art enthusiasts, culture lovers, and curious minds alike. Experience a vibrant collection of masterpieces that span across eras, styles, and cultures, each telling its own unique story.\n\nFrom the bold strokes of contemporary art to the timeless elegance of classical works, there's something to captivate every visitor.",
+          "ctaText": "VISIT US TO DAY",
+          "image": "/images/home/banner-2.jpg", 
           "imageAlt": "Yoga pose by pool",
           "textFirst": true
         }

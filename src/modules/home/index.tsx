@@ -34,7 +34,7 @@ export default function HomePage() {
         description={t('pages.home.about.description')}
         button={t('pages.home.about.button')}
       />
-      <CenteredCarousel images={images} title={t('pages.home.arts.title')} />
+      {/* <CenteredCarousel images={images} title={t('pages.home.arts.title')} /> */}
       <FocusBanner
         title={t('pages.home.focus.title')}
         description={t('pages.home.focus.description')}

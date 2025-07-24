@@ -2,15 +2,8 @@
 @import '../../styles/fonts';
 
 .about {
-  padding-top: 230px;
-
-  @media (max-width: $breakpoint-lg) {
-    padding-top: 100px;
-  }
-
-  max-width: 1428px;
+  max-width: 1044px;
   margin: 0 auto;
-  gap: 100px;
   .about-container {
     display: flex;
     flex-direction: column;
@@ -26,22 +19,20 @@
     }
     
     p {
-      margin-top: 54px;
-      @include heading-3;
+      margin-top: 40px;
+      margin-bottom: 48px;
+      @include heading-5;
       @include font-primary;
       text-align: center;
 
       @media (max-width: $breakpoint-lg) {
         margin-top: 24px;
+        margin-bottom: 32px;
         @include body-large;
       }
     }
 
     .about-button {
-      margin-top: 46px;
-      @media (max-width: $breakpoint-lg) {
-        margin-top: 24px;
-      }
     }
   }
 }

@@ -1,5 +1,7 @@
 // Button styles
 @import '../../styles/variables';
+@import '../../styles/fonts';
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -7,11 +9,13 @@
   border: 1px solid #64603C;
   border-radius: 100px;
   padding: 1.75rem 5.5rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #64603C;
   background-color: transparent;
   transition: all 0.3s ease;
+
+  @include font-secondary;
 
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
@@ -36,7 +40,6 @@
 @media (max-width: $breakpoint-lg) {
   .btn {
     padding: 1.25rem 2.5rem;
-    font-size: 1.25rem;
   }
 }
 
