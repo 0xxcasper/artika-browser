@@ -1,12 +1,11 @@
 @import '@/styles/variables.scss';
 @import '@/styles/fonts.scss';
 
-.container {
+.footer-container {
   background-color: #64603C;
   padding: 150px;
   width: 100dvw;
 
-  
   @media (max-width: $breakpoint-lg) {
     padding: 80px;
   }
@@ -40,7 +39,7 @@
     }
 
     .title {
-      @include heading-3;
+      @include heading-4;
       @include font-tertiary;
       color: $text-inverse;
     }

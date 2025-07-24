@@ -1,3 +1,3 @@
-import GalleryPage from '@/modules/gallery';
+import ArtwalkPage from '@/modules/artwalk';
 
-export default GalleryPage;
+export default ArtwalkPage;

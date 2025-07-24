@@ -15,12 +15,12 @@ interface NavLink {
 
 const navLinksLeft: NavLink[] = [
   {
-    label: 'navigation.stay',
-    href: '/'
+    label: 'navigation.stay.title',
+    href: 'navigation.stay.href',
   },
   {
-    label: 'navigation.gallery',
-    href: '/artwalk'
+    label: 'navigation.gallery.title',
+    href: 'navigation.gallery.href',
   },
   // {
   //   label: 'navigation.experiences',
@@ -56,6 +56,11 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
+
+  const textDark = ['gallery'];
+
+  const isTextDark = textDark.some((path) => pathname.includes(path));
+
   useEffect(() => {
     window.scrollTo(0, 0);
     const handleScroll = () => {
@@ -105,9 +110,10 @@ export default function Navigation() {
   // };
 
   const renderNavLinkDrawer = (link: NavLink, onClick?: () => void) => {
-    const isActive = pathname === link.href && pathname !== '/';
+    const href = t(link.href);
+    const isActive = pathname === href && pathname !== '/';
     return (
-      <Link href={link.href} key={link.label} className={`nav-link-drawer ${isActive ? 'active' : ''}`} onClick={onClick}>
+      <Link href={href} key={link.label} className={`nav-link-drawer ${isActive ? 'active' : ''}`} onClick={onClick}>
         {t(link.label)}
       </Link>
     );
@@ -116,7 +122,7 @@ export default function Navigation() {
   return (
     <>
       <motion.nav
-        className={`nav ${isScrolled ? 'nav-scrolled' : 'nav-transparent'}`}
+        className={`nav ${isScrolled || isTextDark ? 'nav-scrolled' : 'nav-transparent'}`}
         variants={navVariants}
         initial="hidden"
         animate="visible"
@@ -124,19 +130,17 @@ export default function Navigation() {
         <div className="nav-container">
           {/* Hamburger menu for mobile */}
           <button
-            className={`nav-hamburger ${isScrolled ? 'nav-hamburger-scrolled' : ''}`}
+            className={`nav-hamburger ${isScrolled || isTextDark ? 'nav-hamburger-scrolled' : ''}`}
             aria-label="Open menu"
             onClick={() => setIsSidebarOpen(true)}
           >
-            <span />
-            <span />
-            <span />
+            <Image src="/icons/menu.svg" alt="menu" width={24} height={24} draggable={false} />
           </button>
           {/* <Flex alignItems="flex-end" gap="2rem" className="nav-links-desktop">
             {navLinksLeft.map((link) => renderNavLink(link))}
           </Flex> */}
           <Link href="/" className="nav-logo" draggable={false}>
-            <Image src="/artika.svg" alt="Artika" width={101} height={32} style={{ filter: isScrolled ? 'invert(1)' : 'invert(0)' }} draggable={false} />
+            <Image src="/artika.svg" alt="Artika" width={113} height={23} style={{ filter: isScrolled || isTextDark ? 'invert(1)' : 'invert(0)' }} draggable={false} />
           </Link>
           {/* <Flex alignItems="flex-end" gap="2rem" className="nav-links-desktop">
             {navLinksRight.map((link) => renderNavLink(link))}

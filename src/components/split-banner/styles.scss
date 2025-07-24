@@ -10,8 +10,9 @@
   gap: 150px;
   opacity: 0; // Ensure initial hidden state
 
-  @media (max-width: $breakpoint-lg) {
+  @media (max-width: $breakpoint-xl) {
     gap: 80px;
+    padding: 0 1rem;
   }
 }
 

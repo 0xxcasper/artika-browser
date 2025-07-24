@@ -30,7 +30,7 @@
 
 .nav-container {
   // max-width: min(calc(1570px + 3rem), 100%);
-  padding: 28px 2rem;
+  padding: 17px 2rem;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -39,7 +39,7 @@
   position: relative;
 
   @media (max-width: $breakpoint-lg) {
-    padding: 20px 1rem;
+    padding: 1rem;
   }
 }
 
@@ -48,7 +48,6 @@
   // center horizontally
   left: 50%;
   transform: translateX(calc(-50% - 2px));
-  
 }
 
 .nav-links {
@@ -131,34 +130,21 @@
 
 // Hamburger menu (mobile)
 .nav-hamburger {
-  // display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 2rem;
-  height: 2rem;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 1101;
-
-  span {
-    display: block;
-    width: 1.5rem;
-    height: 4px;
-    background: #fff;
-    margin: 0.3rem 0;
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
 
   @media (max-width: $breakpoint-xl) {
     display: flex;
   }
 
   &.nav-hamburger-scrolled {
-    span {
-      background: #000;
+    img {
+      filter: invert(1);
     }
   }
 }
@@ -179,7 +165,7 @@
   width: 80vw;
   max-width: 520px;
   height: 100vh;
-  background: hsla(0,0%,100%,.8);
+  background: hsla(0,0%,100%,1);
   backdrop-filter: blur(10px);
   box-shadow: 4px 0 32px rgba(0,0,0,0.18);
   z-index: 1101;

@@ -1,41 +1,121 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import Hero from '@/components/hero';
+import { COLLECTIONS } from './constants';
 import './styles.scss';
-import About from '@/components/about';
-import SplitBanner, { SplitBannerSection } from '@/components/split-banner';
-import FocusBanner from '@/components/focus-banner';
-import GridImages from '@/components/grid-images';
-import HorizontalList from '@/components/horizontal-list';
+import Image from 'next/image';
+import { Flex } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 
-export default function GalleryPage() {
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30,
+    scale: 0.95
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: { 
+      duration: 0.6,
+      ease: "easeOut"
+    } 
+  }
+};
+
+const headerVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.8,
+      ease: "easeOut"
+    } 
+  }
+};
+
+const GalleryPage = () => {
   const { t } = useLanguage();
 
-
   return (
-    <div className="gallery-page">
-      <Hero
-        title={t('pages.gallery.hero.title')}
-        subtitle={t('pages.gallery.hero.subtitle')}
-        backgroundImage="/images/gallery/gallery-bg.jpg"
-      />
-      <About
-        title={t('pages.gallery.about.title')}
-        description={t('pages.gallery.about.description')}
-        button={t('pages.gallery.about.button')}
-      />
-      <HorizontalList />
-      <FocusBanner
-        title={t('pages.gallery.focus.title')}
-        description={t('pages.gallery.focus.description')}
-        buttonText={t('pages.gallery.focus.button')}
-        backgroundImage="/images/gallery/focus-banner.jpg"
-        aspectRatio="1728/971"
-      />
-      <SplitBanner sections={t('pages.gallery.infos') as unknown as Array<SplitBannerSection>} />
-      <GridImages title={t('pages.gallery.gridImages.title')} />
-      <div style={{ height: '30vh', width: '100vw', backgroundColor: 'transparent' }} />
+    <div className="gallery-container">
+      <motion.div 
+        className="gallery-container__header"
+        variants={headerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+      >
+        <div className="gallery-container__header__title">
+          <h1>
+            {t('pages.gallery.hero.title')}
+          </h1>
+          <p>
+            {t('pages.gallery.hero.subtitle')}
+          </p>
+        </div>
+      </motion.div>
+      
+      <motion.div 
+        className="gallery-container__grids"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        {COLLECTIONS.map((collection, index) => (
+          <motion.div 
+            className="gallery-container__grids__item" 
+            key={collection.title}
+            variants={itemVariants}
+            whileHover={{ 
+              y: -10,
+              transition: { 
+                duration: 0.3,
+                ease: "easeOut"
+              }
+            }}
+          >
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image 
+                src={collection.image} 
+                alt={collection.title} 
+                width={400} 
+                height={480} 
+                className="gallery-container__grids__item__image" 
+              />
+            </motion.div>
+            <div className="gallery-container__grids__item__content">
+              <Flex flexDirection='row' gap="1rem" justify="space-between">
+                <p className='gallery-container__grids__item__content__title'>{collection.title}</p>
+                <p className='gallery-container__grids__item__content__material'>{collection.material}</p>
+              </Flex>
+              <p className='gallery-container__grids__item__content__description'>{collection.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
-} 
+};
+
+export default GalleryPage;

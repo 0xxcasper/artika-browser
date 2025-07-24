@@ -4,9 +4,9 @@
       "title": "STAY",
       "href": "/"
     },
-    "artwalk": {
-      "title": "ARTWALK",
-      "href": "/artwalk"
+    "gallery": {
+      "title": "GALLERY",
+      "href": "/gallery"
     }
   },
   "pages": {
@@ -53,7 +53,7 @@
         "title": "Latest news & events"
       }
     },
-    "gallery": {
+    "artwalk": {
       "title": "ARTWALK",
       "description": "Art Walk",
       "hero": {
@@ -96,6 +96,14 @@
       "sub-menus": {
         "gallery": "Gallery",
         "artwalk": "Art Walk"
+      }
+    },
+    "gallery": {
+      "title": "GALLERY",
+      "description": "Gallery",
+      "hero": {
+        "title": "Discover Art, Discover Yourself.",
+        "subtitle": "Discover our diverse collection of art, from timeless classics to contemporary pieces. Each work offers a unique story and invites you to see the world differently."
       }
     }
   },

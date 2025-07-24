@@ -102,7 +102,7 @@ export default function GridImages({ className = '', title = '', cards = default
       <div className="grid-images__container">
         <motion.div 
           className="grid-images__grid"
-          variants={containerVariants}
+          variants={containerVariants} 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
