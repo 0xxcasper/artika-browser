@@ -91,6 +91,7 @@ const GalleryPage = () => {
                 ease: "easeOut"
               }
             }}
+            viewport={{ once: true, margin: "-50px" }}
           >
             <motion.div
               whileHover={{ scale: 1.02 }}
