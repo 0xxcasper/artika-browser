@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './styles.scss';
 import Button from '../button';
-import { Image } from '@chakra-ui/react';
+// import { Image } from '@chakra-ui/react';
 
 interface FocusBannerProps {
   title?: string;
@@ -15,27 +15,17 @@ interface FocusBannerProps {
   aspectRatio?: string;
 }
 
-const variants = {
-  hidden: { opacity: 0, y: 30 },
+const textVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30
+  },
   visible: { 
     opacity: 1, 
-    y: 0, 
+    y: 0,
     transition: { 
-      duration: 0.8, 
-      ease: [0.34, 1.56, 0.64, 1],
-      staggerChildren: 0.2
-    } 
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { 
-      duration: 0.6, 
-      ease: [0.34, 1.56, 0.64, 1] 
+      duration: 0.6,
+      ease: "easeOut"
     } 
   }
 };
@@ -50,36 +40,53 @@ export default function FocusBanner({
 }: FocusBannerProps) {
 
   return (
-    <motion.div 
-      className="focus-banner"
-      initial="hidden"
-      whileInView="visible"
-      variants={variants}
-      viewport={{ once: true, margin: "-10% 0px" }}
-    >
-      <Image className="banner-background" src={backgroundImage} alt="Focus Banner" objectFit="cover" aspectRatio={aspectRatio} />
-
+    <div className="focus-banner">
+      <img 
+        className="banner-background" 
+        src={backgroundImage} 
+        alt="Focus Banner"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          aspectRatio: aspectRatio
+        }}
+      />
+      
       <div className="banner-overlay">
-          <div className="banner-content">
-            <motion.h1 
-              className="banner-title"
-              variants={itemVariants}
-            >
-              {title}
-            </motion.h1>
-            
-            <motion.p 
-              className="banner-description"
-              variants={itemVariants}
-            >
-              {description}
-            </motion.p>
-            
+        <div className="banner-content">
+          <motion.h1 
+            className="banner-title"
+            variants={textVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {title}
+          </motion.h1>
+          
+          <motion.p 
+            className="banner-description"
+            variants={textVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {description}
+          </motion.p>
+          
+          <motion.div 
+            variants={textVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             <Button onClick={onExploreClick} variant="secondary" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} style={{ padding: '0.75rem 3.8125rem' }}>
               {buttonText}
             </Button>
-          </div>
+          </motion.div>
         </div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
