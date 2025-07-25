@@ -21,7 +21,7 @@ const containerVariants = {
 const itemVariants = {
   hidden: { 
     opacity: 0, 
-    y: 20
+    y: 50
   },
   visible: { 
     opacity: 1, 
@@ -75,13 +75,15 @@ const GalleryPage = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-50px", amount: 0.1 }}
+        viewport={{ once: true, margin: "-50px" }}
       >
         {COLLECTIONS.map((collection, index) => (
           <motion.div 
             className="gallery-container__grids__item" 
             key={`${collection.title}-${index}`}
             variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
             whileHover={{ 
               y: -5,
               transition: { 
@@ -89,6 +91,7 @@ const GalleryPage = () => {
                 ease: "easeOut"
               }
             }}
+            viewport={{ once: true, margin: "-50px" }}
           >
             <Image 
               src={collection.image} 
