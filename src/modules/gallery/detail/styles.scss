@@ -5,9 +5,96 @@
   padding: 130px 1.5rem 150px 1.5rem;
   max-width: 1568px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  min-height: 100dvh;
 
   @media screen and (max-width: $breakpoint-lg) {
-    padding-top: 150px;
-    gap: 80px;
+    padding-top: 80px;
+    gap: 40px;
+    .content {
+      flex-direction: column;
+      gap: 40px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 40px;
+      .name {
+        @include heading-1;
+        @include font-primary;
+        color: $text-primary;
+        white-space: pre-line;
+      }
+      .author {
+        margin-top: 10px;
+        @include body-large;
+        @include font-secondary;
+        color: $text-primary;
+      }
+      .material {
+        @include body-large;
+        @include font-secondary;
+        color: rgba(169, 169, 169, 1);
+      }
+    }
+
+    .description {
+      flex: 1.5;
+
+      &__text {
+        @include body-large;
+        @include font-secondary;
+        color: $text-primary;
+        white-space: pre-line;
+      }
+
+      .read-more-btn {
+        position: relative;
+        margin-top: 40px;
+        @include body-large;
+        @include font-secondary;
+        color: $text-primary;
+        text-decoration: none;
+        cursor: pointer;
+        background: none;
+        border: none;
+        transition: color 0.3s;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 2px;
+          background: $text-primary;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        &:hover::after {
+          transform: scaleX(1);
+        }
+
+        &:hover {
+          opacity: 0.85;
+        }
+      }
+    }
   }
 }

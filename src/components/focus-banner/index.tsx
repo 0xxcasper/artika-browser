@@ -24,7 +24,7 @@ const textVariants = {
     opacity: 1, 
     y: 0,
     transition: { 
-      duration: 0.6,
+      duration: 0.6, 
       ease: "easeOut"
     } 
   }
@@ -52,29 +52,29 @@ export default function FocusBanner({
           aspectRatio: aspectRatio
         }}
       />
-      
+
       <div className="banner-overlay">
-        <div className="banner-content">
-          <motion.h1 
-            className="banner-title"
+          <div className="banner-content">
+            <motion.h1 
+              className="banner-title"
             variants={textVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-          >
-            {title}
-          </motion.h1>
-          
-          <motion.p 
-            className="banner-description"
+            >
+              {title}
+            </motion.h1>
+            
+            <motion.p 
+              className="banner-description"
             variants={textVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-          >
-            {description}
-          </motion.p>
-          
+            >
+              {description}
+            </motion.p>
+            
           <motion.div 
             variants={textVariants}
             initial="hidden"
