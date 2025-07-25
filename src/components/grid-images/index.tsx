@@ -129,7 +129,12 @@ export default function GridImages({ className = '', title = '', cards = default
                     alt={card.overlayText?.title || `Restaurant interior ${card.id}`}
                     className="grid-images__image"
                     loading="lazy"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    draggable={false}
+                    style={{
+                      
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                    }}
                   />
                 </div>
                 

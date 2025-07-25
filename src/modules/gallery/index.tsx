@@ -6,6 +6,8 @@ import './styles.scss';
 import Image from 'next/image';
 import { Flex } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import router from 'next/dist/shared/lib/router/router';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -42,7 +44,7 @@ const headerVariants = {
     opacity: 1, 
     y: 0,
     transition: { 
-      duration: 0.8,
+      duration: 0.4,
       ease: "easeOut"
     } 
   }
@@ -50,7 +52,7 @@ const headerVariants = {
 
 const GalleryPage = () => {
   const { t } = useLanguage();
-
+  const router = useRouter();
   return (
     <div className="gallery-container">
       <motion.div 
@@ -85,13 +87,16 @@ const GalleryPage = () => {
             initial="hidden"
             whileInView="visible"
             whileHover={{ 
-              y: -5,
+              y: -2,
               transition: { 
                 duration: 0.2,
                 ease: "easeOut"
               }
             }}
             viewport={{ once: true, margin: "-50px" }}
+            onClick={() => {
+              router.push(`/gallery/${collection.id}`);
+            }}
           >
             <Image 
               src={collection.image} 
@@ -101,6 +106,7 @@ const GalleryPage = () => {
               className="gallery-container__grids__item__image"
               priority={index < 6}
               placeholder="blur"
+              draggable={false}
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
             />
             <div className="gallery-container__grids__item__content">

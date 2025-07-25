@@ -71,6 +71,7 @@
       height: 100%;
       transform: translateZ(0);
       will-change: transform;
+      cursor: pointer;
 
       &__image {
         width: 100%;
