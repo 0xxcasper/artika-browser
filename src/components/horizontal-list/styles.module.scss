@@ -1,0 +1,24 @@
+@import '@/styles/variables.scss';
+@import '@/styles/fonts.scss';
+
+.horizontalList {
+  .item {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .title {
+    @include text-base;
+    @include font-secondary;
+  }
+  .description {
+    @include text-base;
+    @include font-secondary;
+  }
+  .material {
+    @include text-base;
+    @include font-secondary;
+    color: rgba(169, 169, 169, 1);
+  }
+}

@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Image } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import HorizontalList from '@/components/horizontal-list';
 
 const MAX_LENGTH = 1500;
 
@@ -112,6 +113,7 @@ const GalleryDetailPage = () => {
         </motion.div>
         <GalleryDetail MOCKUP_TEXT={MOCKUP_TEXT} />
       </motion.div>
+      <HorizontalList />
     </div>
   );
 };
