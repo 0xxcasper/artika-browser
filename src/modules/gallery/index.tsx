@@ -7,7 +7,6 @@ import Image from 'next/image';
 import { Flex } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import router from 'next/dist/shared/lib/router/router';
 
 const containerVariants = {
   hidden: { opacity: 0 },
