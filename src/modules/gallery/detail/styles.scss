@@ -54,16 +54,29 @@
     padding-right: 60px;
     position: relative;
 
+    @media screen and (max-width: $breakpoint-md) {
+      flex-direction: column;
+      padding: 0;
+      gap: 24px;
+    }
+
     .info {
       display: flex;
       flex-direction: column;
       flex: 1;
       gap: 40px;
+
+      @media screen and (max-width: $breakpoint-md) {
+        gap: 12px;
+      }
       .name {
         @include heading-1;
         @include font-primary;
         color: $text-primary;
         white-space: pre-line;
+        @media screen and (max-width: $breakpoint-md) {
+          white-space: unset;
+        }
       }
       .author {
         margin-top: 10px;
@@ -122,5 +135,9 @@
         }
       }
     }
+  }
+  @media screen and (max-width: $breakpoint-md) {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }

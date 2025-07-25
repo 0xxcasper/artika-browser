@@ -86,7 +86,7 @@ const GalleryDetailPage = () => {
                 }}
                 aspectRatio={{
                   base: "2/1",
-                  xl: "2.2/1",
+                  lg: "2.2/1",
                 }}
                 draggable={false}
               />
