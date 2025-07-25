@@ -67,20 +67,6 @@ export default function GridImages({ className = '', title = '', cards = default
     }
   };
 
-  const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.4,
-        ease: "easeInOut"
-      }
-    }
-  };
-
   const titleVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
@@ -100,18 +86,31 @@ export default function GridImages({ className = '', title = '', cards = default
         </motion.h2>
       )}
       <div className="grid-images__container">
-        <motion.div 
+        <div 
           className="grid-images__grid"
-          variants={containerVariants} 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
         >
-          {cards.map((card) => (
+          {cards.map((card, index) => (
             <motion.div
               key={card.id}
               className={`grid-images__card ${card.hasOverlay ? 'grid-images__card--overlay' : ''}`}
-              variants={cardVariants}
+              variants={{
+                hidden: { 
+                  opacity: 0, 
+                  y: 30,
+                },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { 
+                    duration: 0.4,
+                    delay: index * 0.05,
+                    ease: "easeOut"
+                  }
+                }
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
               whileHover={{ 
                 scale: 1.02, 
                 transition: { 
@@ -153,7 +152,7 @@ export default function GridImages({ className = '', title = '', cards = default
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
