@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Image } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const MAX_LENGTH = 1500;
 
@@ -19,7 +20,6 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
 function GalleryDetail({ MOCKUP_TEXT }: { MOCKUP_TEXT: string }) {
   const [expanded, setExpanded] = useState(false);
   const showReadMore = MOCKUP_TEXT.length > MAX_LENGTH;
-  console.log(MOCKUP_TEXT.length)
 
   const displayText = expanded || !showReadMore
     ? MOCKUP_TEXT
@@ -27,7 +27,19 @@ function GalleryDetail({ MOCKUP_TEXT }: { MOCKUP_TEXT: string }) {
 
   return (
     <div className="description">
-      <p className={`description__text${expanded ? ' expanded' : ''}`}>{displayText}</p>
+        <motion.p
+          key={expanded ? 'expanded' : 'collapsed'}
+          className={`description__text${expanded ? ' expanded' : ''}`}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.2, ease: 'easeInOut' }}
+          style={{ overflow: 'hidden' }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+        >
+          {displayText}
+        </motion.p>
       {showReadMore && (
         <button className="read-more-btn" onClick={() => setExpanded((v) => !v)}>
           {expanded ? 'Show less' : 'Read more'}
@@ -49,51 +61,58 @@ const GalleryDetailPage = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 4000,
-    pauseOnHover: true,
-    appendDots: (dots: any) => (
-      <div style={{
-        position: 'absolute',
-        bottom: '10px',
-        width: '100%',
-      }}>
-        {dots}
-      </div>
-    ),
+    pauseOnHover: true
   };
 
   return (
     <div className="gallery-detail-container">
-      <Slider {...settings}>
-        {banners.map((banner, index) => (
-          <div key={index}>
-            <Image 
-              src={banner}
-              alt="banner" 
-              width="100%" 
-              height="auto" 
-              draggable={false} 
-              style={{
-                objectFit: 'cover',
-                objectPosition: 'center',
-              }} 
-              aspectRatio={{
-                base: "2.2/1",
-                xl: "2.5/1",
-              }}
-            />
-          </div>
-        ))}
-      </Slider>
-      <div className="content">
-        <div className="info">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <Slider {...settings}>
+          {banners.map((banner, index) => (
+            <div key={index}>
+              <Image 
+                src={banner}
+                alt="banner" 
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+                aspectRatio={{
+                  base: "2/1",
+                  xl: "2.2/1",
+                }}
+                draggable={false}
+              />
+            </div>
+          ))}
+        </Slider>
+      </motion.div>
+      <motion.div
+        className="content"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+      >
+        <motion.div
+          className="info"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+        >
           <p className="name">{`The bridge of\nlonging for love`}</p>
           <p className="author">TẠ QUANG BẠO (1941~)</p>
           <p className="material">Thép / Steel</p>
-        </div>
+        </motion.div>
         <GalleryDetail MOCKUP_TEXT={MOCKUP_TEXT} />
-      </div>
+      </motion.div>
     </div>
   );
 };
