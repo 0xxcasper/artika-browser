@@ -138,7 +138,10 @@ const Preloader: React.FC<PreloaderProps> = ({
           initial={{ opacity: 1 }}
           exit={{ 
             opacity: 0,
-            transition: { duration: 0.3, ease: "easeInOut" }
+            transition: { 
+              duration: 0.3, 
+              ease: "easeInOut"
+            }
           }}
           style={{
             position: 'fixed',
@@ -153,10 +156,7 @@ const Preloader: React.FC<PreloaderProps> = ({
           }}
         >
           <motion.img
-            style={{
-              width: 80,
-              height: 80,
-            }}
+            style={{ width: 145, height: 145 }}
             src="/logo.gif" 
             alt="Artika" 
           />

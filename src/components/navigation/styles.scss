@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import '@/styles/variables';
 
 // Navigation styles
 .nav {
@@ -18,18 +18,9 @@
   &.nav-transparent {
     background: transparent;
   }
-
-
-  @media (max-width: $breakpoint-xl) {
-    // link tag display none
-    .nav-link {
-      display: none;
-    }
-  }
 }
 
 .nav-container {
-  // max-width: min(calc(1570px + 3rem), 100%);
   padding: 17px 2rem;
   width: 100%;
   margin: 0 auto;
@@ -45,7 +36,6 @@
 
 .nav-logo {
   position: absolute;
-  // center horizontally
   left: 50%;
   transform: translateX(calc(-50% - 2px));
 
@@ -57,82 +47,45 @@
   }
 }
 
-.nav-links {
-  display: flex;
-}
-
-.nav-link {
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.5s ease;
-  text-decoration: none;
-  position: relative;
-
-  &:hover {
-    opacity: 0.8;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: currentColor;
-    transition: width 0.3s ease;
-  }
-  
-  &:hover::after,
-  &.active::after {
-    width: 100%;
-  }
-  
-  &.nav-link-scrolled {
-    color: #000;
-    
-    &:hover {
-      color: #000;
-    }
-  }
-  
-  &.nav-link-transparent {
-    color: white;
-    
-    &:hover {
-      color: white;
-    }
-  }
-}
-
 .nav-link-drawer {
   font-size: 1rem;
   font-weight: 500;
   transition: color 0.5s ease;
   text-decoration: none;
   position: relative;
-  color: #000;
+  color: #A9A9A9;
   width: fit-content;
+  cursor: pointer;
 
   &.active {
     color: #000;
   }
 
-  &:hover::after,
-  &.active::after {
-    width: 100%;
+
+  // disabled
+  &.disabled {
+    cursor: not-allowed;
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: currentColor;
-    transition: width 0.3s ease;
+  // donot show after for disabled
+  &.disabled::after {
+    display: none !important;
   }
+
+  // &:hover::after {
+  //   width: 100%;
+  // }
+
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   bottom: -4px;
+  //   left: 0;
+  //   width: 0;
+  //   height: 2px;
+  //   background-color: currentColor;
+  //   transition: width 0.3s ease;
+  // }
 }
 
 // Hamburger menu (mobile)
@@ -170,7 +123,7 @@
   position: fixed;
   top: 0; left: 0;
   width: 80vw;
-  max-width: 520px;
+  max-width: 620px;
   height: 100vh;
   background: hsla(0,0%,100%,1);
   backdrop-filter: blur(10px);
@@ -178,42 +131,42 @@
   z-index: 1101;
   display: flex;
   flex-direction: column;
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
-  animation: slideInLeft 0.3s;
+  padding: 4rem;
 
   @media (max-width: $breakpoint-sm) {
-    max-width: 320px;
+    max-width: 480px;
+    padding: 2rem;
   }
-}
-
-@keyframes slideInLeft {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
 }
 
 .nav-sidebar-close {
   background: none;
   border: none;
-  font-size: 2rem;
-  color: #333;
   align-self: flex-end;
   cursor: pointer;
   margin-bottom: 1.5rem;
+  padding: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
 }
 
 .nav-sidebar-links {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
   margin-top: 2rem;
 }
 
-// Hide desktop nav links on mobile
-.nav-links-desktop {
-  @media (max-width: $breakpoint-xl) {
-    display: none !important;
-  }
-}
 
 // Show hamburger only on mobile
 @media (max-width: $breakpoint-xl) {

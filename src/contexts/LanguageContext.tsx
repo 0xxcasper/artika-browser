@@ -2,7 +2,8 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type Language = 'en' | 'vi';
+// TODO: add vi
+type Language = 'en';
 
 interface LanguageContextType {
   language: Language;
@@ -13,12 +14,12 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 // Import translations
-import enTranslations from '@/locales/en.json';
-import viTranslations from '@/locales/vi.json';
+import enTranslations from '@/locales/en';
+// import viTranslations from '@/locales/vi.json';
 
 const translations = {
   en: enTranslations,
-  vi: viTranslations,
+  // vi: viTranslations,
 };
 
 // Helper function to get nested object value by dot notation
@@ -35,7 +36,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   // Load language from localStorage on mount
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language') as Language;
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'vi')) {
+    // TODO: add vi
+    if (savedLanguage && (savedLanguage === 'en')) {
       setLanguageState(savedLanguage);
     } else {
       // Default to English if no valid language is saved

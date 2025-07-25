@@ -1,65 +1,60 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import './styles.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { navigation as navMenusEn } from '@/locales/en';
+import type { NavigationMenu, NavigationSub } from '@/locales/types';
+import { Flex } from '@chakra-ui/react';
 
-interface NavLink {
-  label: string;
-  href: string;
-}
 
-const navLinksLeft: NavLink[] = [
-  {
-    label: 'navigation.stay.title',
-    href: 'navigation.stay.href',
-  },
-  {
-    label: 'navigation.gallery.title',
-    href: 'navigation.gallery.href',
-  },
-  // {
-  //   label: 'navigation.experiences',
-  //   href: '/experiences'
-  // },
-  // {
-  //   label: 'navigation.dine',
-  //   href: '/dine'
-  // },
-  // {
-  //   label: 'navigation.wellness',
-  //   href: '/wellness'
-  // }
-];
+const navVariants = {
+  initial: { y: -200, opacity: 0 },
+  hidden: { y: -200, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: 'easeOut'
+    }
+  }
+};
 
-const navLinksRight: NavLink[] = [
-  // {
-  //   label: 'navigation.wedding',
-  //   href: '/wedding'
-  // },
-  // {
-  //   label: 'navigation.gallery',
-  //   href: '/gallery'
-  // },
-  // {
-  //   label: 'navigation.offer',
-  //   href: '/offer'
-  // }
-];
+const sidebarVariants = {
+  hidden: { x: '-100%' },
+  visible: { x: 0, transition: { type: 'tween', duration: 0.3 } },
+  exit: { x: '-100%', transition: { type: 'tween', duration: 0.2 } }
+};
+
+const overlayVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 0.4, transition: { duration: 0.2 } },
+  exit: { opacity: 0, transition: { duration: 0.2 } }
+};
+
 
 export default function Navigation() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
+  const [selectedMenu, setSelectedMenu] = useState<NavigationMenu | null>(null);
 
-  const textDark = ['gallery'];
+  const menus = useMemo(() => navMenusEn, [language]);
 
-  const isTextDark = textDark.some((path) => pathname.includes(path));
+  const currentPathMenu = useMemo(() => {
+    return menus.find((menu) => menu.subs && menu.subs.some((sub) => pathname.includes(sub.href) && sub.href !== '/'));
+  }, [menus, pathname]);
+
+  const isTextDark = useMemo(() => {
+    const textDark = ['artwalk'];
+    return textDark.some((path) => pathname.includes(path));
+  }, [pathname]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,54 +65,79 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navVariants = {
-    initial: { y: -200, opacity: 0 },
-    hidden: { y: -200, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut'
-      }
-    }
-  };
-
-  const sidebarVariants = {
-    hidden: { x: '-100%' },
-    visible: { x: 0, transition: { type: 'tween', duration: 0.3 } },
-    exit: { x: '-100%', transition: { type: 'tween', duration: 0.2 } }
-  };
-
-  const overlayVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 0.4, transition: { duration: 0.2 } },
-    exit: { opacity: 0, transition: { duration: 0.2 } }
-  };
-
-  // const renderNavLink = (link: NavLink, onClick?: () => void) => {
-  //   const isActive = pathname === link.href && pathname !== '/';
-  //   return (
-  //     <Link 
-  //       href={link.href} 
-  //       key={link.label} 
-  //       className={`nav-link ${isScrolled ? 'nav-link-scrolled' : 'nav-link-transparent'} ${isActive ? 'active' : ''}`}
-  //       onClick={onClick}
-  //     >
-  //       {t(link.label)}
-  //     </Link>
-  //   );
-  // };
-
-  const renderNavLinkDrawer = (link: NavLink, onClick?: () => void) => {
-    const href = t(link.href);
-    const isActive = pathname === href && pathname !== '/';
+  const renderSubMenu = (element: NavigationSub) => {
+    const href = t(element.href);
+    const isActive = pathname === href;
     return (
-      <Link href={href} key={link.label} className={`nav-link-drawer ${isActive ? 'active' : ''}`} onClick={onClick}>
-        {t(link.label)}
+      <Link 
+        href={href} 
+        key={element.id} 
+        className={`nav-link-drawer ${isActive ? 'active' : ''}`} 
+        onClick={() => {
+          setSelectedMenu(null);
+          setIsSidebarOpen(false);
+        }}
+      >
+        {element.name}
       </Link>
     );
   };
+
+  const renderMenu = (element: NavigationMenu) => {
+    const href = element.href;
+    let isActive = pathname.includes(href) || (element.subs && element.subs.some((sub) => pathname.includes(sub.href) && sub.href !== '/')) || (selectedMenu && selectedMenu.label === element.label);
+    
+    if (isActive && element.href === '/' && pathname !== '/') {
+      isActive = false;
+    }
+
+    if (!href) {
+      return (
+        <div key={element.label} className="nav-link-drawer disabled">
+          {element.label}
+        </div>
+      );
+    }
+
+    if (element.subs && element.subs.length > 0) {
+      return (
+        <Flex
+          onClick={() => {
+            setSelectedMenu(element)
+          }}
+          flexDirection="row" 
+          justifyContent="space-between" 
+          minWidth="215px" 
+          cursor="pointer" 
+          alignItems="center"
+        >
+          <div 
+            id={element.label}
+            key={element.label} 
+            className={`nav-link-drawer ${isActive ? 'active' : ''}`}
+          >
+            {element.label}
+          </div>
+          <Image src="/icons/ic-arrow-right.svg" alt="arrow" width={7} height={7} draggable={false}/>
+        </Flex>
+      );
+    }
+
+    return (
+      <Link 
+        href={href} 
+        key={element.label} 
+        className={`nav-link-drawer ${isActive ? 'active' : ''}`} 
+        onClick={() => {
+          setSelectedMenu(null);
+          setIsSidebarOpen(false);
+        }}
+      >
+        {element.label}
+      </Link>
+    );
+  };
+
 
   return (
     <>
@@ -128,7 +148,6 @@ export default function Navigation() {
         animate="visible"
       >
         <div className="nav-container">
-          {/* Hamburger menu for mobile */}
           <button
             className={`nav-hamburger ${isScrolled || isTextDark ? 'nav-hamburger-scrolled' : ''}`}
             aria-label="Open menu"
@@ -136,19 +155,12 @@ export default function Navigation() {
           >
             <Image src="/icons/menu.svg" alt="menu" width={24} height={24} draggable={false} />
           </button>
-          {/* <Flex alignItems="flex-end" gap="2rem" className="nav-links-desktop">
-            {navLinksLeft.map((link) => renderNavLink(link))}
-          </Flex> */}
           <Link href="/" className="nav-logo" draggable={false}>
             <Image src="/artika.svg" alt="Artika" width={113} height={24} style={{ filter: isScrolled || isTextDark ? 'invert(1)' : 'invert(0)' }} draggable={false} />
           </Link>
-          {/* <Flex alignItems="flex-end" gap="2rem" className="nav-links-desktop">
-            {navLinksRight.map((link) => renderNavLink(link))}
-          </Flex> */}
         </div>
       </motion.nav>
-      {/* Sidebar for mobile */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isSidebarOpen && (
           <>
             <motion.div
@@ -171,12 +183,18 @@ export default function Navigation() {
                 aria-label="Close menu"
                 onClick={() => setIsSidebarOpen(false)}
               >
-                &times;
+                <Image src="/icons/ic-close.svg" alt="close" width={22} height={22} draggable={false} />
               </button>
-              <div className="nav-sidebar-links">
-                {navLinksLeft.map((link) => renderNavLinkDrawer(link, () => setIsSidebarOpen(false)))}
-                {navLinksRight.map((link) => renderNavLinkDrawer(link, () => setIsSidebarOpen(false)))}
-              </div>
+              <Flex flexDirection="row" gap={4} justifyContent="space-between">
+                <div className="nav-sidebar-links">
+                  {menus.map((menu) => renderMenu(menu))}
+                </div>
+                {(selectedMenu || currentPathMenu) && (
+                  <div className="nav-sidebar-links">
+                    {(currentPathMenu || selectedMenu)?.subs?.map((sub) => renderSubMenu(sub))}
+                  </div>
+                )}
+              </Flex>
             </motion.aside>
           </>
         )}

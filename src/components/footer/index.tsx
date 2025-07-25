@@ -1,23 +1,7 @@
 'use client';
 import { Flex, Image, Link, Text } from '@chakra-ui/react';
-// import { motion } from 'framer-motion';
 import './styles.scss';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-// const fadeVariants = {
-//   hidden: { 
-//     opacity: 0, 
-//     y: 30 
-//   },
-//   visible: { 
-//     opacity: 1, 
-//     y: 0,
-//     transition: { 
-//       duration: 0.8,
-//       ease: "easeOut"
-//     } 
-//   }
-// };
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -40,13 +24,7 @@ const Footer = () => {
 
 
   return (
-    <div 
-        className="footer-container"
-        // variants={fadeVariants}
-        // initial="hidden"
-        // whileInView="visible"
-        // viewport={{ once: true, margin: "-50px" }}
-    >
+    <div className="footer-container">
       <div className="content">  
           <Image 
             src="/logo.svg" 
@@ -56,7 +34,7 @@ const Footer = () => {
             height="64px"
             display={{ base: 'none', lg: 'flex' }}
           />
-          <div className="block">
+          {/* <div className="block">
             <Text className="title">
               Artika
             </Text>
@@ -65,7 +43,7 @@ const Footer = () => {
                 renderLink({ title, href })
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className="block">
             <Text className="title">
