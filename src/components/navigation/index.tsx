@@ -11,7 +11,6 @@ import { navigation as navMenusEn } from '@/locales/en';
 import type { NavigationMenu, NavigationSub } from '@/locales/types';
 import { Flex } from '@chakra-ui/react';
 
-
 const navVariants = {
   initial: { y: -200, opacity: 0 },
   hidden: { y: -200, opacity: 0 },
@@ -28,7 +27,7 @@ const navVariants = {
 const sidebarVariants = {
   hidden: { x: '-100%' },
   visible: { x: 0, transition: { type: 'tween', duration: 0.3 } },
-  exit: { x: '-100%', transition: { type: 'tween', duration: 0.2 } }
+  exit: { x: '-100%', transition: { type: 'tween', duration: 0.4 } }
 };
 
 const overlayVariants = {
@@ -36,7 +35,6 @@ const overlayVariants = {
   visible: { opacity: 0.4, transition: { duration: 0.2 } },
   exit: { opacity: 0, transition: { duration: 0.2 } }
 };
-
 
 export default function Navigation() {
   const { t, language } = useLanguage();
@@ -47,14 +45,60 @@ export default function Navigation() {
 
   const menus = useMemo(() => navMenusEn, [language]);
 
-  const currentPathMenu = useMemo(() => {
-    return menus.find((menu) => menu.subs && menu.subs.some((sub) => pathname.includes(sub.href) && sub.href !== '/'));
+  // Smart path matching logic
+  const getActiveMenu = useMemo(() => {
+    // First, try to find exact path match
+    const exactMatch = menus.find(menu => {
+      if (menu.href === pathname) return true;
+      if (menu.subs?.some(sub => sub.href === pathname)) return true;
+      return false;
+    });
+
+    if (exactMatch) return exactMatch;
+
+    // Then, try to find partial path match (for nested routes)
+    const partialMatch = menus.find(menu => {
+      if (menu.href === '/') return false; // Skip home for partial matching
+      if (pathname.startsWith(menu.href)) return true;
+      if (menu.subs?.some(sub => pathname.startsWith(sub.href))) return true;
+      return false;
+    });
+
+    return partialMatch || null;
   }, [menus, pathname]);
 
+  // Smart text color detection
   const isTextDark = useMemo(() => {
-    const textDark = ['artwalk'];
-    return textDark.some((path) => pathname.includes(path));
+    const darkTextPaths = ['artwalk', 'gallery', 'about', 'news'];
+    return darkTextPaths.some(path => pathname.includes(path));
   }, [pathname]);
+
+  // Smart active state detection
+  const isMenuActive = (menu: NavigationMenu): boolean => {
+    // Home page special case
+    if (menu.href === '/') {
+      return pathname === '/';
+    }
+
+    // Exact match
+    if (menu.href === pathname) return true;
+
+    // Submenu match
+    if (menu.subs?.some(sub => sub.href === pathname)) return true;
+
+    // Partial match for nested routes
+    if (pathname.startsWith(menu.href) && menu.href !== '/') return true;
+
+    // Selected menu state
+    if (selectedMenu?.label === menu.label) return true;
+
+    return false;
+  };
+
+  // Smart submenu active state detection
+  const isSubmenuActive = (sub: NavigationSub): boolean => {
+    return sub.href === pathname || pathname.startsWith(sub.href);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -65,12 +109,21 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Auto-select menu based on current path
+  useEffect(() => {
+    if (getActiveMenu && getActiveMenu.subs) {
+      setSelectedMenu(getActiveMenu);
+    } else {
+      setSelectedMenu(null);
+    }
+  }, [getActiveMenu]);
+
   const renderSubMenu = (element: NavigationSub) => {
-    const href = t(element.href);
-    const isActive = pathname === href;
+    const isActive = isSubmenuActive(element);
+    
     return (
       <Link 
-        href={href} 
+        href={element.href} 
         key={element.id} 
         className={`nav-link-drawer ${isActive ? 'active' : ''}`} 
         onClick={() => {
@@ -84,14 +137,10 @@ export default function Navigation() {
   };
 
   const renderMenu = (element: NavigationMenu) => {
-    const href = element.href;
-    let isActive = pathname.includes(href) || (element.subs && element.subs.some((sub) => pathname.includes(sub.href) && sub.href !== '/')) || (selectedMenu && selectedMenu.label === element.label);
-    
-    if (isActive && element.href === '/' && pathname !== '/') {
-      isActive = false;
-    }
+    const isActive = isMenuActive(element);
 
-    if (!href) {
+    // Handle disabled menus (no href)
+    if (!element.href) {
       return (
         <div key={element.label} className="nav-link-drawer disabled">
           {element.label}
@@ -99,33 +148,45 @@ export default function Navigation() {
       );
     }
 
+    // Handle menus with submenus
     if (element.subs && element.subs.length > 0) {
       return (
         <Flex
-          onClick={() => {
-            setSelectedMenu(element)
-          }}
+          onClick={() => setSelectedMenu(element)}
           flexDirection="row" 
           justifyContent="space-between" 
           minWidth="215px" 
           cursor="pointer" 
           alignItems="center"
+          key={element.label}
+          _hover={{
+            opacity: 0.85,
+            '.nav-link-drawer': {
+              opacity: 0.85,
+              color: '#000'
+            }
+          }}
         >
           <div 
-            id={element.label}
-            key={element.label} 
             className={`nav-link-drawer ${isActive ? 'active' : ''}`}
           >
             {element.label}
           </div>
-          <Image src="/icons/ic-arrow-right.svg" alt="arrow" width={7} height={7} draggable={false}/>
+          <Image 
+            src="/icons/ic-arrow-right.svg" 
+            alt="arrow" 
+            width={7} 
+            height={7} 
+            draggable={false}
+          />
         </Flex>
       );
     }
 
+    // Handle regular menu items
     return (
       <Link 
-        href={href} 
+        href={element.href} 
         key={element.label} 
         className={`nav-link-drawer ${isActive ? 'active' : ''}`} 
         onClick={() => {
@@ -138,6 +199,8 @@ export default function Navigation() {
     );
   };
 
+  // Determine which submenu to show
+  const submenuToShow = selectedMenu || getActiveMenu;
 
   return (
     <>
@@ -156,7 +219,14 @@ export default function Navigation() {
             <Image src="/icons/menu.svg" alt="menu" width={24} height={24} draggable={false} />
           </button>
           <Link href="/" className="nav-logo" draggable={false}>
-            <Image src="/artika.svg" alt="Artika" width={113} height={24} style={{ filter: isScrolled || isTextDark ? 'invert(1)' : 'invert(0)' }} draggable={false} />
+            <Image 
+              src="/artika.svg" 
+              alt="Artika" 
+              width={113} 
+              height={24} 
+              style={{ filter: isScrolled || isTextDark ? 'invert(1)' : 'invert(0)' }} 
+              draggable={false} 
+            />
           </Link>
         </div>
       </motion.nav>
@@ -189,9 +259,9 @@ export default function Navigation() {
                 <div className="nav-sidebar-links">
                   {menus.map((menu) => renderMenu(menu))}
                 </div>
-                {(selectedMenu || currentPathMenu) && (
+                {submenuToShow?.subs && (
                   <div className="nav-sidebar-links">
-                    {(currentPathMenu || selectedMenu)?.subs?.map((sub) => renderSubMenu(sub))}
+                    {submenuToShow.subs.map((sub) => renderSubMenu(sub))}
                   </div>
                 )}
               </Flex>
