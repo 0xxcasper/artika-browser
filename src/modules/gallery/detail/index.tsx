@@ -31,12 +31,11 @@ function GalleryDetail({ MOCKUP_TEXT }: { MOCKUP_TEXT: string }) {
           key={expanded ? 'expanded' : 'collapsed'}
           className={`description__text${expanded ? ' expanded' : ''}`}
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.8, ease: 'easeInOut' } }}
           exit={{ opacity: 0, y: 30 }}
-          transition={{ duration: 0.2, ease: 'easeInOut' }}
           style={{ overflow: 'hidden' }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           {displayText}
         </motion.p>
@@ -69,9 +68,9 @@ const GalleryDetailPage = () => {
   return (
     <div className="gallery-detail-container">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
       >
         <Slider {...settings}>
           {banners.map((banner, index) => (
@@ -99,13 +98,13 @@ const GalleryDetailPage = () => {
         className="content"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+        transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
       >
         <motion.div
           className="info"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+          transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
         >
           <p className="name">{`The bridge of\nlonging for love`}</p>
           <p className="author">TẠ QUANG BẠO (1941~)</p>
