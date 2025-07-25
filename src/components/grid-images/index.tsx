@@ -56,17 +56,6 @@ const defaultCards: GridCard[] = [
 ];
 
 export default function GridImages({ className = '', title = '', cards = defaultCards }: GridImagesProps) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.1
-      }
-    }
-  };
-
   const titleVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
