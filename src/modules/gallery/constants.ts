@@ -40,7 +40,7 @@ const COLLECTIONS: ICollection[] = [
     title: 'Hơi thở của bậc giác ngộ',
     description: 'Breaths of the awakened',
     image: '/images/gallery/collections/glr-7.jpg',
-    material: "Đồng / BronzeThép / Steel"
+    material: "Đồng / Bronze"
   }, {
     title: 'Vô đề',
     description: 'Untitled',

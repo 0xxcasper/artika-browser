@@ -1,23 +1,23 @@
 'use client';
 import { Flex, Image, Link, Text } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import './styles.scss';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const fadeVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 30 
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { 
-      duration: 0.8,
-      ease: "easeOut"
-    } 
-  }
-};
+// const fadeVariants = {
+//   hidden: { 
+//     opacity: 0, 
+//     y: 30 
+//   },
+//   visible: { 
+//     opacity: 1, 
+//     y: 0,
+//     transition: { 
+//       duration: 0.8,
+//       ease: "easeOut"
+//     } 
+//   }
+// };
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -39,14 +39,13 @@ const Footer = () => {
   };
 
 
-
   return (
-    <motion.footer 
+    <div 
         className="footer-container"
-        variants={fadeVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
+        // variants={fadeVariants}
+        // initial="hidden"
+        // whileInView="visible"
+        // viewport={{ once: true, margin: "-50px" }}
     >
       <div className="content">  
           <Image 
@@ -97,7 +96,7 @@ const Footer = () => {
             </Flex>
           </div>
       </div>
-    </motion.footer>
+    </div>
   );
 };
 

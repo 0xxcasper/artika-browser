@@ -42,6 +42,9 @@
       @include heading-4;
       @include font-tertiary;
       color: $text-inverse;
+      @media screen and (max-width: $breakpoint-md) {
+        @include heading-5;
+      }
     }
 
     .description {
@@ -58,6 +61,10 @@
           transform: translateY(-1px);
           text-decoration: underline;
         }
+      }
+
+      @media screen and (max-width: $breakpoint-md) {
+        @include body-small;
       }
     }
 
