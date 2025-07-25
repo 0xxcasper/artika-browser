@@ -1,14 +1,23 @@
 @import '../../styles/variables';
 @import '../../styles/fonts';
 
+/* Performance optimization for animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 .gallery-container {
-  min-height: 100dvh;
-  min-width: 100dvw;
   padding: 230px 1.5rem 150px 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 150px;
+  transform: translateZ(0);
+  will-change: scroll-position;
 
   @media screen and (max-width: $breakpoint-lg) {
     padding-top: 150px;
@@ -45,12 +54,15 @@
     gap: 2rem;
     max-width: 1280px;
     width: 100%;
+    contain: layout style paint;
 
     &__item {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       height: 100%;
+      transform: translateZ(0);
+      will-change: transform;
 
       &__image {
         width: 100%;

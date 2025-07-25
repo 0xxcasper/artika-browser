@@ -12,8 +12,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
+      staggerChildren: 0.08,
+      delayChildren: 0.1
     }
   }
 };
@@ -21,15 +21,13 @@ const containerVariants = {
 const itemVariants = {
   hidden: { 
     opacity: 0, 
-    y: 30,
-    scale: 0.95
+    y: 20
   },
   visible: { 
     opacity: 1, 
     y: 0,
-    scale: 1,
     transition: { 
-      duration: 0.6,
+      duration: 0.4,
       ease: "easeOut"
     } 
   }
@@ -77,7 +75,7 @@ const GalleryPage = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-50px", amount: 0.1 }}
       >
         {COLLECTIONS.map((collection, index) => (
           <motion.div 
@@ -85,26 +83,23 @@ const GalleryPage = () => {
             key={`${collection.title}-${index}`}
             variants={itemVariants}
             whileHover={{ 
-              y: -10,
+              y: -5,
               transition: { 
-                duration: 0.3,
+                duration: 0.2,
                 ease: "easeOut"
               }
             }}
-            viewport={{ once: true, margin: "-50px" }}
           >
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Image 
-                src={collection.image} 
-                alt={collection.title} 
-                width={400} 
-                height={480} 
-                className="gallery-container__grids__item__image" 
-              />
-            </motion.div>
+            <Image 
+              src={collection.image} 
+              alt={collection.title} 
+              width={400} 
+              height={480} 
+              className="gallery-container__grids__item__image"
+              priority={index < 6}
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+            />
             <div className="gallery-container__grids__item__content">
               <Flex flexDirection='row' gap="1rem" justify="space-between">
                 <p className='gallery-container__grids__item__content__title'>{collection.title}</p>

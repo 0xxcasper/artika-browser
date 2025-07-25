@@ -12,9 +12,6 @@
 // Import components
 // Components now have their own styles.scss files in their folders
 
-// Import layouts
-@import 'layouts/content';
-
 // Import animations
 @import 'animations/keyframes';
 
@@ -26,6 +23,8 @@ body {
   background-color: $bg-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
+  min-width: 100dvw;
 
   // hide scrollbar
   &::-webkit-scrollbar {
