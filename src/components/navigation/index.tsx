@@ -120,6 +120,14 @@ export default function Navigation() {
 
   const renderSubMenu = (element: NavigationSub) => {
     const isActive = isSubmenuActive(element);
+
+    if (!element.href) {
+      return (
+        <div key={element.id} className="nav-link-drawer disabled">
+          {element.name}
+        </div>
+      );
+    }
     
     return (
       <Link 

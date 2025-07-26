@@ -17,7 +17,8 @@ export const navigation: NavigationMenu[] = [
       {
         id: SubMenuType.personal,
         name: "Personal Art Museum",
-        href: `/artwalk/${SubMenuType.personal}`
+        // href: `/artwalk/${SubMenuType.personal}`
+        href: ""
       },
       {
         id: SubMenuType.artists,
@@ -27,22 +28,26 @@ export const navigation: NavigationMenu[] = [
       {
         id: SubMenuType.memories,    
         name: "Memories of Stone",
-        href: `/artwalk/${SubMenuType.memories}`
+        // href: `/artwalk/${SubMenuType.memories}`
+        href: ""
       },
       {
         id: SubMenuType.whispers,
         name: "Whispers of Moss", 
-        href: `/artwalk/${SubMenuType.whispers}`
+        // href: `/artwalk/${SubMenuType.whispers}`
+        href: ""
       },
       {
         id: SubMenuType.voices,
         name: "Voices of Bloom",
-        href: `/artwalk/${SubMenuType.voices}`
+        // href: `/artwalk/${SubMenuType.voices}`
+        href: ""
       },
       {
         id: SubMenuType.breathing,
         name: "Breathing Guidance",
-        href: `/artwalk/${SubMenuType.breathing}`
+        // href: `/artwalk/${SubMenuType.breathing}`
+        href: ""
       }
     ]
   },
