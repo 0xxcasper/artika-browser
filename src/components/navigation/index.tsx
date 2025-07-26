@@ -37,7 +37,7 @@ const overlayVariants = {
 };
 
 export default function Navigation() {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();

@@ -1,19 +1,18 @@
 'use client';
 import { Flex, Image, Link, Text } from '@chakra-ui/react';
 import './styles.scss';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
-  const { t } = useLanguage();
+  // const { t } = useLanguage();
 
-  const renderLink = (params: {title: string, href: string}) => {
-    const { title, href } = params;
-    return (
-      <Link key={title} href={href} className="description description__link">
-        {title} 
-      </Link>
-    )
-  };
+  // const renderLink = (params: {title: string, href: string}) => {
+  //   const { title, href } = params;
+  //   return (
+  //     <Link key={title} href={href} className="description description__link">
+  //       {title} 
+  //     </Link>
+  //   )
+  // };
 
   const renderText = (params: {title: string}) => {
     const { title } = params;

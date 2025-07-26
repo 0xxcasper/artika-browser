@@ -31,8 +31,8 @@ const HorizontalList: React.FC = () => {
     slidesToShow: 4,
     autoplay: true,
     autoplaySpeed: 5000,
-    pauseOnHover: false,
-    pauseOnFocus: false,
+    pauseOnHover: true,
+    pauseOnFocus: true,
     responsive: [
       {
         breakpoint: 1440,
@@ -64,7 +64,7 @@ const HorizontalList: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
-          whileHover={{ y: -2, transition: { duration: 0.2, ease: "easeOut" } }}
+          whileHover={{ y: -2, opacity: 0.8, transition: { duration: 0.2, ease: "easeOut" } }}
         >
           <Image src={collection.image} alt={collection.title} aspectRatio="1/1.2" objectFit="cover" borderRadius="10px" />
           <Flex direction="column" mt={{ base: "16px", md: "24px" }}>
