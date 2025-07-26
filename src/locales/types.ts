@@ -11,6 +11,7 @@ export type NavigationMenu = {
 };
 
 export enum SubMenuType {
+  // Artwalk
   outdoor = "outdoor-sculpture-park",
   personal = "personal-art-museum",
   artists = "artists-featured",

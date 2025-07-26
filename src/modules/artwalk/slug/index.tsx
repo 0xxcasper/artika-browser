@@ -1,12 +1,15 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { COLLECTIONS } from './constants';
+import { ARTWALK_COLLECTION } from '@/constants/artwalk';
 import './styles.scss';
 import Image from 'next/image';
 import { Flex } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { SubMenuType } from '@/locales/types';
+import { useMemo } from 'react';
+import { artwalkRouter } from '@/constants/router';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -52,6 +55,15 @@ const headerVariants = {
 const GalleryPage = () => {
   const { t } = useLanguage();
   const router = useRouter();
+  const { slug } = useParams();
+  const COLLECTIONS = useMemo(() => {
+    const collections = ARTWALK_COLLECTION?.[slug as SubMenuType]?.collections;
+    if (!collections) {
+      return [];
+    }
+    return collections;
+  }, [slug]);
+
   return (
     <div className="gallery-container">
       <motion.div 
@@ -94,7 +106,7 @@ const GalleryPage = () => {
             }}
             viewport={{ once: true, margin: "-50px" }}
             onClick={() => {
-              router.push(`/gallery/${collection.id}`);
+              router.push(artwalkRouter.getDetailRouter({ id: collection.id, slug: slug as string }));
             }}
           >
             <Image 

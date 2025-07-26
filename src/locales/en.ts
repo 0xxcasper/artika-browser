@@ -61,7 +61,6 @@ export const navigation: NavigationMenu[] = [
 ];
 
 export default {
-  navigation,
   "pages": {
     "home": {
       "title": "HOME",

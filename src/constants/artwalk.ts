@@ -1,3 +1,5 @@
+import { SubMenuType } from "@/locales/types";
+
 interface ICollection {
   id: string;
   title: string;
@@ -23,7 +25,7 @@ const COLLECTIONS: ICollection[] = [
     image: '/images/gallery/collections/glr-1.jpg',
     material: "Đồng / Bronze"
   }, {
-    id: slugify('Untitled'),
+    id: slugify('Untitled-1'),
     title: 'Vô đề',
     description: 'Untitled',
     image: '/images/gallery/collections/glr-2.jpg',
@@ -35,7 +37,7 @@ const COLLECTIONS: ICollection[] = [
     image: '/images/gallery/collections/glr-3.jpg',
     material: "Thép / Steel"
   }, {
-    id: slugify('Untitled'),
+    id: slugify('Untitled-2'),
     title: 'Vô đề',
     description: 'Untitled',
     image: '/images/gallery/collections/glr-4.jpg',
@@ -73,4 +75,31 @@ const COLLECTIONS: ICollection[] = [
   }
 ];
 
-export  { COLLECTIONS };
+
+const ARTWALK_COLLECTION = {
+  [SubMenuType.outdoor]: {
+    title: 'Discover Art, Discover Yourself.',
+    description: 'Discover our diverse collection of art, from timeless classics to contemporary pieces. Each work offers a unique story and invites you to see the world differently.',
+    collections: COLLECTIONS,
+  },
+  [SubMenuType.personal]: {
+    collections: COLLECTIONS,
+  },
+  [SubMenuType.artists]: {
+    collections: COLLECTIONS,
+  },
+  [SubMenuType.memories]: {
+    collections: COLLECTIONS,
+  },
+  [SubMenuType.whispers]: {
+    collections: COLLECTIONS,
+  },
+  [SubMenuType.voices]: {
+    collections: COLLECTIONS,
+  },
+  [SubMenuType.breathing]: {
+    collections: COLLECTIONS,
+  },
+}
+
+export  { ARTWALK_COLLECTION };
