@@ -35,7 +35,7 @@ export default function EmailForm() {
     try {
       await submitEmail({
         email: trimmedEmail,
-        message: 'Newsletter subscription'
+        message: 'Reserve a ticket'
       });
       
       setEmail('');

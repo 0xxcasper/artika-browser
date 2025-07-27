@@ -5,10 +5,37 @@ import { EmailSubmission } from '@/libs/firestore';
 import { useEmailSubmissions, useUnreadCount } from '@/hooks/useFirestore';
 import './styles.scss';
 
+type TimeFilter = 'all' | '24h' | 'week' | 'month' | '3months';
+type StatusFilter = 'all' | 'unread' | 'read';
+
+// Helper function to convert any date format to Date object
+const parseDate = (date: Date | any): Date => {
+  if (date instanceof Date) {
+    return date;
+  } else if (date && typeof date === 'object' && date.toDate) {
+    // Firestore Timestamp object (fallback)
+    return date.toDate();
+  } else if (date && typeof date === 'string') {
+    // String date
+    return new Date(date);
+  } else if (date && typeof date === 'number') {
+    // Timestamp number
+    return new Date(date);
+  } else {
+    // Fallback
+    return new Date();
+  }
+};
+
 export default function AdminPage() {
   const [filteredSubmissions, setFilteredSubmissions] = useState<EmailSubmission[]>([]);
-  const [filter, setFilter] = useState<'all' | 'unread' | 'read'>('all');
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
+  const [timeFilter, setTimeFilter] = useState<TimeFilter>('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [showNoteModal, setShowNoteModal] = useState(false);
+  const [selectedSubmission, setSelectedSubmission] = useState<EmailSubmission | null>(null);
+  const [noteMessage, setNoteMessage] = useState('');
+  const [noteLoading, setNoteLoading] = useState(false);
 
   // Use the new hooks
   const { 
@@ -28,11 +55,44 @@ export default function AdminPage() {
 
     let filtered = submissions;
 
-    // Apply read/unread filter
-    if (filter === 'unread') {
+    // Apply status filter (read/unread)
+    if (statusFilter === 'unread') {
       filtered = filtered.filter(sub => !sub.read);
-    } else if (filter === 'read') {
+    } else if (statusFilter === 'read') {
       filtered = filtered.filter(sub => sub.read);
+    }
+
+    // Apply time filter
+    if (timeFilter !== 'all') {
+      const now = new Date();
+      let cutoffDate: Date;
+
+      switch (timeFilter) {
+        case '24h':
+          cutoffDate = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+          break;
+        case 'week':
+          cutoffDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+          break;
+        case 'month':
+          cutoffDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+          break;
+        case '3months':
+          cutoffDate = new Date(now.getTime() - 90 * 24 * 60 * 60 * 1000);
+          break;
+        default:
+          cutoffDate = new Date(0); // Beginning of time
+      }
+
+      console.log('Time filter:', timeFilter);
+      console.log('Cutoff date:', cutoffDate);
+      
+      filtered = filtered.filter(sub => {
+        // Since we now convert dates in the service, submittedAt should be a Date object
+        const submissionDate = sub.submittedAt instanceof Date ? sub.submittedAt : parseDate(sub.submittedAt);
+        console.log('Submission date:', submissionDate, 'Original:', sub.submittedAt);
+        return submissionDate >= cutoffDate;
+      });
     }
 
     // Apply search filter
@@ -46,23 +106,54 @@ export default function AdminPage() {
     }
 
     setFilteredSubmissions(filtered);
-  }, [submissions, filter, searchTerm]);
+  }, [submissions, statusFilter, timeFilter, searchTerm]);
 
-  const handleMarkAsRead = async (submissionId: string) => {
-    try {
-      await updateDocument(submissionId, { read: true });
-      await refetchUnreadCount();
-    } catch (err) {
-      console.error('Error marking as read:', err);
-      alert('Failed to mark as read');
+  const handleMarkAsRead = (submission: EmailSubmission) => {
+    setSelectedSubmission(submission);
+    setNoteMessage('');
+    setShowNoteModal(true);
+  };
+
+  const handleSubmitNote = async () => {
+    if (!selectedSubmission || !noteMessage.trim()) {
+      alert('Please enter a note message');
+      return;
     }
+
+    setNoteLoading(true);
+    try {
+      await updateDocument(selectedSubmission.id, { 
+        read: true,
+        note: noteMessage.trim(),
+        readAt: new Date()
+      });
+      await refetchUnreadCount();
+      setShowNoteModal(false);
+      setSelectedSubmission(null);
+      setNoteMessage('');
+    } catch (err) {
+      console.error('Error marking as read with note:', err);
+      alert('Failed to save note');
+    } finally {
+      setNoteLoading(false);
+    }
+  };
+
+  const handleCancelNote = () => {
+    setShowNoteModal(false);
+    setSelectedSubmission(null);
+    setNoteMessage('');
   };
 
   const handleMarkAllAsRead = async () => {
     try {
       const unreadSubmissions = submissions?.filter(sub => !sub.read) || [];
       await Promise.all(
-        unreadSubmissions.map(sub => updateDocument(sub.id, { read: true }))
+        unreadSubmissions.map(sub => updateDocument(sub.id, { 
+          read: true,
+          note: 'Bulk marked as read',
+          readAt: new Date()
+        }))
       );
       await refetchUnreadCount();
     } catch (err) {
@@ -85,12 +176,46 @@ export default function AdminPage() {
     }
   };
 
-  const formatDate = (date: Date) => {
-    return new Date(date).toLocaleString();
+  const formatDate = (date: Date | any) => {
+    // Handle Firestore timestamp conversion
+    let dateObj: Date;
+    
+    if (date instanceof Date) {
+      dateObj = date;
+    } else if (date && typeof date === 'object' && date.toDate) {
+      // Firestore Timestamp object
+      dateObj = date.toDate();
+    } else if (date && typeof date === 'string') {
+      // String date
+      dateObj = new Date(date);
+    } else if (date && typeof date === 'number') {
+      // Timestamp number
+      dateObj = new Date(date);
+    } else {
+      // Fallback for invalid dates
+      return 'Invalid Date';
+    }
+
+    // Check if the date is valid
+    if (isNaN(dateObj.getTime())) {
+      return 'Invalid Date';
+    }
+
+    return dateObj.toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   };
 
-  const getReadCount = () => {
-    return submissions?.filter(sub => sub.read).length || 0;
+
+  const getFilteredStats = () => {
+    const total = filteredSubmissions.length;
+    const unread = filteredSubmissions.filter(sub => !sub.read).length;
+    const read = filteredSubmissions.filter(sub => sub.read).length;
+    return { total, unread, read };
   };
 
   if (loading) {
@@ -118,20 +243,25 @@ export default function AdminPage() {
     );
   }
 
+  const stats = getFilteredStats();
+
   return (
     <div className="admin-page">
       <div className="admin-header">
         <div className="header-content">
-          <h1>Email Submissions Admin</h1>
+          <h1>Email Submissions</h1>
           <div className="admin-stats">
             <span className="stat-item">
-              Total: {submissions?.length || 0}
+              <span className="stat-label">Total:</span>
+              <span className="stat-value">{stats.total}</span>
             </span>
             <span className="stat-item unread">
-              Unread: {unreadCount}
+              <span className="stat-label">Unread:</span>
+              <span className="stat-value">{stats.unread}</span>
             </span>
             <span className="stat-item read">
-              Read: {getReadCount()}
+              <span className="stat-label">Read:</span>
+              <span className="stat-value">{stats.read}</span>
             </span>
           </div>
         </div>
@@ -149,15 +279,35 @@ export default function AdminPage() {
 
       <div className="admin-controls">
         <div className="filter-controls">
-          <select 
-            value={filter} 
-            onChange={(e) => setFilter(e.target.value as 'all' | 'unread' | 'read')}
-            className="filter-select"
-          >
-            <option value="all">All Submissions</option>
-            <option value="unread">Unread Only</option>
-            <option value="read">Read Only</option>
-          </select>
+          <div className="filter-group">
+            <label htmlFor="status-filter">Status:</label>
+            <select 
+              id="status-filter"
+              value={statusFilter} 
+              onChange={(e) => setStatusFilter(e.target.value as StatusFilter)}
+              className="filter-select"
+            >
+              <option value="all">All</option>
+              <option value="unread">Unread</option>
+              <option value="read">Read</option>
+            </select>
+          </div>
+          
+          <div className="filter-group">
+            <label htmlFor="time-filter">Time:</label>
+            <select 
+              id="time-filter"
+              value={timeFilter} 
+              onChange={(e) => setTimeFilter(e.target.value as TimeFilter)}
+              className="filter-select"
+            >
+              <option value="all">All Time</option>
+              <option value="24h">Last 24 Hours</option>
+              <option value="week">Last Week</option>
+              <option value="month">Last Month</option>
+              <option value="3months">Last 3 Months</option>
+            </select>
+          </div>
         </div>
         
         <div className="search-controls">
@@ -182,60 +332,127 @@ export default function AdminPage() {
           <p>Try adjusting your search or filter criteria.</p>
         </div>
       ) : (
-        <div className="submissions-list">
-          {filteredSubmissions.map((submission) => (
-            <div 
-              key={submission.id} 
-              className={`submission-card ${!submission.read ? 'unread' : ''}`}
-            >
-              <div className="submission-header">
-                <div className="submission-info">
-                  <h3 className="email">{submission.email}</h3>
-                  {submission.name && (
-                    <p className="name">Name: {submission.name}</p>
-                  )}
-                  <p className="date">
-                    Submitted: {formatDate(submission.submittedAt)}
-                  </p>
-                </div>
-                <div className="submission-status">
-                  {!submission.read && (
-                    <span className="unread-badge">New</span>
-                  )}
-                </div>
-              </div>
-
-              {submission.message && (
-                <div className="submission-message">
-                  <h4>Message:</h4>
-                  <p>{submission.message}</p>
-                </div>
-              )}
-
-              <div className="submission-actions">
-                {!submission.read && (
-                  <button
-                    onClick={() => handleMarkAsRead(submission.id)}
-                    className="action-button mark-read"
-                  >
-                    Mark as Read
-                  </button>
-                )}
-                <button
-                  onClick={() => handleDelete(submission.id)}
-                  className="action-button delete"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
+        <div className="table-container">
+          <table className="submissions-table">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Note</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredSubmissions.map((submission) => (
+                <tr key={submission.id} className={!submission.read ? 'unread-row' : ''}>
+                  <td className="email-cell">
+                    <span className="email-text">{submission.email}</span>
+                  </td>
+                  <td className="name-cell">
+                    {submission.name || '-'}
+                  </td>
+                  <td className="message-cell">
+                    <span className="message-text">
+                      {submission.message || '-'}
+                    </span>
+                  </td>
+                  <td className="date-cell">
+                    {formatDate(submission.submittedAt)}
+                  </td>
+                  <td className="status-cell">
+                    {!submission.read ? (
+                      <span className="status-badge unread">New</span>
+                    ) : (
+                      <span className="status-badge read">Read</span>
+                    )}
+                  </td>
+                  <td className="note-cell">
+                    {submission.note ? (
+                      <span className="note-text" title={submission.note}>
+                        {submission.note.length > 30 ? `${submission.note.substring(0, 30)}...` : submission.note}
+                      </span>
+                    ) : (
+                      '-'
+                    )}
+                  </td>
+                  <td className="actions-cell">
+                    <div className="action-buttons">
+                      {!submission.read && (
+                        <button
+                          onClick={() => handleMarkAsRead(submission)}
+                          className="action-button mark-read"
+                          title="Mark as read"
+                        >
+                          ✓
+                        </button>
+                      )}
+                      <button
+                        onClick={() => handleDelete(submission.id)}
+                        className="action-button delete"
+                        title="Delete"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
 
       {filteredSubmissions.length > 0 && (
         <div className="results-info">
           Showing {filteredSubmissions.length} of {submissions?.length || 0} submissions
+        </div>
+      )}
+
+      {/* Note Modal */}
+      {showNoteModal && (
+        <div className="modal-overlay">
+          <div className="note-modal">
+            <div className="modal-header">
+              <h3>Add Note</h3>
+              <button onClick={handleCancelNote} className="close-button">×</button>
+            </div>
+            <div className="modal-content">
+              <p className="modal-subtitle">
+                Marking as read: <strong>{selectedSubmission?.email}</strong>
+              </p>
+              <div className="note-input-group">
+                <label htmlFor="note-input">Note Message (Required):</label>
+                <textarea
+                  id="note-input"
+                  value={noteMessage}
+                  onChange={(e) => setNoteMessage(e.target.value)}
+                  placeholder="Enter your note about this submission..."
+                  rows={4}
+                  className="note-textarea"
+                  disabled={noteLoading}
+                />
+              </div>
+            </div>
+            <div className="modal-actions">
+              <button 
+                onClick={handleCancelNote} 
+                className="cancel-button"
+                disabled={noteLoading}
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleSubmitNote} 
+                className="submit-button"
+                disabled={noteLoading || !noteMessage.trim()}
+              >
+                {noteLoading ? 'Saving...' : 'Save Note'}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

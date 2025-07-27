@@ -18,6 +18,8 @@ export interface EmailSubmission {
   message?: string;
   submittedAt: Date;
   read: boolean;
+  note?: string;
+  readAt?: Date;
 }
 
 // Collection names
@@ -59,10 +61,21 @@ export class EmailSubmissionService {
       );
       const querySnapshot = await getDocs(q);
       
-      const submissions = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as EmailSubmission[];
+      const submissions = querySnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          email: data.email,
+          name: data.name,
+          message: data.message,
+          // Convert Firestore timestamp to Date
+          submittedAt: data.submittedAt?.toDate ? data.submittedAt.toDate() : new Date(data.submittedAt),
+          read: data.read,
+          note: data.note,
+          // Convert readAt timestamp if it exists
+          readAt: data.readAt?.toDate ? data.readAt.toDate() : (data.readAt ? new Date(data.readAt) : undefined)
+        };
+      }) as EmailSubmission[];
       
       console.log(`Successfully fetched ${submissions.length} submissions`);
       return submissions;
