@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Email submissions collection
+    match /email_submissions/{document} {
+      // Allow anyone to create new email submissions
+      allow create: if true;
+      
+      // Allow read access to all submissions (for admin)
+      allow read: if true;
+      
+      // Allow update and delete only for authenticated users (admin)
+      allow update, delete: if request.auth != null;
+    }
+    
+    // Default rule - deny all access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+} 

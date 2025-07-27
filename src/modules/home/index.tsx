@@ -7,6 +7,7 @@ import About from '@/components/about';
 import FocusBanner from '@/components/focus-banner';
 import SplitBanner, { SplitBannerSection } from '@/components/split-banner';
 import GridImages from '@/components/grid-images';
+import EmailForm from '@/components/email-form';
 
 // const images = [
 //   '/images/home/arts/art-1.jpg',
@@ -42,7 +43,8 @@ export default function HomePage() {
       />
       <SplitBanner sections={t('pages.home.infos') as unknown as Array<SplitBannerSection>} />
       <GridImages title={t('pages.home.gridImages.title')} />
-      <div style={{ height: '10vh', width: '100vw', backgroundColor: 'transparent' }} />
+      <EmailForm />
+      <div />
     </div>
   );
 } 

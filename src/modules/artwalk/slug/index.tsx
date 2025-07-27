@@ -75,10 +75,10 @@ const GalleryPage = () => {
       >
         <div className="gallery-container__header__title">
           <h1>
-            {t('pages.gallery.hero.title')}
+            {t('pages.artwalk.hero.title')}
           </h1>
           <p>
-            {t('pages.gallery.hero.subtitle')}
+            {t('pages.artwalk.hero.subtitle')}
           </p>
         </div>
       </motion.div>

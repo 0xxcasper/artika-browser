@@ -105,8 +105,12 @@ $letter-spacing-widest: 0.1em;
 }
 
 @mixin text-xl {
-  font-size: clamp(1.125rem, 3vw, $font-size-xl);
+  font-size: $font-size-xl;
   line-height: $line-height-relaxed;
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-lg;
+  }
 }
 
 @mixin text-2xl {
