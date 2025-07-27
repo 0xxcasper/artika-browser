@@ -266,10 +266,11 @@ export default function Navigation() {
               >
                 <Image src="/icons/ic-close.svg" alt="close" width={22} height={22} draggable={false} />
               </button>
-              <Flex flexDirection="row" gap={4} justifyContent="space-between">
+              <Flex flexDirection="row" gap={4} justifyContent="space-between" height="100%">
                 <div className="nav-sidebar-links">
                   {menus.map((menu) => renderMenu(menu))}
                 </div>
+                <div className="nav-sidebar-divider" />
                 {submenuToShow?.subs && (
                   <div className="nav-sidebar-links">
                     {submenuToShow.subs.map((sub) => renderSubMenu(sub))}
