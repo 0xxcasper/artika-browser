@@ -163,7 +163,10 @@ export default function Navigation() {
           onClick={() => setSelectedMenu(element)}
           flexDirection="row" 
           justifyContent="space-between" 
-          minWidth="215px" 
+          minWidth={{
+            base: "140px",
+            md: "215px"
+          }} 
           cursor="pointer" 
           alignItems="center"
           key={element.label}
