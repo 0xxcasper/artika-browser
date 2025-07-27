@@ -270,7 +270,7 @@ export default function Navigation() {
                 <div className="nav-sidebar-links">
                   {menus.map((menu) => renderMenu(menu))}
                 </div>
-                <div className="nav-sidebar-divider" />
+                {/* <div className="nav-sidebar-divider" /> */}
                 {submenuToShow?.subs && (
                   <div className="nav-sidebar-links">
                     {submenuToShow.subs.map((sub) => renderSubMenu(sub))}
