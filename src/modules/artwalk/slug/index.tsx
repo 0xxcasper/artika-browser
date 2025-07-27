@@ -10,6 +10,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { SubMenuType } from '@/locales/types';
 import { useMemo } from 'react';
 import { artwalkRouter } from '@/constants/router';
+import EmailForm from '@/components/email-form';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -130,6 +131,7 @@ const GalleryPage = () => {
           </motion.div>
         ))}
       </motion.div>
+      <EmailForm />
     </div>
   );
 };

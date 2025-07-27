@@ -55,8 +55,8 @@ export default function EmailForm() {
     <div className="email-form">
       <div className="email-content">
         <div className="email-text">
-          <h1>Stay in the loop</h1>
-          <p>{`Get the latest updates and exclusive content${'\n'}delivered directly to your inbox.`}</p>
+          <h1>Reserve a ticket</h1>
+          <p>{`Reserve a ticket and receive the latest news${'\n'}and exciting promotions straight to your inbox.`}</p>
         </div>
         
         <form onSubmit={handleSubmit} className="email-form-container">
