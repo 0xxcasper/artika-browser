@@ -45,4 +45,18 @@ export type HomepageDocument = prismic.PrismicDocumentWithUID<{
   focus_button_text: prismic.KeyTextField;
   focus_background_image: prismic.ImageField;
   focus_aspect_ratio: prismic.KeyTextField;
+  split_banner_sections: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    description: prismic.RichTextField;
+    cta_text: prismic.KeyTextField;
+    image: prismic.ImageField;
+    image_alt: prismic.KeyTextField;
+  }>;
+  grid_images_title: prismic.KeyTextField;
+  grid_images_items: prismic.GroupField<{
+    image: prismic.ImageField;
+    image_alt: prismic.KeyTextField;
+    title: prismic.KeyTextField;
+    description: prismic.RichTextField;
+  }>;
 }>; 

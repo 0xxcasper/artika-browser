@@ -19,6 +19,7 @@ export default async function Page({ params }: PageProps) {
     // Check server cache first
     const cacheKey = createCacheKey('homepage', lang);
     const cachedData = prismicServerCache.get<any>(cacheKey);
+    console.log('cachedData', cachedData);
     
     if (cachedData) {
       console.log('Using server cached data for:', lang);
@@ -36,6 +37,8 @@ export default async function Page({ params }: PageProps) {
     const homepage = await client.getSingle('homepage', {
       lang: lang === 'vi' ? 'vi' : 'en-us'
     });
+
+    console.log("homepage", homepage);
 
     // Cache the result
     prismicServerCache.set(cacheKey, homepage);

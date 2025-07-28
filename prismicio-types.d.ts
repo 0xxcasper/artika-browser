@@ -69,7 +69,60 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomepageDocumentDataSlicesSlice = never;
+/**
+ * Item in *Homepage → Split Banner Sections*
+ */
+export interface HomepageDocumentDataSplitBannerSectionsItem {
+  /**
+   * Section Title field in *Homepage → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Section title
+   * - **API ID Path**: homepage.split_banner_sections[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Section Description field in *Homepage → Split Banner Sections*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Section description
+   * - **API ID Path**: homepage.split_banner_sections[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * CTA Text field in *Homepage → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Call to action text
+   * - **API ID Path**: homepage.split_banner_sections[].cta_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * Section Image field in *Homepage → Split Banner Sections*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.split_banner_sections[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Image Alt Text field in *Homepage → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Image alt text
+   * - **API ID Path**: homepage.split_banner_sections[].image_alt
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image_alt: prismic.KeyTextField;
+}
 
 /**
  * Content for Homepage documents
@@ -81,7 +134,7 @@ interface HomepageDocumentData {
    * - **Field Type**: Text
    * - **Placeholder**: Hero section title
    * - **API ID Path**: homepage.hero_title
-   * - **Tab**: Main
+   * - **Tab**: Hero Section
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   hero_title: prismic.KeyTextField;
@@ -92,7 +145,7 @@ interface HomepageDocumentData {
    * - **Field Type**: Rich Text
    * - **Placeholder**: Hero section subtitle
    * - **API ID Path**: homepage.hero_subtitle
-   * - **Tab**: Main
+   * - **Tab**: Hero Section
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   hero_subtitle: prismic.RichTextField;
@@ -103,7 +156,7 @@ interface HomepageDocumentData {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: homepage.hero_background_image
-   * - **Tab**: Main
+   * - **Tab**: Hero Section
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   hero_background_image: prismic.ImageField<never>;
@@ -114,20 +167,18 @@ interface HomepageDocumentData {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: homepage.hero_logo
-   * - **Tab**: Main
+   * - **Tab**: Hero Section
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
-  hero_logo: prismic.ImageField<never>;
-
-  /**
+  hero_logo: prismic.ImageField<never> /**
    * About Title field in *Homepage*
    *
    * - **Field Type**: Text
    * - **Placeholder**: About section title
    * - **API ID Path**: homepage.about_title
-   * - **Tab**: Main
+   * - **Tab**: About Section
    * - **Documentation**: https://prismic.io/docs/fields/text
-   */
+   */;
   about_title: prismic.KeyTextField;
 
   /**
@@ -136,7 +187,7 @@ interface HomepageDocumentData {
    * - **Field Type**: Rich Text
    * - **Placeholder**: About section description
    * - **API ID Path**: homepage.about_description
-   * - **Tab**: Main
+   * - **Tab**: About Section
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   about_description: prismic.RichTextField;
@@ -147,21 +198,74 @@ interface HomepageDocumentData {
    * - **Field Type**: Text
    * - **Placeholder**: About section button text
    * - **API ID Path**: homepage.about_button_text
-   * - **Tab**: Main
+   * - **Tab**: About Section
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  about_button_text: prismic.KeyTextField;
+  about_button_text: prismic.KeyTextField /**
+   * Focus Title field in *Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Focus section title
+   * - **API ID Path**: homepage.focus_title
+   * - **Tab**: Center Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  focus_title: prismic.KeyTextField;
 
   /**
-   * Slice Zone field in *Homepage*
+   * Focus Description field in *Homepage*
    *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/slices
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Focus section description
+   * - **API ID Path**: homepage.focus_description
+   * - **Tab**: Center Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice>;
+  focus_description: prismic.RichTextField;
+
+  /**
+   * Focus Button Text field in *Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Focus section button text
+   * - **API ID Path**: homepage.focus_button_text
+   * - **Tab**: Center Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_button_text: prismic.KeyTextField;
+
+  /**
+   * Focus Background Image field in *Homepage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.focus_background_image
+   * - **Tab**: Center Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  focus_background_image: prismic.ImageField<never>;
+
+  /**
+   * Aspect Ratio field in *Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Aspect ratio
+   * - **API ID Path**: homepage.focus_aspect_ratio
+   * - **Tab**: Center Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_aspect_ratio: prismic.KeyTextField /**
+   * Split Banner Sections field in *Homepage*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.split_banner_sections[]
+   * - **Tab**: Split Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */;
+  split_banner_sections: prismic.GroupField<
+    Simplify<HomepageDocumentDataSplitBannerSectionsItem>
+  >;
 }
 
 /**
@@ -339,7 +443,7 @@ declare module "@prismicio/client" {
     export type {
       HomepageDocument,
       HomepageDocumentData,
-      HomepageDocumentDataSlicesSlice,
+      HomepageDocumentDataSplitBannerSectionsItem,
       AllDocumentTypes,
       AboutSlice,
       AboutSliceDefaultPrimary,

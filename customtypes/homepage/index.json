@@ -5,13 +5,12 @@
   "status": true,
   "format": "custom",
   "json": {
-    "Main": {
+    "Hero Section": {
       "hero_title": {
         "type": "Text",
         "config": {
           "label": "Hero Title",
-          "placeholder": "Hero section title",
-          "localized": true
+          "placeholder": "Hero section title"
         }
       },
       "hero_subtitle": {
@@ -20,8 +19,7 @@
           "label": "Hero Subtitle",
           "placeholder": "Hero section subtitle",
           "allowTargetBlank": true,
-          "single": "paragraph",
-          "localized": true
+          "single": "paragraph"
         }
       },
       "hero_background_image": {
@@ -39,13 +37,14 @@
           "constraint": {},
           "thumbnails": []
         }
-      },
+      }
+    },
+    "About Section": {
       "about_title": {
         "type": "Text",
         "config": {
           "label": "About Title",
-          "placeholder": "About section title",
-          "localized": true
+          "placeholder": "About section title"
         }
       },
       "about_description": {
@@ -54,24 +53,23 @@
           "label": "About Description",
           "placeholder": "About section description",
           "allowTargetBlank": true,
-          "single": "paragraph",
-          "localized": true
+          "single": "paragraph"
         }
       },
       "about_button_text": {
         "type": "Text",
         "config": {
           "label": "About Button Text",
-          "placeholder": "About section button text",
-          "localized": true
+          "placeholder": "About section button text"
         }
-      },
+      }
+    },
+    "Center Banner Section": {
       "focus_title": {
         "type": "Text",
         "config": {
           "label": "Focus Title",
-          "placeholder": "Focus section title",
-          "localized": true
+          "placeholder": "Focus section title"
         }
       },
       "focus_description": {
@@ -80,16 +78,14 @@
           "label": "Focus Description",
           "placeholder": "Focus section description",
           "allowTargetBlank": true,
-          "single": "paragraph",
-          "localized": true
+          "single": "paragraph"
         }
       },
       "focus_button_text": {
         "type": "Text",
         "config": {
           "label": "Focus Button Text",
-          "placeholder": "Focus section button text",
-          "localized": true
+          "placeholder": "Focus section button text"
         }
       },
       "focus_background_image": {
@@ -104,8 +100,103 @@
         "type": "Text",
         "config": {
           "label": "Aspect Ratio",
-          "placeholder": "Aspect ratio",
-          "localized": true
+          "placeholder": "Aspect ratio"
+        }
+      }
+    },
+    "Split Banner Section": {
+      "split_banner_sections": {
+        "type": "Group",
+        "config": {
+          "label": "Split Banner Sections",
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Section Title",
+                "placeholder": "Section title"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Description",
+                "placeholder": "Section description",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "cta_text": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Text",
+                "placeholder": "Call to action text"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Section Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "image_alt": {
+              "type": "Text",
+              "config": {
+                "label": "Image Alt Text",
+                "placeholder": "Image alt text"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Grid Images Section": {
+      "grid_images_title": {
+        "type": "Text",
+        "config": {
+          "label": "Grid Images Title",
+          "placeholder": "Grid images section title"
+        }
+      },
+      "grid_images_items": {
+        "type": "Group",
+        "config": {
+          "label": "Grid Images Items",
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Grid Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "image_alt": {
+              "type": "Text",
+              "config": {
+                "label": "Image Alt Text",
+                "placeholder": "Image alt text"
+              }
+            },
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Image Title",
+                "placeholder": "Image title"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Image Description",
+                "placeholder": "Image description",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            }
+          }
         }
       }
     }
