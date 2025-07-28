@@ -13,16 +13,18 @@ export type AboutSliceProps = SliceComponentProps<{
   };
 }>;
 
-export default function AboutSlice({ slice }: AboutSliceProps) {
-  const title = asText(slice.primary.title) || '';
-  const description = asText(slice.primary.description) || '';
-  const buttonText = slice.primary.button_text || '';
+const AboutSlice = ({ slice }: AboutSliceProps) => {
+  const title = asText(slice.primary.title);
+  const description = asText(slice.primary.description);
+  const buttonText = slice.primary.button_text;
 
   return (
     <About
-      title={title}
-      description={description}
-      button={buttonText}
+      title={title || 'About Us'}
+      description={description || 'Artika connects art with life'}
+      button={buttonText || 'Learn More'}
     />
   );
-} 
+};
+
+export default AboutSlice; 

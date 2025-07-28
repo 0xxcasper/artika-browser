@@ -69,22 +69,88 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomepageDocumentDataSlicesSlice = AboutSlice | HeroSlice;
+type HomepageDocumentDataSlicesSlice = never;
 
 /**
  * Content for Homepage documents
  */
 interface HomepageDocumentData {
   /**
-   * Title field in *Homepage*
+   * Hero Title field in *Homepage*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Page title
-   * - **API ID Path**: homepage.title
+   * - **Placeholder**: Hero section title
+   * - **API ID Path**: homepage.hero_title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  title: prismic.KeyTextField;
+  hero_title: prismic.KeyTextField;
+
+  /**
+   * Hero Subtitle field in *Homepage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Hero section subtitle
+   * - **API ID Path**: homepage.hero_subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_subtitle: prismic.RichTextField;
+
+  /**
+   * Hero Background Image field in *Homepage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.hero_background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_background_image: prismic.ImageField<never>;
+
+  /**
+   * Hero Logo field in *Homepage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.hero_logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_logo: prismic.ImageField<never>;
+
+  /**
+   * About Title field in *Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: About section title
+   * - **API ID Path**: homepage.about_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_title: prismic.KeyTextField;
+
+  /**
+   * About Description field in *Homepage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: About section description
+   * - **API ID Path**: homepage.about_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  about_description: prismic.RichTextField;
+
+  /**
+   * About Button Text field in *Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: About section button text
+   * - **API ID Path**: homepage.about_button_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_button_text: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Homepage*
@@ -114,72 +180,7 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-type Homepage2DocumentDataSlicesSlice = HeroSlice | AboutSlice;
-
-/**
- * Content for homepage documents
- */
-interface Homepage2DocumentData {
-  /**
-   * Slice Zone field in *homepage*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage2.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/slices
-   */
-  slices: prismic.SliceZone<Homepage2DocumentDataSlicesSlice> /**
-   * Meta Title field in *homepage*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: homepage2.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *homepage*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: homepage2.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *homepage*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage2.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  meta_image: prismic.ImageField<never>;
-}
-
-/**
- * homepage document from Prismic
- *
- * - **API ID**: `homepage2`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/content-modeling
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type Homepage2Document<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<Homepage2DocumentData>,
-    "homepage2",
-    Lang
-  >;
-
-export type AllDocumentTypes = HomepageDocument | Homepage2Document;
+export type AllDocumentTypes = HomepageDocument;
 
 /**
  * Primary content in *About → Default → Primary*
@@ -220,7 +221,7 @@ export interface AboutSliceDefaultPrimary {
  * Default variation for About Slice
  *
  * - **API ID**: `default`
- * - **Description**: Default About
+ * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type AboutSliceDefault = prismic.SharedSliceVariation<
@@ -238,7 +239,7 @@ type AboutSliceVariation = AboutSliceDefault;
  * About Shared Slice
  *
  * - **API ID**: `about`
- * - **Description**: About section with title, description, and button text
+ * - **Description**: About section with title, description and button
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type AboutSlice = prismic.SharedSlice<"about", AboutSliceVariation>;
@@ -276,13 +277,23 @@ export interface HeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   background_image: prismic.ImageField<never>;
+
+  /**
+   * Logo field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.logo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo: prismic.ImageField<never>;
 }
 
 /**
  * Default variation for Hero Slice
  *
  * - **API ID**: `default`
- * - **Description**: Default Hero
+ * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type HeroSliceDefault = prismic.SharedSliceVariation<
@@ -300,7 +311,7 @@ type HeroSliceVariation = HeroSliceDefault;
  * Hero Shared Slice
  *
  * - **API ID**: `hero`
- * - **Description**: Hero section with title, subtitle, and background image
+ * - **Description**: Hero section with title, subtitle and background image
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
@@ -329,9 +340,6 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
-      Homepage2Document,
-      Homepage2DocumentData,
-      Homepage2DocumentDataSlicesSlice,
       AllDocumentTypes,
       AboutSlice,
       AboutSliceDefaultPrimary,

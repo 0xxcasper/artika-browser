@@ -2,20 +2,22 @@
   "id": "hero",
   "type": "SharedSlice",
   "name": "Hero",
-  "description": "Hero section with title, subtitle, and background image",
+  "description": "Hero section with title, subtitle and background image",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "docURL": "",
-      "version": "sktwi1xtmkfgx8626",
-      "description": "Default Hero",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
       "primary": {
         "title": {
           "type": "Text",
           "config": {
             "label": "Title",
-            "placeholder": "Hero title"
+            "placeholder": "Hero title",
+            "localized": true
           }
         },
         "subtitle": {
@@ -24,13 +26,22 @@
             "label": "Subtitle",
             "placeholder": "Hero subtitle",
             "allowTargetBlank": true,
-            "single": "paragraph"
+            "single": "paragraph",
+            "localized": true
           }
         },
         "background_image": {
           "type": "Image",
           "config": {
             "label": "Background Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "logo": {
+          "type": "Image",
+          "config": {
+            "label": "Logo",
             "constraint": {},
             "thumbnails": []
           }

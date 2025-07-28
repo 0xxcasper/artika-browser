@@ -6,18 +6,106 @@
   "format": "custom",
   "json": {
     "Main": {
-      "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
+      "hero_title": {
+        "type": "Text",
         "config": {
-          "choices": {
-            "about": {
-              "type": "SharedSlice"
-            },
-            "hero": {
-              "type": "SharedSlice"
-            }
-          }
+          "label": "Hero Title",
+          "placeholder": "Hero section title",
+          "localized": true
+        }
+      },
+      "hero_subtitle": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Subtitle",
+          "placeholder": "Hero section subtitle",
+          "allowTargetBlank": true,
+          "single": "paragraph",
+          "localized": true
+        }
+      },
+      "hero_background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Background Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "hero_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "about_title": {
+        "type": "Text",
+        "config": {
+          "label": "About Title",
+          "placeholder": "About section title",
+          "localized": true
+        }
+      },
+      "about_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Description",
+          "placeholder": "About section description",
+          "allowTargetBlank": true,
+          "single": "paragraph",
+          "localized": true
+        }
+      },
+      "about_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "About Button Text",
+          "placeholder": "About section button text",
+          "localized": true
+        }
+      },
+      "focus_title": {
+        "type": "Text",
+        "config": {
+          "label": "Focus Title",
+          "placeholder": "Focus section title",
+          "localized": true
+        }
+      },
+      "focus_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Focus Description",
+          "placeholder": "Focus section description",
+          "allowTargetBlank": true,
+          "single": "paragraph",
+          "localized": true
+        }
+      },
+      "focus_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Focus Button Text",
+          "placeholder": "Focus section button text",
+          "localized": true
+        }
+      },
+      "focus_background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Focus Background Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "focus_aspect_ratio": {
+        "type": "Text",
+        "config": {
+          "label": "Aspect Ratio",
+          "placeholder": "Aspect ratio",
+          "localized": true
         }
       }
     }

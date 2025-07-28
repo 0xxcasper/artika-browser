@@ -2,20 +2,22 @@
   "id": "about",
   "type": "SharedSlice",
   "name": "About",
-  "description": "About section with title, description, and button text",
+  "description": "About section with title, description and button",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "docURL": "",
-      "version": "sktwi1xtmkfgx8626",
-      "description": "Default About",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
       "primary": {
         "title": {
           "type": "Text",
           "config": {
             "label": "Title",
-            "placeholder": "About title"
+            "placeholder": "About title",
+            "localized": true
           }
         },
         "description": {
@@ -24,14 +26,16 @@
             "label": "Description",
             "placeholder": "About description",
             "allowTargetBlank": true,
-            "single": "paragraph"
+            "single": "paragraph",
+            "localized": true
           }
         },
         "button_text": {
           "type": "Text",
           "config": {
             "label": "Button Text",
-            "placeholder": "Button text"
+            "placeholder": "Button text",
+            "localized": true
           }
         }
       },

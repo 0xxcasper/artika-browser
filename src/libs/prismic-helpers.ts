@@ -1,5 +1,3 @@
-import * as prismic from '@prismicio/client';
-
 export function asText(field: any): string {
   if (!field) return '';
   

@@ -10,19 +10,22 @@ export type HeroSliceProps = SliceComponentProps<{
     title: any;
     subtitle: any;
     background_image: any;
+    logo: any;
   };
 }>;
 
-export default function HeroSlice({ slice }: HeroSliceProps) {
-  const title = asText(slice.primary.title) || '';
-  const subtitle = asText(slice.primary.subtitle) || '';
+const HeroSlice = ({ slice }: HeroSliceProps) => {
+  const title = asText(slice.primary.title);
+  const subtitle = asText(slice.primary.subtitle);
   const backgroundImage = asImageUrl(slice.primary.background_image) || '/images/home/banner.jpg';
 
   return (
     <Hero
-      title={title}
-      subtitle={subtitle}
+      title={title || 'Welcome to Artika'}
+      subtitle={subtitle || 'Discover art and culture'}
       backgroundImage={backgroundImage}
     />
   );
-} 
+};
+
+export default HeroSlice; 
