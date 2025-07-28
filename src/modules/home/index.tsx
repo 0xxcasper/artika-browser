@@ -77,6 +77,7 @@ export default function HomePage({ homepageData }: HomePageProps) {
       <SplitBanner sections={splitBannerSections}       />
       <GridImages title={gridImagesTitle} cards={gridImagesCards} />
       <EmailForm />
+      <div />
     </div>
   );
 } 
