@@ -130,7 +130,7 @@ export default function Navigation() {
     
     return (
       <Link 
-        href={element.href} 
+        href={`${submenuToShow?.href}${element.href?.startsWith('/') ? '' : '/'}${element.href}`} 
         key={element.id} 
         className={`nav-link-drawer ${isActive ? 'active' : ''}`} 
         onClick={() => {
