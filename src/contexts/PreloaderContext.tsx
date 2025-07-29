@@ -1,28 +1,46 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, createContext, useContext, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigation } from '@/hooks/useNavigation';
+import { NavigationMenu } from '@/locales/types';
 
-interface PreloaderProps {
+interface PreloaderContextType {
+  menus: NavigationMenu[];
+}
+
+const PreloaderContext = createContext<PreloaderContextType | undefined>(undefined);
+
+interface PreloaderProviderProps {
   children: React.ReactNode;
   fonts?: string[];
   images?: string[];
   timeout?: number;
 }
 
-const Preloader: React.FC<PreloaderProps> = ({ 
+export const usePreloader = () => {
+  const context = useContext(PreloaderContext);
+  if (context === undefined) {
+    throw new Error('usePreloader must be used within a PreloaderProvider');
+  }
+  return context;
+};
+
+export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({ 
   children, 
   fonts = ['Baskervville', 'Raleway'],
   images = [
-    '/images/home/banner.jpg',
-    '/images/gallery/gallery-bg.jpg',
+    // '/images/home/banner.jpg',
+    // '/images/gallery/gallery-bg.jpg',
   ],
   timeout = 5000 
 }) => {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
   const hasStarted = useRef(false);
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
-
+  const { menus, loading, error } = useNavigation();
+  console.log(menus, loading, error);
+  
   const _updateAssetsLoaded = () => {
     setTimeout(() => {
       setAssetsLoaded(true);
@@ -130,49 +148,57 @@ const Preloader: React.FC<PreloaderProps> = ({
     };
   }, [fonts, images, timeout]);
 
-  return <>
-    <AnimatePresence mode="wait">
-      {!assetsLoaded ? (
-        <motion.div
-          key="preloader"
-          initial={{ opacity: 1 }}
-          exit={{ 
-            opacity: 0,
-            transition: { 
-              duration: 0.3, 
-              ease: "easeInOut"
-            }
-          }}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 9999,
-          }}
-        >
-          <motion.img
-            style={{ width: 145, height: 145 }}
-            src="/logo.gif" 
-            alt="Artika" 
-          />
-        </motion.div>
-      ) : (
-        <motion.div
-          key="content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  </>;
-};
+  const isLoaded = useMemo(() => {
+    return menus?.length > 0 && assetsLoaded;
+  }, [menus, assetsLoaded]);
 
-export default Preloader; 
+  const contextValue: PreloaderContextType = useMemo(() => ({
+    menus,
+  }), [menus]);
+
+  return (
+    <PreloaderContext.Provider value={contextValue}>
+      <AnimatePresence mode="wait">
+        {!isLoaded ? (
+          <motion.div
+            key="preloader"
+            initial={{ opacity: 1 }}
+            exit={{ 
+              opacity: 0,
+              transition: { 
+                duration: 0.3, 
+                ease: "easeInOut"
+              }
+            }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 9999,
+            }}
+          >
+            <motion.img
+              style={{ width: 145, height: 145 }}
+              src="/logo.gif" 
+              alt="Artika" 
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </PreloaderContext.Provider>
+  );
+};

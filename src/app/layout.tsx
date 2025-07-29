@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Navigation from '@/components/navigation';
 import '@/styles/global.scss';
-import Preloader from '@/components/preloader';
 import Providers from './providers';
 import Footer from '@/components/footer';
 
@@ -41,13 +40,11 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Providers>
-          <Preloader timeout={3000}>
-            <Navigation />
-            <main>
-              {children}
-            </main>
-            <Footer />
-          </Preloader>
+          <Navigation />
+          <main>
+            {children}
+          </main>
+          <Footer />
         </Providers>
       </body>
     </html>

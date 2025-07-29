@@ -1,0 +1,63 @@
+{
+  "id": "artwalk",
+  "label": "Artwalk",
+  "repeatable": true,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": "Unique identifier for the artwork"
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": "Artwork title"
+        }
+      },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Description",
+          "placeholder": "Artwork description"
+        }
+      },
+      "material": {
+        "type": "Text",
+        "config": {
+          "label": "Material",
+          "placeholder": "Artwork material (e.g., Bronze, Steel)"
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Artwork Image",
+          "constraint": {
+            "width": 800,
+            "height": 600
+          },
+          "thumbnails": [
+            {
+              "name": "thumbnail",
+              "width": 400,
+              "height": 300
+            }
+          ]
+        }
+      },
+      "category": {
+        "type": "Text",
+        "config": {
+          "label": "Category",
+          "placeholder": "Category (outdoor, personal, artists, memories, whispers, voices, breathing)"
+        }
+      }
+    }
+  }
+} 

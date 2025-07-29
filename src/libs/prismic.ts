@@ -22,6 +22,14 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
         path: '/vi',
         lang: 'vi-vn',
       },
+      {
+        type: 'navigation_menu',
+        path: '/navigation',
+      },
+      {
+        type: 'artwalk',
+        path: '/artwalk/:uid',
+      },
     ],
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
     ...config,
@@ -59,4 +67,24 @@ export type HomepageDocument = prismic.PrismicDocumentWithUID<{
     title: prismic.KeyTextField;
     description: prismic.RichTextField;
   }>;
+}>;
+
+export type NavigationMenuDocument = prismic.PrismicDocument<{
+  items: prismic.GroupField<{
+    label: prismic.KeyTextField;
+    href: prismic.KeyTextField;
+    subs: prismic.GroupField<{
+      id: prismic.KeyTextField;
+      name: prismic.KeyTextField;
+      href: prismic.KeyTextField;
+    }>;
+  }>;
+}>;
+
+export type ArtwalkDocument = prismic.PrismicDocumentWithUID<{
+  title: prismic.KeyTextField;
+  description: prismic.KeyTextField;
+  material: prismic.KeyTextField;
+  image: prismic.ImageField;
+  category: prismic.SelectField;
 }>; 

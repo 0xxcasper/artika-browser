@@ -4,10 +4,10 @@
     "uid": null,
     "url": "/en",
     "type": "homepage",
-    "href": "https://artika-sapa.cdn.prismic.io/api/v2/documents/search?ref=aIeDDBEAACIA0piA&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22aIdGwhEAACAA0jfI%22%29+%5D%5D",
+    "href": "https://artika-sapa.cdn.prismic.io/api/v2/documents/search?ref=aIh31hEAACEA1AP-&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22aIdGwhEAACAA0jfI%22%29+%5D%5D",
     "tags": [],
     "first_publication_date": "2025-07-28T09:47:52+0000",
-    "last_publication_date": "2025-07-28T14:02:52+0000",
+    "last_publication_date": "2025-07-28T14:36:46+0000",
     "slugs": [
       "homepage"
     ],
@@ -101,11 +101,11 @@
       "focus_aspect_ratio": "1728/720",
       "split_banner_sections": [
         {
-          "title": "Some title for Art Walk",
+          "title": "Some title for Art Walk hhhh",
           "description": [
             {
               "type": "paragraph",
-              "text": "Step into a world where creativity knows no bounds. Our gallery is a haven for art enthusiasts, culture lovers, and curious minds alike. Experience a vibrant collection of masterpieces that span across eras, styles, and cultures, each telling its own unique story.\\n\\nFrom the bold strokes of contemporary art to the timeless elegance of classical works, there's something to captivate every visitor.",
+              "text": "Step into a world where creativity knows no bounds. Our gallery is a haven for art enthusiasts, culture lovers, and curious minds alike. Experience a vibrant collection of masterpieces that span across eras, styles, and cultures, each telling its own unique story.\n\nFrom the bold strokes of contemporary art to the timeless elegance of classical works, there's something to captivate every visitor.",
               "spans": [],
               "direction": "ltr"
             }
@@ -134,7 +134,7 @@
           "description": [
             {
               "type": "paragraph",
-              "text": "Step into a world where creativity knows no bounds. Our gallery is a haven for art enthusiasts, culture lovers, and curious minds alike. Experience a vibrant collection of masterpieces that span across eras, styles, and cultures, each telling its own unique story.\\n\\nFrom the bold strokes of contemporary art to the timeless elegance of classical works, there's something to captivate every visitor.",
+              "text": "Step into a world where creativity knows no bounds. Our gallery is a haven for art enthusiasts, culture lovers, and curious minds alike. Experience a vibrant collection of masterpieces that span across eras, styles, and cultures, each telling its own unique story.\n\nFrom the bold strokes of contemporary art to the timeless elegance of classical works, there's something to captivate every visitor.",
               "spans": [],
               "direction": "ltr"
             }
@@ -158,9 +158,124 @@
           },
           "image_alt": "Some title for Forest Bathing"
         }
+      ],
+      "grid_images_title": "Latest news & events",
+      "grid_images_items": [
+        {
+          "image": {
+            "dimensions": {
+              "width": 1596,
+              "height": 1032
+            },
+            "alt": null,
+            "copyright": null,
+            "url": "https://images.prismic.io/artika-sapa/aIeIclGsbswqTWiM_news-1.jpg?auto=format,compress",
+            "id": "aIeIclGsbswqTWiM",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_alt": null,
+          "title": null,
+          "description": []
+        },
+        {
+          "image": {
+            "dimensions": {
+              "width": 1800,
+              "height": 2160
+            },
+            "alt": null,
+            "copyright": null,
+            "url": "https://images.prismic.io/artika-sapa/aIeId1GsbswqTWiQ_news-2.jpg?auto=format,compress",
+            "id": "aIeId1GsbswqTWiQ",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_alt": null,
+          "title": "Discover our new menu",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Discover our seasonal masterpieces and specialties, with a color palette of dark charcoal, wood tones, and forest greens.",
+              "spans": [],
+              "direction": "ltr"
+            }
+          ]
+        },
+        {
+          "image": {
+            "dimensions": {
+              "width": 1596,
+              "height": 1032
+            },
+            "alt": null,
+            "copyright": null,
+            "url": "https://images.prismic.io/artika-sapa/aIeIhFGsbswqTWif_news-3.jpg?auto=format,compress",
+            "id": "aIeIhFGsbswqTWif",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_alt": null,
+          "title": null,
+          "description": []
+        },
+        {
+          "image": {
+            "dimensions": {
+              "width": 1596,
+              "height": 1032
+            },
+            "alt": null,
+            "copyright": null,
+            "url": "https://images.prismic.io/artika-sapa/aIeIiVGsbswqTWil_news-4.jpg?auto=format,compress",
+            "id": "aIeIiVGsbswqTWil",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_alt": null,
+          "title": null,
+          "description": []
+        },
+        {
+          "image": {
+            "dimensions": {
+              "width": 1596,
+              "height": 1032
+            },
+            "alt": null,
+            "copyright": null,
+            "url": "https://images.prismic.io/artika-sapa/aIeIl1GsbswqTWi2_news-5.jpg?auto=format,compress",
+            "id": "aIeIl1GsbswqTWi2",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_alt": null,
+          "title": null,
+          "description": []
+        }
       ]
     }
   },
-  "timestamp": 1753711754259,
+  "timestamp": 1753776043736,
   "ttl": 300000
 }

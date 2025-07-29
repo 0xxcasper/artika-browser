@@ -2,14 +2,13 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/contexts/LanguageContext';
 import './styles.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { navigation as navMenusEn } from '@/locales/en';
 import type { NavigationMenu, NavigationSub } from '@/locales/types';
 import { Flex } from '@chakra-ui/react';
+import { usePreloader } from '@/contexts/PreloaderContext';
 
 const navVariants = {
   initial: { y: -200, opacity: 0 },
@@ -37,13 +36,13 @@ const overlayVariants = {
 };
 
 export default function Navigation() {
-  const { language } = useLanguage();
+  const { menus } = usePreloader();
+
+  console.log(menus);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
   const [selectedMenu, setSelectedMenu] = useState<NavigationMenu | null>(null);
-
-  const menus = useMemo(() => navMenusEn, [language]);
 
   // Smart path matching logic
   const getActiveMenu = useMemo(() => {

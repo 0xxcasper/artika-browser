@@ -1,0 +1,62 @@
+{
+  "id": "navigation_menu",
+  "label": "Navigation Menu",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Main": {
+      "items": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Menu Label",
+                "placeholder": "Menu item label"
+              }
+            },
+            "href": {
+              "type": "Text",
+              "config": {
+                "label": "Menu Href",
+                "placeholder": "Menu item link (e.g., /, /artwalk)"
+              }
+            },
+            "subs": {
+              "type": "Group",
+              "config": {
+                "fields": {
+                  "id": {
+                    "type": "Text",
+                    "config": {
+                      "label": "Submenu ID",
+                      "placeholder": "Unique identifier for submenu"
+                    }
+                  },
+                  "name": {
+                    "type": "Text",
+                    "config": {
+                      "label": "Submenu Name",
+                      "placeholder": "Submenu item name"
+                    }
+                  },
+                  "href": {
+                    "type": "Text",
+                    "config": {
+                      "label": "Submenu Href",
+                      "placeholder": "Submenu item link"
+                    }
+                  }
+                },
+                "label": "Submenus"
+              }
+            }
+          },
+          "label": "Menu Items"
+        }
+      }
+    }
+  }
+} 
