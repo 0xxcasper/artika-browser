@@ -88,6 +88,7 @@
         @include body-large;
         @include font-secondary;
         color: rgba(169, 169, 169, 1);
+        white-space: pre-line;
       }
     }
 

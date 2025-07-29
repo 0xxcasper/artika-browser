@@ -1,0 +1,68 @@
+{
+  "id": "content_item",
+  "label": "Content Item",
+  "repeatable": true,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Content ID",
+          "placeholder": "Unique identifier for the content item",
+          "api": {
+            "id": "uid"
+          }
+        }
+      },
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "Content Name",
+          "placeholder": "Name of the content item"
+        }
+      },
+      "subName": {
+        "type": "Text",
+        "config": {
+          "label": "Sub Name",
+          "placeholder": "Subtitle or alternative name"
+        }
+      },
+      "thumb": {
+        "type": "Image",
+        "config": {
+          "label": "Thumbnail Image",
+          "constraint": {
+            "width": 400,
+            "height": 300
+          },
+          "thumbnails": [
+            {
+              "name": "thumbnail",
+              "width": 200,
+              "height": 150
+            }
+          ]
+        }
+      },
+      "material": {
+        "type": "Text",
+        "config": {
+          "label": "Material",
+          "placeholder": "Material of the content item"
+        }
+      },
+      "detail": {
+        "type": "Link",
+        "config": {
+          "label": "Detail Information",
+          "placeholder": "Select detail information",
+          "select": "document",
+          "customtypes": ["detail"]
+        }
+      }
+    }
+  }
+} 

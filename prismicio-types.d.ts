@@ -70,6 +70,137 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 /**
+ * Content for Artwalk documents
+ */
+interface ArtwalkDocumentData {
+  /**
+   * Name field in *Artwalk*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Artwork name (main title)
+   * - **API ID Path**: artwalk.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Sub Name field in *Artwalk*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Artwork subtitle or alternative name
+   * - **API ID Path**: artwalk.subName
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subName: prismic.KeyTextField;
+
+  /**
+   * Thumbnail Image field in *Artwalk*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artwalk.thumb
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  thumb: prismic.ImageField<never>;
+
+  /**
+   * Material field in *Artwalk*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Artwork material
+   * - **API ID Path**: artwalk.material
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  material: prismic.KeyTextField;
+
+  /**
+   * Category field in *Artwalk*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Category slug (e.g., outdoor-sculpture-park)
+   * - **API ID Path**: artwalk.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  category: prismic.KeyTextField;
+
+  /**
+   * Description field in *Artwalk*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Detailed description of the artwork
+   * - **API ID Path**: artwalk.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Detail Title field in *Artwalk*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Title for detail view
+   * - **API ID Path**: artwalk.detailTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  detailTitle: prismic.KeyTextField;
+
+  /**
+   * Detail Info field in *Artwalk*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Additional information about the artwork
+   * - **API ID Path**: artwalk.detailInfo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  detailInfo: prismic.KeyTextField;
+
+  /**
+   * Detail Author field in *Artwalk*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Artist or creator name
+   * - **API ID Path**: artwalk.detailAuthor
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  detailAuthor: prismic.KeyTextField;
+
+  /**
+   * Detail Image field in *Artwalk*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artwalk.detailImage
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  detailImage: prismic.ImageField<never>;
+}
+
+/**
+ * Artwalk document from Prismic
+ *
+ * - **API ID**: `artwalk`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArtwalkDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ArtwalkDocumentData>,
+    "artwalk",
+    Lang
+  >;
+
+/**
  * Item in *Homepage → Split Banner Sections*
  */
 export interface HomepageDocumentDataSplitBannerSectionsItem {
@@ -122,6 +253,51 @@ export interface HomepageDocumentDataSplitBannerSectionsItem {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   image_alt: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Homepage → Grid Images Items*
+ */
+export interface HomepageDocumentDataGridImagesItemsItem {
+  /**
+   * Grid Image field in *Homepage → Grid Images Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.grid_images_items[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Image Alt Text field in *Homepage → Grid Images Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Image alt text
+   * - **API ID Path**: homepage.grid_images_items[].image_alt
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image_alt: prismic.KeyTextField;
+
+  /**
+   * Image Title field in *Homepage → Grid Images Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Image title
+   * - **API ID Path**: homepage.grid_images_items[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Image Description field in *Homepage → Grid Images Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Image description
+   * - **API ID Path**: homepage.grid_images_items[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
 }
 
 /**
@@ -265,6 +441,28 @@ interface HomepageDocumentData {
    */;
   split_banner_sections: prismic.GroupField<
     Simplify<HomepageDocumentDataSplitBannerSectionsItem>
+  > /**
+   * Grid Images Title field in *Homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Grid images section title
+   * - **API ID Path**: homepage.grid_images_title
+   * - **Tab**: Grid Images Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  grid_images_title: prismic.KeyTextField;
+
+  /**
+   * Grid Images Items field in *Homepage*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.grid_images_items[]
+   * - **Tab**: Grid Images Section
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  grid_images_items: prismic.GroupField<
+    Simplify<HomepageDocumentDataGridImagesItemsItem>
   >;
 }
 
@@ -284,7 +482,114 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument;
+/**
+ * Item in *Navigation Menu → Menu Items → Submenus*
+ */
+export interface NavigationMenuDocumentDataItemsSubsItem {
+  /**
+   * Submenu ID field in *Navigation Menu → Menu Items → Submenus*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Unique identifier for submenu
+   * - **API ID Path**: navigation_menu.items[].subs[].id
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  id: prismic.KeyTextField;
+
+  /**
+   * Submenu Name field in *Navigation Menu → Menu Items → Submenus*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Submenu item name
+   * - **API ID Path**: navigation_menu.items[].subs[].name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Submenu Href field in *Navigation Menu → Menu Items → Submenus*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Submenu item link
+   * - **API ID Path**: navigation_menu.items[].subs[].href
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  href: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Navigation Menu → Menu Items*
+ */
+export interface NavigationMenuDocumentDataItemsItem {
+  /**
+   * Menu Label field in *Navigation Menu → Menu Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Menu item label
+   * - **API ID Path**: navigation_menu.items[].label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Menu Href field in *Navigation Menu → Menu Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Menu item link (e.g., /, /artwalk)
+   * - **API ID Path**: navigation_menu.items[].href
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  href: prismic.KeyTextField;
+
+  /**
+   * Submenus field in *Navigation Menu → Menu Items*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_menu.items[].subs[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  subs: prismic.NestedGroupField<
+    Simplify<NavigationMenuDocumentDataItemsSubsItem>
+  >;
+}
+
+/**
+ * Content for Navigation Menu documents
+ */
+interface NavigationMenuDocumentData {
+  /**
+   * Menu Items field in *Navigation Menu*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_menu.items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  items: prismic.GroupField<Simplify<NavigationMenuDocumentDataItemsItem>>;
+}
+
+/**
+ * Navigation Menu document from Prismic
+ *
+ * - **API ID**: `navigation_menu`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavigationMenuDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<NavigationMenuDocumentData>,
+    "navigation_menu",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | ArtwalkDocument
+  | HomepageDocument
+  | NavigationMenuDocument;
 
 /**
  * Primary content in *About → Default → Primary*
@@ -441,9 +746,16 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      ArtwalkDocument,
+      ArtwalkDocumentData,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSplitBannerSectionsItem,
+      HomepageDocumentDataGridImagesItemsItem,
+      NavigationMenuDocument,
+      NavigationMenuDocumentData,
+      NavigationMenuDocumentDataItemsSubsItem,
+      NavigationMenuDocumentDataItemsItem,
       AllDocumentTypes,
       AboutSlice,
       AboutSliceDefaultPrimary,

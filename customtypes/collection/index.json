@@ -1,0 +1,59 @@
+{
+  "id": "collection",
+  "label": "Collection",
+  "repeatable": true,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Collection UID",
+          "placeholder": "Unique identifier for the collection",
+          "api": {
+            "id": "uid"
+          }
+        }
+      },
+      "slugId": {
+        "type": "Text",
+        "config": {
+          "label": "Collection Slug ID",
+          "placeholder": "Slug identifier for the collection (e.g., outdoor-sculpture-park)"
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Collection Title",
+          "placeholder": "Collection title (e.g., Outdoor Sculpture Park)"
+        }
+      },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Collection Description",
+          "placeholder": "Description of the collection"
+        }
+      },
+      "contents": {
+        "type": "Group",
+        "config": {
+          "label": "Collection Contents",
+          "fields": {
+            "contentItem": {
+              "type": "Link",
+              "config": {
+                "label": "Content Item",
+                "placeholder": "Select a content item",
+                "select": "document",
+                "customtypes": ["content_item"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 

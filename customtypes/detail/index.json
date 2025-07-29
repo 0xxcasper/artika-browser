@@ -1,0 +1,74 @@
+{
+  "id": "detail",
+  "label": "Detail",
+  "repeatable": true,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Detail ID",
+          "placeholder": "Unique identifier for the detail",
+          "api": {
+            "id": "uid"
+          }
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Detail Title",
+          "placeholder": "Title for detail view"
+        }
+      },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Description",
+          "placeholder": "Detailed description"
+        }
+      },
+      "info": {
+        "type": "Text",
+        "config": {
+          "label": "Info",
+          "placeholder": "Additional information"
+        }
+      },
+      "author": {
+        "type": "Text",
+        "config": {
+          "label": "Author",
+          "placeholder": "Author or creator name"
+        }
+      },
+      "images": {
+        "type": "Group",
+        "config": {
+          "label": "Detail Images",
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Detail Image",
+                "constraint": {
+                  "width": 1200,
+                  "height": 800
+                },
+                "thumbnails": [
+                  {
+                    "name": "detail",
+                    "width": 600,
+                    "height": 400
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 

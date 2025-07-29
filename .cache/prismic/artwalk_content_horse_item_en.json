@@ -1,0 +1,21 @@
+{
+  "data": {
+    "id": "horse-item",
+    "href": "/artwalk/content/horse-item",
+    "name": "Ngựa",
+    "subName": "Horse",
+    "thumb": "https://images.prismic.io/artika-sapa/aIjyWVGsbswqTbEP_Rectangle242-1--min.jpg?auto=format,compress&rect=0,369,1627,1220&w=400&h=300",
+    "material": "Đồng /Bronze",
+    "detail": {
+      "title": "Ngựa (2018)",
+      "description": "“Ngựa” của tác giả Nguyễn Trọng Đoan có bố cục tổng thể là hình bán nguyệt gần như đối xứng giữa đầu và đuôi, làm nổi bật một cấu trúc có khả năng chống chịu bền bỉ giữa không gian, mặt khác gợi ý một chuyển động đều đặn, lặp đi lặp lại theo một khuôn mẫu giới hạn giản đơn.\n\nBố cục này hoàn toàn đồng điệu với các chi tiết biểu hiện của tác phẩm, từ những nét biểu cảm sức mạnh cơ bắp cho đến ý chí tinh thần của đối tượng chủ thể.\n\nCác linga truyền thống có bố cục là sự tương phản sâu sắc giữa hình trụ đứng thẳng tĩnh tại đối chọi với không gian bên trên. “Ngựa” của Nguyễn Trọng Đoan cũng có thể được cảm nhận như một thứ linga nhưng với bố cục hoàn toàn khác, xung phá về phía trước, có tiết tấu nhịp điệu đều đặn, và đầy tính biểu cảm.\n\nKhác các linga truyền thống đại diện cho một thứ lực lượng phi cá thể của đấng Tạo hóa, thì Ngựa mang đầy tính cá nhân. Nó bộc lộ tất cả những phẩm chất mạnh mẽ, quả quyết, và riêng biệt mà một bản thể có thể phô diễn, nhưng vì thế lại càng đơn độc và dễ bị thương tổn. Một cảm giác bất lực của bản ngã trước giới hạn nội tại vô hình, nhưng khát vọng vươn tới lại càng mãnh liệt vô tận. Tất cả những sắc thái phức tạp và mâu thuẫn đó tổng hòa trong một sự biểu đạt minh giản, mộc mạc và thân thiết.",
+      "info": "H 237cm x W 199cm x D 315cm\nĐồng",
+      "author": "TẠ QUANG BẠO",
+      "images": [
+        "https://images.prismic.io/artika-sapa/aIjx1lGsbswqTbEG_Rectangle244-min-1-.jpg?auto=format,compress&rect=262,0,4181,2787&w=1200&h=800"
+      ]
+    }
+  },
+  "timestamp": 1753806960941,
+  "ttl": 300000
+}

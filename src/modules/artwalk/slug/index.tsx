@@ -1,16 +1,19 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
-import { ARTWALK_COLLECTION } from '@/constants/artwalk';
 import './styles.scss';
-import Image from 'next/image';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Image } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { useParams, useRouter } from 'next/navigation';
-import { SubMenuType } from '@/locales/types';
+import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import { artwalkRouter } from '@/constants/router';
 import EmailForm from '@/components/email-form';
+import type { ArtwalkCategory } from '@/types/artwalk';
+
+interface SlugArtwalkPageProps {
+  categoryData: ArtwalkCategory | null;
+  slug: string;
+  lang: string;
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -53,17 +56,47 @@ const headerVariants = {
   }
 };
 
-const GalleryPage = () => {
-  const { t } = useLanguage();
+const GalleryPage = ({ categoryData, slug }: SlugArtwalkPageProps) => {
   const router = useRouter();
-  const { slug } = useParams();
+  
+  // Debug router
+  console.log('categoryData object:', categoryData);
+  console.log('artwalkRouter object:', artwalkRouter);
+  
+  // Use Prismic data if available, otherwise fallback to hardcoded data
   const COLLECTIONS = useMemo(() => {
-    const collections = ARTWALK_COLLECTION?.[slug as SubMenuType]?.collections;
-    if (!collections) {
-      return [];
+    if (categoryData && categoryData?.contents?.length > 0) {
+      return categoryData?.contents ?? [];
     }
-    return collections;
-  }, [slug]);
+    return [];
+  }, [categoryData, slug]);
+
+  const handleItemClick = (collection: any) => {
+    try {
+      console.log('Clicking item:', collection);
+      console.log('Current slug:', slug);
+      
+      if (!router) {
+        console.error('Router is undefined');
+        return;
+      }
+      
+      if (!artwalkRouter || !artwalkRouter.getDetailRouter) {
+        console.error('artwalkRouter or getDetailRouter is undefined');
+        return;
+      }
+      
+      const detailPath = artwalkRouter.getDetailRouter({ 
+        id: collection.id, 
+        slug: slug 
+      });
+      
+      console.log('Navigating to:', detailPath);
+      router.push(detailPath);
+    } catch (error) {
+      console.error('Error navigating to detail:', error);
+    }
+  };
 
   return (
     <div className="gallery-container">
@@ -76,10 +109,10 @@ const GalleryPage = () => {
       >
         <div className="gallery-container__header__title">
           <h1>
-            {t('pages.artwalk.hero.title')}
+            {categoryData?.title}
           </h1>
           <p>
-            {t('pages.artwalk.hero.subtitle')}
+            {categoryData?.description}
           </p>
         </div>
       </motion.div>
@@ -94,7 +127,7 @@ const GalleryPage = () => {
         {COLLECTIONS.map((collection, index) => (
           <motion.div 
             className="gallery-container__grids__item" 
-            key={`${collection.title}-${index}`}
+            key={`${collection.id}-${index}`}
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
@@ -106,13 +139,11 @@ const GalleryPage = () => {
               }
             }}
             viewport={{ once: true, margin: "-50px" }}
-            onClick={() => {
-              router.push(artwalkRouter.getDetailRouter({ id: collection.id, slug: slug as string }));
-            }}
+            onClick={() => handleItemClick(collection)}
           >
             <Image 
-              src={collection.image} 
-              alt={collection.title} 
+              src={collection.thumb} 
+              alt={collection.name} 
               width={400} 
               height={480} 
               className="gallery-container__grids__item__image"
@@ -123,10 +154,10 @@ const GalleryPage = () => {
             />
             <div className="gallery-container__grids__item__content">
               <Flex flexDirection='row' gap="1rem" justify="space-between">
-                <p className='gallery-container__grids__item__content__title'>{collection.title}</p>
+                <p className='gallery-container__grids__item__content__title'>{collection.name}</p>
                 <p className='gallery-container__grids__item__content__material'>{collection.material}</p>
               </Flex>
-              <p className='gallery-container__grids__item__content__description'>{collection.description}</p>
+              <p className='gallery-container__grids__item__content__description'>{collection.subName}</p>
             </div>
           </motion.div>
         ))}

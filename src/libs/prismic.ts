@@ -3,7 +3,19 @@ import * as prismicNext from '@prismicio/next';
 
 export const repositoryName = process.env.PRISMIC_REPOSITORY_NAME || 'artika-sapa';
 
-console.log(process.env.PRISMIC_REPOSITORY_NAME);
+// Link resolver for collection documents
+export function linkResolver(doc: any) {
+  if (doc.type === 'collection') {
+    return `/artwalk/${doc.data.slugId}`;
+  }
+  if (doc.type === 'content_item') {
+    return `/artwalk/content/${doc.uid}`;
+  }
+  if (doc.type === 'detail') {
+    return `/artwalk/detail/${doc.uid}`;
+  }
+  return '/';
+}
 
 export function createClient(config?: prismicNext.CreateClientConfig) {
   const client = prismic.createClient(repositoryName, {
@@ -27,8 +39,16 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
         path: '/navigation',
       },
       {
-        type: 'artwalk',
+        type: 'collection',
         path: '/artwalk/:uid',
+      },
+      {
+        type: 'content_item',
+        path: '/artwalk/content/:uid',
+      },
+      {
+        type: 'detail',
+        path: '/artwalk/detail/:uid',
       },
     ],
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
@@ -69,7 +89,7 @@ export type HomepageDocument = prismic.PrismicDocumentWithUID<{
   }>;
 }>;
 
-export type NavigationMenuDocument = prismic.PrismicDocument<{
+export type NavigationMenuDocument = prismic.PrismicDocumentWithUID<{
   items: prismic.GroupField<{
     label: prismic.KeyTextField;
     href: prismic.KeyTextField;
@@ -81,10 +101,29 @@ export type NavigationMenuDocument = prismic.PrismicDocument<{
   }>;
 }>;
 
-export type ArtwalkDocument = prismic.PrismicDocumentWithUID<{
+export type CollectionDocument = prismic.PrismicDocumentWithUID<{
+  slugId: prismic.KeyTextField;
   title: prismic.KeyTextField;
   description: prismic.KeyTextField;
+  contents: prismic.GroupField<{
+    contentItem: prismic.LinkField;
+  }>;
+}>;
+
+export type ContentItemDocument = prismic.PrismicDocumentWithUID<{
+  name: prismic.KeyTextField;
+  subName: prismic.KeyTextField;
+  thumb: prismic.ImageField;
   material: prismic.KeyTextField;
-  image: prismic.ImageField;
-  category: prismic.SelectField;
+  detail: prismic.LinkField;
+}>;
+
+export type DetailDocument = prismic.PrismicDocumentWithUID<{
+  title: prismic.KeyTextField;
+  description: prismic.KeyTextField;
+  info: prismic.KeyTextField;
+  author: prismic.KeyTextField;
+  images: prismic.GroupField<{
+    image: prismic.ImageField;
+  }>;
 }>; 

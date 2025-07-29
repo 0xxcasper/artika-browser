@@ -4,7 +4,7 @@
     "uid": null,
     "url": "/en",
     "type": "homepage",
-    "href": "https://artika-sapa.cdn.prismic.io/api/v2/documents/search?ref=aIh31hEAACEA1AP-&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22aIdGwhEAACAA0jfI%22%29+%5D%5D",
+    "href": "https://artika-sapa.cdn.prismic.io/api/v2/documents/search?ref=aIj3jREAACEA1OAH&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22aIdGwhEAACAA0jfI%22%29+%5D%5D",
     "tags": [],
     "first_publication_date": "2025-07-28T09:47:52+0000",
     "last_publication_date": "2025-07-28T14:36:46+0000",
@@ -276,6 +276,6 @@
       ]
     }
   },
-  "timestamp": 1753776042952,
+  "timestamp": 1753806755298,
   "ttl": 300000
 }
