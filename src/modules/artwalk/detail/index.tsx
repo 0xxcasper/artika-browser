@@ -51,7 +51,7 @@ function GalleryDetail({ text }: { text: string }) {
   );
 }
 
-const GalleryDetailPage = ({ contentData }: GalleryDetailPageProps) => {
+const GalleryDetailPage = ({ contentData, slug, id, lang }: GalleryDetailPageProps) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -117,7 +117,11 @@ const GalleryDetailPage = ({ contentData }: GalleryDetailPageProps) => {
         </motion.div>
         <GalleryDetail text={description} />
       </motion.div>
-      <HorizontalList />
+      <HorizontalList 
+        otherProjects={contentData?.otherProjects}
+        currentProjectId={contentData?.id}
+        title="OTHER PROJECTS"
+      />
     </div>
   );
 };

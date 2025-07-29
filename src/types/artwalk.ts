@@ -15,6 +15,7 @@ export interface ArtwalkContent {
   thumb: string;
   material: string;
   detail: ArtwalkDetail;
+  otherProjects?: ArtwalkContent[];
 }
 
 export interface ArtwalkCategory {

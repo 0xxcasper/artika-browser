@@ -1,5 +1,5 @@
 import { prismicServerCache, createCacheKey } from '@/libs/prismic-server-cache';
-import { fetchArtwalkContent } from '@/libs/prismic-artwalk';
+import { fetchArtwalkContent, fetchArtwalkCategory } from '@/libs/prismic-artwalk';
 import GalleryDetailPage from "@/modules/artwalk/detail";
 import { notFound } from 'next/navigation';
 
@@ -49,12 +49,22 @@ export default async function Page({ params }: PageProps) {
       notFound();
     }
 
+    // Fetch other projects from the same collection
+    const categoryData = await fetchArtwalkCategory(slug, lang === 'vi' ? 'vi' : 'en-us');
+    const otherProjects = categoryData?.contents?.filter(project => project.id !== id) || [];
+
+    // Add other projects to content data
+    const contentDataWithOthers = {
+      ...contentData,
+      otherProjects
+    };
+
     // Cache the result
-    prismicServerCache.set(cacheKey, contentData);
+    prismicServerCache.set(cacheKey, contentDataWithOthers);
 
     return (
       <GalleryDetailPage 
-        contentData={contentData}
+        contentData={contentDataWithOthers}
         slug={slug}
         id={id}
         lang={lang}

@@ -1,6 +1,20 @@
 @import '@/styles/variables.scss';
 @import '@/styles/fonts.scss';
 
+.container {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.sectionTitle {
+  @include text-2xl;
+  @include font-primary;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
 .horizontalList {
   .item {
     padding: 0 10px;
