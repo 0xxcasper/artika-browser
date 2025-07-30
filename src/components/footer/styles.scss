@@ -40,7 +40,7 @@
 
     .title {
       @include heading-5;
-      @include font-tertiary;
+      @include font-secondary;
       color: $text-inverse;
       @media screen and (max-width: $breakpoint-md) {
         @include heading-5;

@@ -1,30 +1,8 @@
 import type { Metadata } from 'next';
-import { Inter, Raleway, Playfair, Roboto } from 'next/font/google';
 import Navigation from '@/components/navigation';
 import '@/styles/global.scss';
 import Providers from './providers';
 import Footer from '@/components/footer';
-
-const inter = Inter({ subsets: ['latin'] });
-
-const playfair = Playfair({ 
-  subsets: ['latin', 'vietnamese'],
-  variable: '--font-playfair',
-  display: 'swap',
-});
-
-const raleway = Raleway({ 
-  subsets: ['latin', 'vietnamese'],
-  variable: '--font-raleway',
-  display: 'swap',
-});
-
-const graphik = Roboto({ 
-  subsets: ['latin', 'vietnamese'],
-  variable: '--font-graphik',
-  display: 'swap',
-  weight: ['400', '500', '700'],
-});
 
 export const metadata: Metadata = {
   // title: 'Artika',
@@ -39,6 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google Fonts preconnect */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Google Fonts CSS - Only Playfair and Raleway */}
+        <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+        
         {/* Critical font preload - highest priority */}
         <link 
           rel="preload" 
@@ -49,7 +34,7 @@ export default function RootLayout({
           fetchPriority="high"
         />
       </head>
-      <body className={`${inter.className} ${playfair.variable} ${raleway.variable} ${graphik.variable}`}>
+      <body>
         <Providers>
           <Navigation />
           <main>

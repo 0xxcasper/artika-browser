@@ -1,11 +1,10 @@
 // Font Face Declarations
-// Use Google Fonts with Vietnamese support
+// Use Google Fonts - Only Playfair and Raleway
 @import './variables';
 
-// Font Variables - Updated to use Google Fonts
+// Font Variables - Only Playfair and Raleway
 $font-primary: 'Playfair', serif;
 $font-secondary: 'Raleway', sans-serif;
-$font-tertiary: 'Roboto', sans-serif;
 
 // Font Weights
 $font-weight-light: 300;
@@ -50,11 +49,6 @@ $letter-spacing-widest: 0.1em;
 
 @mixin font-secondary {
   font-family: $font-secondary;
-  font-feature-settings: "liga" 1, "kern" 1;
-}
-
-@mixin font-tertiary {
-  font-family: $font-tertiary;
   font-feature-settings: "liga" 1, "kern" 1;
 }
 
