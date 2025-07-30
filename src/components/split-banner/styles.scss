@@ -139,7 +139,7 @@
   .mobile-layout {
     display: none;
     flex-direction: column;
-    padding: 0 1rem;
+    // padding: 0 1rem;
     gap: 1rem;
     .mobile-text-title {
       @include font-primary;
