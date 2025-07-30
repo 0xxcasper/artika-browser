@@ -28,11 +28,8 @@ export const usePreloader = () => {
 
 export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({ 
   children, 
-  fonts = ['Baskervville', 'Raleway'],
-  images = [
-    // '/images/home/banner.jpg',
-    // '/images/gallery/gallery-bg.jpg',
-  ],
+  fonts = ['PlayfairDisplay', 'Raleway'],
+  images = [],
   timeout = 5000 
 }) => {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
