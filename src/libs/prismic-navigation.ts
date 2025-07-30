@@ -1,6 +1,5 @@
 import { createClient } from './prismic';
 import type { NavigationMenu } from '@/locales/types';
-import type { NavigationMenuDocument } from './prismic';
 
 export async function fetchNavigation(locale: string): Promise<NavigationMenu[]> {
   try {

@@ -1,11 +1,12 @@
 import * as prismic from "@prismicio/client";
 import * as prismicNext from "@prismicio/next";
-import config from "../slicemachine.config.js";
+// import { config } from "process";
+// import config from "../slicemachine.config.js";
 
 /**
  * The project's Prismic repository name.
  */
-export const repositoryName = config.repositoryName;
+export const repositoryName = process.env.PRISMIC_REPOSITORY_NAME || 'artika-sapa';
 
 /**
  * A list of Route Resolver objects that define how a document's `url` field is resolved.

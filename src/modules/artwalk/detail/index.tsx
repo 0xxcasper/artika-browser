@@ -9,7 +9,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import HorizontalList from '@/components/horizontal-list';
 import type { ArtwalkContent } from '@/types/artwalk';
-import { info } from 'console';
 
 const MAX_LENGTH = 1500;
 
@@ -51,7 +50,7 @@ function GalleryDetail({ text }: { text: string }) {
   );
 }
 
-const GalleryDetailPage = ({ contentData, slug, id, lang }: GalleryDetailPageProps) => {
+const GalleryDetailPage = ({ contentData }: GalleryDetailPageProps) => {
   const settings = {
     dots: true,
     infinite: true,

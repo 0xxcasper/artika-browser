@@ -1,4 +1,3 @@
-import { createClient } from '@/libs/prismic';
 import { prismicServerCache, createCacheKey } from '@/libs/prismic-server-cache';
 import { fetchArtwalkCategory } from '@/libs/prismic-artwalk';
 import SlugArtwalkPage from '@/modules/artwalk/slug';

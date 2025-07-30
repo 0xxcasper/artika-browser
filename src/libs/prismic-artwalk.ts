@@ -1,5 +1,4 @@
 import { createClient } from '@/libs/prismic';
-import { predicate } from '@prismicio/client';
 import type { ArtwalkCategory, ArtwalkCategoryList, ArtwalkContent } from '@/types/artwalk';
 
 // Transform Prismic collection document to ArtwalkCategory
