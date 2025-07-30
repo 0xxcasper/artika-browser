@@ -12,7 +12,7 @@
   
   &.nav-scrolled {
     background: hsla(0,0%,100%,.8);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+    // box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
     backdrop-filter: blur(20px);
   }
   
@@ -145,9 +145,9 @@
   align-self: flex-end;
   cursor: pointer;
   margin-bottom: 1.5rem;
-  padding: 8px;
-  width: 34px;
-  height: 34px;
+  // padding: 8px;
+  // width: 34px;
+  // height: 34px;
   border-radius: 4px;
   display: flex;
   align-items: center;
