@@ -8,10 +8,11 @@
 
 .sectionTitle {
   @include text-2xl;
-  @include font-primary;
-  font-weight: 600;
+  @include font-secondary;
+  font-weight: 500;
   margin-bottom: 40px;
   text-align: start;
+  font-size: 24px;
   color: var(--text-primary);
 }
 
