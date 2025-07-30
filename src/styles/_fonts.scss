@@ -3,8 +3,8 @@
 @import './variables';
 
 @font-face {
-  font-family: 'PlayfairDisplay';
-  src: url('/fonts/PlayfairDisplay.ttf') format('truetype');
+  font-family: 'Playfairy';
+  src: url('/fonts/Playfairy.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap; // Optimize font loading performance
@@ -27,7 +27,7 @@
 }
 
 // Font Variables
-$font-primary: 'PlayfairDisplay';
+$font-primary: 'Playfairy';
 $font-secondary: 'Raleway';
 $font-tertiary: 'Graphik';
 
