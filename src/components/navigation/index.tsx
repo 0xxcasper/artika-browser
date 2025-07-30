@@ -95,8 +95,8 @@ export default function Navigation() {
   };
 
   // Smart submenu active state detection
-  const isSubmenuActive = (sub: NavigationSub): boolean => {
-    return sub.href === pathname || pathname.startsWith(sub.href);
+  const isSubmenuActive = (href: string): boolean => {
+    return href === pathname || pathname.startsWith(href);
   };
 
   useEffect(() => {
@@ -118,7 +118,8 @@ export default function Navigation() {
   }, [getActiveMenu]);
 
   const renderSubMenu = (element: NavigationSub) => {
-    const isActive = isSubmenuActive(element);
+    const href = `${submenuToShow?.href}${element.href?.startsWith('/') ? '' : '/'}${element.href}`;
+    const isActive = isSubmenuActive(href);
 
     if (!element.href) {
       return (
@@ -130,7 +131,7 @@ export default function Navigation() {
     
     return (
       <Link 
-        href={`${submenuToShow?.href}${element.href?.startsWith('/') ? '' : '/'}${element.href}`} 
+        href={href} 
         key={element.id} 
         className={`nav-link-drawer ${isActive ? 'active' : ''}`} 
         onClick={() => {
