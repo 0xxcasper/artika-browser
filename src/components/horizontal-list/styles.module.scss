@@ -11,28 +11,108 @@
   @include font-primary;
   font-weight: 600;
   margin-bottom: 40px;
-  text-align: center;
+  text-align: start;
   color: var(--text-primary);
 }
 
-.horizontalList {
+.scrollWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollContainer {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  user-select: none;
+  position: relative;
+  
+  &:active {
+    cursor: grabbing;
+  }
+  
+  // Hide scrollbar for webkit browsers
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  // Hide scrollbar for Firefox
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  // Prevent scroll events from bubbling up
+  &:focus {
+    outline: none;
+  }
+}
+
+.scrollContent {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  min-width: max-content;
+}
+
+.item {
+  flex: 0 0 auto;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  will-change: transform;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+  
+  // Disable hover effects during drag
+  .scrollContainer:active & {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.title {
+  @include text-base;
+  @include font-secondary;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.description {
+  @include text-base;
+  @include font-secondary;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.material {
+  @include text-base;
+  @include font-secondary;
+  color: rgba(169, 169, 169, 1);
+  font-size: 14px;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
   .item {
-    padding: 0 10px;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+    width: 240px;
   }
-  .title {
-    @include text-base;
-    @include font-secondary;
+  
+  .scrollContent {
+    gap: 15px;
   }
-  .description {
-    @include text-base;
-    @include font-secondary;
+}
+
+@media (max-width: 480px) {
+  .item {
+    width: 200px;
   }
-  .material {
-    @include text-base;
-    @include font-secondary;
-    color: rgba(169, 169, 169, 1);
+  
+  .scrollContent {
+    gap: 10px;
   }
 }
