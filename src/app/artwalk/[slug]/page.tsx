@@ -1,4 +1,3 @@
-import { prismicServerCache, createCacheKey } from '@/libs/prismic-server-cache';
 import { fetchArtwalkCategory } from '@/libs/prismic-artwalk';
 import SlugArtwalkPage from '@/modules/artwalk/slug';
 import { notFound } from 'next/navigation';
@@ -10,9 +9,6 @@ interface PageProps {
   };
 }
 
-// Cache cho 5 phút (300 giây)
-export const revalidate = 300;
-
 export default async function Page({ params }: PageProps) {
   // Nếu không có lang hoặc lang[0] là 'en', sử dụng 'en'
   const lang = params.lang?.[0] || 'en';
@@ -21,25 +17,7 @@ export default async function Page({ params }: PageProps) {
   console.log('Artwalk page params:', { lang, slug });
   
   try {
-    // Check server cache first
-    const cacheKey = createCacheKey(`artwalk-category-${slug}`, lang);
-    const cachedData = prismicServerCache.get<any>(cacheKey);
-    
-    console.log('Cache key:', cacheKey);
-    console.log('Cached data exists:', !!cachedData);
-    
-    if (cachedData) {
-      console.log('Using server cached data for artwalk category:', slug);
-      return (
-        <SlugArtwalkPage 
-          categoryData={cachedData}
-          slug={slug}
-          lang={lang}
-        />
-      );
-    }
-
-    // Fetch from Prismic if not cached
+    // Fetch from Prismic
     console.log('Fetching fresh artwalk category data for:', slug, lang);
     const categoryData = await fetchArtwalkCategory(slug, lang === 'vi' ? 'vi' : 'en-us');
 
@@ -50,9 +28,6 @@ export default async function Page({ params }: PageProps) {
       console.log('Collection not found, returning 404');
       notFound();
     }
-
-    // Cache the result
-    prismicServerCache.set(cacheKey, categoryData);
 
     return (
       <SlugArtwalkPage 

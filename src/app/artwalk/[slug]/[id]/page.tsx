@@ -1,4 +1,3 @@
-import { prismicServerCache, createCacheKey } from '@/libs/prismic-server-cache';
 import { fetchArtwalkContent, fetchArtwalkCategory } from '@/libs/prismic-artwalk';
 import GalleryDetailPage from "@/modules/artwalk/detail";
 import { notFound } from 'next/navigation';
@@ -11,9 +10,6 @@ interface PageProps {
   };
 }
 
-// Cache cho 5 phút (300 giây)
-export const revalidate = 300;
-
 export default async function Page({ params }: PageProps) {
   // Nếu không có lang hoặc lang[0] là 'en', sử dụng 'en'
   const lang = params.lang?.[0] || 'en';
@@ -21,23 +17,7 @@ export default async function Page({ params }: PageProps) {
   const id = params.id;
   
   try {
-    // Check server cache first
-    const cacheKey = createCacheKey(`artwalk-content-${id}`, lang);
-    const cachedData = prismicServerCache.get<any>(cacheKey);
-    
-    if (cachedData) {
-      console.log('Using server cached data for artwalk content:', id);
-      return (
-        <GalleryDetailPage 
-          contentData={cachedData}
-          slug={slug}
-          id={id}
-          lang={lang}
-        />
-      );
-    }
-
-    // Fetch from Prismic if not cached
+    // Fetch from Prismic
     console.log('Fetching fresh artwalk content data for:', id, lang);
     const contentData = await fetchArtwalkContent(id, lang === 'vi' ? 'vi' : 'en-us');
 
@@ -58,9 +38,6 @@ export default async function Page({ params }: PageProps) {
       ...contentData,
       otherProjects
     };
-
-    // Cache the result
-    prismicServerCache.set(cacheKey, contentDataWithOthers);
 
     return (
       <GalleryDetailPage 

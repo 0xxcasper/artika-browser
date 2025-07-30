@@ -1,5 +1,4 @@
 import { createClient } from '@/libs/prismic';
-import { prismicServerCache, createCacheKey } from '@/libs/prismic-server-cache';
 import HomePage from '@/modules/home';
 
 interface PageProps {
@@ -16,22 +15,6 @@ export default async function Page({ params }: PageProps) {
   const lang = params.lang?.[0] || 'en';
   
   try {
-    // Check server cache first
-    const cacheKey = createCacheKey('homepage', lang);
-    const cachedData = prismicServerCache.get<any>(cacheKey);
-    console.log('cachedData', cachedData);
-    
-    if (cachedData) {
-      console.log('Using server cached data for:', lang);
-      return (
-        <HomePage 
-          homepageData={cachedData}
-          lang={lang}
-        />
-      );
-    }
-
-    // Fetch from Prismic if not cached
     console.log('Fetching fresh data for:', lang);
     const client = createClient();
     const homepage = await client.getSingle('homepage', {
@@ -39,9 +22,6 @@ export default async function Page({ params }: PageProps) {
     });
 
     console.log("homepage", homepage);
-
-    // Cache the result
-    prismicServerCache.set(cacheKey, homepage);
 
     return (
       <HomePage 
