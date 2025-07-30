@@ -28,7 +28,7 @@ export const usePreloader = () => {
 
 export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({ 
   children, 
-  fonts = ['PlayfairDisplay', 'Raleway'],
+  fonts = ['Playfair', 'Raleway'],
   images = [],
   timeout = 5000 
 }) => {

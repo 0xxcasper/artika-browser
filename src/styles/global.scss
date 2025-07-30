@@ -15,14 +15,57 @@
 // Import animations
 @import 'animations/keyframes';
 
-// Global styles
+:root {
+  // Google Fonts variables
+  --font-playfair: 'Playfair', serif;
+  --font-raleway: 'Raleway', sans-serif;
+  --font-graphik: 'Roboto', sans-serif;
+  
+  // Colors
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --background-primary: #ffffff;
+  --background-secondary: #f8f8f8;
+  --accent-primary: #d4af37;
+  --accent-secondary: #b8860b;
+  
+  // Spacing
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  // Border radius
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @include font-secondary;
-  @include body-base;
-  color: $text-primary;
-  background-color: $bg-primary;
+  font-family: var(--font-raleway), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--background-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   min-height: 100dvh;
   min-width: 100dvw;
 
@@ -30,6 +73,22 @@ body {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+// Ensure proper Vietnamese character rendering
+.font-primary {
+  font-family: var(--font-playfair), serif;
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+.font-secondary {
+  font-family: var(--font-raleway), sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+.font-tertiary {
+  font-family: var(--font-graphik), sans-serif;
+  font-feature-settings: "liga" 1, "kern" 1;
 }
 
 
