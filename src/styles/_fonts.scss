@@ -43,15 +43,17 @@ $letter-spacing-widest: 0.1em;
 
 // Typography Mixins
 @mixin font-primary {
-  font-family: $font-primary;
+  // font-family: $font-primary;
   font-family: 'Playfair', serif;
-  font-feature-settings: "liga" 1, "kern" 1;
+  // font-feature-settings: "liga" 1, "kern" 1;
+  font-weight: 300;
 }
 
 @mixin font-secondary {
-  font-family: $font-secondary;
+  // font-family: $font-secondary;
   font-family: 'Raleway', sans-serif;
-  font-feature-settings: "liga" 1, "kern" 1;
+  // font-feature-settings: "liga" 1, "kern" 1;
+  font-weight: 500;
 }
 
 

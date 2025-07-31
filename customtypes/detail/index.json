@@ -53,17 +53,8 @@
               "type": "Image",
               "config": {
                 "label": "Detail Image",
-                "constraint": {
-                  "width": 1200,
-                  "height": 800
-                },
-                "thumbnails": [
-                  {
-                    "name": "detail",
-                    "width": 600,
-                    "height": 400
-                  }
-                ]
+                "constraint": {},
+                "thumbnails": []
               }
             }
           }

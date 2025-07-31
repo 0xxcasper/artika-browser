@@ -34,17 +34,8 @@
         "type": "Image",
         "config": {
           "label": "Thumbnail Image",
-          "constraint": {
-            "width": 400,
-            "height": 300
-          },
-          "thumbnails": [
-            {
-              "name": "thumbnail",
-              "width": 200,
-              "height": 150
-            }
-          ]
+          "constraint": {},
+          "thumbnails": []
         }
       },
       "material": {

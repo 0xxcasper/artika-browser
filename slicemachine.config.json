@@ -2,5 +2,18 @@
   "repositoryName": "artika-sapa",
   "adapter": "@slicemachine/adapter-next",
   "libraries": ["./src/slices"],
-  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator"
+  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
+  "apiEndpoint": "https://artika-sapa.prismic.io/api/v2",
+  "server": {
+    "port": 9999,
+    "host": "localhost",
+    "protocol": "http"
+  },
+  "experiments": {
+    "enableLegacyExperiments": false,
+    "enableNewExperiments": false,
+    "disableAllExperiments": true
+  },
+  "disableTelemetry": true,
+  "disableAnalytics": true
 }

@@ -8,7 +8,11 @@
     "start": "next start -p 3001",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "slicemachine": "npx start-slicemachine"
+    "slicemachine": "node scripts/slicemachine-wrapper.js",
+    "sm:start": "./scripts/slicemachine.sh start",
+    "sm:stop": "./scripts/slicemachine.sh stop",
+    "sm:restart": "./scripts/slicemachine.sh restart",
+    "sm:status": "./scripts/slicemachine.sh status"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
