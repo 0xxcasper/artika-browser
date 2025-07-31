@@ -8,7 +8,7 @@ interface UseFontLoaderOptions {
 }
 
 export function useFontLoader({
-  fonts = ['Baskervville', 'Raleway'],
+  fonts = [],
   timeout = 5000,
   onLoad,
   onTimeout
