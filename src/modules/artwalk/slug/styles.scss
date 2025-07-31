@@ -83,7 +83,7 @@
       &__content {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 2px;
      
         &__title {
           @include font-secondary;

@@ -34,7 +34,7 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
   const COLLECTIONS = useMemo(() => {
     // If otherProjects provided, use them
     if (otherProjects && otherProjects.length > 0) {
-      return [...otherProjects, ...otherProjects]
+      return [...otherProjects]
         .filter(project => project.id !== currentProjectId) // Exclude current project
         .map(project => ({
           id: project.id,
@@ -182,7 +182,7 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
                 whileHover={!isDragging ? { y: -2, opacity: 0.8, transition: { duration: 0.2, ease: "easeOut" } } : {}}
               >
                 <Image draggable={false} src={collection.image} alt={collection.title} aspectRatio="376/452" objectFit="cover" />
-                <Flex direction="column" mt={{ base: "16px", md: "24px" }}>
+                <Flex direction="column" mt={{ base: "16px", md: "24px" }} gap="2px">
                   <Flex flexDirection="row" gap="10px" justifyContent="space-between" alignItems="center">
                     <p className={styles.title}>
                       {collection.title}
