@@ -34,7 +34,7 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
   const COLLECTIONS = useMemo(() => {
     // If otherProjects provided, use them
     if (otherProjects && otherProjects.length > 0) {
-      return otherProjects
+      return [...otherProjects, ...otherProjects]
         .filter(project => project.id !== currentProjectId) // Exclude current project
         .map(project => ({
           id: project.id,
@@ -110,52 +110,6 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
     e.stopPropagation();
   };
 
-  // Auto-scroll effect
-  useEffect(() => {
-    if (!containerRef.current || COLLECTIONS.length === 0) return;
-
-    const container = containerRef.current;
-    let animationId: number;
-    let scrollDirection = 1;
-    let scrollSpeed = 0.5;
-
-    const autoScroll = () => {
-      if (!container) return;
-
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      
-      if (container.scrollLeft >= maxScroll) {
-        scrollDirection = -1;
-      } else if (container.scrollLeft <= 0) {
-        scrollDirection = 1;
-      }
-
-      container.scrollLeft += scrollSpeed * scrollDirection;
-      animationId = requestAnimationFrame(autoScroll);
-    };
-
-    // Start auto-scroll
-    animationId = requestAnimationFrame(autoScroll);
-
-    // Pause auto-scroll on hover
-    const handleMouseEnter = () => {
-      cancelAnimationFrame(animationId);
-    };
-
-    const handleMouseLeave = () => {
-      animationId = requestAnimationFrame(autoScroll);
-    };
-
-    container.addEventListener('mouseenter', handleMouseEnter);
-    container.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      container.removeEventListener('mouseenter', handleMouseEnter);
-      container.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, [COLLECTIONS.length]);
-
   // Prevent wheel events from bubbling up to window - CAPTURE PHASE
   useEffect(() => {
     const container = containerRef.current;
@@ -227,9 +181,9 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
                 transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
                 whileHover={!isDragging ? { y: -2, opacity: 0.8, transition: { duration: 0.2, ease: "easeOut" } } : {}}
               >
-                <Image draggable={false} src={collection.image} alt={collection.title} aspectRatio="1/1.2" objectFit="cover" borderRadius="10px" />
+                <Image draggable={false} src={collection.image} alt={collection.title} aspectRatio="376/452" objectFit="cover" />
                 <Flex direction="column" mt={{ base: "16px", md: "24px" }}>
-                  <Flex flexDirection="row" gap="10px" justifyContent="space-between">
+                  <Flex flexDirection="row" gap="10px" justifyContent="space-between" alignItems="center">
                     <p className={styles.title}>
                       {collection.title}
                     </p>
