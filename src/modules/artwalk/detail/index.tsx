@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import HorizontalList from '@/components/horizontal-list';
 import type { ArtwalkContent } from '@/types/artwalk';
 
-const MAX_LENGTH = 1500;
+const MAX_LENGTH = 3000;
 
 interface GalleryDetailPageProps {
   contentData: ArtwalkContent | null;
