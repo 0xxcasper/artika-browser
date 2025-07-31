@@ -90,7 +90,7 @@ const GalleryDetailPage = ({ contentData }: GalleryDetailPageProps) => {
                 }}
                 aspectRatio={{
                   base: "2/1",
-                  lg: "2.2/1",
+                  lg: "1568/929",
                 }}
                 draggable={false}
               />

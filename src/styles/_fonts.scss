@@ -24,7 +24,7 @@ $font-size-2xl: 1.75rem;   // 28px
 $font-size-3xl: 1.875rem;  // 30px
 $font-size-4xl: 2.25rem;   // 36px
 $font-size-5xl: 2.5rem;    // 40px
-$font-size-6xl: 3rem;      // 48px
+$font-size-6xl: 3.125rem;      // 48px
 
 // Line Heights
 $line-height-tight: 1.25;
@@ -138,14 +138,14 @@ $letter-spacing-widest: 0.1em;
 @mixin heading-1 {
   @include font-primary;
   @include text-6xl;
-  font-weight: $font-weight-normal;
+  font-weight: $font-weight-light;
   letter-spacing: $letter-spacing-tight;
 }
 
 @mixin heading-2 {
   @include font-primary;
   @include text-5xl;
-  font-weight: $font-weight-normal;
+  font-weight: $font-weight-light;
   letter-spacing: $letter-spacing-tight;
 }
 
