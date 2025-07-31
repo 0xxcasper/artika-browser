@@ -243,7 +243,13 @@ export default function Navigation() {
           <Flex flexDirection="row" gap="50px" alignItems="center" justifyContent="center">
             <Flex flexDirection="row" gap="12px" alignItems="center" cursor="pointer" _hover={{ opacity: 0.8 }}>
               <p className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>English</p>
-              <Image src="/icons/ic-next.svg" alt="arrow" width={10} height={10} draggable={false} style={{ transform: 'rotate(90deg)', transition: 'transform 0.3s ease' }} />
+              <Image 
+                src="/icons/ic-next.svg" 
+                alt="arrow" 
+                width={10} 
+                height={10} 
+                draggable={false} 
+                style={{ transform: 'rotate(90deg)', transition: 'transform 0.3s ease', filter: isScrolled || isTextDark ? 'invert(0)' : 'invert(1)' }} />
             </Flex>
             <p className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>Book</p>
           </Flex>
