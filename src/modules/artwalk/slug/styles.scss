@@ -83,23 +83,27 @@
       &__content {
         display: flex;
         flex-direction: column;
+        gap: 4px;
      
         &__title {
           @include font-secondary;
-          @include body-large;
-          color: $text-primary;
+          font-size: 18px;
+          color: rgba(53, 53, 54, 1);
+          line-height: 140%;
         }
 
         &__description {
           @include font-secondary;
-          @include body-large;
-          color: $text-secondary;
+          font-size: 18px;
+          color: rgba(53, 53, 54, 1);
+          line-height: 140%;
         }
 
         &__material {
           @include font-secondary;
-          @include body-small;
+          font-size: 18px;
           color: rgba(169, 169, 169, 1);
+          line-height: 140%;
         }
       }
     }
