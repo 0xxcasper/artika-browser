@@ -298,11 +298,17 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
             />
           </Link>
 
-          <Flex flexDirection="row" gap="50px" alignItems="center" justifyContent="center">
+          <Flex flexDirection="row" gap={{
+            base: "24px",
+            md: "50px"
+          }} alignItems="center" justifyContent="center">
             <div className="language-dropdown" style={{ position: 'relative' }}>
               <Flex 
                 flexDirection="row" 
-                gap="12px" 
+                gap={{
+                  base: "8px",
+                  md: "12px"
+                }} 
                 alignItems="center" 
                 cursor="pointer" 
                 _hover={{ opacity: 0.8 }}
