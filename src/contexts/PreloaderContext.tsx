@@ -251,7 +251,6 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
             <motion.div style={{ width: 145, height: 145 }}>
               <video
                 ref={videoRef}
-                src="/logo-anim.mp4"
                 width={145}
                 height={145}
                 autoPlay
@@ -266,7 +265,9 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
                   objectFit: 'contain'
                 }}
                 aria-label="Artika"
-              />
+              >
+                <source src="/logo-anim.mp4" type="video/mp4" />
+              </video>
             </motion.div>
           </motion.div>
         ) : (
