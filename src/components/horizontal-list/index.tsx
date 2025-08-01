@@ -15,12 +15,14 @@ interface HorizontalListProps {
   otherProjects?: ArtwalkContent[];
   currentProjectId?: string;
   title?: string;
+  locale?: string;
 }
 
 const HorizontalList: React.FC<HorizontalListProps> = ({ 
   otherProjects, 
   currentProjectId, 
-  title = "OTHER PROJECTS" 
+  title = "OTHER PROJECTS",
+  locale = 'en'
 }) => {
   const { slug } = useParams();
   const router = useRouter();
@@ -92,7 +94,7 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
   const handleItemClick = (collectionId: string) => {
     // Only navigate if not dragging and drag distance is minimal
     if (!isDragging && dragDistance < 5) {
-      router.push(artwalkRouter.getDetailRouter({ id: collectionId, slug: slug as string }));
+      router.push(artwalkRouter.getDetailRouter({ id: collectionId, slug: slug as string }, locale));
     }
   };
 

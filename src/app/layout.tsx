@@ -1,8 +1,5 @@
 import type { Metadata } from 'next';
-import Navigation from '@/components/navigation';
 import '@/styles/global.scss';
-import Providers from './providers';
-import Footer from '@/components/footer';
 import { headers } from 'next/headers';
 
 export const metadata: Metadata = {

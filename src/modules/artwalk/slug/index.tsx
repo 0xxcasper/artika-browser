@@ -56,7 +56,7 @@ const headerVariants = {
   }
 };
 
-const GalleryPage = ({ categoryData, slug }: SlugArtwalkPageProps) => {
+const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
   const router = useRouter();
   
   // Debug router
@@ -89,7 +89,7 @@ const GalleryPage = ({ categoryData, slug }: SlugArtwalkPageProps) => {
       const detailPath = artwalkRouter.getDetailRouter({ 
         id: collection.id, 
         slug: slug 
-      });
+      }, lang);
       
       console.log('Navigating to:', detailPath);
       router.push(detailPath);

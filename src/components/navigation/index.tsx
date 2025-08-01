@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './styles.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import type { NavigationMenu, NavigationSub } from '@/locales/types';
 import { Flex } from '@chakra-ui/react';
 import { usePreloader } from '@/contexts/PreloaderContext';
@@ -41,8 +41,10 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
   console.log(menus);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const pathname = usePathname();
   const [selectedMenu, setSelectedMenu] = useState<NavigationMenu | null>(null);
+  const router = useRouter();
 
   // Helper function to add locale to href
   const getLocalizedHref = (href: string) => {
@@ -50,6 +52,35 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
       return locale === 'vi' ? '/vi' : '/';
     }
     return locale === 'vi' ? `/vi${href}` : href;
+  };
+
+  // Helper function to switch language
+  const switchLanguage = (newLocale: string) => {
+    const currentPath = pathname;
+    let newPath = '';
+    
+    if (newLocale === 'vi') {
+      // Switch to Vietnamese
+      if (currentPath === '/') {
+        newPath = '/vi';
+      } else if (currentPath.startsWith('/vi/')) {
+        newPath = currentPath; // Already Vietnamese
+      } else {
+        newPath = `/vi${currentPath}`;
+      }
+    } else {
+      // Switch to English
+      if (currentPath === '/vi') {
+        newPath = '/';
+      } else if (currentPath.startsWith('/vi/')) {
+        newPath = currentPath.replace('/vi', '');
+      } else {
+        newPath = currentPath; // Already English
+      }
+    }
+    
+    router.push(newPath);
+    setIsLanguageDropdownOpen(false);
   };
 
   // Smart path matching logic
@@ -124,6 +155,24 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
       setSelectedMenu(null);
     }
   }, [getActiveMenu]);
+
+  // Handle click outside to close language dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.language-dropdown')) {
+        setIsLanguageDropdownOpen(false);
+      }
+    };
+
+    if (isLanguageDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isLanguageDropdownOpen]);
 
   const renderSubMenu = (element: NavigationSub) => {
     const baseHref = `${submenuToShow?.href}${element.href?.startsWith('/') ? '' : '/'}${element.href}`;
@@ -250,16 +299,94 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
           </Link>
 
           <Flex flexDirection="row" gap="50px" alignItems="center" justifyContent="center">
-            <Flex flexDirection="row" gap="12px" alignItems="center" cursor="pointer" _hover={{ opacity: 0.8 }}>
-              <p className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>English</p>
-              <Image 
-                src="/icons/ic-next.svg" 
-                alt="arrow" 
-                width={10} 
-                height={10} 
-                draggable={false} 
-                style={{ transform: 'rotate(90deg)', transition: 'transform 0.3s ease', filter: isScrolled || isTextDark ? 'invert(0)' : 'invert(1)' }} />
-            </Flex>
+            <div className="language-dropdown" style={{ position: 'relative' }}>
+              <Flex 
+                flexDirection="row" 
+                gap="12px" 
+                alignItems="center" 
+                cursor="pointer" 
+                _hover={{ opacity: 0.8 }}
+                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+              >
+                <p className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>
+                  {locale === 'vi' ? 'Tiếng Việt' : 'English'}
+                </p>
+                <Image 
+                  src="/icons/ic-next.svg" 
+                  alt="arrow" 
+                  width={10} 
+                  height={10} 
+                  draggable={false} 
+                  style={{ 
+                    transform: `rotate(90deg) ${isLanguageDropdownOpen ? 'rotate(180deg)' : ''}`, 
+                    transition: 'transform 0.3s ease', 
+                    filter: isScrolled || isTextDark ? 'invert(0)' : 'invert(1)' 
+                  }} 
+                />
+              </Flex>
+              
+              {isLanguageDropdownOpen && (
+                <motion.div
+                  className="language-dropdown-menu"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: '0',
+                    background: 'white',
+                    border: '1px solid #e0e0e0',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                    zIndex: 1000,
+                    minWidth: '120px',
+                    marginTop: '8px'
+                  }}
+                >
+                  <div 
+                    className="language-option"
+                    onClick={() => switchLanguage('en')}
+                    style={{
+                      padding: '8px 12px',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      color: locale === 'en' ? '#64603C' : '#666',
+                      fontWeight: locale === 'en' ? '600' : '400',
+                      borderBottom: '1px solid #f0f0f0'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#f8f8f8';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    English
+                  </div>
+                  <div 
+                    className="language-option"
+                    onClick={() => switchLanguage('vi')}
+                    style={{
+                      padding: '8px 12px',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      color: locale === 'vi' ? '#64603C' : '#666',
+                      fontWeight: locale === 'vi' ? '600' : '400'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#f8f8f8';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    Tiếng Việt
+                  </div>
+                </motion.div>
+              )}
+            </div>
             <p className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>Book</p>
           </Flex>
 

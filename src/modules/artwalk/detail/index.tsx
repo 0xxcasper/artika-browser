@@ -50,7 +50,7 @@ function GalleryDetail({ text }: { text: string }) {
   );
 }
 
-const GalleryDetailPage = ({ contentData }: GalleryDetailPageProps) => {
+const GalleryDetailPage = ({ contentData, lang }: GalleryDetailPageProps) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -119,6 +119,7 @@ const GalleryDetailPage = ({ contentData }: GalleryDetailPageProps) => {
         otherProjects={contentData?.otherProjects}
         currentProjectId={contentData?.id}
         title="OTHER PROJECTS"
+        locale={lang}
       />
     </div>
   );
