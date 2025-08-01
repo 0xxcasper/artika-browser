@@ -40,7 +40,8 @@
   left: 50%;
   transform: translateX(calc(-50% - 2px));
 
-  @media screen and (max-width: $breakpoint-md) {
+  @media screen and (max-width: $breakpoint-sm) {
+    transform: translateX(calc(-100% - 40px));
     img {
       width: 100px;
       height: 18px;
