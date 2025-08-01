@@ -1,0 +1,43 @@
+import type { Metadata } from 'next';
+import Navigation from '@/components/navigation';
+import '@/styles/global.scss';
+import Providers from '@/app/providers';
+import Footer from '@/components/footer';
+import { notFound } from 'next/navigation';
+
+const locales = ['en', 'vi'];
+
+interface LocaleLayoutProps {
+  children: React.ReactNode;
+  params: {
+    locale: string;
+  };
+}
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export const metadata: Metadata = {
+  // title: 'Artika',
+  // description: 'Experience luxury and comfort',
+};
+
+export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const { locale } = params;
+
+  // Validate locale
+  if (!locales.includes(locale)) {
+    notFound();
+  }
+
+  return (
+    <Providers>
+      <Navigation locale={locale} />
+      <main>
+        {children}
+      </main>
+      <Footer />
+    </Providers>
+  );
+} 

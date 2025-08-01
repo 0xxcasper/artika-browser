@@ -2,24 +2,26 @@ import { fetchArtwalkContent, fetchArtwalkCategory } from '@/libs/prismic-artwal
 import GalleryDetailPage from "@/modules/artwalk/detail";
 import { notFound } from 'next/navigation';
 
-interface PageProps {
+interface LocaleArtwalkDetailPageProps {
   params: {
-    lang?: string[];
+    locale: string;
     slug: string;
     id: string;
   };
 }
 
-export default async function Page({ params }: PageProps) {
-  // Nếu không có lang hoặc lang[0] là 'en', sử dụng 'en'
-  const lang = params.lang?.[0] || 'en';
-  const slug = params.slug;
-  const id = params.id;
+export default async function LocaleArtwalkDetailPage({ params }: LocaleArtwalkDetailPageProps) {
+  const { locale, slug, id } = params;
+  
+  // Validate locale
+  if (!['en', 'vi'].includes(locale)) {
+    notFound();
+  }
   
   try {
-    // Fetch from Prismic
-    console.log('Fetching fresh artwalk content data for:', id, lang);
-    const contentData = await fetchArtwalkContent(id, lang === 'vi' ? 'vi' : 'en-us');
+    // Fetch from Prismic with locale
+    console.log('Fetching fresh artwalk content data for:', id, locale);
+    const contentData = await fetchArtwalkContent(id, locale === 'vi' ? 'vi' : 'en-us');
 
     console.log("artwalk content data", contentData);
 
@@ -30,7 +32,7 @@ export default async function Page({ params }: PageProps) {
     }
 
     // Fetch other projects from the same collection
-    const categoryData = await fetchArtwalkCategory(slug, lang === 'vi' ? 'vi' : 'en-us');
+    const categoryData = await fetchArtwalkCategory(slug, locale === 'vi' ? 'vi' : 'en-us');
     const otherProjects = categoryData?.contents?.filter(project => project.id !== id) || [];
 
     // Add other projects to content data
@@ -44,7 +46,7 @@ export default async function Page({ params }: PageProps) {
         contentData={contentDataWithOthers}
         slug={slug}
         id={id}
-        lang={lang}
+        lang={locale}
       />
     );
   } catch (error) {
@@ -63,8 +65,8 @@ export default async function Page({ params }: PageProps) {
         contentData={null}
         slug={slug}
         id={id}
-        lang={lang}
+        lang={locale}
       />
     );
   }
-}
+} 

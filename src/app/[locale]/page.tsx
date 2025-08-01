@@ -1,15 +1,19 @@
-import { headers } from 'next/headers';
 import { createClient } from '@/libs/prismic';
 import HomePage from '@/modules/home';
+import { notFound } from 'next/navigation';
 
-export default async function RootPage() {
-  // Detect locale from URL
-  const headersList = headers();
-  const pathname = headersList.get('x-invoke-path') || '';
+interface LocalePageProps {
+  params: {
+    locale: string;
+  };
+}
+
+export default async function LocalePage({ params }: LocalePageProps) {
+  const { locale } = params;
   
-  let locale = 'en'; // default
-  if (pathname.startsWith('/vi/') || pathname === '/vi') {
-    locale = 'vi';
+  // Validate locale
+  if (!['en', 'vi'].includes(locale)) {
+    notFound();
   }
 
   try {

@@ -2,24 +2,27 @@ import { fetchArtwalkCategory } from '@/libs/prismic-artwalk';
 import SlugArtwalkPage from '@/modules/artwalk/slug';
 import { notFound } from 'next/navigation';
 
-interface PageProps {
+interface LocaleArtwalkSlugPageProps {
   params: {
-    lang?: string[];
+    locale: string;
     slug: string;
   };
 }
 
-export default async function Page({ params }: PageProps) {
-  // Nếu không có lang hoặc lang[0] là 'en', sử dụng 'en'
-  const lang = params.lang?.[0] || 'en';
-  const slug = params.slug;
+export default async function LocaleArtwalkSlugPage({ params }: LocaleArtwalkSlugPageProps) {
+  const { locale, slug } = params;
   
-  console.log('Artwalk page params:', { lang, slug });
+  // Validate locale
+  if (!['en', 'vi'].includes(locale)) {
+    notFound();
+  }
+  
+  console.log('Artwalk page params:', { locale, slug });
   
   try {
-    // Fetch from Prismic
-    console.log('Fetching fresh artwalk category data for:', slug, lang);
-    const categoryData = await fetchArtwalkCategory(slug, lang === 'vi' ? 'vi' : 'en-us');
+    // Fetch from Prismic with locale
+    console.log('Fetching fresh artwalk category data for:', slug, locale);
+    const categoryData = await fetchArtwalkCategory(slug, locale === 'vi' ? 'vi' : 'en-us');
 
     console.log("artwalk category data", categoryData);
 
@@ -33,7 +36,7 @@ export default async function Page({ params }: PageProps) {
       <SlugArtwalkPage 
         categoryData={categoryData}
         slug={slug}
-        lang={lang}
+        lang={locale}
       />
     );
   } catch (error) {
@@ -51,8 +54,8 @@ export default async function Page({ params }: PageProps) {
       <SlugArtwalkPage 
         categoryData={null}
         slug={slug}
-        lang={lang}
+        lang={locale}
       />
     );
   }
-}
+} 

@@ -3,6 +3,7 @@ import Navigation from '@/components/navigation';
 import '@/styles/global.scss';
 import Providers from './providers';
 import Footer from '@/components/footer';
+import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
   // title: 'Artika',
@@ -14,8 +15,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Detect locale from URL
+  const headersList = headers();
+  const pathname = headersList.get('x-invoke-path') || '';
+  
+  let locale = 'en'; // default
+  if (pathname.startsWith('/vi/') || pathname === '/vi') {
+    locale = 'vi';
+  }
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         {/* Google Fonts preconnect */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,13 +35,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <Providers>
-          <Navigation />
-          <main>
-            {children}
-          </main>
-          <Footer />
-        </Providers>
+        {children}
       </body>
     </html>
   );

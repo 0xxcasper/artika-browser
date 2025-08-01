@@ -139,6 +139,60 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
     };
   }, []);
 
+  // Auto-scroll effect
+  useEffect(() => {
+    if (!containerRef.current || COLLECTIONS.length === 0) return;
+
+    const container = containerRef.current;
+    let animationId: number;
+    let scrollDirection = 1;
+    let scrollSpeed = 0.3; // Reduced speed
+    let lastTime = 0;
+
+    const autoScroll = (currentTime: number) => {
+      if (!container) return;
+
+      // Throttle to 60fps
+      if (currentTime - lastTime < 16) {
+        animationId = requestAnimationFrame(autoScroll);
+        return;
+      }
+      lastTime = currentTime;
+
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      
+      if (container.scrollLeft >= maxScroll) {
+        scrollDirection = -1;
+      } else if (container.scrollLeft <= 0) {
+        scrollDirection = 1;
+      }
+
+      container.scrollLeft += scrollSpeed * scrollDirection;
+      animationId = requestAnimationFrame(autoScroll);
+    };
+
+    // Start auto-scroll
+    animationId = requestAnimationFrame(autoScroll);
+
+    // Pause auto-scroll on hover
+    const handleMouseEnter = () => {
+      cancelAnimationFrame(animationId);
+    };
+
+    const handleMouseLeave = () => {
+      animationId = requestAnimationFrame(autoScroll);
+    };
+
+    container.addEventListener('mouseenter', handleMouseEnter);
+    container.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      container.removeEventListener('mouseenter', handleMouseEnter);
+      container.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [COLLECTIONS.length]);
+
   if (COLLECTIONS.length === 0) {
     return null;
   }
@@ -178,8 +232,21 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
                 onClick={() => handleItemClick(collection.id)}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
-                whileHover={!isDragging ? { y: -2, opacity: 0.8, transition: { duration: 0.2, ease: "easeOut" } } : {}}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: Math.min(index * 0.05, 0.5), // Cap delay at 0.5s
+                  ease: 'easeOut',
+                  type: 'tween' // Use tween for better performance
+                }}
+                whileHover={!isDragging ? { 
+                  y: -2, 
+                  opacity: 0.8, 
+                  transition: { 
+                    duration: 0.2, 
+                    ease: "easeOut",
+                    type: 'tween'
+                  } 
+                } : {}}
               >
                 <Image draggable={false} src={collection.image} alt={collection.title} aspectRatio="376/452" objectFit="cover" />
                 <Flex direction="column" mt={{ base: "16px", md: "24px" }} gap="2px">

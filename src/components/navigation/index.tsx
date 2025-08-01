@@ -35,7 +35,7 @@ const overlayVariants = {
   exit: { opacity: 0, transition: { duration: 0.2 } }
 };
 
-export default function Navigation() {
+export default function Navigation({ locale = 'en' }: { locale?: string }) {
   const { menus } = usePreloader();
 
   console.log(menus);
@@ -43,6 +43,14 @@ export default function Navigation() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
   const [selectedMenu, setSelectedMenu] = useState<NavigationMenu | null>(null);
+
+  // Helper function to add locale to href
+  const getLocalizedHref = (href: string) => {
+    if (href === '/') {
+      return locale === 'vi' ? '/vi' : '/';
+    }
+    return locale === 'vi' ? `/vi${href}` : href;
+  };
 
   // Smart path matching logic
   const getActiveMenu = useMemo(() => {
@@ -118,7 +126,8 @@ export default function Navigation() {
   }, [getActiveMenu]);
 
   const renderSubMenu = (element: NavigationSub) => {
-    const href = `${submenuToShow?.href}${element.href?.startsWith('/') ? '' : '/'}${element.href}`;
+    const baseHref = `${submenuToShow?.href}${element.href?.startsWith('/') ? '' : '/'}${element.href}`;
+    const href = getLocalizedHref(baseHref);
     const isActive = isSubmenuActive(href);
 
     if (!element.href) {
@@ -197,7 +206,7 @@ export default function Navigation() {
     // Handle regular menu items
     return (
       <Link 
-        href={element.href} 
+        href={getLocalizedHref(element.href)} 
         key={element.label} 
         className={`nav-link-drawer ${isActive ? 'active' : ''}`} 
         onClick={() => {
@@ -229,7 +238,7 @@ export default function Navigation() {
           >
             <Image src="/icons/menu.svg" alt="menu" width={24} height={24} draggable={false} />
           </button>
-          <Link href="/" className="nav-logo" draggable={false}>
+          <Link href={getLocalizedHref('/')} className="nav-logo" draggable={false}>
             <Image 
               src="/artika.svg" 
               alt="Artika" 
@@ -256,46 +265,46 @@ export default function Navigation() {
 
         </div>
       </motion.nav>
-      <AnimatePresence mode="wait">
-        {isSidebarOpen && (
-          <>
-            <motion.div
-              className="nav-sidebar-overlay"
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              variants={overlayVariants}
+      
+      {isSidebarOpen && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key="overlay"
+            className="nav-sidebar-overlay"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={overlayVariants}
+            onClick={() => setIsSidebarOpen(false)}
+          />
+          <motion.aside
+            key="sidebar"
+            className="nav-sidebar"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={sidebarVariants}
+          >
+            <button
+              className="nav-sidebar-close"
+              aria-label="Close menu"
               onClick={() => setIsSidebarOpen(false)}
-            />
-            <motion.aside
-              className="nav-sidebar"
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              variants={sidebarVariants}
             >
-              <button
-                className="nav-sidebar-close"
-                aria-label="Close menu"
-                onClick={() => setIsSidebarOpen(false)}
-              >
-                <Image src="/icons/ic-close.svg" alt="close" width={28} height={28} draggable={false} />
-              </button>
-              <Flex flexDirection="row" gap={4} justifyContent="space-between" height="100%">
+              <Image src="/icons/ic-close.svg" alt="close" width={28} height={28} draggable={false} />
+            </button>
+            <Flex flexDirection="row" gap={4} justifyContent="space-between" height="100%">
+              <div className="nav-sidebar-links">
+                {menus.map((menu) => renderMenu(menu))}
+              </div>
+              {submenuToShow?.subs && (
                 <div className="nav-sidebar-links">
-                  {menus.map((menu) => renderMenu(menu))}
+                  {submenuToShow.subs.map((sub) => renderSubMenu(sub))}
                 </div>
-                {/* <div className="nav-sidebar-divider" /> */}
-                {submenuToShow?.subs && (
-                  <div className="nav-sidebar-links">
-                    {submenuToShow.subs.map((sub) => renderSubMenu(sub))}
-                  </div>
-                )}
-              </Flex>
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
+              )}
+            </Flex>
+          </motion.aside>
+        </AnimatePresence>
+      )}
     </>
   );
 } 
