@@ -299,7 +299,7 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
           </Link>
 
           <Flex flexDirection="row" gap={{
-            base: "24px",
+            base: "12px",
             md: "50px"
           }} alignItems="center" justifyContent="center">
             <div className="language-dropdown" style={{ position: 'relative' }}>
