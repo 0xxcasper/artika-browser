@@ -57,20 +57,20 @@ export default function FocusBanner({
           <div className="banner-content">
             <motion.h1 
               className="banner-title"
-            variants={textVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+              variants={textVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
             >
               {title}
             </motion.h1>
             
             <motion.p 
               className="banner-description"
-            variants={textVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+              variants={textVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
             >
               {description}
             </motion.p>

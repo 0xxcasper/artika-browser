@@ -3,6 +3,7 @@
 @import '../../styles/fonts';
 
 .btn {
+  @include font-secondary;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +16,6 @@
   background-color: transparent;
   transition: all 0.3s ease;
 
-  @include font-secondary;
 
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
