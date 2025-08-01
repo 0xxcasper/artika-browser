@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import { artwalkRouter } from '@/constants/router';
-// import EmailForm from '@/components/email-form';
 import type { ArtwalkCategory } from '@/types/artwalk';
 
 interface SlugArtwalkPageProps {
@@ -163,7 +162,6 @@ const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
           </motion.div>
         ))}
       </motion.div>
-      {/* <EmailForm /> */}
     </div>
   );
 };

@@ -21,7 +21,7 @@ interface HorizontalListProps {
 const HorizontalList: React.FC<HorizontalListProps> = ({ 
   otherProjects, 
   currentProjectId, 
-  title = "OTHER PROJECTS",
+  title = "",
   locale = 'en'
 }) => {
   const { slug } = useParams();
@@ -98,13 +98,17 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
     }
   };
 
-  // Handle wheel scroll
+  // Handle wheel scroll - only for horizontal scrolling
   const handleWheel = (e: React.WheelEvent) => {
     if (!containerRef.current) return;
     
-    e.preventDefault();
-    e.stopPropagation();
-    containerRef.current.scrollLeft += e.deltaY;
+    // Only handle horizontal scrolling
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+      e.stopPropagation();
+      containerRef.current.scrollLeft += e.deltaX;
+    }
+    // For vertical scrolling, let it bubble up to parent/window
   };
 
   // Prevent window scroll when scrolling horizontally
@@ -112,88 +116,33 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
     e.stopPropagation();
   };
 
-  // Prevent wheel events from bubbling up to window - CAPTURE PHASE
+  // Handle wheel events - only prevent when scrolling horizontally
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const preventWheelBubble = (e: WheelEvent) => {
-      // Always prevent wheel events on this container
-      e.preventDefault();
-      e.stopPropagation();
-      
-      // Handle horizontal scroll
+    const handleWheel = (e: WheelEvent) => {
+      // Only handle horizontal scrolling (deltaX) or when deltaX is greater than deltaY
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        e.stopPropagation();
         container.scrollLeft += e.deltaX;
-      } else {
-        container.scrollLeft += e.deltaY;
       }
+      // For vertical scrolling (deltaY), let it bubble up to parent/window
     };
 
     // Use capture phase to intercept events before they bubble
-    container.addEventListener('wheel', preventWheelBubble, { 
+    container.addEventListener('wheel', handleWheel, { 
       passive: false, 
       capture: true 
     });
     
     return () => {
-      container.removeEventListener('wheel', preventWheelBubble, { capture: true });
+      container.removeEventListener('wheel', handleWheel, { capture: true });
     };
   }, []);
 
-  // Auto-scroll effect
-  useEffect(() => {
-    if (!containerRef.current || COLLECTIONS.length === 0) return;
 
-    const container = containerRef.current;
-    let animationId: number;
-    let scrollDirection = 1;
-    let scrollSpeed = 0.3; // Reduced speed
-    let lastTime = 0;
-
-    const autoScroll = (currentTime: number) => {
-      if (!container) return;
-
-      // Throttle to 60fps
-      if (currentTime - lastTime < 16) {
-        animationId = requestAnimationFrame(autoScroll);
-        return;
-      }
-      lastTime = currentTime;
-
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      
-      if (container.scrollLeft >= maxScroll) {
-        scrollDirection = -1;
-      } else if (container.scrollLeft <= 0) {
-        scrollDirection = 1;
-      }
-
-      container.scrollLeft += scrollSpeed * scrollDirection;
-      animationId = requestAnimationFrame(autoScroll);
-    };
-
-    // Start auto-scroll
-    animationId = requestAnimationFrame(autoScroll);
-
-    // Pause auto-scroll on hover
-    const handleMouseEnter = () => {
-      cancelAnimationFrame(animationId);
-    };
-
-    const handleMouseLeave = () => {
-      animationId = requestAnimationFrame(autoScroll);
-    };
-
-    container.addEventListener('mouseenter', handleMouseEnter);
-    container.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      container.removeEventListener('mouseenter', handleMouseEnter);
-      container.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, [COLLECTIONS.length]);
 
   if (COLLECTIONS.length === 0) {
     return null;
