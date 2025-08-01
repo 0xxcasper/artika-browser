@@ -2,6 +2,13 @@
 // Use Google Fonts - Only Playfair and Raleway
 @import './variables';
 
+@font-face {
+  font-family: 'Playfair';
+  src: url('/fonts/Playfair.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
 // Font Variables - Only Playfair and Raleway
 $font-primary: 'Playfair', serif;
 $font-secondary: 'Raleway', sans-serif;

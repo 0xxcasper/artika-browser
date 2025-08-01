@@ -40,7 +40,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
   
   const _updateAssetsLoaded = () => {
     setTimeout(() => {
-      setAssetsLoaded(true);
+      // setAssetsLoaded(true);
     }, 200);
   }
 
@@ -179,11 +179,19 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
               zIndex: 9999,
             }}
           >
-            <motion.img
-              style={{ width: 145, height: 145 }}
-              src="/logo.gif" 
-              alt="Artika" 
-            />
+            <motion.div style={{ width: 145, height: 145 }}>
+              <video
+                src="/logo-anim.mp4"
+                width={145}
+                height={145}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{ display: 'block', width: '100%', height: '100%' }}
+                aria-label="Artika"
+              />
+            </motion.div>
           </motion.div>
         ) : (
           <motion.div

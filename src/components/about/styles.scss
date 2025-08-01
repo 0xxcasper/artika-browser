@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     padding: 0 1rem;
-    gap: 40px;
+    gap: 20px;
 
     @media (max-width: $breakpoint-lg) {
       gap: 24px;
@@ -30,7 +30,8 @@
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 34px;
-      margin-bottom: 8px;
+      margin-bottom: 20px;
+      white-space: pre-line;
 
       @media (max-width: $breakpoint-lg) {
         @include body-large;
