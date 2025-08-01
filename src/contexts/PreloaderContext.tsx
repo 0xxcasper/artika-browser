@@ -18,6 +18,13 @@ interface PreloaderProviderProps {
   timeout?: number;
 }
 
+// Helper function to detect mobile devices
+const isMobile = () => {
+  if (typeof window === 'undefined') return false;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+         window.innerWidth <= 768;
+};
+
 export const usePreloader = () => {
   const context = useContext(PreloaderContext);
   if (context === undefined) {
@@ -33,6 +40,9 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
   timeout = 5000 
 }) => {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const hasStarted = useRef(false);
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
   const { menus, loading, error } = useNavigation();
@@ -43,6 +53,65 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
       setAssetsLoaded(true);
     }, 200);
   }
+
+  useEffect(() => {
+    // Detect mobile device
+    setIsMobileDevice(isMobile());
+  }, []);
+
+  // Handle video loading and autoplay on mobile
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    const video = videoRef.current;
+
+    const handleCanPlay = () => {
+      console.log('Video can play');
+      setVideoLoaded(true);
+      
+      // Force play on mobile
+      if (isMobileDevice) {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.log('Autoplay failed:', error);
+            // Fallback: try to play on user interaction
+            const handleUserInteraction = () => {
+              video.play().catch(console.error);
+              document.removeEventListener('touchstart', handleUserInteraction);
+              document.removeEventListener('click', handleUserInteraction);
+            };
+            document.addEventListener('touchstart', handleUserInteraction);
+            document.addEventListener('click', handleUserInteraction);
+          });
+        }
+      }
+    };
+
+    const handleLoadStart = () => {
+      console.log('Video load started');
+    };
+
+    const handleLoadedData = () => {
+      console.log('Video data loaded');
+    };
+
+    const handleError = (e: Event) => {
+      console.error('Video error:', e);
+    };
+
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('loadstart', handleLoadStart);
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('error', handleError);
+
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('loadstart', handleLoadStart);
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('error', handleError);
+    };
+  }, [isMobileDevice]);
 
   useEffect(() => {
     // Prevent multiple executions
@@ -181,6 +250,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
           >
             <motion.div style={{ width: 145, height: 145 }}>
               <video
+                ref={videoRef}
                 src="/logo-anim.mp4"
                 width={145}
                 height={145}
@@ -188,7 +258,13 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
                 loop
                 muted
                 playsInline
-                style={{ display: 'block', width: '100%', height: '100%' }}
+                preload="auto"
+                style={{ 
+                  display: 'block', 
+                  width: '100%', 
+                  height: '100%',
+                  objectFit: 'contain'
+                }}
                 aria-label="Artika"
               />
             </motion.div>
