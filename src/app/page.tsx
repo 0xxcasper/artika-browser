@@ -19,7 +19,7 @@ export default async function RootPage() {
       lang: locale === 'vi' ? 'vi' : 'en-us'
     });
 
-    console.log("homepage", homepage);
+    console.log("homepage data:", homepage.data);
 
     return (
       <HomePage 

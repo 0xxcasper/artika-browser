@@ -23,7 +23,7 @@ export default async function LocalePage({ params }: LocalePageProps) {
       lang: locale === 'vi' ? 'vi' : 'en-us'
     });
 
-    // console.log("homepage", homepage);
+    console.log("homepage data:", homepage.data);
 
     return (
       <HomePage 
