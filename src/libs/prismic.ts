@@ -32,7 +32,7 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
       {
         type: 'homepage',
         path: '/vi',
-        lang: 'vi-vn',
+        lang: 'vi',
       },
       {
         type: 'navigation_menu',
@@ -46,19 +46,49 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
       {
         type: 'navigation_menu',
         path: '/vi/navigation',
-        lang: 'vi-vn',
+        lang: 'vi',
       },
       {
         type: 'collection',
         path: '/artwalk/:uid',
       },
       {
+        type: 'collection',
+        path: '/en/artwalk/:uid',
+        lang: 'en-us',
+      },
+      {
+        type: 'collection',
+        path: '/vi/artwalk/:uid',
+        lang: 'vi',
+      },
+      {
         type: 'content_item',
         path: '/artwalk/content/:uid',
       },
       {
+        type: 'content_item',
+        path: '/en/artwalk/content/:uid',
+        lang: 'en-us',
+      },
+      {
+        type: 'content_item',
+        path: '/vi/artwalk/content/:uid',
+        lang: 'vi',
+      },
+      {
         type: 'detail',
         path: '/artwalk/detail/:uid',
+      },
+      {
+        type: 'detail',
+        path: '/en/artwalk/detail/:uid',
+        lang: 'en-us',
+      },
+      {
+        type: 'detail',
+        path: '/vi/artwalk/detail/:uid',
+        lang: 'vi',
       },
     ],
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,

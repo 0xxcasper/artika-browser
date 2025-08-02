@@ -83,10 +83,15 @@ function transformToArtwalkDetail(doc: any): any {
 // Fetch all collections
 export async function fetchAllArtwalkCategories(locale: string): Promise<ArtwalkCategoryList> {
   try {
-    console.log('Fetching all artwalk categories for locale:', locale);
+    const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
+    console.log('Fetching all artwalk categories for locale:', locale, 'prismic locale:', prismicLocale);
+    console.log('Repository:', process.env.PRISMIC_REPOSITORY_NAME);
+    console.log('Has access token:', !!process.env.PRISMIC_ACCESS_TOKEN);
+    console.log('Environment:', process.env.NODE_ENV);
+    
     const client = createClient();
     const docs = await (client as any).getAllByType('collection', { 
-      lang: locale,
+      lang: prismicLocale,
       fetchLinks: [
         'content_item.name',
         'content_item.subName', 
@@ -105,6 +110,13 @@ export async function fetchAllArtwalkCategories(locale: string): Promise<Artwalk
     return docs.map(transformToArtwalkCategory);
   } catch (error) {
     console.error('Error fetching artwalk categories from Prismic:', error);
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      repository: process.env.PRISMIC_REPOSITORY_NAME,
+      hasToken: !!process.env.PRISMIC_ACCESS_TOKEN,
+      environment: process.env.NODE_ENV
+    });
     return [];
   }
 }
@@ -112,11 +124,15 @@ export async function fetchAllArtwalkCategories(locale: string): Promise<Artwalk
 // Fetch specific collection by slugId (using UID)
 export async function fetchArtwalkCategory(slugId: string, locale: string): Promise<ArtwalkCategory | null> {
   try {
-    console.log('Fetching artwalk category by UID:', slugId, 'locale:', locale);
+    const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
+    console.log('Fetching artwalk category by UID:', slugId, 'locale:', locale, 'prismic locale:', prismicLocale);
+    console.log('Repository:', process.env.PRISMIC_REPOSITORY_NAME);
+    console.log('Has access token:', !!process.env.PRISMIC_ACCESS_TOKEN);
+    
     const client = createClient();
     
     const doc = await (client as any).getByUID('collection', slugId, { 
-      lang: locale,
+      lang: prismicLocale,
       fetchLinks: [
         'content_item.name',
         'content_item.subName', 
@@ -141,6 +157,14 @@ export async function fetchArtwalkCategory(slugId: string, locale: string): Prom
     return transformToArtwalkCategory(doc);
   } catch (error) {
     console.error('Error fetching artwalk category from Prismic:', error);
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      slugId,
+      locale,
+      repository: process.env.PRISMIC_REPOSITORY_NAME,
+      hasToken: !!process.env.PRISMIC_ACCESS_TOKEN
+    });
     return null;
   }
 }
@@ -148,10 +172,11 @@ export async function fetchArtwalkCategory(slugId: string, locale: string): Prom
 // Fetch specific content item by ID
 export async function fetchArtwalkContent(contentId: string, locale: string): Promise<ArtwalkContent | null> {
   try {
-    console.log('Fetching artwalk content by ID:', contentId, 'locale:', locale);
+    const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
+    console.log('Fetching artwalk content by ID:', contentId, 'locale:', locale, 'prismic locale:', prismicLocale);
     const client = createClient();
     const doc = await (client as any).getByUID('content_item', contentId, { 
-      lang: locale,
+      lang: prismicLocale,
       fetchLinks: [
         'detail.title',
         'detail.description',
@@ -175,10 +200,11 @@ export async function fetchArtwalkContent(contentId: string, locale: string): Pr
 // Get all collection UIDs
 export async function getArtwalkCategorySlugIds(locale: string): Promise<string[]> {
   try {
-    console.log('Fetching all collection UIDs for locale:', locale);
+    const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
+    console.log('Fetching all collection UIDs for locale:', locale, 'prismic locale:', prismicLocale);
     const client = createClient();
     const docs = await (client as any).getAllByType('collection', { 
-      lang: locale
+      lang: prismicLocale
     });
     
     const uids = docs.map((doc: any) => doc.uid).filter(Boolean);
@@ -193,10 +219,11 @@ export async function getArtwalkCategorySlugIds(locale: string): Promise<string[
 // Legacy functions for backward compatibility
 export async function fetchAllArtwalkItems(locale: string): Promise<ArtwalkContent[]> {
   try {
-    console.log('Fetching all artwalk items for locale:', locale);
+    const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
+    console.log('Fetching all artwalk items for locale:', locale, 'prismic locale:', prismicLocale);
     const client = createClient();
     const docs = await (client as any).getAllByType('content_item', { 
-      lang: locale,
+      lang: prismicLocale,
       fetchLinks: [
         'detail.title',
         'detail.description',
