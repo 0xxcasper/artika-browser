@@ -341,14 +341,15 @@ export default function Navigation() {
                   style={{
                     position: 'absolute',
                     top: '100%',
-                    left: '0',
+                    right: '0px',
                     background: 'white',
                     border: '1px solid #e0e0e0',
                     borderRadius: '8px',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
                     zIndex: 1000,
                     minWidth: '120px',
-                    marginTop: '8px'
+                    marginTop: '8px',
+                    overflow: 'hidden'
                   }}
                 >
                   <div 

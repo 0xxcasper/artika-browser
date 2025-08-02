@@ -39,6 +39,7 @@ export default function HomePage({ homepageData }: HomePageProps) {
     title: asText(section.title) || `Section ${index + 1}`,
     description: asText(section.description) || 'Description',
     ctaText: section.cta_text || 'Learn More',
+    ctaLink: section.cta_link || '#',
     image: asImageUrl(section.image) || `/images/home/art-${index + 1}.jpg`,
     imageAlt: section.image_alt || `Section ${index + 1}`,
     textFirst: index % 2 === 0

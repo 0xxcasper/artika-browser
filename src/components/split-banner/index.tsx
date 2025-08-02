@@ -182,7 +182,13 @@ export default function SplitBanner({ sections, onCtaClick }: SplitBannerProps) 
                     transition: { duration: 0.2, ease: "easeInOut" }
                   }}
                   whileTap={{ scale: 0.95, y: -2, transition: { duration: 0.2, ease: "easeInOut" } }}
-                  onClick={() => handleCtaClick(section.id)}
+                  onClick={() => {
+                    if (section.ctaLink) {
+                      window.open(section.ctaLink, '_blank');
+                    } else {
+                      handleCtaClick(section.id);
+                    }
+                  }}
                 >
                   {section.ctaText}
                 </motion.button>
@@ -236,7 +242,13 @@ export default function SplitBanner({ sections, onCtaClick }: SplitBannerProps) 
             </motion.p>
             <motion.button 
               className="mobile-cta-button"
-              onClick={() => handleCtaClick(section.id)}
+              onClick={() => {
+                if (section.ctaLink) {
+                  window.open(section.ctaLink, '_blank');
+                } else {
+                  handleCtaClick(section.id);
+                }
+              }}
             >
               {section.ctaText}
             </motion.button>

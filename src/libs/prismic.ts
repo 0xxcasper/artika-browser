@@ -89,6 +89,7 @@ export type HomepageDocument = prismic.PrismicDocumentWithUID<{
     title: prismic.KeyTextField;
     description: prismic.RichTextField;
     cta_text: prismic.KeyTextField;
+    cta_link: prismic.KeyTextField;
     image: prismic.ImageField;
     image_alt: prismic.KeyTextField;
   }>;

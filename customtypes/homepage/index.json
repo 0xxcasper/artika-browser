@@ -147,6 +147,13 @@
                 "placeholder": "Call to action text"
               }
             },
+            "cta_link": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Link",
+                "placeholder": "Call to action link"
+              }
+            },
             "image": {
               "type": "Image",
               "config": {
