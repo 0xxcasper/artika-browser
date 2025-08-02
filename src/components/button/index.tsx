@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, MotionProps } from 'framer-motion';
+import Link from 'next/link';
 import './styles.scss';
 
 interface ButtonProps extends MotionProps {
@@ -9,6 +10,7 @@ interface ButtonProps extends MotionProps {
   onClick?: () => void;
   disabled?: boolean;
   variant?: 'primary' | 'secondary';
+  href?: string;
 }
 
 export default function Button({ 
@@ -17,6 +19,7 @@ export default function Button({
   onClick,
   disabled = false,
   variant = 'primary',
+  href,
   ...props
 }: ButtonProps) {
   const buttonVariants = {
@@ -31,6 +34,26 @@ export default function Button({
       scale: 0.95
     }
   };
+
+  const buttonContent = (
+    <motion.div
+      className={`btn ${className} ${variant}`}
+      whileHover={!disabled ? "hover" : undefined}
+      whileTap={!disabled ? "tap" : undefined}
+      variants={buttonVariants}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+
+  if (href) {
+    return (
+      <Link href={href}>
+        {buttonContent}
+      </Link>
+    );
+  }
 
   return (
     <motion.button

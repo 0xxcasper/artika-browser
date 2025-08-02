@@ -10,6 +10,16 @@ export type NavigationMenu = {
   subs?: NavigationSub[];
 };
 
+export type NavigationCTA = {
+  cta_label: string;
+  cta_link: string;
+};
+
+export type NavigationData = {
+  items: NavigationMenu[];
+  cta: NavigationCTA;
+};
+
 export enum SubMenuType {
   // Artwalk
   outdoor = "outdoor-sculpture-park",

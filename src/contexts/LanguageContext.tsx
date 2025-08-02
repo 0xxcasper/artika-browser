@@ -1,69 +1,23 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
 
-// TODO: add vi
-type Language = 'en';
+type Language = 'en' | 'vi';
 
 interface LanguageContextType {
   language: Language;
-  setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Import translations
-import enTranslations from '@/locales/en';
-// import viTranslations from '@/locales/vi.json';
-
-const translations = {
-  en: enTranslations,
-  // vi: viTranslations,
-};
-
-// Helper function to get nested object value by dot notation
-function getNestedValue(obj: any, path: string): string {
-  return path.split('.').reduce((current, key) => {
-    return current && current[key] !== undefined ? current[key] : path;
-  }, obj);
+interface LanguageProviderProps {
+  children: ReactNode;
+  language: Language;
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en');
-  const [_, setIsLoaded] = useState(false);
-
-  // Load language from localStorage on mount
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as Language;
-    // TODO: add vi
-    if (savedLanguage && (savedLanguage === 'en')) {
-      setLanguageState(savedLanguage);
-    } else {
-      // Default to English if no valid language is saved
-      setLanguageState('en');
-      localStorage.setItem('language', 'en');
-    }
-    setIsLoaded(true);
-  }, []);
-
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('language', lang);
-  };
-
-  const t = (key: string): string => {
-    const translation = getNestedValue(translations[language], key);
-    if (!translation) return key;
-    return translation;
-  };
-
-  useEffect(() => {
-    console.log('LanguageProvider mounted');
-  }, []);
-
+export function LanguageProvider({ children, language }: LanguageProviderProps) {
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language }}>
       {children}
     </LanguageContext.Provider>
   );

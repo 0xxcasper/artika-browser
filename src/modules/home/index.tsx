@@ -15,21 +15,23 @@ interface HomePageProps {
 
 export default function HomePage({ homepageData }: HomePageProps) {
   // Sử dụng dữ liệu từ Prismic với localization
-  const heroTitle = asText(homepageData?.data?.hero_title) || 'Welcome to Artika';
-  const heroSubtitle = asText(homepageData?.data?.hero_subtitle) || 'Discover art and culture';
-  const heroBackgroundImage = asImageUrl(homepageData?.data?.hero_background_image) || '/images/home/banner.jpg';
+  const heroTitle = asText(homepageData?.data?.hero_title) || '';
+  const heroSubtitle = asText(homepageData?.data?.hero_subtitle) || '';
+  const heroBackgroundImage = asImageUrl(homepageData?.data?.hero_background_image) || '';
+
+
+  console.log("homepageData", homepageData?.data);
   
-  const aboutTitle = asText(homepageData?.data?.about_title) || 'About Us';
-  const aboutDescription = asText(homepageData?.data?.about_description) || 'Artika connects art with life';
-  const aboutButton = homepageData?.data?.about_button_text || 'Learn More';
+  const aboutTitle = asText(homepageData?.data?.about_title) || '';
+  const aboutDescription = asText(homepageData?.data?.about_description) || '';
+  const aboutButton = homepageData?.data?.about_button_text || '';
+  const aboutButtonLink = homepageData?.data?.about_button_link || '';
   
-  const focusTitle = asText(homepageData?.data?.focus_title) || 'Focus on Art';
-  const focusDescription = asText(homepageData?.data?.focus_description) || 'We bring unique artworks to life';
-  const focusButtonText = homepageData?.data?.focus_button_text || 'View More';
-  const focusBackgroundImage = asImageUrl(homepageData?.data?.focus_background_image) || '/images/home/focus-banner.jpg';
-  
-  // Debug split banner sections
-  console.log('homepageData?.data?.split_banner_sections:', homepageData?.data?.split_banner_sections);
+  const focusTitle = asText(homepageData?.data?.focus_title) || '';
+  const focusDescription = asText(homepageData?.data?.focus_description) || '';
+  const focusButtonText = homepageData?.data?.focus_button_text || '';
+  const focusButtonLink = homepageData?.data?.focus_button_link || '';
+  const focusBackgroundImage = asImageUrl(homepageData?.data?.focus_background_image) || '';
   
   // Sử dụng data từ Prismic cho SplitBanner
   const splitBannerSections: Array<SplitBannerSection> = homepageData?.data?.split_banner_sections?.map((section, index) => ({
@@ -67,14 +69,16 @@ export default function HomePage({ homepageData }: HomePageProps) {
         title={aboutTitle}
         description={aboutDescription}
         button={aboutButton}
+        buttonLink={aboutButtonLink}
       />
       <FocusBanner
         title={focusTitle}
         description={focusDescription}
         buttonText={focusButtonText}
+        buttonLink={focusButtonLink}
         backgroundImage={focusBackgroundImage}
       />
-      <SplitBanner sections={splitBannerSections}       />
+      <SplitBanner sections={splitBannerSections} />
       <GridImages title={gridImagesTitle} cards={gridImagesCards} />
       <EmailForm />
       <div />

@@ -4,11 +4,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/button';
 import './styles.scss';
+import Link from 'next/link';
 
 interface AboutProps {
   title: string;
   description: string;
   button: string;
+  buttonLink?: string;
 }
 
 const variants = {
@@ -22,7 +24,7 @@ const viewPort = {
   // amount: 0.3
 }
 
-const About = ({ title, description, button }: AboutProps) => {
+const About = ({ title, description, button, buttonLink }: AboutProps) => {
   return (
     <section className="about">
       <motion.div 
@@ -55,7 +57,9 @@ const About = ({ title, description, button }: AboutProps) => {
           viewport={viewPort}
           className="about-button"
         >
-          <Button>{button}</Button>
+          <Link href={buttonLink || ''} target="_blank">
+            <Button>{button}</Button>
+          </Link>
         </motion.div>
 
       </motion.div>

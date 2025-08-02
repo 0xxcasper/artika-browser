@@ -39,6 +39,16 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
         path: '/navigation',
       },
       {
+        type: 'navigation_menu',
+        path: '/en/navigation',
+        lang: 'en-us',
+      },
+      {
+        type: 'navigation_menu',
+        path: '/vi/navigation',
+        lang: 'vi-vn',
+      },
+      {
         type: 'collection',
         path: '/artwalk/:uid',
       },
@@ -68,9 +78,11 @@ export type HomepageDocument = prismic.PrismicDocumentWithUID<{
   about_title: prismic.TitleField;
   about_description: prismic.RichTextField;
   about_button_text: prismic.KeyTextField;
+  about_button_link: prismic.KeyTextField;
   focus_title: prismic.TitleField;
   focus_description: prismic.RichTextField;
   focus_button_text: prismic.KeyTextField;
+  focus_button_link: prismic.KeyTextField;
   focus_background_image: prismic.ImageField;
   focus_aspect_ratio: prismic.KeyTextField;
   split_banner_sections: prismic.GroupField<{

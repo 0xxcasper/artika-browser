@@ -62,6 +62,13 @@
           "label": "About Button Text",
           "placeholder": "About section button text"
         }
+      },
+      "about_button_link": {
+        "type": "Text",
+        "config": {
+          "label": "About Button Link",
+          "placeholder": "About section button link"
+        }
       }
     },
     "Center Banner Section": {
@@ -86,6 +93,13 @@
         "config": {
           "label": "Focus Button Text",
           "placeholder": "Focus section button text"
+        }
+      },
+      "focus_button_link": {
+        "type": "Text",
+        "config": {
+          "label": "Focus Button Link",
+          "placeholder": "Focus section button link"
         }
       },
       "focus_background_image": {

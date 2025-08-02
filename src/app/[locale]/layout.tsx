@@ -32,8 +32,8 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
   }
 
   return (
-    <Providers>
-      <Navigation locale={locale} />
+    <Providers language={locale as 'en' | 'vi'}>
+      <Navigation />
       <main>
         {children}
       </main>

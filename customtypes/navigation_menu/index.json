@@ -56,7 +56,21 @@
           },
           "label": "Menu Items"
         }
+      },
+      "cta_label": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Label",
+          "placeholder": "Button text (e.g., Book)"
+        }
+      },
+      "cta_link": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Link",
+          "placeholder": "Button link (e.g., https://www.google.com)"
+        }
       }
     }
   }
-} 
+}

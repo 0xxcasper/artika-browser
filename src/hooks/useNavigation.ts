@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react';
 import { fetchNavigation } from '@/libs/prismic-navigation';
-import type { NavigationMenu } from '@/locales/types';
+import type { NavigationMenu, NavigationData, NavigationCTA } from '@/locales/types';
 import { useLanguage } from '@/contexts/LanguageContext';
+
+const defaultCta: NavigationCTA = {
+  cta_label: '',
+  cta_link: '',
+};
 
 export function useNavigation() {
   const { language } = useLanguage();
   const [menus, setMenus] = useState<NavigationMenu[]>([]);
+  const [cta, setCta] = useState<NavigationCTA>(defaultCta);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,24 +22,29 @@ export function useNavigation() {
         setError(null);
         
         // Convert language to Prismic locale format
-        const locale = 'en-us'; // Currently only English is supported
+        const locale = language; // Currently only English is supported
         
         try {
-          const navigationData = await fetchNavigation(locale);
+          const navigationData: NavigationData = await fetchNavigation(locale);
           
           // Fallback to default navigation if Prismic data is empty
-          if (navigationData.length === 0) {
+          if (navigationData.items.length === 0) {
             // Import default navigation as fallback
             const { navigation } = await import('@/locales/en');
             setMenus(navigation);
+            setCta(defaultCta);
           } else {
-            setMenus(navigationData);
+            setMenus(navigationData.items);
+            setCta(navigationData.cta);
           }
         } catch (prismicError) {
           console.warn('Prismic navigation failed, using fallback:', prismicError);
           // Import default navigation as fallback
           const { navigation } = await import('@/locales/en');
           setMenus(navigation);
+          setCta(defaultCta);
+
+          console.log("useNavigation", { menus, cta });
         }
       } catch (err) {
         console.error('Failed to load navigation:', err);
@@ -43,9 +54,11 @@ export function useNavigation() {
         try {
           const { navigation } = await import('@/locales/en');
           setMenus(navigation);
+          setCta(defaultCta);
         } catch (fallbackErr) {
           console.error('Fallback navigation also failed:', fallbackErr);
           setMenus([]);
+          setCta(defaultCta);
         }
       } finally {
         setLoading(false);
@@ -56,5 +69,5 @@ export function useNavigation() {
   }, [language]);
 
 
-  return { menus, loading, error };
+  return { menus, cta, loading, error };
 } 

@@ -10,6 +10,7 @@ interface FocusBannerProps {
   title?: string;
   description?: string;
   buttonText?: string;
+  buttonLink?: string;
   backgroundImage?: string;
   onExploreClick?: () => void;
   aspectRatio?: string;
@@ -34,6 +35,7 @@ export default function FocusBanner({
   title = "Nourish to flourish.",
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   buttonText = "Explore",
+  buttonLink,
   backgroundImage = "/assets/images/meditation-bg.jpg",
   onExploreClick,
   aspectRatio = "1728/720"
@@ -81,7 +83,14 @@ export default function FocusBanner({
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
-            <Button onClick={onExploreClick} variant="secondary" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} style={{ padding: '0.75rem 3.8125rem' }}>
+            <Button 
+              href={buttonLink}
+              onClick={onExploreClick} 
+              variant="secondary" 
+              whileHover={{ scale: 1.05 }} 
+              whileTap={{ scale: 0.95 }} 
+              style={{ padding: '0.75rem 3.8125rem' }}
+            >
               {buttonText}
             </Button>
           </motion.div>

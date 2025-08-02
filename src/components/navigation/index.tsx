@@ -9,6 +9,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import type { NavigationMenu, NavigationSub } from '@/locales/types';
 import { Flex } from '@chakra-ui/react';
 import { usePreloader } from '@/contexts/PreloaderContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const navVariants = {
   initial: { y: -200, opacity: 0 },
@@ -35,10 +36,9 @@ const overlayVariants = {
   exit: { opacity: 0, transition: { duration: 0.2 } }
 };
 
-export default function Navigation({ locale = 'en' }: { locale?: string }) {
-  const { menus } = usePreloader();
-
-  console.log(menus);
+export default function Navigation() {
+  const { language } = useLanguage();
+  const { menus, cta } = usePreloader();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
@@ -49,9 +49,9 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
   // Helper function to add locale to href
   const getLocalizedHref = (href: string) => {
     if (href === '/') {
-      return locale === 'vi' ? '/vi' : '/';
+      return language === 'vi' ? '/vi' : '/';
     }
-    return locale === 'vi' ? `/vi${href}` : href;
+    return language === 'vi' ? `/vi${href}` : href;
   };
 
   // Helper function to switch language
@@ -315,7 +315,7 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
               >
                 <p className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>
-                  {locale === 'vi' ? 'Tiếng Việt' : 'English'}
+                  {language === 'vi' ? 'Tiếng Việt' : 'English'}
                 </p>
                 <Image 
                   src="/icons/ic-next.svg" 
@@ -358,8 +358,8 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
                       padding: '8px 12px',
                       cursor: 'pointer',
                       fontSize: '14px',
-                      color: locale === 'en' ? '#64603C' : '#666',
-                      fontWeight: locale === 'en' ? '600' : '400',
+                      color: language === 'en' ? '#64603C' : '#666',
+                      fontWeight: language === 'en' ? '600' : '400',
                       borderBottom: '1px solid #f0f0f0'
                     }}
                     onMouseEnter={(e) => {
@@ -378,8 +378,8 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
                       padding: '8px 12px',
                       cursor: 'pointer',
                       fontSize: '14px',
-                      color: locale === 'vi' ? '#64603C' : '#666',
-                      fontWeight: locale === 'vi' ? '600' : '400'
+                      color: language === 'vi' ? '#64603C' : '#666',
+                      fontWeight: language === 'vi' ? '600' : '400'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#f8f8f8';
@@ -393,7 +393,7 @@ export default function Navigation({ locale = 'en' }: { locale?: string }) {
                 </motion.div>
               )}
             </div>
-            <p className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>Book</p>
+            <Link href={cta.cta_link} target="_blank" className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>{cta.cta_label}</Link>
           </Flex>
 
         </div>
