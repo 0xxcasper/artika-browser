@@ -176,11 +176,16 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
           onScroll={handleContainerScroll}
         >
           <div className={styles.scrollContent}>
-            {COLLECTIONS.map((collection, index) => (
+            {COLLECTIONS.map((collection, index) => {
+              const isDisabled = !collection?.description;
+              return (
               <motion.div
                 className={styles.item}
                 key={`${collection.title}-${index}`}
-                onClick={() => handleItemClick(collection.id)}
+                onClick={() => !isDisabled && handleItemClick(collection.id)}
+                style={{
+                  cursor: isDisabled ? 'unset' : 'pointer'
+                }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
@@ -214,7 +219,7 @@ const HorizontalList: React.FC<HorizontalListProps> = ({
                   </p>
                 </Flex>
               </motion.div>
-            ))}
+            )})}
           </div>
         </div>
       </div>

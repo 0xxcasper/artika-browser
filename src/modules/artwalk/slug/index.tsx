@@ -123,44 +123,50 @@ const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        {COLLECTIONS.map((collection, index) => (
-          <motion.div 
-            className="gallery-container__grids__item" 
-            key={`${collection.id}-${index}`}
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            whileHover={{ 
-              y: -2,
-              transition: { 
-                duration: 0.2,
-                ease: "easeOut"
-              }
-            }}
-            viewport={{ once: true, margin: "-50px" }}
-            onClick={() => handleItemClick(collection)}
-          >
-            <Image 
-               src={collection.thumb} 
-              alt={collection.name} 
-              width={400} 
-              height={480} 
-              className="gallery-container__grids__item__image"
-              // priority={index < 6}
-              _placeholder={{
-                blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEsMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+        {COLLECTIONS.map((collection, index) => {
+          const isDisabled = !collection?.detail?.description;
+          return (
+            <motion.div 
+              className="gallery-container__grids__item" 
+              key={`${collection.id}-${index}`}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              whileHover={{ 
+                y: -2,
+                transition: { 
+                  duration: 0.2,
+                  ease: "easeOut"
+                }
               }}
-              draggable={false}
-            />
-            <div className="gallery-container__grids__item__content">
-              <Flex flexDirection='row' gap="1rem" justify="space-between">
-                <p className='gallery-container__grids__item__content__title'>{collection.name}</p>
-                <p className='gallery-container__grids__item__content__material'>{collection.material}</p>
-              </Flex>
-              <p className='gallery-container__grids__item__content__description'>{collection.subName}</p>
-            </div>
-          </motion.div>
-        ))}
+              viewport={{ once: true, margin: "-50px" }}
+              style={{
+                cursor: isDisabled ? 'unset' : 'pointer'
+              }}
+              onClick={() => !isDisabled && handleItemClick(collection)}
+            >
+              <Image 
+                 src={collection.thumb} 
+                alt={collection.name} 
+                width={400} 
+                height={480} 
+                className="gallery-container__grids__item__image"
+                // priority={index < 6}
+                _placeholder={{
+                  blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEsMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                }}
+                draggable={false}
+              />
+              <div className="gallery-container__grids__item__content">
+                <Flex flexDirection='row' gap="1rem" justify="space-between">
+                  <p className='gallery-container__grids__item__content__title'>{collection.name}</p>
+                  <p className='gallery-container__grids__item__content__material'>{collection.material}</p>
+                </Flex>
+                <p className='gallery-container__grids__item__content__description'>{collection.subName}</p>
+              </div>
+            </motion.div>
+          )
+        })}
       </motion.div>
     </div>
   );
