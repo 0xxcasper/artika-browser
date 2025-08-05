@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, createContext, useContext, useMemo 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigation } from '@/hooks/useNavigation';
 import { NavigationMenu, NavigationCTA } from '@/locales/types';
+import { Box } from '@chakra-ui/react';
 
 interface PreloaderContextType {
   menus: NavigationMenu[];
@@ -50,7 +51,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
   
   const _updateAssetsLoaded = () => {
     setTimeout(() => {
-      setAssetsLoaded(true);
+      // setAssetsLoaded(true);
     }, 200);
   }
 
@@ -249,7 +250,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
               zIndex: 9999,
             }}
           >
-            <motion.div style={{ width: 145, height: 145 }}>
+            <motion.div style={{ width: 147, height: 147, position: 'relative' }}>
               <video
                 ref={videoRef}
                 width={145}
@@ -260,7 +261,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
                 playsInline
                 preload="auto"
                 style={{ 
-                  display: 'block', 
+                  // display: 'block', 
                   width: '100%', 
                   height: '100%',
                   objectFit: 'contain'
@@ -269,6 +270,8 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
               >
                 <source src="/logo-anim.mp4" type="video/mp4" />
               </video>
+              <Box position="absolute" left={0} right={0} bottom="-1px" height="5px" width="100%" margin="auto" backgroundColor="#fff" />
+              <Box position="absolute" top={0} bottom={0} right={0} height="100%" width="5px" margin="auto" backgroundColor="#fff" />
             </motion.div>
           </motion.div>
         ) : (
