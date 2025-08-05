@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
-    pathname.startsWith('/favicon.ico') ||
+    pathname.startsWith('/favicon.png') ||
     pathname.startsWith('/icons/') ||
     pathname.startsWith('/images/') ||
     pathname.startsWith('/fonts/') ||
@@ -38,6 +38,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     // Skip all internal paths (_next)
-    '/((?!_next|api|favicon.ico).*)',
+    '/((?!_next|api|favicon.png).*)',
   ],
 }; 
