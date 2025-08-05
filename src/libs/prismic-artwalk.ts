@@ -122,10 +122,9 @@ export async function fetchAllArtwalkCategories(locale: string): Promise<Artwalk
 }
 
 // Fetch specific collection by slugId (using UID)
-export async function fetchArtwalkCategory(slugId: string, locale: string): Promise<ArtwalkCategory | null> {
+export async function fetchArtwalkCategory(slugId: string, prismicLocale: string): Promise<ArtwalkCategory | null> {
   try {
-    const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
-    console.log('Fetching artwalk category by UID:', slugId, 'locale:', locale, 'prismic locale:', prismicLocale);
+    console.log('Fetching artwalk category by UID:', slugId, 'prismic locale:', prismicLocale);
     console.log('Repository:', process.env.PRISMIC_REPOSITORY_NAME);
     console.log('Has access token:', !!process.env.PRISMIC_ACCESS_TOKEN);
     
@@ -161,7 +160,7 @@ export async function fetchArtwalkCategory(slugId: string, locale: string): Prom
       message: error instanceof Error ? error.message : 'Unknown error',
       stack: error instanceof Error ? error.stack : undefined,
       slugId,
-      locale,
+      prismicLocale,
       repository: process.env.PRISMIC_REPOSITORY_NAME,
       hasToken: !!process.env.PRISMIC_ACCESS_TOKEN
     });

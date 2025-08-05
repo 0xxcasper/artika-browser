@@ -36,10 +36,15 @@ export async function fetchNavigation(locale: string): Promise<NavigationData> {
     
     // Try to fetch navigation_menu document
     try {
-      const doc = await (client as any).getSingle('navigation_menu', { 
-        lang: locale === 'vi' ? 'vi-vn' : 'en-us' 
-      });
+      const prismicLang = locale === 'vi' ? 'vi' : 'en-us';
+      console.log("Using Prismic language:", prismicLang);
       
+      const doc = await (client as any).getSingle('navigation_menu', { 
+        lang: prismicLang
+      });
+      console.log("Navigation document found:", doc);
+      console.log("Navigation data:", doc.data);
+
       // Extract menus data
       const items = doc.data.items?.map((item: any) => ({
         label: item.label || '',
@@ -50,6 +55,8 @@ export async function fetchNavigation(locale: string): Promise<NavigationData> {
           href: sub.href || '',
         })) || [],
       })) || [];
+
+      console.log("Extracted navigation items:", items);
 
       // Extract CTA data
       const cta = {
@@ -64,6 +71,8 @@ export async function fetchNavigation(locale: string): Promise<NavigationData> {
     } catch (docError) {
       console.warn('Navigation menu document not found, using fallback navigation');
       console.warn('Error details:', docError);
+      console.warn('Locale:', locale);
+      console.warn('Prismic language used:', locale === 'vi' ? 'vi' : 'en-us');
       
       // Return fallback navigation
       return { 
