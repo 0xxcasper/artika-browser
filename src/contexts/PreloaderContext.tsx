@@ -51,7 +51,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
   
   const _updateAssetsLoaded = () => {
     setTimeout(() => {
-      // setAssetsLoaded(true);
+      setAssetsLoaded(true);
     }, 200);
   }
 
