@@ -79,7 +79,7 @@ export default function DatePicker({ onDateSelect, onClose, selectedDate }: Date
   const handleDayClick = (date: Date) => {
     if (!isPast(date)) {
       setSelectedDay(date);
-      onDateSelect(date);
+      // Remove the immediate onDateSelect call - only update internal state
     }
   };
 
