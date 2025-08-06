@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import './DatePicker.scss';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface DatePickerProps {
   onDateSelect: (date: Date) => void;
@@ -10,6 +11,7 @@ interface DatePickerProps {
 }
 
 export default function DatePicker({ onDateSelect, onClose, selectedDate }: DatePickerProps) {
+  const { language } = useLanguage();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState<Date | null>(selectedDate);
 
@@ -48,11 +50,11 @@ export default function DatePicker({ onDateSelect, onClose, selectedDate }: Date
   };
 
   const getMonthName = (date: Date) => {
-    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    return date.toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US', { month: 'long', year: 'numeric' });
   };
 
   const getDayName = (dayIndex: number) => {
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const days = language === 'vi' ? ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'] : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return days[dayIndex];
   };
 
@@ -140,7 +142,7 @@ export default function DatePicker({ onDateSelect, onClose, selectedDate }: Date
             className="cancel-button" 
             onClick={onClose}
           >
-            Cancel
+            {language === 'vi' ? 'Hủy' : 'Cancel'}
           </button>
           <button 
             type="button" 
@@ -153,7 +155,7 @@ export default function DatePicker({ onDateSelect, onClose, selectedDate }: Date
             }}
             disabled={!selectedDay}
           >
-            Confirm
+            {language === 'vi' ? 'Xác nhận' : 'Confirm'}
           </button>
         </div>
       </div>

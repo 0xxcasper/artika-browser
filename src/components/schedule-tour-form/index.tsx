@@ -6,6 +6,7 @@ import DatePicker from './DatePicker';
 import './styles.scss';
 import Image from 'next/image';
 import { usePreloader } from '@/contexts/PreloaderContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ScheduleTourFormData {
   phone: string;
@@ -14,6 +15,7 @@ interface ScheduleTourFormData {
 }
 
 export default function ScheduleTourForm() {
+  const { language } = useLanguage();
   const { scheduleTourForm } = usePreloader();
   const [formData, setFormData] = useState<ScheduleTourFormData>({
     phone: '',
@@ -110,7 +112,7 @@ export default function ScheduleTourForm() {
   };
 
   const formatDate = (date: Date): string => {
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
