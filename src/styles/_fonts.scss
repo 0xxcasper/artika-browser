@@ -12,6 +12,7 @@
 // Font Variables - Only Playfair and Raleway
 $font-primary: 'Playfair', serif;
 $font-secondary: 'Raleway', sans-serif;
+$font-tertiary: 'Inter', sans-serif;
 
 // Font Weights
 $font-weight-light: 300;
@@ -63,6 +64,10 @@ $letter-spacing-widest: 0.1em;
   font-weight: 500;
 }
 
+@mixin font-tertiary {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
 
 @mixin text-xs {
   font-size: $font-size-xs;
