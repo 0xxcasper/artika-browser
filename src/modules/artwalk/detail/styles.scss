@@ -64,7 +64,7 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      gap: 30px;
+      gap: 15px;
 
       @media screen and (max-width: $breakpoint-md) {
         gap: 12px;
@@ -81,16 +81,6 @@
           white-space: unset;
         }
       }
-      .author {
-        margin-top: 38px;
-        font-size: 18px;
-        line-height: 133%;
-        @include font-secondary;
-        color: $text-primary;
-        @media screen and (max-width: $breakpoint-md) {
-          font-size: 16px;
-        }
-      }
       .material {
         @include font-secondary;
         color: #353536;
@@ -98,6 +88,16 @@
         font-size: 18px;
         line-height: 133%;
         letter-spacing: 0%;
+        @media screen and (max-width: $breakpoint-md) {
+          font-size: 16px;
+        }
+      }
+      .author {
+        margin-top: 38px;
+        font-size: 18px;
+        line-height: 133%;
+        @include font-secondary;
+        color: $text-primary;
         @media screen and (max-width: $breakpoint-md) {
           font-size: 16px;
         }

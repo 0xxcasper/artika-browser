@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { TourSubmissionService, TourSubmission } from '@/libs/firestore';
+import { TourSubmissionService, TourSubmission, NewsletterSubscriptionService, NewsletterSubscription } from '@/libs/firestore';
 
 interface UseFirestoreState<T> {
   data: T[] | null;
@@ -140,6 +140,133 @@ export function useScheduleTourSubmission() {
 
   return {
     submitScheduleTour,
+    loading,
+    error
+  };
+}
+
+// Hook for fetching newsletter subscriptions
+export function useNewsletterSubscriptions(): UseFirestoreReturn<NewsletterSubscription> {
+  const [state, setState] = useState<UseFirestoreState<NewsletterSubscription>>({
+    data: null,
+    loading: true,
+    error: null
+  });
+
+  const fetchData = useCallback(async () => {
+    try {
+      setState(prev => ({ ...prev, loading: true, error: null }));
+      const data = await NewsletterSubscriptionService.getAllSubscriptions();
+      setState({ data, loading: false, error: null });
+    } catch (error) {
+      setState({ 
+        data: null, 
+        loading: false, 
+        error: error instanceof Error ? error.message : 'An error occurred' 
+      });
+    }
+  }, []);
+
+  const addDocument = useCallback(async (data: NewsletterSubscription): Promise<string> => {
+    try {
+      const id = await NewsletterSubscriptionService.subscribeToNewsletter({
+        email: data.email,
+        language: data.language
+      });
+      await fetchData(); // Refetch to update the list
+      return id;
+    } catch (error) {
+      throw error instanceof Error ? error : new Error('Failed to add newsletter subscription');
+    }
+  }, [fetchData]);
+
+  const updateDocument = useCallback(async (id: string, data: Partial<NewsletterSubscription>): Promise<void> => {
+    try {
+      if (data.status === 'unsubscribed') {
+        await NewsletterSubscriptionService.unsubscribeFromNewsletter(id);
+      }
+      await fetchData(); // Refetch to update the list
+    } catch (error) {
+      throw error instanceof Error ? error : new Error('Failed to update newsletter subscription');
+    }
+  }, [fetchData]);
+
+  const deleteDocument = useCallback(async (id: string): Promise<void> => {
+    try {
+      await NewsletterSubscriptionService.deleteSubscription(id);
+      await fetchData(); // Refetch to update the list
+    } catch (error) {
+      throw error instanceof Error ? error : new Error('Failed to delete newsletter subscription');
+    }
+  }, [fetchData]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return {
+    ...state,
+    refetch: fetchData,
+    addDocument,
+    updateDocument,
+    deleteDocument
+  };
+}
+
+// Hook for getting newsletter active count
+export function useNewsletterActiveCount() {
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchCount = useCallback(async () => {
+    try {
+      setLoading(true);
+      const activeCount = await NewsletterSubscriptionService.getActiveCount();
+      setCount(activeCount);
+      setError(null);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Failed to fetch newsletter active count');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchCount();
+  }, [fetchCount]);
+
+  return {
+    count,
+    loading,
+    error,
+    refetch: fetchCount
+  };
+}
+
+// Hook for newsletter subscription
+export function useNewsletterSubscription() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const subscribeToNewsletter = useCallback(async (data: {
+    email: string;
+    language: string;
+  }) => {
+    try {
+      setLoading(true);
+      setError(null);
+      await NewsletterSubscriptionService.subscribeToNewsletter(data);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Failed to subscribe to newsletter');
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return {
+    subscribeToNewsletter,
     loading,
     error
   };

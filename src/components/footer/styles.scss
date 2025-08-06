@@ -3,21 +3,19 @@
 
 .footer-container {
   background-color: #64603C;
-  padding: 100px 150px;
   width: 100dvw;
-
-  @media (max-width: $breakpoint-lg) {
-    padding: 80px;
-  }
-  @media (max-width: $breakpoint-md) {
-    padding: 50px;
-  }
 
   .content {
     display: flex;
     justify-content: space-between;
 
-    max-width: 1728px;
+    max-width: 1610px;
+    padding: 100px;
+
+    @media (max-width: $breakpoint-md) {
+      padding: 50px 16px;
+    }
+  
     margin: 0 auto;
     width: 100%;
 
@@ -30,7 +28,7 @@
   .block {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 40px;
 
     .box_description {
       display: flex;
@@ -39,16 +37,21 @@
     }
 
     .title {
-      @include heading-5;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 133%;
+      letter-spacing: 0em;
       @include font-secondary;
       color: $text-inverse;
       @media screen and (max-width: $breakpoint-md) {
-        @include heading-5;
+        font-size: 18px;
       }
     }
 
     .description {
-      @include body-large;
+      font-size: 18px;
+      line-height: 133%;
+      letter-spacing: 0em;
       @include font-secondary;
       color: $text-inverse;
 
@@ -58,18 +61,98 @@
 
       &__link {
         &:hover {
-          transform: translateY(-1px);
-          text-decoration: underline;
+          opacity: 0.85;
         }
       }
 
       @media screen and (max-width: $breakpoint-md) {
-        @include body-small;
+        font-size: 16px;
       }
     }
 
     @media (max-width: $breakpoint-md) {
       gap: 24px;
+    }
+  }
+
+  .bottom-footer {
+    padding-bottom: 50px;
+
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1610px;
+      margin: 0 auto;
+      padding: 0 16px;
+
+      @media (max-width: $breakpoint-md) {
+        padding: 0 16px;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      &-text {
+        font-size: 18px;
+        font-weight: 500;
+        color: $text-inverse;
+        @include font-secondary;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    &__social {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      &-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: $text-inverse;
+        @include font-secondary;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      &-icons {
+        display: flex;
+        gap: 12px;
+      }
+    }
+
+    &__privacy {
+      &-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: $text-inverse;
+        @include font-secondary;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }
