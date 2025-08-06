@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { EmailSubmissionService, EmailSubmission } from '@/libs/firestore';
+import { TourSubmissionService, TourSubmission } from '@/libs/firestore';
 
 interface UseFirestoreState<T> {
   data: T[] | null;
@@ -14,9 +14,9 @@ interface UseFirestoreReturn<T> extends UseFirestoreState<T> {
   deleteDocument: (id: string) => Promise<void>;
 }
 
-// Hook for fetching email submissions
-export function useEmailSubmissions(): UseFirestoreReturn<EmailSubmission> {
-  const [state, setState] = useState<UseFirestoreState<EmailSubmission>>({
+// Hook for fetching tour submissions
+export function useTourSubmissions(): UseFirestoreReturn<TourSubmission> {
+  const [state, setState] = useState<UseFirestoreState<TourSubmission>>({
     data: null,
     loading: true,
     error: null
@@ -25,7 +25,7 @@ export function useEmailSubmissions(): UseFirestoreReturn<EmailSubmission> {
   const fetchData = useCallback(async () => {
     try {
       setState(prev => ({ ...prev, loading: true, error: null }));
-      const data = await EmailSubmissionService.getAllSubmissions();
+      const data = await TourSubmissionService.getAllSubmissions();
       setState({ data, loading: false, error: null });
     } catch (error) {
       setState({ 
@@ -36,37 +36,38 @@ export function useEmailSubmissions(): UseFirestoreReturn<EmailSubmission> {
     }
   }, []);
 
-  const addDocument = useCallback(async (data: EmailSubmission): Promise<string> => {
+  const addDocument = useCallback(async (data: TourSubmission): Promise<string> => {
     try {
-      const id = await EmailSubmissionService.submitEmail({
-        email: data.email,
+      const id = await TourSubmissionService.submitTourRequest({
         name: data.name,
-        message: data.message
+        phone: data.phone,
+        email: data.email,
+        tourDate: data.tourDate
       });
       await fetchData(); // Refetch to update the list
       return id;
     } catch (error) {
-      throw error instanceof Error ? error : new Error('Failed to add email submission');
+      throw error instanceof Error ? error : new Error('Failed to add tour submission');
     }
   }, [fetchData]);
 
-  const updateDocument = useCallback(async (id: string, data: Partial<EmailSubmission>): Promise<void> => {
+  const updateDocument = useCallback(async (id: string, data: Partial<TourSubmission>): Promise<void> => {
     try {
       if (data.read !== undefined) {
-        await EmailSubmissionService.markAsRead(id);
+        await TourSubmissionService.markAsRead(id);
       }
       await fetchData(); // Refetch to update the list
     } catch (error) {
-      throw error instanceof Error ? error : new Error('Failed to update email submission');
+      throw error instanceof Error ? error : new Error('Failed to update tour submission');
     }
   }, [fetchData]);
 
   const deleteDocument = useCallback(async (id: string): Promise<void> => {
     try {
-      await EmailSubmissionService.deleteSubmission(id);
+      await TourSubmissionService.deleteSubmission(id);
       await fetchData(); // Refetch to update the list
     } catch (error) {
-      throw error instanceof Error ? error : new Error('Failed to delete email submission');
+      throw error instanceof Error ? error : new Error('Failed to delete tour submission');
     }
   }, [fetchData]);
 
@@ -83,8 +84,8 @@ export function useEmailSubmissions(): UseFirestoreReturn<EmailSubmission> {
   };
 }
 
-// Hook for getting unread count
-export function useUnreadCount() {
+// Hook for getting tour unread count
+export function useTourUnreadCount() {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -92,11 +93,11 @@ export function useUnreadCount() {
   const fetchCount = useCallback(async () => {
     try {
       setLoading(true);
-      const unreadCount = await EmailSubmissionService.getUnreadCount();
+      const unreadCount = await TourSubmissionService.getUnreadCount();
       setCount(unreadCount);
       setError(null);
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to fetch unread count');
+      setError(error instanceof Error ? error.message : 'Failed to fetch tour unread count');
     } finally {
       setLoading(false);
     }
@@ -106,32 +107,40 @@ export function useUnreadCount() {
     fetchCount();
   }, [fetchCount]);
 
-  return { count, loading, error, refetch: fetchCount };
+  return {
+    count,
+    loading,
+    error,
+    refetch: fetchCount
+  };
 }
 
-// Hook for submitting a single email
-export function useEmailSubmission() {
+// Hook for tour submission
+export function useScheduleTourSubmission() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const submitEmail = useCallback(async (data: {
+  const submitScheduleTour = useCallback(async (data: {
+    name: string;
+    phone: string;
     email: string;
-    name?: string;
-    message?: string;
-  }): Promise<string> => {
+    tourDate: Date;
+  }) => {
     try {
       setLoading(true);
       setError(null);
-      const id = await EmailSubmissionService.submitEmail(data);
-      return id;
+      await TourSubmissionService.submitTourRequest(data);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to submit email';
-      setError(errorMessage);
-      throw new Error(errorMessage);
+      setError(error instanceof Error ? error.message : 'Failed to submit tour request');
+      throw error;
     } finally {
       setLoading(false);
     }
   }, []);
 
-  return { submitEmail, loading, error };
+  return {
+    submitScheduleTour,
+    loading,
+    error
+  };
 } 

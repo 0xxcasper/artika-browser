@@ -15,9 +15,31 @@ export type NavigationCTA = {
   cta_link: string;
 };
 
+export type ScheduleTourValidationMessages = {
+  schedule_tour_phone_required: string;
+  schedule_tour_email_required: string;
+  schedule_tour_date_required: string;
+  schedule_tour_phone_invalid: string;
+  schedule_tour_email_invalid: string;
+  schedule_tour_date_future: string;
+};
+
+export type ScheduleTourFormData = {
+  schedule_tour_title: string;
+  schedule_tour_description: string;
+  schedule_tour_phone_placeholder: string;
+  schedule_tour_email_placeholder: string;
+  schedule_tour_date_placeholder: string;
+  schedule_tour_button_text: string;
+  schedule_tour_success_message: string;
+  schedule_tour_error_message: string;
+  schedule_tour_validation_messages: ScheduleTourValidationMessages;
+};
+
 export type NavigationData = {
   items: NavigationMenu[];
   cta: NavigationCTA;
+  scheduleTourForm?: ScheduleTourFormData;
 };
 
 export enum SubMenuType {

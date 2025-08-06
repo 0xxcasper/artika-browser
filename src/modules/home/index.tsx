@@ -4,7 +4,7 @@ import About from '@/components/about';
 import FocusBanner from '@/components/focus-banner';
 import SplitBanner, { SplitBannerSection } from '@/components/split-banner';
 import GridImages from '@/components/grid-images';
-import EmailForm from '@/components/email-form';
+import EmailForm from '@/components/schedule-tour-form';
 import { asText, asImageUrl } from '@/libs/prismic-helpers';
 import { HomepageDocument } from '@/libs/prismic';
 

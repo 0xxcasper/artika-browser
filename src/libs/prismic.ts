@@ -155,6 +155,24 @@ export type NavigationMenuDocument = prismic.PrismicDocumentWithUID<{
       href: prismic.KeyTextField;
     }>;
   }>;
+  cta_label: prismic.KeyTextField;
+  cta_link: prismic.KeyTextField;
+  schedule_tour_title: prismic.KeyTextField;
+  schedule_tour_description: prismic.RichTextField;
+  schedule_tour_phone_placeholder: prismic.KeyTextField;
+  schedule_tour_email_placeholder: prismic.KeyTextField;
+  schedule_tour_date_placeholder: prismic.KeyTextField;
+  schedule_tour_button_text: prismic.KeyTextField;
+  schedule_tour_success_message: prismic.KeyTextField;
+  schedule_tour_error_message: prismic.KeyTextField;
+  schedule_tour_validation_messages: prismic.GroupField<{
+    schedule_tour_phone_required: prismic.KeyTextField;
+    schedule_tour_email_required: prismic.KeyTextField;
+    schedule_tour_date_required: prismic.KeyTextField;
+    schedule_tour_phone_invalid: prismic.KeyTextField;
+    schedule_tour_email_invalid: prismic.KeyTextField;
+    schedule_tour_date_future: prismic.KeyTextField;
+  }>;
 }>;
 
 export type CollectionDocument = prismic.PrismicDocumentWithUID<{

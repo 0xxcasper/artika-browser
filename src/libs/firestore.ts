@@ -10,12 +10,13 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase';
 
-// Email submission interface
-export interface EmailSubmission {
+// Tour submission interface
+export interface TourSubmission {
   id: string;
+  name: string;
+  phone: string;
   email: string;
-  name?: string;
-  message?: string;
+  tourDate: Date;
   submittedAt: Date;
   read: boolean;
   note?: string;
@@ -24,16 +25,17 @@ export interface EmailSubmission {
 
 // Collection names
 export const COLLECTIONS = {
-  EMAIL_SUBMISSIONS: 'email_submissions'
+  TOUR_SUBMISSIONS: 'tour_submissions'
 } as const;
 
-// Email submission service
-export class EmailSubmissionService {
-  // Submit a new email
-  static async submitEmail(data: {
+// Tour submission service
+export class TourSubmissionService {
+  // Submit a new tour request
+  static async submitTourRequest(data: {
+    name: string;
+    phone: string;
     email: string;
-    name?: string;
-    message?: string;
+    tourDate: Date;
   }): Promise<string> {
     try {
       const submissionData = {
@@ -42,21 +44,21 @@ export class EmailSubmissionService {
         read: false
       };
       
-      const docRef = await addDoc(collection(db, COLLECTIONS.EMAIL_SUBMISSIONS), submissionData);
-      console.log('Email submitted successfully with ID:', docRef.id);
+      const docRef = await addDoc(collection(db, COLLECTIONS.TOUR_SUBMISSIONS), submissionData);
+      console.log('Tour request submitted successfully with ID:', docRef.id);
       return docRef.id;
     } catch (error) {
-      console.error('Error submitting email:', error);
-      throw new Error(`Failed to submit email: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error('Error submitting tour request:', error);
+      throw new Error(`Failed to submit tour request: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
-  // Get all email submissions (for admin)
-  static async getAllSubmissions(): Promise<EmailSubmission[]> {
+  // Get all tour submissions (for admin)
+  static async getAllSubmissions(): Promise<TourSubmission[]> {
     try {
-      console.log('Fetching all email submissions...');
+      console.log('Fetching all tour submissions...');
       const q = query(
-        collection(db, COLLECTIONS.EMAIL_SUBMISSIONS),
+        collection(db, COLLECTIONS.TOUR_SUBMISSIONS),
         orderBy('submittedAt', 'desc')
       );
       const querySnapshot = await getDocs(q);
@@ -65,9 +67,11 @@ export class EmailSubmissionService {
         const data = doc.data();
         return {
           id: doc.id,
-          email: data.email,
           name: data.name,
-          message: data.message,
+          phone: data.phone,
+          email: data.email,
+          // Convert Firestore timestamp to Date
+          tourDate: data.tourDate?.toDate ? data.tourDate.toDate() : new Date(data.tourDate),
           // Convert Firestore timestamp to Date
           submittedAt: data.submittedAt?.toDate ? data.submittedAt.toDate() : new Date(data.submittedAt),
           read: data.read,
@@ -75,69 +79,66 @@ export class EmailSubmissionService {
           // Convert readAt timestamp if it exists
           readAt: data.readAt?.toDate ? data.readAt.toDate() : (data.readAt ? new Date(data.readAt) : undefined)
         };
-      }) as EmailSubmission[];
+      }) as TourSubmission[];
       
-      console.log(`Successfully fetched ${submissions.length} submissions`);
+      console.log(`Successfully fetched ${submissions.length} tour submissions`);
       return submissions;
     } catch (error) {
-      console.error('Error getting email submissions:', error);
+      console.error('Error getting tour submissions:', error);
       if (error instanceof Error && error.message.includes('permission')) {
         throw new Error('Access denied. Please check Firestore security rules.');
       }
-      throw new Error(`Failed to fetch submissions: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Failed to get tour submissions: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
-  // Mark email as read
+  // Mark a submission as read
   static async markAsRead(submissionId: string): Promise<void> {
     try {
-      const docRef = doc(db, COLLECTIONS.EMAIL_SUBMISSIONS, submissionId);
-      await updateDoc(docRef, { read: true });
-      console.log('Email marked as read:', submissionId);
+      const docRef = doc(db, COLLECTIONS.TOUR_SUBMISSIONS, submissionId);
+      await updateDoc(docRef, {
+        read: true,
+        readAt: new Date()
+      });
+      console.log('Tour submission marked as read:', submissionId);
     } catch (error) {
-      console.error('Error marking email as read:', error);
-      throw new Error(`Failed to mark as read: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error('Error marking tour submission as read:', error);
+      throw new Error(`Failed to mark tour submission as read: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
-  // Delete email submission
+  // Delete a submission
   static async deleteSubmission(submissionId: string): Promise<void> {
     try {
-      const docRef = doc(db, COLLECTIONS.EMAIL_SUBMISSIONS, submissionId);
+      const docRef = doc(db, COLLECTIONS.TOUR_SUBMISSIONS, submissionId);
       await deleteDoc(docRef);
-      console.log('Email submission deleted:', submissionId);
+      console.log('Tour submission deleted:', submissionId);
     } catch (error) {
-      console.error('Error deleting email submission:', error);
-      throw new Error(`Failed to delete submission: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error('Error deleting tour submission:', error);
+      throw new Error(`Failed to delete tour submission: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
-  // Get unread count
+  // Get count of unread submissions
   static async getUnreadCount(): Promise<number> {
     try {
+      console.log('Fetching unread tour submissions count...');
       const q = query(
-        collection(db, COLLECTIONS.EMAIL_SUBMISSIONS),
-        orderBy('read', 'asc')
+        collection(db, COLLECTIONS.TOUR_SUBMISSIONS),
+        orderBy('submittedAt', 'desc')
       );
       const querySnapshot = await getDocs(q);
       
-      const unreadCount = querySnapshot.docs.filter(doc => !doc.data().read).length;
-      console.log('Unread count:', unreadCount);
+      const unreadCount = querySnapshot.docs.filter(doc => {
+        const data = doc.data();
+        return !data.read;
+      }).length;
+      
+      console.log(`Found ${unreadCount} unread tour submissions`);
       return unreadCount;
     } catch (error) {
-      console.error('Error getting unread count:', error);
-      return 0; // Return 0 on error to prevent breaking the UI
+      console.error('Error getting unread tour submissions count:', error);
+      throw new Error(`Failed to get unread tour submissions count: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
-}
-
-// Export commonly used Firestore functions
-export {
-  collection,
-  doc,
-  getDocs,
-  addDoc,
-  deleteDoc,
-  query,
-  orderBy
-}; 
+} 

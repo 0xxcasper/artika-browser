@@ -1,0 +1,248 @@
+.date-picker-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+
+  .date-picker-modal {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+
+    .date-picker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+
+      .month-year {
+        margin: 0;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 500;
+        color: #111827;
+        text-transform: capitalize;
+      }
+
+      .nav-button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: #6b7280;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background: #f3f4f6;
+          color: #374151;
+        }
+      }
+    }
+
+    .date-picker-body {
+      padding: 0 20px;
+
+      .weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.5rem;
+        height: 32px;
+        margin-bottom: 20px;
+
+        .weekday {
+          text-align: center;
+          font-size: 14px;
+          font-weight: 400;
+          padding: 0.5rem;
+
+          &:nth-child(1), &:nth-child(7) {
+            color: rgba(243, 106, 106, 1);
+          }
+
+          &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+            color: rgba(18, 18, 18, 1);
+          }
+        }
+      }
+
+      .days-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.25rem;
+
+        .day-cell {
+          aspect-ratio: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 400;
+          transition: all 0.2s ease;
+          border: 2px solid transparent;
+
+          &:hover:not(.empty):not(.past) {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+            color: #111827;
+          }
+
+          &.empty {
+            cursor: default;
+          }
+
+          &.today {
+            color: rgba(88, 168, 242, 1);
+            font-weight: 600;
+            background: transparent;
+          }
+
+          &.selected {
+            background: #64603C;
+            color: white;
+            font-weight: 600;
+            border-color: #52502f;
+          }
+
+          &.past {
+            color: #d1d5db;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+
+    .date-picker-footer {
+      display: flex;
+      gap: 1rem;
+      padding: 20px;
+
+      .cancel-button,
+      .confirm-button {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+
+      .cancel-button {
+        background: white;
+        border: 1px solid #d1d5db;
+        color: #374151;
+
+        &:hover:not(:disabled) {
+          background: #f9fafb;
+          border-color: #9ca3af;
+        }
+      }
+
+      .confirm-button {
+        background: #64603C;
+        border: 1px solid #64603C;
+        color: white;
+
+        &:hover:not(:disabled) {
+          background: #52502f;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .date-picker-overlay {
+    padding: 0.5rem;
+
+    .date-picker-modal {
+      .date-picker-header {
+        padding: 1rem 1rem 0.5rem;
+
+        .month-year {
+          font-size: 1.125rem;
+        }
+
+        .nav-button {
+          width: 36px;
+          height: 36px;
+          font-size: 1.25rem;
+        }
+      }
+
+      .date-picker-body {
+        padding: 0.5rem 1rem;
+
+        .weekdays {
+          .weekday {
+            font-size: 0.75rem;
+            padding: 0.25rem;
+          }
+        }
+
+        .days-grid {
+          .day-cell {
+            font-size: 0.75rem;
+          }
+        }
+      }
+
+      .date-picker-footer {
+        padding: 0.5rem 1rem 1rem;
+
+        .cancel-button,
+        .confirm-button {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+} 

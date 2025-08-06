@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { EmailSubmission } from '@/libs/firestore';
-import { useEmailSubmissions, useUnreadCount } from '@/hooks/useFirestore';
+import { TourSubmission } from '@/libs/firestore';
+import { useTourSubmissions, useTourUnreadCount } from '@/hooks/useFirestore';
 import './styles.scss';
 
 type TimeFilter = 'all' | '24h' | 'week' | 'month' | '3months';
@@ -28,32 +28,32 @@ const parseDate = (date: Date | any): Date => {
 };
 
 export default function AdminPage() {
-  const [filteredSubmissions, setFilteredSubmissions] = useState<EmailSubmission[]>([]);
+  const [filteredSubmissions, setFilteredSubmissions] = useState<TourSubmission[]>([]);
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [showNoteModal, setShowNoteModal] = useState(false);
-  const [selectedSubmission, setSelectedSubmission] = useState<EmailSubmission | null>(null);
+  const [selectedSubmission, setSelectedSubmission] = useState<TourSubmission | null>(null);
   const [noteMessage, setNoteMessage] = useState('');
   const [noteLoading, setNoteLoading] = useState(false);
 
-  // Use the new hooks
+  // Use the tour submission hooks
   const { 
-    data: submissions, 
+    data: tourSubmissions, 
     loading, 
     error, 
     refetch,
     updateDocument, 
     deleteDocument 
-  } = useEmailSubmissions();
+  } = useTourSubmissions();
 
-  const { count: unreadCount, refetch: refetchUnreadCount } = useUnreadCount();
+  const { count: unreadCount, refetch: refetchUnreadCount } = useTourUnreadCount();
 
   // Filter and search submissions
   useEffect(() => {
-    if (!submissions) return;
+    if (!tourSubmissions) return;
 
-    let filtered = submissions;
+    let filtered = tourSubmissions;
 
     // Apply status filter (read/unread)
     if (statusFilter === 'unread') {
@@ -84,13 +84,8 @@ export default function AdminPage() {
           cutoffDate = new Date(0); // Beginning of time
       }
 
-      console.log('Time filter:', timeFilter);
-      console.log('Cutoff date:', cutoffDate);
-      
       filtered = filtered.filter(sub => {
-        // Since we now convert dates in the service, submittedAt should be a Date object
         const submissionDate = sub.submittedAt instanceof Date ? sub.submittedAt : parseDate(sub.submittedAt);
-        console.log('Submission date:', submissionDate, 'Original:', sub.submittedAt);
         return submissionDate >= cutoffDate;
       });
     }
@@ -100,15 +95,15 @@ export default function AdminPage() {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(sub => 
         sub.email.toLowerCase().includes(term) ||
-        (sub.name && sub.name.toLowerCase().includes(term)) ||
-        (sub.message && sub.message.toLowerCase().includes(term))
+        sub.name.toLowerCase().includes(term) ||
+        sub.phone.toLowerCase().includes(term)
       );
     }
 
     setFilteredSubmissions(filtered);
-  }, [submissions, statusFilter, timeFilter, searchTerm]);
+  }, [tourSubmissions, statusFilter, timeFilter, searchTerm]);
 
-  const handleMarkAsRead = (submission: EmailSubmission) => {
+  const handleMarkAsRead = (submission: TourSubmission) => {
     setSelectedSubmission(submission);
     setNoteMessage('');
     setShowNoteModal(true);
@@ -147,7 +142,7 @@ export default function AdminPage() {
 
   const handleMarkAllAsRead = async () => {
     try {
-      const unreadSubmissions = submissions?.filter(sub => !sub.read) || [];
+      const unreadSubmissions = tourSubmissions?.filter(sub => !sub.read) || [];
       await Promise.all(
         unreadSubmissions.map(sub => updateDocument(sub.id, { 
           read: true,
@@ -163,7 +158,7 @@ export default function AdminPage() {
   };
 
   const handleDelete = async (submissionId: string) => {
-    if (!confirm('Are you sure you want to delete this submission?')) {
+    if (!confirm('Are you sure you want to delete this tour request?')) {
       return;
     }
 
@@ -171,8 +166,8 @@ export default function AdminPage() {
       await deleteDocument(submissionId);
       await refetchUnreadCount();
     } catch (err) {
-      console.error('Error deleting submission:', err);
-      alert('Failed to delete submission');
+      console.error('Error deleting tour request:', err);
+      alert('Failed to delete tour request');
     }
   };
 
@@ -210,6 +205,31 @@ export default function AdminPage() {
     });
   };
 
+  const formatTourDate = (date: Date | any) => {
+    let dateObj: Date;
+    
+    if (date instanceof Date) {
+      dateObj = date;
+    } else if (date && typeof date === 'object' && date.toDate) {
+      dateObj = date.toDate();
+    } else if (date && typeof date === 'string') {
+      dateObj = new Date(date);
+    } else if (date && typeof date === 'number') {
+      dateObj = new Date(date);
+    } else {
+      return 'Invalid Date';
+    }
+
+    if (isNaN(dateObj.getTime())) {
+      return 'Invalid Date';
+    }
+
+    return dateObj.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
 
   const getFilteredStats = () => {
     const total = filteredSubmissions.length;
@@ -223,7 +243,7 @@ export default function AdminPage() {
       <div className="admin-page">
         <div className="loading-container">
           <div className="loading-spinner"></div>
-          <p>Loading submissions...</p>
+          <p>Loading tour requests...</p>
         </div>
       </div>
     );
@@ -249,7 +269,7 @@ export default function AdminPage() {
     <div className="admin-page">
       <div className="admin-header">
         <div className="header-content">
-          <h1>Email Submissions</h1>
+          <h1>Tour Requests Management</h1>
           <div className="admin-stats">
             <span className="stat-item">
               <span className="stat-label">Total:</span>
@@ -313,7 +333,7 @@ export default function AdminPage() {
         <div className="search-controls">
           <input
             type="text"
-            placeholder="Search by email, name, or message..."
+            placeholder="Search by name, phone, or email..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
@@ -321,10 +341,10 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {!submissions || submissions.length === 0 ? (
+      {!tourSubmissions || tourSubmissions.length === 0 ? (
         <div className="empty-state">
-          <h3>No submissions yet</h3>
-          <p>Email submissions will appear here once users start submitting forms.</p>
+          <h3>No tour requests yet</h3>
+          <p>Tour requests will appear here once users start submitting forms.</p>
         </div>
       ) : filteredSubmissions.length === 0 ? (
         <div className="empty-state">
@@ -336,10 +356,11 @@ export default function AdminPage() {
           <table className="submissions-table">
             <thead>
               <tr>
-                <th>Email</th>
                 <th>Name</th>
-                <th>Message</th>
-                <th>Date</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Tour Date</th>
+                <th>Submitted</th>
                 <th>Status</th>
                 <th>Note</th>
                 <th>Actions</th>
@@ -348,16 +369,17 @@ export default function AdminPage() {
             <tbody>
               {filteredSubmissions.map((submission) => (
                 <tr key={submission.id} className={!submission.read ? 'unread-row' : ''}>
+                  <td className="name-cell">
+                    <span className="name-text">{submission.name || 'Tour Request'}</span>
+                  </td>
+                  <td className="phone-cell">
+                    <span className="phone-text">{submission.phone}</span>
+                  </td>
                   <td className="email-cell">
                     <span className="email-text">{submission.email}</span>
                   </td>
-                  <td className="name-cell">
-                    {submission.name || '-'}
-                  </td>
-                  <td className="message-cell">
-                    <span className="message-text">
-                      {submission.message || '-'}
-                    </span>
+                  <td className="tour-date-cell">
+                    {formatTourDate(submission.tourDate)}
                   </td>
                   <td className="date-cell">
                     {formatDate(submission.submittedAt)}
@@ -407,7 +429,7 @@ export default function AdminPage() {
 
       {filteredSubmissions.length > 0 && (
         <div className="results-info">
-          Showing {filteredSubmissions.length} of {submissions?.length || 0} submissions
+          Showing {filteredSubmissions.length} of {tourSubmissions?.length || 0} tour requests
         </div>
       )}
 
@@ -421,7 +443,9 @@ export default function AdminPage() {
             </div>
             <div className="modal-content">
               <p className="modal-subtitle">
-                Marking as read: <strong>{selectedSubmission?.email}</strong>
+                Marking as read: <strong>
+                  {selectedSubmission?.name === 'Tour Request' ? 'Tour Request' : selectedSubmission?.name} - {selectedSubmission?.phone}
+                </strong>
               </p>
               <div className="note-input-group">
                 <label htmlFor="note-input">Note Message (Required):</label>
@@ -429,7 +453,7 @@ export default function AdminPage() {
                   id="note-input"
                   value={noteMessage}
                   onChange={(e) => setNoteMessage(e.target.value)}
-                  placeholder="Enter your note about this submission..."
+                  placeholder="Enter your note about this tour request..."
                   rows={4}
                   className="note-textarea"
                   disabled={noteLoading}
