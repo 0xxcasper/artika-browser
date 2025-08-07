@@ -595,6 +595,337 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 /**
+ * Content for Forest Bathing documents
+ */
+interface ForestBathingDocumentData {
+  /**
+   * Hero Title field in *Forest Bathing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Forest bathing hero title
+   * - **API ID Path**: forest_bathing.hero_title
+   * - **Tab**: Hero Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  hero_title: prismic.KeyTextField;
+
+  /**
+   * Hero Subtitle field in *Forest Bathing*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Forest bathing hero subtitle
+   * - **API ID Path**: forest_bathing.hero_subtitle
+   * - **Tab**: Hero Section
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_subtitle: prismic.RichTextField;
+
+  /**
+   * Hero Background Image field in *Forest Bathing*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forest_bathing.hero_background_image
+   * - **Tab**: Hero Section
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_background_image: prismic.ImageField<never>;
+
+  /**
+   * Hero Logo field in *Forest Bathing*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forest_bathing.hero_logo
+   * - **Tab**: Hero Section
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_logo: prismic.ImageField<never>;
+
+  /**
+   * About Title field in *Forest Bathing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Forest bathing about title
+   * - **API ID Path**: forest_bathing.about_title
+   * - **Tab**: About Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_title: prismic.KeyTextField;
+
+  /**
+   * About Description field in *Forest Bathing*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Forest bathing about description
+   * - **API ID Path**: forest_bathing.about_description
+   * - **Tab**: About Section
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  about_description: prismic.RichTextField;
+
+  /**
+   * About Button Text field in *Forest Bathing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: About section button text
+   * - **API ID Path**: forest_bathing.about_button_text
+   * - **Tab**: About Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_button_text: prismic.KeyTextField;
+
+  /**
+   * About Button Link field in *Forest Bathing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: About section button link
+   * - **API ID Path**: forest_bathing.about_button_link
+   * - **Tab**: About Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_button_link: prismic.KeyTextField;
+
+  /**
+   * Split Banner Sections field in *Forest Bathing*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forest_bathing.split_banner_sections[]
+   * - **Tab**: Split Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  split_banner_sections: prismic.GroupField<
+    Simplify<ForestBathingDocumentDataSplitBannerSectionsItem>
+  >;
+
+  /**
+   * Focus Title field in *Forest Bathing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Focus section title
+   * - **API ID Path**: forest_bathing.focus_title
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_title: prismic.KeyTextField;
+
+  /**
+   * Focus Description field in *Forest Bathing*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Focus section description
+   * - **API ID Path**: forest_bathing.focus_description
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  focus_description: prismic.RichTextField;
+
+  /**
+   * Focus Button Text field in *Forest Bathing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Focus section button text
+   * - **API ID Path**: forest_bathing.focus_button_text
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_button_text: prismic.KeyTextField;
+
+  /**
+   * Focus Button Link field in *Forest Bathing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Focus section button link
+   * - **API ID Path**: forest_bathing.focus_button_link
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_button_link: prismic.KeyTextField;
+
+  /**
+   * Focus Background Image field in *Forest Bathing*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forest_bathing.focus_background_image
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  focus_background_image: prismic.ImageField<never>;
+
+  /**
+   * Focus Aspect Ratio field in *Forest Bathing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Aspect ratio
+   * - **API ID Path**: forest_bathing.focus_aspect_ratio
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_aspect_ratio: prismic.KeyTextField;
+
+  /**
+   * Second Split Banner Sections field in *Forest Bathing*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forest_bathing.second_split_banner_sections[]
+   * - **Tab**: Second Split Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  second_split_banner_sections: prismic.GroupField<
+    Simplify<ForestBathingDocumentDataSecondSplitBannerSectionsItem>
+  >;
+}
+
+/**
+ * Item in *Forest Bathing → Split Banner Sections*
+ */
+export interface ForestBathingDocumentDataSplitBannerSectionsItem {
+  /**
+   * Section Title field in *Forest Bathing → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Section title
+   * - **API ID Path**: forest_bathing.split_banner_sections[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Section Description field in *Forest Bathing → Split Banner Sections*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Section description
+   * - **API ID Path**: forest_bathing.split_banner_sections[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * CTA Text field in *Forest Bathing → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Call to action text
+   * - **API ID Path**: forest_bathing.split_banner_sections[].cta_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *Forest Bathing → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Call to action link
+   * - **API ID Path**: forest_bathing.split_banner_sections[].cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_link: prismic.KeyTextField;
+
+  /**
+   * Section Image field in *Forest Bathing → Split Banner Sections*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forest_bathing.split_banner_sections[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Image Alt Text field in *Forest Bathing → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Image alt text
+   * - **API ID Path**: forest_bathing.split_banner_sections[].image_alt
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image_alt: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Forest Bathing → Second Split Banner Sections*
+ */
+export interface ForestBathingDocumentDataSecondSplitBannerSectionsItem {
+  /**
+   * Section Title field in *Forest Bathing → Second Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Section title
+   * - **API ID Path**: forest_bathing.second_split_banner_sections[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Section Description field in *Forest Bathing → Second Split Banner Sections*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Section description
+   * - **API ID Path**: forest_bathing.second_split_banner_sections[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * CTA Text field in *Forest Bathing → Second Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Call to action text
+   * - **API ID Path**: forest_bathing.second_split_banner_sections[].cta_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *Forest Bathing → Second Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Call to action link
+   * - **API ID Path**: forest_bathing.second_split_banner_sections[].cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_link: prismic.KeyTextField;
+
+  /**
+   * Section Image field in *Forest Bathing → Second Split Banner Sections*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forest_bathing.second_split_banner_sections[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Image Alt Text field in *Forest Bathing → Second Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Image alt text
+   * - **API ID Path**: forest_bathing.second_split_banner_sections[].image_alt
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image_alt: prismic.KeyTextField;
+}
+
+/**
+ * Forest Bathing document from Prismic
+ *
+ * - **API ID**: `forest_bathing`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ForestBathingDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ForestBathingDocumentData>,
+    "forest_bathing",
+    Lang
+  >;
+
+/**
  * Item in *Navigation Menu → Menu Items → Submenus*
  */
 export interface NavigationMenuDocumentDataItemsSubsItem {
@@ -739,6 +1070,7 @@ export type AllDocumentTypes =
   | ContentItemDocument
   | DetailDocument
   | HomepageDocument
+  | ForestBathingDocument
   | NavigationMenuDocument;
 
 /**
@@ -908,6 +1240,10 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataSplitBannerSectionsItem,
       HomepageDocumentDataGridImagesItemsItem,
+      ForestBathingDocument,
+      ForestBathingDocumentData,
+      ForestBathingDocumentDataSplitBannerSectionsItem,
+      ForestBathingDocumentDataSecondSplitBannerSectionsItem,
       NavigationMenuDocument,
       NavigationMenuDocumentData,
       NavigationMenuDocumentDataItemsSubsItem,

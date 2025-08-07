@@ -1,0 +1,20 @@
+@import '../../styles/variables';
+@import '../../styles/fonts';
+
+// Forest bathing page styles
+.forest-bathing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 150px;
+
+  @media (max-width: $breakpoint-md) {
+    gap: 100px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    gap: 80px;
+  }
+}

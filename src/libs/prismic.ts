@@ -145,6 +145,39 @@ export type HomepageDocument = prismic.PrismicDocumentWithUID<{
   }>;
 }>;
 
+export type ForestBathingDocument = prismic.PrismicDocumentWithUID<{
+  hero_title: prismic.TitleField;
+  hero_subtitle: prismic.RichTextField;
+  hero_background_image: prismic.ImageField;
+  hero_logo: prismic.ImageField;
+  about_title: prismic.TitleField;
+  about_description: prismic.RichTextField;
+  about_button_text: prismic.KeyTextField;
+  about_button_link: prismic.KeyTextField;
+  split_banner_sections: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    description: prismic.RichTextField;
+    cta_text: prismic.KeyTextField;
+    cta_link: prismic.KeyTextField;
+    image: prismic.ImageField;
+    image_alt: prismic.KeyTextField;
+  }>;
+  focus_title: prismic.TitleField;
+  focus_description: prismic.RichTextField;
+  focus_button_text: prismic.KeyTextField;
+  focus_button_link: prismic.KeyTextField;
+  focus_background_image: prismic.ImageField;
+  focus_aspect_ratio: prismic.KeyTextField;
+  second_split_banner_sections: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    description: prismic.RichTextField;
+    cta_text: prismic.KeyTextField;
+    cta_link: prismic.KeyTextField;
+    image: prismic.ImageField;
+    image_alt: prismic.KeyTextField;
+  }>;
+}>;
+
 export type NavigationMenuDocument = prismic.PrismicDocumentWithUID<{
   items: prismic.GroupField<{
     label: prismic.KeyTextField;

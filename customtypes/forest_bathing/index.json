@@ -1,0 +1,232 @@
+{
+  "id": "forest_bathing",
+  "label": "Forest Bathing",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Hero Section": {
+      "hero_title": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Title",
+          "placeholder": "Forest bathing hero title"
+        }
+      },
+      "hero_subtitle": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Subtitle",
+          "placeholder": "Forest bathing hero subtitle",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      },
+      "hero_background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Background Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "hero_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    },
+    "About Section": {
+      "about_title": {
+        "type": "Text",
+        "config": {
+          "label": "About Title",
+          "placeholder": "Forest bathing about title"
+        }
+      },
+      "about_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Description",
+          "placeholder": "Forest bathing about description",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      },
+      "about_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "About Button Text",
+          "placeholder": "About section button text"
+        }
+      },
+      "about_button_link": {
+        "type": "Text",
+        "config": {
+          "label": "About Button Link",
+          "placeholder": "About section button link"
+        }
+      }
+    },
+    "Split Banner Section": {
+      "split_banner_sections": {
+        "type": "Group",
+        "config": {
+          "label": "Split Banner Sections",
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Section Title",
+                "placeholder": "Section title"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Description",
+                "placeholder": "Section description",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "cta_text": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Text",
+                "placeholder": "Call to action text"
+              }
+            },
+            "cta_link": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Link",
+                "placeholder": "Call to action link"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Section Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "image_alt": {
+              "type": "Text",
+              "config": {
+                "label": "Image Alt Text",
+                "placeholder": "Image alt text"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Focus Banner Section": {
+      "focus_title": {
+        "type": "Text",
+        "config": {
+          "label": "Focus Title",
+          "placeholder": "Focus section title"
+        }
+      },
+      "focus_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Focus Description",
+          "placeholder": "Focus section description",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      },
+      "focus_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Focus Button Text",
+          "placeholder": "Focus section button text"
+        }
+      },
+      "focus_button_link": {
+        "type": "Text",
+        "config": {
+          "label": "Focus Button Link",
+          "placeholder": "Focus section button link"
+        }
+      },
+      "focus_background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Focus Background Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "focus_aspect_ratio": {
+        "type": "Text",
+        "config": {
+          "label": "Aspect Ratio",
+          "placeholder": "Aspect ratio"
+        }
+      }
+    },
+    "Second Split Banner Section": {
+      "second_split_banner_sections": {
+        "type": "Group",
+        "config": {
+          "label": "Second Split Banner Sections",
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Section Title",
+                "placeholder": "Section title"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Description",
+                "placeholder": "Section description",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "cta_text": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Text",
+                "placeholder": "Call to action text"
+              }
+            },
+            "cta_link": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Link",
+                "placeholder": "Call to action link"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Section Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "image_alt": {
+              "type": "Text",
+              "config": {
+                "label": "Image Alt Text",
+                "placeholder": "Image alt text"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
