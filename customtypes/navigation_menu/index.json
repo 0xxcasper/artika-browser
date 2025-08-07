@@ -178,6 +178,143 @@
           },
           "label": "Validation Messages"
         }
+      },
+      "newsletter_title": {
+        "type": "Text",
+        "config": {
+          "label": "Newsletter Title",
+          "placeholder": "Get the Insights You Need, Straight to Your Inbox!"
+        }
+      },
+      "newsletter_email_placeholder": {
+        "type": "Text",
+        "config": {
+          "label": "Newsletter Email Placeholder",
+          "placeholder": "Email"
+        }
+      },
+      "newsletter_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Newsletter Button Text",
+          "placeholder": "Subscribe"
+        }
+      },
+      "newsletter_success_message": {
+        "type": "Text",
+        "config": {
+          "label": "Newsletter Success Message",
+          "placeholder": "Successfully subscribed! Thank you for signing up."
+        }
+      },
+      "newsletter_error_message": {
+        "type": "Text",
+        "config": {
+          "label": "Newsletter Error Message",
+          "placeholder": "An error occurred. Please try again."
+        }
+      },
+      "newsletter_validation_message": {
+        "type": "Text",
+        "config": {
+          "label": "Newsletter Validation Message",
+          "placeholder": "Please enter a valid email"
+        }
+      },
+      "footer_contact_title": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Contact Title",
+          "placeholder": "Contact"
+        }
+      },
+      "footer_contact_address": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "address_line": {
+              "type": "Text",
+              "config": {
+                "label": "Address Line",
+                "placeholder": "Ta Phi Village"
+              }
+            }
+          },
+          "label": "Contact Address"
+        }
+      },
+      "footer_contact_info": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "contact_item": {
+              "type": "Text",
+              "config": {
+                "label": "Contact Item",
+                "placeholder": "info@artikasapa.com"
+              }
+            }
+          },
+          "label": "Contact Information"
+        }
+      },
+      "footer_artika_title": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Artika Title",
+          "placeholder": "Artika"
+        }
+      },
+      "footer_social_title": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Social Title",
+          "placeholder": "FOLLOW US"
+        }
+      },
+      "footer_social_links": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "instagram_url": {
+              "type": "Text",
+              "config": {
+                "label": "Instagram URL",
+                "placeholder": "https://www.instagram.com/artikasapa"
+              }
+            },
+            "facebook_url": {
+              "type": "Text",
+              "config": {
+                "label": "Facebook URL",
+                "placeholder": "https://www.facebook.com/artikasapa"
+              }
+            }
+          },
+          "label": "Social Media Links"
+        }
+      },
+      "footer_privacy_policy": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "privacy_policy_text": {
+              "type": "Text",
+              "config": {
+                "label": "Privacy Policy Text",
+                "placeholder": "PRIVACY POLICY"
+              }
+            },
+            "privacy_policy_link": {
+              "type": "Text",
+              "config": {
+                "label": "Privacy Policy Link",
+                "placeholder": "/privacy-policy"
+              }
+            }
+          },
+          "label": "Privacy Policy"
+        }
       }
     }
   }

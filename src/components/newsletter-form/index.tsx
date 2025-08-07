@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { NewsletterSubscriptionService } from '@/libs/firestore';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { usePreloader } from '@/contexts/PreloaderContext';
 import './styles.scss';
 
 interface NewsletterFormProps {
@@ -11,6 +12,7 @@ interface NewsletterFormProps {
 
 export default function NewsletterForm({ className = '' }: NewsletterFormProps) {
   const { language } = useLanguage();
+  const { newsletterForm } = usePreloader();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -20,7 +22,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
     e.preventDefault();
     
     if (!email || !email.includes('@')) {
-      setError(language === 'vi' ? 'Vui lòng nhập email hợp lệ' : 'Please enter a valid email');
+      setError(newsletterForm.newsletter_validation_message);
       return;
     }
 
@@ -42,7 +44,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
       }, 3000);
     } catch (error) {
       console.error('Error subscribing to newsletter:', error);
-      setError(language === 'vi' ? 'Có lỗi xảy ra. Vui lòng thử lại.' : 'An error occurred. Please try again.');
+      setError(newsletterForm.newsletter_error_message);
     } finally {
       setLoading(false);
     }
@@ -52,10 +54,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
     <div className={`newsletter-form ${className}`}>
       <div className="newsletter-content">
         <h2 className="newsletter-title">
-          {language === 'vi' 
-            ? 'Nhận thông tin cập nhật mới nhất từ chúng tôi'
-            : 'Get the Insights You Need, Straight to Your Inbox!'
-          }
+          {newsletterForm.newsletter_title}
         </h2>
         
         <form onSubmit={handleSubmit} className="newsletter-form-container">
@@ -64,7 +63,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder={language === 'vi' ? 'Email' : 'Email'}
+              placeholder={newsletterForm.newsletter_email_placeholder}
               className="newsletter-input"
               disabled={loading}
               required
@@ -75,8 +74,8 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
               disabled={loading}
             >
               {loading 
-                ? (language === 'vi' ? 'Đang gửi...' : 'Subscribing...')
-                : (language === 'vi' ? 'Đăng ký' : 'Subscribe')
+                ? `...${newsletterForm.newsletter_button_text}`
+                : newsletterForm.newsletter_button_text
               }
             </button>
           </div>
@@ -89,10 +88,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
           
           {success && (
             <div className="newsletter-success">
-              {language === 'vi' 
-                ? 'Đăng ký thành công! Cảm ơn bạn đã đăng ký.'
-                : 'Successfully subscribed! Thank you for signing up.'
-              }
+              {newsletterForm.newsletter_success_message}
             </div>
           )}
         </form>

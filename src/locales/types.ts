@@ -36,10 +36,49 @@ export type ScheduleTourFormData = {
   schedule_tour_validation_messages: ScheduleTourValidationMessages;
 };
 
+export type NewsletterFormData = {
+  newsletter_title: string;
+  newsletter_email_placeholder: string;
+  newsletter_button_text: string;
+  newsletter_success_message: string;
+  newsletter_error_message: string;
+  newsletter_validation_message: string;
+};
+
+export type FooterContactAddress = {
+  address_line: string;
+};
+
+export type FooterContactInfo = {
+  contact_item: string;
+};
+
+export type FooterSocialLinks = {
+  instagram_url: string;
+  facebook_url: string;
+};
+
+export type FooterPrivacyPolicy = {
+  privacy_policy_text: string;
+  privacy_policy_link: string;
+};
+
+export type FooterData = {
+  footer_contact_title: string;
+  footer_contact_address: FooterContactAddress[];
+  footer_contact_info: FooterContactInfo[];
+  footer_artika_title: string;
+  footer_social_title: string;
+  footer_social_links: FooterSocialLinks;
+  footer_privacy_policy: FooterPrivacyPolicy;
+};
+
 export type NavigationData = {
   items: NavigationMenu[];
   cta: NavigationCTA;
   scheduleTourForm?: ScheduleTourFormData;
+  newsletterForm?: NewsletterFormData;
+  footerData?: FooterData;
 };
 
 export enum SubMenuType {

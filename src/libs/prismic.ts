@@ -173,6 +173,29 @@ export type NavigationMenuDocument = prismic.PrismicDocumentWithUID<{
     schedule_tour_email_invalid: prismic.KeyTextField;
     schedule_tour_date_future: prismic.KeyTextField;
   }>;
+  newsletter_title: prismic.KeyTextField;
+  newsletter_email_placeholder: prismic.KeyTextField;
+  newsletter_button_text: prismic.KeyTextField;
+  newsletter_success_message: prismic.KeyTextField;
+  newsletter_error_message: prismic.KeyTextField;
+  newsletter_validation_message: prismic.KeyTextField;
+  footer_contact_title: prismic.KeyTextField;
+  footer_contact_address: prismic.GroupField<{
+    address_line: prismic.KeyTextField;
+  }>;
+  footer_contact_info: prismic.GroupField<{
+    contact_item: prismic.KeyTextField;
+  }>;
+  footer_artika_title: prismic.KeyTextField;
+  footer_social_title: prismic.KeyTextField;
+  footer_social_links: prismic.GroupField<{
+    instagram_url: prismic.KeyTextField;
+    facebook_url: prismic.KeyTextField;
+  }>;
+  footer_privacy_policy: prismic.GroupField<{
+    privacy_policy_text: prismic.KeyTextField;
+    privacy_policy_link: prismic.KeyTextField;
+  }>;
 }>;
 
 export type CollectionDocument = prismic.PrismicDocumentWithUID<{

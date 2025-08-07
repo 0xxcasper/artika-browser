@@ -3,13 +3,15 @@
 import React, { useState, useEffect, useRef, createContext, useContext, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigation } from '@/hooks/useNavigation';
-import { NavigationMenu, NavigationCTA, ScheduleTourFormData } from '@/locales/types';
+import { NavigationMenu, NavigationCTA, ScheduleTourFormData, FooterData, NewsletterFormData } from '@/locales/types';
 import { Box } from '@chakra-ui/react';
 
 interface PreloaderContextType {
   menus: NavigationMenu[];
   cta: NavigationCTA;
   scheduleTourForm?: ScheduleTourFormData;
+  newsletterForm: NewsletterFormData;
+  footerData: FooterData;
 }
 
 const PreloaderContext = createContext<PreloaderContextType | undefined>(undefined);
@@ -48,7 +50,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasStarted = useRef(false);
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
-  const { menus, cta, scheduleTourForm }= useNavigation();
+  const { menus, cta, scheduleTourForm, newsletterForm, footerData } = useNavigation();
   
   const _updateAssetsLoaded = () => {
     setTimeout(() => {
@@ -224,7 +226,9 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
     menus,
     cta,
     scheduleTourForm,
-  }), [menus, cta, scheduleTourForm]);
+    newsletterForm,
+    footerData,
+  }), [menus, cta, scheduleTourForm, newsletterForm, footerData]);
 
   return (
     <PreloaderContext.Provider value={contextValue}>

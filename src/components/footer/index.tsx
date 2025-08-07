@@ -7,7 +7,7 @@ import { usePreloader } from '@/contexts/PreloaderContext';
 
 const Footer = () => {
   const { language } = useLanguage();
-  const { menus } = usePreloader();
+  const { menus, footerData } = usePreloader();
 
   // Helper function to add locale to href (learned from navigation component)
   const getLocalizedHref = (href: string) => {
@@ -42,12 +42,6 @@ const Footer = () => {
     );
   };
 
-  const renderText = (params: {title: string}) => {
-    const { title } = params;
-    return (
-      <Text className="description description__text">{title}</Text>
-    );
-  };
 
   return (
     <div className="footer-container">
@@ -55,24 +49,28 @@ const Footer = () => {
           <NewsletterForm />        
           <div className="block">
             <Text className="title">
-              Contact
+              {footerData.footer_contact_title}
             </Text>
             <Flex flexDirection="column" gap={{ base: '16px', md: '26px' }}>
               <div className="box_description">
-                {renderText({ title: 'Ta Phi Village' })}
-                {renderText({ title: 'Sa Pa District' })}
-                {renderText({ title: 'Lao Cai Province' })}
+                {footerData.footer_contact_address.map((address, index) => (
+                  <Text key={index} className="description description__text">
+                    {address.address_line}
+                  </Text>
+                ))}
               </div>
               <div className="box_description">
-                {renderText({ title: 'info@artikasapa.com' })}
-                {renderText({ title: 'artikasapa.com' })}
-                {renderText({ title: '+84 8899963616' })}
+                {footerData.footer_contact_info.map((contact, index) => (
+                  <Text key={index} className="description description__text">
+                    {contact.contact_item}
+                  </Text>
+                ))}
               </div>  
             </Flex>
           </div>
           <div className="block">
             <Text className="title">
-              Artika
+              {footerData.footer_artika_title}
             </Text>
             <div className="box_description">
               {menus?.filter((menu) => menu.href !== '/' && !menu.subs?.length).map((menu) => (
@@ -87,19 +85,19 @@ const Footer = () => {
             <Image src="/ic-logo-name.svg" alt="Artika Logo" width="160px" height="29px" />
           </div>
           <div className="bottom-footer__social">
-            <Text className="bottom-footer__social-text">FOLLOW US</Text>
+            <Text className="bottom-footer__social-text">{footerData.footer_social_title}</Text>
             <div className="bottom-footer__social-icons">
-              <Link href="https://www.instagram.com/artikasapa" className="social-icon">
+              <Link href={footerData.footer_social_links.instagram_url} className="social-icon" isExternal>
                 <Image src="/icons/ic-instagram.svg" alt="Instagram" width="24px" height="24px" />
               </Link>
-              <Link href="https://www.facebook.com/artikasapa" className="social-icon">
+              <Link href={footerData.footer_social_links.facebook_url} className="social-icon" isExternal>
                 <Image src="/icons/ic-facebook.svg" alt="Facebook" width="24px" height="24px" />
               </Link>
             </div>
           </div>
           <div className="bottom-footer__privacy">
-            <Link href="/privacy-policy" className="bottom-footer__privacy-text">
-              PRIVACY POLICY
+            <Link href={getLocalizedHref(footerData.footer_privacy_policy.privacy_policy_link)} className="bottom-footer__privacy-text">
+              {footerData.footer_privacy_policy.privacy_policy_text}
             </Link>
           </div>
         </div>
