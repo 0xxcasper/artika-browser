@@ -80,17 +80,6 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          {/* <div className="block">
-            <Text className="title">Find us on</Text>
-            <Flex gap="12px"> 
-              <Link href="https://www.facebook.com/artikasapa" className="description description__link">
-                <Image src="/icons/ic-instagram.svg" alt="facebook" width="38px" height="38px" />
-              </Link>
-              <Link href="https://www.facebook.com/artikasapa" className="description description__link">
-                <Image src="/icons/ic-facebook.svg" alt="instagram" width="38px" height="38px" />
-              </Link>
-            </Flex>
-          </div> */}
       </div>
       <div className="bottom-footer">
         <div className="bottom-footer__content">

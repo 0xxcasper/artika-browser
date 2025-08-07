@@ -40,7 +40,7 @@
           transition: all 0.3s ease;
           
           &::placeholder {
-            color: #999;
+            color: $text-inverse;
             font-weight: 400;
           }
           
@@ -66,17 +66,18 @@
         }
         
         .newsletter-button {
+          @include font-secondary;
           height: 48px;
           padding: 0 2rem;
           border-radius: 100px;
           border: none;
           background: #fff;
-          font-family: var(--font-raleway);
           font-size: 1rem;
           font-weight: 500;
           cursor: pointer;
           transition: all 0.3s ease;
           white-space: nowrap;
+          color: $accent-primary;
           
           &:hover:not(:disabled) {
             opacity: 0.8;
