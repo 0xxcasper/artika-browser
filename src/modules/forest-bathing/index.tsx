@@ -77,7 +77,10 @@ export default function ForestBathingPage({ forestBathingData }: ForestBathingPa
         buttonLink={focusButtonLink}
         backgroundImage={focusBackgroundImage}
       />
-      <SplitBanner sections={secondSplitBannerSections} />
+      <SplitBanner sections={secondSplitBannerSections.map((section, index) => ({
+        ...section,
+        textFirst: index % 2 !== 0
+      }))} />
       <div />
     </div>
   );
