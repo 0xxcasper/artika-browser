@@ -151,7 +151,7 @@ export default function SplitBanner({
       initial="hidden"
       whileInView="visible"
       variants={containerVariants}
-      viewport={{ once: true, margin: '-30% 0px' }}
+      viewport={{ once: true, margin: '-50px' }}
     >
       {sections.map((section) => (
         <motion.div
