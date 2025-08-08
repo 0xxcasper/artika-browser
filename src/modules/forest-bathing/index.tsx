@@ -2,9 +2,16 @@ import Hero from '@/components/hero';
 import './styles.scss';
 import About from '@/components/about';
 import FocusBanner from '@/components/focus-banner';
-import SplitBanner, { SplitBannerSection } from '@/components/split-banner';
-import { asText, asImageUrl } from '@/libs/prismic-helpers';
+import SplitBanner from '@/components/split-banner';
+import GridImages from '@/components/grid-images';
 import { ForestBathingDocument } from '@/libs/prismic';
+import {
+  extractHeroData,
+  extractAboutData,
+  extractSplitBannerData,
+  extractFocusBannerData,
+  extractGridImagesData,
+} from '@/libs/prismic-helpers';
 
 interface ForestBathingPageProps {
   forestBathingData: ForestBathingDocument | null;
@@ -14,90 +21,54 @@ interface ForestBathingPageProps {
 export default function ForestBathingPage({
   forestBathingData,
 }: ForestBathingPageProps) {
-  // Hero section data
-  const heroTitle = asText(forestBathingData?.data?.hero_title) || '';
-  const heroSubtitle = asText(forestBathingData?.data?.hero_subtitle) || '';
-  const heroBackgroundImage =
-    asImageUrl(forestBathingData?.data?.hero_background_image) || '';
-
-  console.log('forestBathingData', forestBathingData?.data);
-
-  // About section data
-  const aboutTitle = asText(forestBathingData?.data?.about_title) || '';
-  const aboutDescription =
-    asText(forestBathingData?.data?.about_description) || '';
-  const aboutButton = forestBathingData?.data?.about_button_text || '';
-  const aboutButtonLink = forestBathingData?.data?.about_button_link || '';
-
-  // First Split Banner sections data
-  const splitBannerSections: Array<SplitBannerSection> =
-    forestBathingData?.data?.split_banner_sections?.map((section, index) => ({
-      id: `section-${index + 1}`,
-      title: asText(section.title) || `Section ${index + 1}`,
-      description: asText(section.description) || 'Description',
-      ctaText: section.cta_text || 'Learn More',
-      ctaLink: section.cta_link || '#',
-      image:
-        asImageUrl(section.image) ||
-        `/images/forest-bathing/section-${index + 1}.jpg`,
-      imageAlt: section.image_alt || `Section ${index + 1}`,
-      textFirst: index % 2 === 0,
-    })) || [];
-
-  // Focus Banner section data
-  const focusTitle = asText(forestBathingData?.data?.focus_title) || '';
-  const focusDescription =
-    asText(forestBathingData?.data?.focus_description) || '';
-  const focusButtonText = forestBathingData?.data?.focus_button_text || '';
-  const focusButtonLink = forestBathingData?.data?.focus_button_link || '';
-  const focusBackgroundImage =
-    asImageUrl(forestBathingData?.data?.focus_background_image) || '';
-
-  // Second Split Banner sections data
-  const secondSplitBannerSections: Array<SplitBannerSection> =
-    forestBathingData?.data?.second_split_banner_sections?.map(
-      (section, index) => ({
-        id: `second-section-${index + 1}`,
-        title: asText(section.title) || `Second Section ${index + 1}`,
-        description: asText(section.description) || 'Description',
-        ctaText: section.cta_text || 'Learn More',
-        ctaLink: section.cta_link || '#',
-        image:
-          asImageUrl(section.image) ||
-          `/images/forest-bathing/second-section-${index + 1}.jpg`,
-        imageAlt: section.image_alt || `Second Section ${index + 1}`,
-        textFirst: index % 2 === 0,
-      }),
-    ) || [];
+  const heroData = extractHeroData({ data: forestBathingData?.data });
+  const aboutData = extractAboutData({ data: forestBathingData?.data });
+  const splitBannerData = extractSplitBannerData({
+    sections: forestBathingData?.data?.split_banner_sections,
+    fallbackImagePath: '/images/forest-bathing/section',
+    sectionPrefix: 'section',
+  });
+  const focusBannerData = extractFocusBannerData({
+    data: forestBathingData?.data,
+  });
+  const secondSplitBannerData = extractSplitBannerData({
+    sections: forestBathingData?.data?.second_split_banner_sections,
+    fallbackImagePath: '/images/forest-bathing/second-section',
+    sectionPrefix: 'second-section',
+  });
+  const gridImagesData = extractGridImagesData({
+    data: forestBathingData?.data,
+    fallbackImagePath: '/images/forest-bathing/grid',
+  });
 
   return (
     <div className="forest-bathing-page">
       <Hero
-        title={heroTitle}
-        subtitle={heroSubtitle}
-        backgroundImage={heroBackgroundImage}
+        title={heroData.title}
+        subtitle={heroData.subtitle}
+        backgroundImage={heroData.backgroundImage}
       />
       <About
-        title={aboutTitle}
-        description={aboutDescription}
-        button={aboutButton}
-        buttonLink={aboutButtonLink}
+        title={aboutData.title}
+        description={aboutData.description}
+        button={aboutData.button}
+        buttonLink={aboutData.buttonLink}
       />
-      <SplitBanner sections={splitBannerSections} />
+      <SplitBanner sections={splitBannerData} />
       <FocusBanner
-        title={focusTitle}
-        description={focusDescription}
-        buttonText={focusButtonText}
-        buttonLink={focusButtonLink}
-        backgroundImage={focusBackgroundImage}
+        title={focusBannerData.title}
+        description={focusBannerData.description}
+        buttonText={focusBannerData.buttonText}
+        buttonLink={focusBannerData.buttonLink}
+        backgroundImage={focusBannerData.backgroundImage}
       />
       <SplitBanner
-        sections={secondSplitBannerSections.map((section, index) => ({
+        sections={secondSplitBannerData.map((section, index) => ({
           ...section,
           textFirst: index % 2 !== 0,
         }))}
       />
-      <div />
+      <GridImages title={gridImagesData.title} cards={gridImagesData.cards} />
     </div>
   );
 }

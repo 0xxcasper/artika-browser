@@ -28,11 +28,12 @@
   "prettier.enable": false,
   "editor.formatOnSave": false,
 
-  // Auto fix with ESLint on save
-  "editor.codeActionsOnSave": [
-    "source.addMissingImports",
-    "source.fixAll.eslint"
-  ],
+  // Auto fix with ESLint on save - including unused imports removal
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
 
   // Enable eslint for all supported languages
   "eslint.format.enable": true,

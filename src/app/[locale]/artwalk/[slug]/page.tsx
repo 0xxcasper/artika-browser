@@ -1,6 +1,7 @@
 import { fetchArtwalkCategory } from '@/libs/prismic-artwalk';
 import SlugArtwalkPage from '@/modules/artwalk/slug';
 import { notFound } from 'next/navigation';
+import { validateAndNormalizeLocale } from '@/libs/prismic-helpers';
 
 interface LocaleArtwalkSlugPageProps {
   params: {
@@ -14,20 +15,14 @@ export default async function LocaleArtwalkSlugPage({
 }: LocaleArtwalkSlugPageProps) {
   const { locale, slug } = params;
 
-  // Validate locale
-  if (!['en', 'vi'].includes(locale)) {
-    notFound();
-  }
+  const normalizedLocale = validateAndNormalizeLocale(locale);
 
   console.log('Artwalk page params:', { locale, slug });
 
   try {
     // Fetch from Prismic with locale
     console.log('Fetching fresh artwalk category data for:', slug, locale);
-    const categoryData = await fetchArtwalkCategory(
-      slug,
-      locale === 'vi' ? 'vi' : 'en-us',
-    );
+    const categoryData = await fetchArtwalkCategory(slug, normalizedLocale);
 
     console.log('artwalk category data', categoryData);
 

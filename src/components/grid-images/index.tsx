@@ -84,7 +84,7 @@ export default function GridImages({
       )}
       <div className="grid-images__container">
         <div className="grid-images__grid">
-          {cards.map((card, index) => (
+          {cards.map((card) => (
             <motion.div
               key={card.id}
               className={`grid-images__card ${card.hasOverlay ? 'grid-images__card--overlay' : ''}`}
