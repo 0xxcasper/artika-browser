@@ -15,7 +15,7 @@ export default function RootLayout({
   // Detect locale from URL
   const headersList = headers();
   const pathname = headersList.get('x-invoke-path') || '';
-  
+
   let locale = 'en'; // default
   if (pathname.startsWith('/vi/') || pathname === '/vi') {
     locale = 'vi';
@@ -26,7 +26,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
@@ -37,17 +41,22 @@ export default function RootLayout({
 
         {/* Google Fonts preconnect */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
 
-        
         {/* Google Fonts CSS - Only Playfair and Raleway */}
         {/* <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" /> */}
         {/* <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300;1,5..1200,300&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link> */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link>
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        ></link>
       </head>
-      <body>
-        {children}
-    </body>
+      <body>{children}</body>
     </html>
   );
-} 
+}

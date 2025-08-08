@@ -1,6 +1,6 @@
 'use client';
 
-import './styles.scss'; 
+import './styles.scss';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -23,26 +23,32 @@ function GalleryDetail({ text }: { text: string }) {
   const [expanded, setExpanded] = useState(false);
   const showReadMore = text.length > MAX_LENGTH;
 
-  const displayText = expanded || !showReadMore
-    ? text
-    : text.slice(0, MAX_LENGTH) + '...';
+  const displayText =
+    expanded || !showReadMore ? text : text.slice(0, MAX_LENGTH) + '...';
 
   return (
     <div className="description">
-        <motion.p
-          key={expanded ? 'expanded' : 'collapsed'}
-          className={`description__text${expanded ? ' expanded' : ''}`}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.8, ease: 'easeInOut' } }}
-          exit={{ opacity: 0, y: 30 }}
-          style={{ overflow: 'hidden' }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          {displayText}
-        </motion.p>
+      <motion.p
+        key={expanded ? 'expanded' : 'collapsed'}
+        className={`description__text${expanded ? ' expanded' : ''}`}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5, delay: 0.8, ease: 'easeInOut' },
+        }}
+        exit={{ opacity: 0, y: 30 }}
+        style={{ overflow: 'hidden' }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        {displayText}
+      </motion.p>
       {showReadMore && (
-        <button className="read-more-btn" onClick={() => setExpanded((v) => !v)}>
+        <button
+          className="read-more-btn"
+          onClick={() => setExpanded((v) => !v)}
+        >
           {expanded ? 'Show less' : 'Read more'}
         </button>
       )}
@@ -59,7 +65,7 @@ const GalleryDetailPage = ({ contentData, lang }: GalleryDetailPageProps) => {
     slidesToScroll: 1,
     autoplay: false,
     autoplaySpeed: 5000,
-    pauseOnHover: true
+    pauseOnHover: true,
   };
 
   // Get content info from Prismic data
@@ -77,24 +83,26 @@ const GalleryDetailPage = ({ contentData, lang }: GalleryDetailPageProps) => {
         transition={{ duration: 1, ease: 'easeOut' }}
       >
         <Slider {...settings}>
-          {(banners?.length === 1 ? [...banners, ...banners] : banners).map((banner, index) => (
-            <div key={index}>
-              <Image 
-                src={banner}
-                alt="banner" 
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                }}
-                aspectRatio={{
-                  base: "1568/730",
-                }}
-                draggable={false}
-              />
-            </div>
-          ))}
+          {(banners?.length === 1 ? [...banners, ...banners] : banners).map(
+            (banner, index) => (
+              <div key={index}>
+                <Image
+                  src={banner}
+                  alt="banner"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                  aspectRatio={{
+                    base: '1568/730',
+                  }}
+                  draggable={false}
+                />
+              </div>
+            ),
+          )}
         </Slider>
       </motion.div>
       <motion.div
@@ -115,7 +123,7 @@ const GalleryDetailPage = ({ contentData, lang }: GalleryDetailPageProps) => {
         </motion.div>
         <GalleryDetail text={description} />
       </motion.div>
-      <HorizontalList 
+      <HorizontalList
         otherProjects={contentData?.otherProjects}
         currentProjectId={contentData?.id}
         title="OTHER PROJECTS"

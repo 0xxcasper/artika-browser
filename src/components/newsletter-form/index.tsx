@@ -10,7 +10,9 @@ interface NewsletterFormProps {
   className?: string;
 }
 
-export default function NewsletterForm({ className = '' }: NewsletterFormProps) {
+export default function NewsletterForm({
+  className = '',
+}: NewsletterFormProps) {
   const { language } = useLanguage();
   const { newsletterForm } = usePreloader();
   const [email, setEmail] = useState('');
@@ -20,7 +22,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !email.includes('@')) {
       setError(newsletterForm.newsletter_validation_message);
       return;
@@ -32,12 +34,12 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
     try {
       await NewsletterSubscriptionService.subscribeToNewsletter({
         email: email.toLowerCase().trim(),
-        language: language
+        language: language,
       });
 
       setSuccess(true);
       setEmail('');
-      
+
       // Reset success message after 3 seconds
       setTimeout(() => {
         setSuccess(false);
@@ -53,10 +55,8 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
   return (
     <div className={`newsletter-form ${className}`}>
       <div className="newsletter-content">
-        <h2 className="newsletter-title">
-          {newsletterForm.newsletter_title}
-        </h2>
-        
+        <h2 className="newsletter-title">{newsletterForm.newsletter_title}</h2>
+
         <form onSubmit={handleSubmit} className="newsletter-form-container">
           <div className="input-group">
             <input
@@ -73,19 +73,14 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
               className="newsletter-button"
               disabled={loading}
             >
-              {loading 
+              {loading
                 ? `...${newsletterForm.newsletter_button_text}`
-                : newsletterForm.newsletter_button_text
-              }
+                : newsletterForm.newsletter_button_text}
             </button>
           </div>
-          
-          {error && (
-            <div className="newsletter-error">
-              {error}
-            </div>
-          )}
-          
+
+          {error && <div className="newsletter-error">{error}</div>}
+
           {success && (
             <div className="newsletter-success">
               {newsletterForm.newsletter_success_message}
@@ -95,4 +90,4 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
       </div>
     </div>
   );
-} 
+}

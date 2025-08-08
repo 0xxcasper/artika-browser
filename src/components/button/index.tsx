@@ -13,9 +13,9 @@ interface ButtonProps extends MotionProps {
   href?: string;
 }
 
-export default function Button({ 
-  children, 
-  className = '', 
+export default function Button({
+  children,
+  className = '',
   onClick,
   disabled = false,
   variant = 'primary',
@@ -27,19 +27,19 @@ export default function Button({
       scale: 1.05,
       transition: {
         duration: 0.2,
-        ease: "easeInOut"
-      }
+        ease: 'easeInOut',
+      },
     },
     tap: {
-      scale: 0.95
-    }
+      scale: 0.95,
+    },
   };
 
   const buttonContent = (
     <motion.div
       className={`btn ${className} ${variant}`}
-      whileHover={!disabled ? "hover" : undefined}
-      whileTap={!disabled ? "tap" : undefined}
+      whileHover={!disabled ? 'hover' : undefined}
+      whileTap={!disabled ? 'tap' : undefined}
       variants={buttonVariants}
       {...props}
     >
@@ -48,11 +48,7 @@ export default function Button({
   );
 
   if (href) {
-    return (
-      <Link href={href}>
-        {buttonContent}
-      </Link>
-    );
+    return <Link href={href}>{buttonContent}</Link>;
   }
 
   return (
@@ -60,12 +56,12 @@ export default function Button({
       className={`btn ${className} ${variant}`}
       onClick={onClick}
       disabled={disabled}
-      whileHover={!disabled ? "hover" : undefined}
-      whileTap={!disabled ? "tap" : undefined}
+      whileHover={!disabled ? 'hover' : undefined}
+      whileTap={!disabled ? 'tap' : undefined}
       variants={buttonVariants}
       {...props}
     >
       {children}
     </motion.button>
   );
-} 
+}

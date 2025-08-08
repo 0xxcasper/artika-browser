@@ -7,21 +7,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #64603C;
+  border: 1px solid #64603c;
   border-radius: 100px;
   padding: 1.75rem 5.5rem;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #64603C;
+  color: #64603c;
   background-color: transparent;
   transition: all 0.3s ease;
 
-
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
-    background-color: #64603C;
-    color: #C5CF98;
-    border-color: #64603C;
+    background-color: #64603c;
+    color: #c5cf98;
+    border-color: #64603c;
   }
 
   &.secondary {

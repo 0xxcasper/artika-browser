@@ -3,6 +3,7 @@
 ## 1. Collection Sample Data
 
 ### Collection 1: Outdoor Sculpture Park
+
 - **UID**: outdoor-sculpture-park
 - **Slug ID**: outdoor-sculpture-park
 - **Title**: Outdoor Sculpture Park
@@ -10,6 +11,7 @@
 - **Contents**: [Link to content items below]
 
 ### Collection 2: Indoor Gallery
+
 - **UID**: indoor-gallery
 - **Slug ID**: indoor-gallery
 - **Title**: Indoor Gallery
@@ -17,6 +19,7 @@
 - **Contents**: [Link to content items below]
 
 ### Collection 3: Public Art Walk
+
 - **UID**: public-art-walk
 - **Slug ID**: public-art-walk
 - **Title**: Public Art Walk
@@ -26,6 +29,7 @@
 ## 2. Content Item Sample Data
 
 ### Content Item 1: "Breathing Guidance"
+
 - **UID**: breathing-guidance
 - **Name**: Breathing Guidance
 - **Sub Name**: Interactive Installation
@@ -34,6 +38,7 @@
 - **Detail**: [Link to detail below]
 
 ### Content Item 2: "Harmony in Motion"
+
 - **UID**: harmony-in-motion
 - **Name**: Harmony in Motion
 - **Sub Name**: Kinetic Sculpture
@@ -42,6 +47,7 @@
 - **Detail**: [Link to detail below]
 
 ### Content Item 3: "Eternal Flow"
+
 - **UID**: eternal-flow
 - **Name**: Eternal Flow
 - **Sub Name**: Water Feature
@@ -50,6 +56,7 @@
 - **Detail**: [Link to detail below]
 
 ### Content Item 4: "Urban Reflection"
+
 - **UID**: urban-reflection
 - **Name**: Urban Reflection
 - **Sub Name**: Mirror Installation
@@ -58,6 +65,7 @@
 - **Detail**: [Link to detail below]
 
 ### Content Item 5: "Nature's Voice"
+
 - **UID**: natures-voice
 - **Name**: Nature's Voice
 - **Sub Name**: Sound Installation
@@ -68,17 +76,19 @@
 ## 3. Detail Sample Data
 
 ### Detail 1: "Breathing Guidance" Details
+
 - **UID**: breathing-guidance-detail
 - **Title**: Breathing Guidance - Interactive Art Installation
 - **Description**: An interactive sculpture that responds to human presence and breathing patterns. The piece creates a meditative experience through light and sound elements.
 - **Info**: Created in 2023, this piece explores the relationship between human consciousness and environmental awareness.
 - **Author**: Artist Name
-- **Images**: 
+- **Images**:
   - [Upload: breathing-guidance-1.jpg]
   - [Upload: breathing-guidance-2.jpg]
   - [Upload: breathing-guidance-3.jpg]
 
 ### Detail 2: "Harmony in Motion" Details
+
 - **UID**: harmony-motion-detail
 - **Title**: Harmony in Motion - Kinetic Art
 - **Description**: A dynamic sculpture that moves with the wind, creating harmonious patterns and reflections of light throughout the day.
@@ -89,6 +99,7 @@
   - [Upload: harmony-motion-2.jpg]
 
 ### Detail 3: "Eternal Flow" Details
+
 - **UID**: eternal-flow-detail
 - **Title**: Eternal Flow - Water Sculpture
 - **Description**: A flowing water feature that symbolizes the eternal cycle of life and the constant movement of time.
@@ -100,6 +111,7 @@
   - [Upload: eternal-flow-3.jpg]
 
 ### Detail 4: "Urban Reflection" Details
+
 - **UID**: urban-reflection-detail
 - **Title**: Urban Reflection - Mirror Art
 - **Description**: A series of strategically placed mirrors that reflect the urban environment in unexpected ways, creating new perspectives of the city.
@@ -110,6 +122,7 @@
   - [Upload: urban-reflection-2.jpg]
 
 ### Detail 5: "Nature's Voice" Details
+
 - **UID**: natures-voice-detail
 - **Title**: Nature's Voice - Sound Installation
 - **Description**: An acoustic sculpture that amplifies and transforms natural sounds, creating an immersive audio experience.
@@ -160,4 +173,4 @@ Collections:
         └── natures-voice-detail (detail)
 ```
 
-This structure will allow you to test the complete flow from Collection → Content Items → Details with multiple images per detail. 
+This structure will allow you to test the complete flow from Collection → Content Items → Details with multiple images per detail.

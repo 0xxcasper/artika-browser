@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { spawn } = require('child_process');
-const path = require('path');
 
 // Configuration
 const REPO_NAME = process.env.PRISMIC_REPOSITORY_NAME || 'artika-sapa';
@@ -18,28 +18,32 @@ process.env.NODE_ENV = 'development';
 // Start Slice Machine
 const slicemachine = spawn('npx', ['start-slicemachine'], {
   stdio: ['inherit', 'pipe', 'pipe'],
-  env: process.env
+  env: process.env,
 });
 
 // Filter out experiment errors
 slicemachine.stdout.on('data', (data) => {
   const output = data.toString();
-  
+
   // Filter out experiment connection errors
-  if (!output.includes('[Experiment]') && 
-      !output.includes('ECONNREFUSED') && 
-      !output.includes('AggregateError')) {
+  if (
+    !output.includes('[Experiment]') &&
+    !output.includes('ECONNREFUSED') &&
+    !output.includes('AggregateError')
+  ) {
     process.stdout.write(output);
   }
 });
 
 slicemachine.stderr.on('data', (data) => {
   const output = data.toString();
-  
+
   // Filter out experiment connection errors
-  if (!output.includes('[Experiment]') && 
-      !output.includes('ECONNREFUSED') && 
-      !output.includes('AggregateError')) {
+  if (
+    !output.includes('[Experiment]') &&
+    !output.includes('ECONNREFUSED') &&
+    !output.includes('AggregateError')
+  ) {
     process.stderr.write(output);
   }
 });
@@ -63,4 +67,4 @@ process.on('SIGINT', () => {
 process.on('SIGTERM', () => {
   console.log('\n🛑 Stopping Slice Machine...');
   slicemachine.kill('SIGTERM');
-}); 
+});

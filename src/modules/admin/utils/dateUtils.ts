@@ -20,7 +20,7 @@ export const parseDate = (date: Date | any): Date => {
 export const formatDate = (date: Date | any) => {
   // Handle Firestore timestamp conversion
   let dateObj: Date;
-  
+
   if (date instanceof Date) {
     dateObj = date;
   } else if (date && typeof date === 'object' && date.toDate) {
@@ -47,13 +47,13 @@ export const formatDate = (date: Date | any) => {
     month: 'short',
     day: 'numeric',
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit',
   });
 };
 
 export const formatTourDate = (date: Date | any) => {
   let dateObj: Date;
-  
+
   if (date instanceof Date) {
     dateObj = date;
   } else if (date && typeof date === 'object' && date.toDate) {
@@ -73,6 +73,6 @@ export const formatTourDate = (date: Date | any) => {
   return dateObj.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   });
-}; 
+};

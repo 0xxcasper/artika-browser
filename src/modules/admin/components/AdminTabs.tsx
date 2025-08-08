@@ -7,11 +7,11 @@ interface AdminTabsProps {
   newsletterCount: number;
 }
 
-export default function AdminTabs({ 
-  activeTab, 
-  onTabChange, 
-  tourCount, 
-  newsletterCount 
+export default function AdminTabs({
+  activeTab,
+  onTabChange,
+  tourCount,
+  newsletterCount,
 }: AdminTabsProps) {
   return (
     <div className="admin-tabs">
@@ -29,4 +29,4 @@ export default function AdminTabs({
       </button>
     </div>
   );
-} 
+}

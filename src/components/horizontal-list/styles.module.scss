@@ -29,20 +29,20 @@
   cursor: grab;
   user-select: none;
   position: relative;
-  
+
   &:active {
     cursor: grabbing;
   }
-  
+
   // Hide scrollbar for webkit browsers
   &::-webkit-scrollbar {
     display: none;
   }
-  
+
   // Hide scrollbar for Firefox
   scrollbar-width: none;
   -ms-overflow-style: none;
-  
+
   // Prevent scroll events from bubbling up
   &:focus {
     outline: none;
@@ -62,13 +62,15 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
   will-change: transform;
-  
+
   &:hover {
     transform: translateY(-2px);
   }
-  
+
   // Disable hover effects during drag
   .scrollContainer:active & {
     transform: none !important;
@@ -96,7 +98,7 @@
   line-height: 125%;
   font-weight: 400;
   @include font-secondary;
-  color: #A9A9A9;
+  color: #a9a9a9;
 }
 
 // Responsive adjustments
@@ -104,7 +106,7 @@
   .item {
     width: 240px;
   }
-  
+
   .scrollContent {
     gap: 15px;
   }
@@ -114,7 +116,7 @@
   .item {
     width: 200px;
   }
-  
+
   .scrollContent {
     gap: 10px;
   }

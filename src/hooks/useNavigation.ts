@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react';
 import { fetchNavigation } from '@/libs/prismic-navigation';
-import type { NavigationMenu, NavigationData, NavigationCTA, ScheduleTourFormData, FooterData, NewsletterFormData } from '@/locales/types';
+import type {
+  NavigationMenu,
+  NavigationData,
+  NavigationCTA,
+  ScheduleTourFormData,
+  FooterData,
+  NewsletterFormData,
+} from '@/locales/types';
 import { useLanguage } from '@/contexts/LanguageContext';
+
+const defaultNavigation: NavigationMenu[] = [];
 
 const defaultCta: NavigationCTA = {
   cta_label: '',
@@ -12,7 +21,8 @@ const defaultNewsletterForm: NewsletterFormData = {
   newsletter_title: 'Get the Insights You Need, Straight to Your Inbox!',
   newsletter_email_placeholder: 'Email',
   newsletter_button_text: 'Subscribe',
-  newsletter_success_message: 'Successfully subscribed! Thank you for signing up.',
+  newsletter_success_message:
+    'Successfully subscribed! Thank you for signing up.',
   newsletter_error_message: 'An error occurred. Please try again.',
   newsletter_validation_message: 'Please enter a valid email',
 };
@@ -43,62 +53,76 @@ const defaultFooterData: FooterData = {
 
 export function useNavigation() {
   const { language } = useLanguage();
-  const [menus, setMenus] = useState<NavigationMenu[]>([]);
+  const [menus, setMenus] = useState<NavigationMenu[]>(defaultNavigation);
   const [cta, setCta] = useState<NavigationCTA>(defaultCta);
-  const [scheduleTourForm, setScheduleTourForm] = useState<ScheduleTourFormData | undefined>(undefined);
-  const [newsletterForm, setNewsletterForm] = useState<NewsletterFormData>(defaultNewsletterForm);
+  const [scheduleTourForm, setScheduleTourForm] = useState<
+    ScheduleTourFormData | undefined
+  >(undefined);
+  const [newsletterForm, setNewsletterForm] = useState<NewsletterFormData>(
+    defaultNewsletterForm,
+  );
   const [footerData, setFooterData] = useState<FooterData>(defaultFooterData);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadNavigation() {
-        setLoading(true);
-        setError(null);
-        
-        // Convert language to Prismic locale format
-        const locale = language; // Currently only English is supported
+      setLoading(true);
+      setError(null);
 
-        console.log("useNavigation", { locale });
-        try {
-          const navigationData: NavigationData = await fetchNavigation(locale);
-          console.log("useNavigation", { navigationData });
-          
-          // Fallback to default navigation if Prismic data is empty
-          if (navigationData.items.length === 0) {
-            // Import default navigation as fallback
-            const { navigation } = await import('@/locales/en');
-            setMenus(navigation);
-            setCta(defaultCta);
-            setScheduleTourForm(undefined);
-            setNewsletterForm(defaultNewsletterForm);
-            setFooterData(defaultFooterData);
-          } else {
-            setMenus(navigationData.items);
-            setCta(navigationData.cta);
-            setScheduleTourForm(navigationData.scheduleTourForm);
-            setNewsletterForm(navigationData.newsletterForm || defaultNewsletterForm);
-            setFooterData(navigationData.footerData || defaultFooterData);
-          }
-        } catch (prismicError) {
-          console.warn('Prismic navigation failed, using fallback:', prismicError);
+      // Convert language to Prismic locale format
+      const locale = language; // Currently only English is supported
+
+      console.log('useNavigation', { locale });
+      try {
+        const navigationData: NavigationData = await fetchNavigation(locale);
+        console.log('useNavigation', { navigationData });
+
+        // Fallback to default navigation if Prismic data is empty
+        if (navigationData.items.length === 0) {
           // Import default navigation as fallback
-          const { navigation } = await import('@/locales/en');
-          setMenus(navigation);
+          setMenus(defaultNavigation);
           setCta(defaultCta);
           setScheduleTourForm(undefined);
           setNewsletterForm(defaultNewsletterForm);
           setFooterData(defaultFooterData);
+        } else {
+          setMenus(navigationData.items);
+          setCta(navigationData.cta);
+          setScheduleTourForm(navigationData.scheduleTourForm);
+          setNewsletterForm(
+            navigationData.newsletterForm || defaultNewsletterForm,
+          );
+          setFooterData(navigationData.footerData || defaultFooterData);
+        }
+      } catch (prismicError) {
+        console.warn(
+          'Prismic navigation failed, using fallback:',
+          prismicError,
+        );
+        // Import default navigation as fallback
+        setMenus(defaultNavigation);
+        setCta(defaultCta);
+        setScheduleTourForm(undefined);
+        setNewsletterForm(defaultNewsletterForm);
+        setFooterData(defaultFooterData);
 
-          console.log("useNavigation", { menus, cta });
-        } 
+        console.log('useNavigation', { menus, cta });
+      }
 
-        setLoading(false);
+      setLoading(false);
     }
 
     loadNavigation();
   }, [language]);
 
-
-  return { menus, cta, scheduleTourForm, newsletterForm, footerData, loading, error };
-} 
+  return {
+    menus,
+    cta,
+    scheduleTourForm,
+    newsletterForm,
+    footerData,
+    loading,
+    error,
+  };
+}

@@ -18,11 +18,15 @@ export function useAdminFilters(
   const [filters, setFilters] = useState<AdminFilters>({
     statusFilter: 'all',
     timeFilter: 'all',
-    searchTerm: ''
+    searchTerm: '',
   });
 
-  const [filteredSubmissions, setFilteredSubmissions] = useState<TourSubmission[]>([]);
-  const [filteredNewsletters, setFilteredNewsletters] = useState<NewsletterSubscription[]>([]);
+  const [filteredSubmissions, setFilteredSubmissions] = useState<
+    TourSubmission[]
+  >([]);
+  const [filteredNewsletters, setFilteredNewsletters] = useState<
+    NewsletterSubscription[]
+  >([]);
 
   // Filter and search tour submissions
   useEffect(() => {
@@ -32,9 +36,9 @@ export function useAdminFilters(
 
     // Apply status filter (read/unread)
     if (filters.statusFilter === 'unread') {
-      filtered = filtered.filter(sub => !sub.read);
+      filtered = filtered.filter((sub) => !sub.read);
     } else if (filters.statusFilter === 'read') {
-      filtered = filtered.filter(sub => sub.read);
+      filtered = filtered.filter((sub) => sub.read);
     }
 
     // Apply time filter
@@ -59,8 +63,11 @@ export function useAdminFilters(
           cutoffDate = new Date(0); // Beginning of time
       }
 
-      filtered = filtered.filter(sub => {
-        const submissionDate = sub.submittedAt instanceof Date ? sub.submittedAt : parseDate(sub.submittedAt);
+      filtered = filtered.filter((sub) => {
+        const submissionDate =
+          sub.submittedAt instanceof Date
+            ? sub.submittedAt
+            : parseDate(sub.submittedAt);
         return submissionDate >= cutoffDate;
       });
     }
@@ -68,10 +75,11 @@ export function useAdminFilters(
     // Apply search filter
     if (filters.searchTerm.trim()) {
       const term = filters.searchTerm.toLowerCase();
-      filtered = filtered.filter(sub => 
-        sub.email.toLowerCase().includes(term) ||
-        sub.name.toLowerCase().includes(term) ||
-        sub.phone.toLowerCase().includes(term)
+      filtered = filtered.filter(
+        (sub) =>
+          sub.email.toLowerCase().includes(term) ||
+          sub.name.toLowerCase().includes(term) ||
+          sub.phone.toLowerCase().includes(term),
       );
     }
 
@@ -86,9 +94,9 @@ export function useAdminFilters(
 
     // Apply status filter (active/unsubscribed)
     if (filters.statusFilter === 'unread') {
-      filtered = filtered.filter(sub => sub.status === 'active');
+      filtered = filtered.filter((sub) => sub.status === 'active');
     } else if (filters.statusFilter === 'read') {
-      filtered = filtered.filter(sub => sub.status === 'unsubscribed');
+      filtered = filtered.filter((sub) => sub.status === 'unsubscribed');
     }
 
     // Apply time filter
@@ -113,8 +121,11 @@ export function useAdminFilters(
           cutoffDate = new Date(0); // Beginning of time
       }
 
-      filtered = filtered.filter(sub => {
-        const subscriptionDate = sub.subscribedAt instanceof Date ? sub.subscribedAt : parseDate(sub.subscribedAt);
+      filtered = filtered.filter((sub) => {
+        const subscriptionDate =
+          sub.subscribedAt instanceof Date
+            ? sub.subscribedAt
+            : parseDate(sub.subscribedAt);
         return subscriptionDate >= cutoffDate;
       });
     }
@@ -122,9 +133,10 @@ export function useAdminFilters(
     // Apply search filter
     if (filters.searchTerm.trim()) {
       const term = filters.searchTerm.toLowerCase();
-      filtered = filtered.filter(sub => 
-        sub.email.toLowerCase().includes(term) ||
-        sub.language.toLowerCase().includes(term)
+      filtered = filtered.filter(
+        (sub) =>
+          sub.email.toLowerCase().includes(term) ||
+          sub.language.toLowerCase().includes(term),
       );
     }
 
@@ -135,6 +147,6 @@ export function useAdminFilters(
     filteredSubmissions,
     filteredNewsletters,
     filters,
-    setFilters
+    setFilters,
   };
-} 
+}

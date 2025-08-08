@@ -11,11 +11,11 @@ export function useHomepageData() {
       try {
         setLoading(true);
         const response = await fetch('/api/homepage');
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch homepage data');
         }
-        
+
         const result = await response.json();
         setData(result);
       } catch (err) {
@@ -29,4 +29,4 @@ export function useHomepageData() {
   }, []);
 
   return { data, loading, error };
-} 
+}

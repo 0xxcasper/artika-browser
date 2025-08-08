@@ -5,18 +5,25 @@ import { TourSubmission, NewsletterSubscription } from '@/libs/firestore';
 
 interface NoteModalProps {
   submission: TourSubmission | NewsletterSubscription;
-  onSubmit: (note: string, submission: TourSubmission | NewsletterSubscription) => Promise<void>;
+  onSubmit: (
+    note: string,
+    submission: TourSubmission | NewsletterSubscription,
+  ) => Promise<void>;
   onCancel: () => void;
 }
 
-export default function NoteModal({ submission, onSubmit, onCancel }: NoteModalProps) {
+export default function NoteModal({
+  submission,
+  onSubmit,
+  onCancel,
+}: NoteModalProps) {
   const [noteMessage, setNoteMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   const isNewsletter = 'email' in submission && !('name' in submission);
   const title = isNewsletter ? 'Newsletter Subscription' : 'Tour Request';
-  const subtitle = isNewsletter 
-    ? `Email: ${submission.email}` 
+  const subtitle = isNewsletter
+    ? `Email: ${submission.email}`
     : `${submission.name} - ${submission.phone}`;
 
   const handleSubmit = async () => {
@@ -41,11 +48,16 @@ export default function NoteModal({ submission, onSubmit, onCancel }: NoteModalP
       <div className="note-modal">
         <div className="modal-header">
           <h3>Add Note</h3>
-          <button onClick={onCancel} className="close-button">×</button>
+          <button onClick={onCancel} className="close-button">
+            ×
+          </button>
         </div>
         <div className="modal-content">
           <p className="modal-subtitle">
-            Marking as done: <strong>{title} - {subtitle}</strong>
+            Marking as done:{' '}
+            <strong>
+              {title} - {subtitle}
+            </strong>
           </p>
           <div className="note-input-group">
             <label htmlFor="note-input">Note Message (Required):</label>
@@ -61,15 +73,15 @@ export default function NoteModal({ submission, onSubmit, onCancel }: NoteModalP
           </div>
         </div>
         <div className="modal-actions">
-          <button 
-            onClick={onCancel} 
+          <button
+            onClick={onCancel}
             className="cancel-button"
             disabled={loading}
           >
             Cancel
           </button>
-          <button 
-            onClick={handleSubmit} 
+          <button
+            onClick={handleSubmit}
             className="submit-button"
             disabled={loading || !noteMessage.trim()}
           >
@@ -79,4 +91,4 @@ export default function NoteModal({ submission, onSubmit, onCancel }: NoteModalP
       </div>
     </div>
   );
-} 
+}

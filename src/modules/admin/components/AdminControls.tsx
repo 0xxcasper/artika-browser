@@ -12,16 +12,18 @@ interface AdminControlsProps {
   activeTab: 'tours' | 'newsletter';
 }
 
-export default function AdminControls({ 
-  filters, 
-  onFiltersChange, 
-  activeTab 
+export default function AdminControls({
+  filters,
+  onFiltersChange,
+  activeTab,
 }: AdminControlsProps) {
   const handleStatusChange = (status: 'all' | 'unread' | 'read') => {
     onFiltersChange({ ...filters, statusFilter: status });
   };
 
-  const handleTimeChange = (time: 'all' | '24h' | 'week' | 'month' | '3months') => {
+  const handleTimeChange = (
+    time: 'all' | '24h' | 'week' | 'month' | '3months',
+  ) => {
     onFiltersChange({ ...filters, timeFilter: time });
   };
 
@@ -34,10 +36,12 @@ export default function AdminControls({
       <div className="filter-controls">
         <div className="filter-group">
           <label htmlFor="status-filter">Status:</label>
-          <select 
+          <select
             id="status-filter"
-            value={filters.statusFilter} 
-            onChange={(e) => handleStatusChange(e.target.value as 'all' | 'unread' | 'read')}
+            value={filters.statusFilter}
+            onChange={(e) =>
+              handleStatusChange(e.target.value as 'all' | 'unread' | 'read')
+            }
             className="filter-select"
           >
             <option value="all">All</option>
@@ -54,13 +58,17 @@ export default function AdminControls({
             )}
           </select>
         </div>
-        
+
         <div className="filter-group">
           <label htmlFor="time-filter">Time:</label>
-          <select 
+          <select
             id="time-filter"
-            value={filters.timeFilter} 
-            onChange={(e) => handleTimeChange(e.target.value as 'all' | '24h' | 'week' | 'month' | '3months')}
+            value={filters.timeFilter}
+            onChange={(e) =>
+              handleTimeChange(
+                e.target.value as 'all' | '24h' | 'week' | 'month' | '3months',
+              )
+            }
             className="filter-select"
           >
             <option value="all">All Time</option>
@@ -71,13 +79,14 @@ export default function AdminControls({
           </select>
         </div>
       </div>
-      
+
       <div className="search-controls">
         <input
           type="text"
-          placeholder={activeTab === 'tours' 
-            ? "Search by name, phone, or email..." 
-            : "Search by email or language..."
+          placeholder={
+            activeTab === 'tours'
+              ? 'Search by name, phone, or email...'
+              : 'Search by email or language...'
           }
           value={filters.searchTerm}
           onChange={(e) => handleSearchChange(e.target.value)}
@@ -86,4 +95,4 @@ export default function AdminControls({
       </div>
     </div>
   );
-} 
+}

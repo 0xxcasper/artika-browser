@@ -1,7 +1,8 @@
 import * as prismic from '@prismicio/client';
 import * as prismicNext from '@prismicio/next';
 
-export const repositoryName = process.env.PRISMIC_REPOSITORY_NAME || 'artika-sapa';
+export const repositoryName =
+  process.env.PRISMIC_REPOSITORY_NAME || 'artika-sapa';
 
 // Link resolver for collection documents
 export function linkResolver(doc: any) {
@@ -93,17 +94,17 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
     ],
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
     fetchOptions:
-      process.env.NODE_ENV === "production"
-        ? { 
-            next: { 
-              tags: ["prismic"],
-              revalidate: 60 // Cache 1 phút trong production
-            }
+      process.env.NODE_ENV === 'production'
+        ? {
+            next: {
+              tags: ['prismic'],
+              revalidate: 60, // Cache 1 phút trong production
+            },
           }
-        : { 
-            next: { 
-              revalidate: 60 // Cache 1 phút trong development
-            }
+        : {
+            next: {
+              revalidate: 60, // Cache 1 phút trong development
+            },
           },
     ...config,
   });
@@ -256,4 +257,4 @@ export type DetailDocument = prismic.PrismicDocumentWithUID<{
   images: prismic.GroupField<{
     image: prismic.ImageField;
   }>;
-}>; 
+}>;

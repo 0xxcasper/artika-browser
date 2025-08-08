@@ -14,10 +14,8 @@ export default function Providers({ children, language }: ProvidersProps) {
   return (
     <ChakraProvider>
       <LanguageProvider language={language}>
-        <PreloaderProvider timeout={3000}>
-          {children}
-        </PreloaderProvider>
+        <PreloaderProvider timeout={3000}>{children}</PreloaderProvider>
       </LanguageProvider>
     </ChakraProvider>
   );
-} 
+}

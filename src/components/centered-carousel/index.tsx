@@ -14,14 +14,19 @@ interface CarouselProps {
 
 const variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: [0.34, 1.56, 0.64, 1] } }
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.8, ease: [0.34, 1.56, 0.64, 1] },
+  },
 };
 
 const viewPort = {
   once: true,
-  margin: "-100px",
+  margin: '-100px',
   // amount: 0.3
-}
+};
 
 // Desktop Arrow Components
 const DesktopPrevArrow = (props: any) => {
@@ -47,7 +52,7 @@ const DesktopPrevArrow = (props: any) => {
         color: '#333',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}
     >
       ‹
@@ -78,7 +83,7 @@ const DesktopNextArrow = (props: any) => {
         color: '#333',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}
     >
       ›
@@ -112,7 +117,7 @@ const MobilePrevArrow = (props: any) => {
         alignItems: 'center',
         justifyContent: 'center',
         backdropFilter: 'blur(10px)',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
       }}
     >
       ‹
@@ -145,7 +150,7 @@ const MobileNextArrow = (props: any) => {
         alignItems: 'center',
         justifyContent: 'center',
         backdropFilter: 'blur(10px)',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
       }}
     >
       ›
@@ -194,8 +199,8 @@ export default function CenteredCarousel({ images, title }: CarouselProps) {
         viewport={viewPort}
       >
         {title}
-      </motion.h1>  
-      <motion.div 
+      </motion.h1>
+      <motion.div
         initial="hidden"
         whileInView="visible"
         variants={variants}

@@ -5,13 +5,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
-export default {
+const nextConfig = {
   eslint: {
     dirs: ['.'],
   },
   poweredByHeader: false,
   reactStrictMode: true,
-  
+
   // Path aliases configuration
   webpack: (config) => {
     config.resolve.alias = {
@@ -58,3 +58,5 @@ export default {
     ];
   },
 };
+
+export default nextConfig;

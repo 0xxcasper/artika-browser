@@ -9,13 +9,13 @@
   right: 0;
   z-index: 1030;
   transition: all 0.5s ease;
-  
+
   &.nav-scrolled {
-    background: hsla(0,0%,100%,.8);
+    background: hsla(0, 0%, 100%, 0.8);
     // box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
     backdrop-filter: blur(20px);
   }
-  
+
   &.nav-transparent {
     background: transparent;
   }
@@ -54,14 +54,13 @@
   transition: color 0.5s ease;
   text-decoration: none;
   position: relative;
-  color: #A9A9A9;
+  color: #a9a9a9;
   width: fit-content;
   cursor: pointer;
 
   &.active {
     color: #000;
   }
-
 
   // disabled
   &.disabled {
@@ -75,7 +74,7 @@
 
   &.disabled:hover {
     opacity: 1;
-    color: #A9A9A9;
+    color: #a9a9a9;
   }
 
   &:hover {
@@ -112,7 +111,10 @@
 // Sidebar overlay
 .nav-sidebar-overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: #000;
   opacity: 0.4;
   z-index: 1100;
@@ -121,13 +123,14 @@
 // Sidebar
 .nav-sidebar {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 80vw;
   max-width: 680px;
   height: 100vh;
-  background: hsla(0,0%,100%,1);
+  background: hsla(0, 0%, 100%, 1);
   backdrop-filter: blur(10px);
-  box-shadow: 4px 0 32px rgba(0,0,0,0.18);
+  box-shadow: 4px 0 32px rgba(0, 0, 0, 0.18);
   z-index: 1101;
   display: flex;
   flex-direction: column;
@@ -171,7 +174,7 @@
 .nav-sidebar-divider {
   width: 1px;
   height: 100%;
-  background: #A9A9A9;
+  background: #a9a9a9;
 }
 
 .nav-text {

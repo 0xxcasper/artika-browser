@@ -9,22 +9,27 @@ interface LocaleArtwalkSlugPageProps {
   };
 }
 
-export default async function LocaleArtwalkSlugPage({ params }: LocaleArtwalkSlugPageProps) {
+export default async function LocaleArtwalkSlugPage({
+  params,
+}: LocaleArtwalkSlugPageProps) {
   const { locale, slug } = params;
-  
+
   // Validate locale
   if (!['en', 'vi'].includes(locale)) {
     notFound();
   }
-  
+
   console.log('Artwalk page params:', { locale, slug });
-  
+
   try {
     // Fetch from Prismic with locale
     console.log('Fetching fresh artwalk category data for:', slug, locale);
-    const categoryData = await fetchArtwalkCategory(slug, locale === 'vi' ? 'vi' : 'en-us');
+    const categoryData = await fetchArtwalkCategory(
+      slug,
+      locale === 'vi' ? 'vi' : 'en-us',
+    );
 
-    console.log("artwalk category data", categoryData);
+    console.log('artwalk category data', categoryData);
 
     // If no data found, return 404
     if (!categoryData) {
@@ -33,29 +38,22 @@ export default async function LocaleArtwalkSlugPage({ params }: LocaleArtwalkSlu
     }
 
     return (
-      <SlugArtwalkPage 
-        categoryData={categoryData}
-        slug={slug}
-        lang={locale}
-      />
+      <SlugArtwalkPage categoryData={categoryData} slug={slug} lang={locale} />
     );
   } catch (error) {
     console.error('Error fetching artwalk category data:', error);
-    
+
     // Check if it's a "not found" error
-    if (error instanceof Error && error.message.includes('No documents were returned')) {
+    if (
+      error instanceof Error &&
+      error.message.includes('No documents were returned')
+    ) {
       console.log('Collection not found, returning 404');
       notFound();
     }
-    
+
     // For other errors, return fallback
     console.log('Using fallback data for artwalk category');
-    return (
-      <SlugArtwalkPage 
-        categoryData={null}
-        slug={slug}
-        lang={locale}
-      />
-    );
+    return <SlugArtwalkPage categoryData={null} slug={slug} lang={locale} />;
   }
-} 
+}

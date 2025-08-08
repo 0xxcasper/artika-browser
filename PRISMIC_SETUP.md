@@ -9,9 +9,11 @@
 ## Bước 2: Cập nhật Repository Name
 
 Trong file `src/libs/prismic.ts`, thay đổi:
+
 ```typescript
 export const repositoryName = 'your-repository-name';
 ```
+
 thành tên repository thực tế của bạn.
 
 ## Bước 3: Tạo Custom Type cho Homepage
@@ -165,6 +167,7 @@ Trong Prismic, tạo một Custom Type với tên "homepage" và cấu trúc nh�
 ## Bước 5: Cấu hình Environment Variables
 
 Tạo file `.env.local` và thêm:
+
 ```
 PRISMIC_REPOSITORY_NAME=your-repository-name
 PRISMIC_ACCESS_TOKEN=your-access-token
@@ -191,4 +194,4 @@ npx @slicemachine/init@latest
 
 - Code đã được thiết kế để fallback về translation nếu không có dữ liệu từ Prismic
 - Các helper functions giúp xử lý dữ liệu từ Prismic một cách an toàn
-- API route được tạo để fetch dữ liệu từ server-side 
+- API route được tạo để fetch dữ liệu từ server-side

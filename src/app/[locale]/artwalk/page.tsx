@@ -8,7 +8,7 @@ interface LocaleArtwalkPageProps {
 
 export default function LocaleArtwalkPage({ params }: LocaleArtwalkPageProps) {
   const { locale } = params;
-  
+
   // Validate locale
   if (!['en', 'vi'].includes(locale)) {
     notFound();
@@ -21,4 +21,4 @@ export default function LocaleArtwalkPage({ params }: LocaleArtwalkPageProps) {
       <p>This is the artwalk index page for locale: {locale}</p>
     </div>
   );
-} 
+}

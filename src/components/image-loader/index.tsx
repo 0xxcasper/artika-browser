@@ -19,10 +19,10 @@ interface ImageLoaderProps {
   quality?: number;
 }
 
-export default function ImageLoader({ 
-  src, 
-  alt = '', 
-  className = '', 
+export default function ImageLoader({
+  src,
+  alt = '',
+  className = '',
   onLoad,
   children,
   priority = false,
@@ -30,7 +30,7 @@ export default function ImageLoader({
   width,
   height,
   sizes = '100vw',
-  quality = 90
+  quality = 90,
 }: ImageLoaderProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -48,8 +48,8 @@ export default function ImageLoader({
     sizes,
     style: {
       objectFit: 'cover' as const,
-      objectPosition: 'center' as const
-    }
+      objectPosition: 'center' as const,
+    },
   };
 
   return (
@@ -64,7 +64,7 @@ export default function ImageLoader({
           <div className="loading-spinner" />
         </motion.div>
       )}
-      
+
       <motion.div
         className="image-loader-content"
         initial={{ opacity: 0 }}
@@ -72,19 +72,17 @@ export default function ImageLoader({
         transition={{ duration: 0.5 }}
       >
         {fill ? (
-          <Image
-            {...imageProps}
-            fill
-          />
+          <Image {...imageProps} fill alt={alt} />
         ) : (
           <Image
             {...imageProps}
             width={width || 800}
             height={height || 600}
+            alt={alt}
           />
         )}
         {children}
       </motion.div>
     </div>
   );
-} 
+}

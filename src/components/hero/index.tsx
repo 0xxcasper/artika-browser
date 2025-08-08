@@ -16,14 +16,14 @@ export default function Hero({
   title,
   subtitle,
   backgroundImage,
-  className = ''
+  className = '',
 }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Track scroll progress relative to the hero component
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ['start end', 'end start'],
   });
 
   // Raw transform values
@@ -34,10 +34,10 @@ export default function Hero({
   const rotateZRaw = useTransform(scrollYProgress, [0, 1], [0, 2]);
 
   // Apply spring physics for smooth animations
-  const springConfig = { 
-    stiffness: 100, 
-    damping: 30, 
-    mass: 0.8 
+  const springConfig = {
+    stiffness: 100,
+    damping: 30,
+    mass: 0.8,
   };
 
   const scale = useSpring(scaleRaw, springConfig);
@@ -51,24 +51,24 @@ export default function Hero({
     visible: {
       opacity: 1,
       transition: {
-        duration: 1
-      }
-    }
+        duration: 1,
+      },
+    },
   };
 
   const backgroundVariants = {
-    hidden: { 
-      scale: 1.1, 
-      opacity: 0 
+    hidden: {
+      scale: 1.1,
+      opacity: 0,
     },
     visible: {
       scale: 1.1,
       opacity: 1,
       transition: {
         duration: 1.2,
-        ease: 'easeOut'
-      }
-    }
+        ease: 'easeOut',
+      },
+    },
   };
 
   const textVariants = {
@@ -78,13 +78,13 @@ export default function Hero({
       y: 0,
       transition: {
         duration: 0.8,
-        ease: 'easeOut'
-      }
-    }
+        ease: 'easeOut',
+      },
+    },
   };
 
   return (
-    <motion.div 
+    <motion.div
       ref={containerRef}
       className={`hero ${className}`}
       variants={containerVariants}
@@ -92,7 +92,7 @@ export default function Hero({
       animate="visible"
     >
       {/* Background Image with Smooth Scroll Transforms */}
-      <motion.div 
+      <motion.div
         className="hero-background"
         variants={backgroundVariants}
         initial="hidden"
@@ -106,7 +106,7 @@ export default function Hero({
           willChange: 'transform',
           transformStyle: 'preserve-3d',
           backfaceVisibility: 'hidden',
-          WebkitBackfaceVisibility: 'hidden'
+          WebkitBackfaceVisibility: 'hidden',
         }}
       >
         <Image
@@ -122,19 +122,15 @@ export default function Hero({
             height: '100%',
             minWidth: '100%',
             minHeight: '100%',
-            transform: 'translate3d(0, 0, 0)'
+            transform: 'translate3d(0, 0, 0)',
           }}
         />
       </motion.div>
-      
+
       {/* Overlay */}
-      
+
       {/* Hero Content with Sequential Animations */}
-      <motion.div 
-        className="hero-content"
-        initial="hidden"
-        animate="visible"
-      >
+      <motion.div className="hero-content" initial="hidden" animate="visible">
         <motion.h1
           variants={textVariants}
           initial="hidden"
@@ -155,18 +151,17 @@ export default function Hero({
         </motion.p>
       </motion.div>
       <motion.img
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.4 }}
-          src="/logo.svg"
-          alt="Logo"
-          width={"48px"}
-          height={"48px"}
-          className="hero-logo"
-          draggable={false}
-        >
-      </motion.img>
+        variants={textVariants}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.4 }}
+        src="/logo.svg"
+        alt="Logo"
+        width={'48px'}
+        height={'48px'}
+        className="hero-logo"
+        draggable={false}
+      ></motion.img>
     </motion.div>
   );
-} 
+}

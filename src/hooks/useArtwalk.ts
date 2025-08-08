@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { 
-  fetchAllArtwalkCategories, 
-  fetchArtwalkCategory, 
+import {
+  fetchAllArtwalkCategories,
+  fetchArtwalkCategory,
   fetchArtwalkContent,
   fetchAllArtwalkItems,
-  fetchArtwalkItem
+  fetchArtwalkItem,
 } from '@/libs/prismic-artwalk';
-import type { ArtwalkCategory, ArtwalkContent, ArtwalkCategoryList } from '@/types/artwalk';
+import type {
+  ArtwalkCategory,
+  ArtwalkContent,
+  ArtwalkCategoryList,
+} from '@/types/artwalk';
 
 // Hook to fetch all artwalk categories
 export function useAllArtwalkCategories() {
@@ -24,7 +28,9 @@ export function useAllArtwalkCategories() {
         const data = await fetchAllArtwalkCategories(language);
         setCategories(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch categories');
+        setError(
+          err instanceof Error ? err.message : 'Failed to fetch categories',
+        );
         console.error('Error in useAllArtwalkCategories:', err);
       } finally {
         setLoading(false);
@@ -52,7 +58,9 @@ export function useArtwalkCategory(slugId: string) {
         const data = await fetchArtwalkCategory(slugId, language);
         setCategory(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch category');
+        setError(
+          err instanceof Error ? err.message : 'Failed to fetch category',
+        );
         console.error('Error in useArtwalkCategory:', err);
       } finally {
         setLoading(false);
@@ -82,7 +90,9 @@ export function useArtwalkContent(contentId: string) {
         const data = await fetchArtwalkContent(contentId, language);
         setContent(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch content');
+        setError(
+          err instanceof Error ? err.message : 'Failed to fetch content',
+        );
         console.error('Error in useArtwalkContent:', err);
       } finally {
         setLoading(false);
@@ -153,4 +163,4 @@ export function useArtwalkItem(itemId: string) {
   }, [itemId, language]);
 
   return { item, loading, error };
-} 
+}

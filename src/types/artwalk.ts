@@ -93,4 +93,4 @@ export function isArtwalkContent(obj: any): obj is ArtwalkContent {
     typeof obj.detail === 'object' &&
     obj.detail !== null
   );
-} 
+}

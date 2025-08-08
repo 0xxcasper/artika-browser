@@ -47,6 +47,7 @@ For production, use the more secure rules from `firestore.rules.production`:
 ## 📋 Current Rules Explanation
 
 ### Development Rules (`firestore.rules`)
+
 ```javascript
 rules_version = '2';
 service cloud.firestore {
@@ -55,7 +56,7 @@ service cloud.firestore {
     match /email_submissions/{document} {
       allow read, write: if true;
     }
-    
+
     // Allow read and write access to all collections (for development)
     match /{document=**} {
       allow read, write: if true;
@@ -67,6 +68,7 @@ service cloud.firestore {
 **⚠️ Warning**: These rules allow full access to all collections. Use only for development.
 
 ### Production Rules (`firestore.rules.production`)
+
 ```javascript
 rules_version = '2';
 service cloud.firestore {
@@ -75,14 +77,14 @@ service cloud.firestore {
     match /email_submissions/{document} {
       // Allow anyone to create new email submissions
       allow create: if true;
-      
+
       // Allow read access to all submissions (for admin)
       allow read: if true;
-      
+
       // Allow update and delete only for authenticated users (admin)
       allow update, delete: if request.auth != null;
     }
-    
+
     // Default rule - deny all access
     match /{document=**} {
       allow read, write: if false;
@@ -144,4 +146,4 @@ If you're still having issues:
 3. Ensure Firestore is enabled in your Firebase project
 4. Check that the `email_submissions` collection exists (it will be created automatically)
 
-The updated rules should resolve the permissions issue and allow your email submission system to work properly! 
+The updated rules should resolve the permissions issue and allow your email submission system to work properly!

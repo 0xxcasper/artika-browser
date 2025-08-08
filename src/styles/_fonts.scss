@@ -23,16 +23,16 @@ $font-weight-bold: 700;
 $font-weight-extrabold: 800;
 
 // Font Sizes
-$font-size-xs: 0.75rem;    // 12px
-$font-size-sm: 0.875rem;   // 14px
-$font-size-base: 1rem;     // 16px
-$font-size-lg: 1.125rem;   // 18px
-$font-size-xl: 1.25rem;    // 20px
-$font-size-2xl: 1.75rem;   // 28px
-$font-size-3xl: 1.875rem;  // 30px
-$font-size-4xl: 2.25rem;   // 36px
-$font-size-5xl: 2.5rem;    // 40px
-$font-size-6xl: 3.125rem;      // 48px
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.25rem; // 20px
+$font-size-2xl: 1.75rem; // 28px
+$font-size-3xl: 1.875rem; // 30px
+$font-size-4xl: 2.25rem; // 36px
+$font-size-5xl: 2.5rem; // 40px
+$font-size-6xl: 3.125rem; // 48px
 
 // Line Heights
 $line-height-tight: 1.25;
@@ -229,25 +229,65 @@ $letter-spacing-widest: 0.1em;
   @include font-secondary;
 }
 
-.text-xs { @include text-xs; }
-.text-sm { @include text-sm; }
-.text-base { @include text-base; }
-.text-lg { @include text-lg; }
-.text-xl { @include text-xl; }
-.text-2xl { @include text-2xl; }
-.text-3xl { @include text-3xl; }
-.text-4xl { @include text-4xl; }
-.text-5xl { @include text-5xl; }
-.text-6xl { @include text-6xl; }
+.text-xs {
+  @include text-xs;
+}
+.text-sm {
+  @include text-sm;
+}
+.text-base {
+  @include text-base;
+}
+.text-lg {
+  @include text-lg;
+}
+.text-xl {
+  @include text-xl;
+}
+.text-2xl {
+  @include text-2xl;
+}
+.text-3xl {
+  @include text-3xl;
+}
+.text-4xl {
+  @include text-4xl;
+}
+.text-5xl {
+  @include text-5xl;
+}
+.text-6xl {
+  @include text-6xl;
+}
 
-.heading-1 { @include heading-1; }
-.heading-2 { @include heading-2; }
-.heading-3 { @include heading-3; }
-.heading-4 { @include heading-4; }
-.heading-5 { @include heading-5; }
-.heading-6 { @include heading-6; }
+.heading-1 {
+  @include heading-1;
+}
+.heading-2 {
+  @include heading-2;
+}
+.heading-3 {
+  @include heading-3;
+}
+.heading-4 {
+  @include heading-4;
+}
+.heading-5 {
+  @include heading-5;
+}
+.heading-6 {
+  @include heading-6;
+}
 
-.body-large { @include body-large; }
-.body-base { @include body-base; }
-.body-small { @include body-small; }
-.body-xs { @include body-xs; } 
+.body-large {
+  @include body-large;
+}
+.body-base {
+  @include body-base;
+}
+.body-small {
+  @include body-small;
+}
+.body-xs {
+  @include body-xs;
+}

@@ -19,7 +19,7 @@
   // Font variables - Only Playfair and Raleway
   --font-playfair: 'Playfair', serif;
   --font-raleway: 'Raleway', sans-serif;
-  
+
   // Colors
   --text-primary: #333333;
   --text-secondary: #666666;
@@ -27,7 +27,7 @@
   --background-secondary: #f8f8f8;
   --accent-primary: #d4af37;
   --accent-secondary: #b8860b;
-  
+
   // Spacing
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -35,13 +35,13 @@
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
-  
+
   // Border radius
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 12px;
   --border-radius-xl: 16px;
-  
+
   // Shadows
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -58,7 +58,12 @@ html {
 }
 
 body {
-  font-family: var(--font-raleway), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family:
+    var(--font-raleway),
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
   background-color: var(--background-primary);
@@ -77,19 +82,24 @@ body {
 // Ensure proper Vietnamese character rendering
 .font-primary {
   font-family: var(--font-playfair), serif;
-  font-feature-settings: "liga" 1, "kern" 1;
+  font-feature-settings:
+    'liga' 1,
+    'kern' 1;
 }
 
 .font-secondary {
   font-family: var(--font-raleway), sans-serif;
-  font-feature-settings: "liga" 1, "kern" 1;
+  font-feature-settings:
+    'liga' 1,
+    'kern' 1;
 }
 
 .font-tertiary {
   font-family: var(--font-graphik), sans-serif;
-  font-feature-settings: "liga" 1, "kern" 1;
+  font-feature-settings:
+    'liga' 1,
+    'kern' 1;
 }
-
 
 .slick-slide {
   div {

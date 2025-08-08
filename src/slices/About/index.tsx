@@ -27,4 +27,4 @@ const AboutSlice = ({ slice }: AboutSliceProps) => {
   );
 };
 
-export default AboutSlice; 
+export default AboutSlice;

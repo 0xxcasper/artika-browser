@@ -17,7 +17,8 @@ export type HeroSliceProps = SliceComponentProps<{
 const HeroSlice = ({ slice }: HeroSliceProps) => {
   const title = asText(slice.primary.title);
   const subtitle = asText(slice.primary.subtitle);
-  const backgroundImage = asImageUrl(slice.primary.background_image) || '/images/home/banner.jpg';
+  const backgroundImage =
+    asImageUrl(slice.primary.background_image) || '/images/home/banner.jpg';
 
   return (
     <Hero
@@ -28,4 +29,4 @@ const HeroSlice = ({ slice }: HeroSliceProps) => {
   );
 };
 
-export default HeroSlice; 
+export default HeroSlice;

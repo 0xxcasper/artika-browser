@@ -18,7 +18,9 @@
   .date-picker-modal {
     background: white;
     border-radius: 12px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
     width: 100%;
     max-width: 400px;
     overflow: hidden;
@@ -81,11 +83,16 @@
           font-weight: 400;
           padding: 0.5rem;
 
-          &:nth-child(1), &:nth-child(7) {
+          &:nth-child(1),
+          &:nth-child(7) {
             color: rgba(243, 106, 106, 1);
           }
 
-          &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+          &:nth-child(2),
+          &:nth-child(3),
+          &:nth-child(4),
+          &:nth-child(5),
+          &:nth-child(6) {
             color: rgba(18, 18, 18, 1);
           }
         }
@@ -126,7 +133,7 @@
           }
 
           &.selected {
-            background: #64603C;
+            background: #64603c;
             color: white;
             font-weight: 600;
             border-color: #52502f;
@@ -174,8 +181,8 @@
       }
 
       .confirm-button {
-        background: #64603C;
-        border: 1px solid #64603C;
+        background: #64603c;
+        border: 1px solid #64603c;
         color: white;
 
         &:hover:not(:disabled) {
@@ -254,4 +261,4 @@
       }
     }
   }
-} 
+}

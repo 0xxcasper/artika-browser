@@ -19,21 +19,21 @@ const navVariants = {
     opacity: 1,
     transition: {
       duration: 0.8,
-      ease: 'easeOut'
-    }
-  }
+      ease: 'easeOut',
+    },
+  },
 };
 
 const sidebarVariants = {
   hidden: { x: '-100%' },
   visible: { x: 0, transition: { type: 'tween', duration: 0.3 } },
-  exit: { x: '-100%', transition: { type: 'tween', duration: 0.4 } }
+  exit: { x: '-100%', transition: { type: 'tween', duration: 0.4 } },
 };
 
 const overlayVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 0.4, transition: { duration: 0.2 } },
-  exit: { opacity: 0, transition: { duration: 0.2 } }
+  exit: { opacity: 0, transition: { duration: 0.2 } },
 };
 
 export default function Navigation() {
@@ -58,7 +58,7 @@ export default function Navigation() {
   const switchLanguage = (newLocale: string) => {
     const currentPath = pathname;
     let newPath = '';
-    
+
     if (newLocale === 'vi') {
       // Switch to Vietnamese
       if (currentPath === '/') {
@@ -78,7 +78,7 @@ export default function Navigation() {
         newPath = currentPath; // Already English
       }
     }
-    
+
     router.push(newPath);
     setIsLanguageDropdownOpen(false);
   };
@@ -86,19 +86,19 @@ export default function Navigation() {
   // Smart path matching logic
   const getActiveMenu = useMemo(() => {
     // First, try to find exact path match
-    const exactMatch = menus.find(menu => {
+    const exactMatch = menus.find((menu) => {
       if (menu.href === pathname) return true;
-      if (menu.subs?.some(sub => sub.href === pathname)) return true;
+      if (menu.subs?.some((sub) => sub.href === pathname)) return true;
       return false;
     });
 
     if (exactMatch) return exactMatch;
 
     // Then, try to find partial path match (for nested routes)
-    const partialMatch = menus.find(menu => {
+    const partialMatch = menus.find((menu) => {
       if (menu.href === '/') return false; // Skip home for partial matching
       if (pathname.startsWith(menu.href)) return true;
-      if (menu.subs?.some(sub => pathname.startsWith(sub.href))) return true;
+      if (menu.subs?.some((sub) => pathname.startsWith(sub.href))) return true;
       return false;
     });
 
@@ -108,7 +108,7 @@ export default function Navigation() {
   // Smart text color detection
   const isTextDark = useMemo(() => {
     const darkTextPaths = ['artwalk', 'admin'];
-    return darkTextPaths.some(path => pathname.includes(path));
+    return darkTextPaths.some((path) => pathname.includes(path));
   }, [pathname]);
 
   // Smart active state detection
@@ -122,7 +122,7 @@ export default function Navigation() {
     if (menu.href === pathname) return true;
 
     // Submenu match
-    if (menu.subs?.some(sub => sub.href === pathname)) return true;
+    if (menu.subs?.some((sub) => sub.href === pathname)) return true;
 
     // Partial match for nested routes
     if (pathname.startsWith(menu.href) && menu.href !== '/') return true;
@@ -186,12 +186,12 @@ export default function Navigation() {
         </div>
       );
     }
-    
+
     return (
-      <Link 
-        href={href} 
-        key={element.id} 
-        className={`nav-link-drawer ${isActive ? 'active' : ''}`} 
+      <Link
+        href={href}
+        key={element.id}
+        className={`nav-link-drawer ${isActive ? 'active' : ''}`}
         onClick={() => {
           setSelectedMenu(null);
           setIsSidebarOpen(false);
@@ -219,33 +219,31 @@ export default function Navigation() {
       return (
         <Flex
           onClick={() => setSelectedMenu(element)}
-          flexDirection="row" 
-          justifyContent="space-between" 
+          flexDirection="row"
+          justifyContent="space-between"
           minWidth={{
-            base: "140px",
-            md: "215px"
-          }} 
-          cursor="pointer" 
+            base: '140px',
+            md: '215px',
+          }}
+          cursor="pointer"
           alignItems="center"
           key={element.label}
           _hover={{
             opacity: 0.85,
             '.nav-link-drawer': {
               opacity: 0.85,
-              color: '#000'
-            }
+              color: '#000',
+            },
           }}
         >
-          <div 
-            className={`nav-link-drawer ${isActive ? 'active' : ''}`}
-          >
+          <div className={`nav-link-drawer ${isActive ? 'active' : ''}`}>
             {element.label}
           </div>
-          <Image 
-            src="/icons/ic-arrow-right.svg" 
-            alt="arrow" 
-            width={7} 
-            height={7} 
+          <Image
+            src="/icons/ic-arrow-right.svg"
+            alt="arrow"
+            width={7}
+            height={7}
             draggable={false}
           />
         </Flex>
@@ -254,10 +252,10 @@ export default function Navigation() {
 
     // Handle regular menu items
     return (
-      <Link 
-        href={getLocalizedHref(element.href)} 
-        key={element.label} 
-        className={`nav-link-drawer ${isActive ? 'active' : ''}`} 
+      <Link
+        href={getLocalizedHref(element.href)}
+        key={element.label}
+        className={`nav-link-drawer ${isActive ? 'active' : ''}`}
         onClick={() => {
           setSelectedMenu(null);
           setIsSidebarOpen(false);
@@ -285,52 +283,74 @@ export default function Navigation() {
             aria-label="Open menu"
             onClick={() => setIsSidebarOpen(true)}
           >
-            <Image src="/icons/menu.svg" alt="menu" width={24} height={24} draggable={false} />
+            <Image
+              src="/icons/menu.svg"
+              alt="menu"
+              width={24}
+              height={24}
+              draggable={false}
+            />
           </button>
-          <Link href={getLocalizedHref('/')} className="nav-logo" draggable={false}>
-            <Image 
-              src="/artika.svg" 
-              alt="Artika" 
-              width={113} 
-              height={24} 
-              style={{ filter: isScrolled || isTextDark ? 'invert(1)' : 'invert(0)' }} 
-              draggable={false} 
+          <Link
+            href={getLocalizedHref('/')}
+            className="nav-logo"
+            draggable={false}
+          >
+            <Image
+              src="/artika.svg"
+              alt="Artika"
+              width={113}
+              height={24}
+              style={{
+                filter: isScrolled || isTextDark ? 'invert(1)' : 'invert(0)',
+              }}
+              draggable={false}
             />
           </Link>
 
-          <Flex flexDirection="row" gap={{
-            base: "16px",
-            md: "50px"
-          }} alignItems="center" justifyContent="center">
+          <Flex
+            flexDirection="row"
+            gap={{
+              base: '16px',
+              md: '50px',
+            }}
+            alignItems="center"
+            justifyContent="center"
+          >
             <div className="language-dropdown" style={{ position: 'relative' }}>
-              <Flex 
-                flexDirection="row" 
+              <Flex
+                flexDirection="row"
                 gap={{
-                  base: "8px",
-                  md: "12px"
-                }} 
-                alignItems="center" 
-                cursor="pointer" 
+                  base: '8px',
+                  md: '12px',
+                }}
+                alignItems="center"
+                cursor="pointer"
                 _hover={{ opacity: 0.8 }}
-                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                onClick={() =>
+                  setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
+                }
               >
-                <p className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>
+                <p
+                  className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}
+                >
                   {language === 'vi' ? 'Tiếng Việt' : 'English'}
                 </p>
-                <Image 
-                  src="/icons/ic-next.svg" 
-                  alt="arrow" 
-                  width={10} 
-                  height={10} 
-                  draggable={false} 
-                  style={{ 
-                    transform: `rotate(90deg) ${isLanguageDropdownOpen ? 'rotate(180deg)' : ''}`, 
-                    transition: 'transform 0.3s ease', 
-                    filter: isScrolled || isTextDark ? 'invert(0)' : 'invert(1)' 
-                  }} 
+                <Image
+                  src="/icons/ic-next.svg"
+                  alt="arrow"
+                  width={10}
+                  height={10}
+                  draggable={false}
+                  style={{
+                    transform: `rotate(90deg) ${isLanguageDropdownOpen ? 'rotate(180deg)' : ''}`,
+                    transition: 'transform 0.3s ease',
+                    filter:
+                      isScrolled || isTextDark ? 'invert(0)' : 'invert(1)',
+                  }}
                 />
               </Flex>
-              
+
               {isLanguageDropdownOpen && (
                 <motion.div
                   className="language-dropdown-menu"
@@ -349,10 +369,10 @@ export default function Navigation() {
                     zIndex: 1000,
                     minWidth: '120px',
                     marginTop: '8px',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
                   }}
                 >
-                  <div 
+                  <div
                     className="language-option"
                     onClick={() => switchLanguage('en')}
                     style={{
@@ -361,7 +381,7 @@ export default function Navigation() {
                       fontSize: '14px',
                       color: language === 'en' ? '#64603C' : '#666',
                       fontWeight: language === 'en' ? '600' : '400',
-                      borderBottom: '1px solid #f0f0f0'
+                      borderBottom: '1px solid #f0f0f0',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#f8f8f8';
@@ -372,7 +392,7 @@ export default function Navigation() {
                   >
                     English
                   </div>
-                  <div 
+                  <div
                     className="language-option"
                     onClick={() => switchLanguage('vi')}
                     style={{
@@ -380,7 +400,7 @@ export default function Navigation() {
                       cursor: 'pointer',
                       fontSize: '14px',
                       color: language === 'vi' ? '#64603C' : '#666',
-                      fontWeight: language === 'vi' ? '600' : '400'
+                      fontWeight: language === 'vi' ? '600' : '400',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#f8f8f8';
@@ -394,12 +414,17 @@ export default function Navigation() {
                 </motion.div>
               )}
             </div>
-            <Link href={cta.cta_link} target="_blank" className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}>{cta.cta_label}</Link>
+            <Link
+              href={cta.cta_link}
+              target="_blank"
+              className={`nav-text ${isScrolled || isTextDark ? 'nav-text-scrolled' : ''}`}
+            >
+              {cta.cta_label}
+            </Link>
           </Flex>
-
         </div>
       </motion.nav>
-      
+
       {isSidebarOpen && (
         <AnimatePresence mode="wait">
           <motion.div
@@ -424,9 +449,20 @@ export default function Navigation() {
               aria-label="Close menu"
               onClick={() => setIsSidebarOpen(false)}
             >
-              <Image src="/icons/ic-close.svg" alt="close" width={28} height={28} draggable={false} />
+              <Image
+                src="/icons/ic-close.svg"
+                alt="close"
+                width={28}
+                height={28}
+                draggable={false}
+              />
             </button>
-            <Flex flexDirection="row" gap={4} justifyContent="space-between" height="100%">
+            <Flex
+              flexDirection="row"
+              gap={4}
+              justifyContent="space-between"
+              height="100%"
+            >
               <div className="nav-sidebar-links">
                 {menus.map((menu) => renderMenu(menu))}
               </div>
@@ -441,4 +477,4 @@ export default function Navigation() {
       )}
     </>
   );
-} 
+}

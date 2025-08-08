@@ -1,9 +1,22 @@
 'use client';
 
-import React, { useState, useEffect, useRef, createContext, useContext, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  createContext,
+  useContext,
+  useMemo,
+} from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigation } from '@/hooks/useNavigation';
-import { NavigationMenu, NavigationCTA, ScheduleTourFormData, FooterData, NewsletterFormData } from '@/locales/types';
+import {
+  NavigationMenu,
+  NavigationCTA,
+  ScheduleTourFormData,
+  FooterData,
+  NewsletterFormData,
+} from '@/locales/types';
 import { Box } from '@chakra-ui/react';
 
 interface PreloaderContextType {
@@ -14,7 +27,9 @@ interface PreloaderContextType {
   footerData: FooterData;
 }
 
-const PreloaderContext = createContext<PreloaderContextType | undefined>(undefined);
+const PreloaderContext = createContext<PreloaderContextType | undefined>(
+  undefined,
+);
 
 interface PreloaderProviderProps {
   children: React.ReactNode;
@@ -26,8 +41,11 @@ interface PreloaderProviderProps {
 // Helper function to detect mobile devices
 const isMobile = () => {
   if (typeof window === 'undefined') return false;
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-         window.innerWidth <= 768;
+  return (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    ) || window.innerWidth <= 768
+  );
 };
 
 export const usePreloader = () => {
@@ -38,11 +56,11 @@ export const usePreloader = () => {
   return context;
 };
 
-export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({ 
-  children, 
+export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
+  children,
   fonts = ['Playfair'],
   images = [],
-  timeout = 5000 
+  timeout = 5000,
 }) => {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
   const [isMobileDevice, setIsMobileDevice] = useState(false);
@@ -50,13 +68,14 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasStarted = useRef(false);
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
-  const { menus, cta, scheduleTourForm, newsletterForm, footerData } = useNavigation();
-  
+  const { menus, cta, scheduleTourForm, newsletterForm, footerData } =
+    useNavigation();
+
   const _updateAssetsLoaded = () => {
     setTimeout(() => {
       setAssetsLoaded(true);
     }, 200);
-  }
+  };
 
   useEffect(() => {
     // Detect mobile device
@@ -72,7 +91,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
     const handleCanPlay = () => {
       console.log('Video can play');
       setVideoLoaded(true);
-      
+
       // Force play on mobile
       if (isMobileDevice) {
         const playPromise = video.play();
@@ -124,10 +143,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
 
     const checkAssets = async () => {
       try {
-        await Promise.all([
-          checkFonts(),
-          checkImages()
-        ]);
+        await Promise.all([checkFonts(), checkImages()]);
 
         _updateAssetsLoaded();
       } catch (error) {
@@ -138,33 +154,34 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
 
     const checkFonts = async (): Promise<void> => {
       if (fonts.length === 0) return;
-      
+
       return new Promise((resolve) => {
         console.log('🔍 Starting font loading check...');
-        
+
         let fontTimeoutId: NodeJS.Timeout | null = null;
-        
+
         // Use document.fonts.ready for reliable font loading
-        document.fonts.ready.then(() => {
-          console.log('✅ document.fonts.ready resolved');
-          
-          // Wait a reasonable time for fonts to be fully available
-          setTimeout(() => {
-            console.log('✅ Fonts loading complete');
-            document.body.classList.add('fonts-loaded');
-            
-            // Clear the fallback timeout
-            if (fontTimeoutId) {
-              clearTimeout(fontTimeoutId);
-            }
-            
-            resolve();
-          }, 1000); // Wait 1 second after fonts.ready
-          
-        }).catch((error) => {
-          console.log('❌ Font loading error:', error);
-          resolve(); // Proceed anyway
-        });
+        document.fonts.ready
+          .then(() => {
+            console.log('✅ document.fonts.ready resolved');
+
+            // Wait a reasonable time for fonts to be fully available
+            setTimeout(() => {
+              console.log('✅ Fonts loading complete');
+              document.body.classList.add('fonts-loaded');
+
+              // Clear the fallback timeout
+              if (fontTimeoutId) {
+                clearTimeout(fontTimeoutId);
+              }
+
+              resolve();
+            }, 1000); // Wait 1 second after fonts.ready
+          })
+          .catch((error) => {
+            console.log('❌ Font loading error:', error);
+            resolve(); // Proceed anyway
+          });
 
         // Fallback timeout for fonts
         fontTimeoutId = setTimeout(() => {
@@ -177,7 +194,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
     const checkImages = async (): Promise<void> => {
       if (images.length === 0) return;
 
-      const imagePromises = images.map(src => {
+      const imagePromises = images.map((src) => {
         return new Promise<boolean>((resolve) => {
           const img = new Image();
           img.onload = () => {
@@ -195,7 +212,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
       try {
         console.log('Starting image loading');
         const results = await Promise.all(imagePromises);
-        const loadedCount = results.filter(r => r).length;
+        const loadedCount = results.filter((r) => r).length;
         console.log(`✅ Images loaded: ${loadedCount}/${images.length}`);
       } catch (error) {
         console.log('❌ Image loading error:', error);
@@ -222,13 +239,16 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
     return menus?.length > 0 && assetsLoaded;
   }, [menus, assetsLoaded]);
 
-  const contextValue: PreloaderContextType = useMemo(() => ({
-    menus,
-    cta,
-    scheduleTourForm,
-    newsletterForm,
-    footerData,
-  }), [menus, cta, scheduleTourForm, newsletterForm, footerData]);
+  const contextValue: PreloaderContextType = useMemo(
+    () => ({
+      menus,
+      cta,
+      scheduleTourForm,
+      newsletterForm,
+      footerData,
+    }),
+    [menus, cta, scheduleTourForm, newsletterForm, footerData],
+  );
 
   return (
     <PreloaderContext.Provider value={contextValue}>
@@ -237,12 +257,12 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
           <motion.div
             key="preloader"
             initial={{ opacity: 1 }}
-            exit={{ 
+            exit={{
               opacity: 0,
-              transition: { 
-                duration: 0.3, 
-                ease: "easeInOut"
-              }
+              transition: {
+                duration: 0.3,
+                ease: 'easeInOut',
+              },
             }}
             style={{
               position: 'fixed',
@@ -256,7 +276,9 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
               zIndex: 9999,
             }}
           >
-            <motion.div style={{ width: 147, height: 147, position: 'relative' }}>
+            <motion.div
+              style={{ width: 147, height: 147, position: 'relative' }}
+            >
               <video
                 ref={videoRef}
                 width={145}
@@ -266,18 +288,36 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
                 muted
                 playsInline
                 preload="auto"
-                style={{ 
-                  // display: 'block', 
-                  width: '100%', 
+                style={{
+                  // display: 'block',
+                  width: '100%',
                   height: '100%',
-                  objectFit: 'contain'
+                  objectFit: 'contain',
                 }}
                 aria-label="Artika"
               >
                 <source src="/logo-anim.mp4" type="video/mp4" />
               </video>
-              <Box position="absolute" left={0} right={0} bottom="-1px" height="5px" width="100%" margin="auto" backgroundColor="#fff" />
-              <Box position="absolute" top={0} bottom={0} right={0} height="100%" width="5px" margin="auto" backgroundColor="#fff" />
+              <Box
+                position="absolute"
+                left={0}
+                right={0}
+                bottom="-1px"
+                height="5px"
+                width="100%"
+                margin="auto"
+                backgroundColor="#fff"
+              />
+              <Box
+                position="absolute"
+                top={0}
+                bottom={0}
+                right={0}
+                height="100%"
+                width="5px"
+                margin="auto"
+                backgroundColor="#fff"
+              />
             </motion.div>
           </motion.div>
         ) : (
@@ -285,7 +325,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
             key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
             {children}
           </motion.div>

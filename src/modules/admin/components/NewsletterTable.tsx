@@ -10,17 +10,19 @@ interface NewsletterTableProps {
   onDelete: (subscriptionId: string) => void;
 }
 
-export default function NewsletterTable({ 
-  subscriptions, 
-  allSubscriptions, 
-  onAddNote, 
-  onDelete
+export default function NewsletterTable({
+  subscriptions,
+  allSubscriptions,
+  onAddNote,
+  onDelete,
 }: NewsletterTableProps) {
   if (!allSubscriptions || allSubscriptions.length === 0) {
     return (
       <div className="empty-state">
         <h3>No newsletter subscriptions yet</h3>
-        <p>Newsletter subscriptions will appear here once users start signing up.</p>
+        <p>
+          Newsletter subscriptions will appear here once users start signing up.
+        </p>
       </div>
     );
   }
@@ -49,8 +51,15 @@ export default function NewsletterTable({
           </thead>
           <tbody>
             {subscriptions.map((subscription) => (
-              <tr key={subscription.id} className={subscription.status === 'active' ? 'new-row' : 'done-row'}>
-                <td className="date-cell">{formatDate(subscription.subscribedAt)}</td>
+              <tr
+                key={subscription.id}
+                className={
+                  subscription.status === 'active' ? 'new-row' : 'done-row'
+                }
+              >
+                <td className="date-cell">
+                  {formatDate(subscription.subscribedAt)}
+                </td>
                 <td className="email-cell">
                   <span className="email-text">{subscription.email}</span>
                 </td>
@@ -64,8 +73,8 @@ export default function NewsletterTable({
                 <td className="note-cell">
                   {subscription.note ? (
                     <div className="note-text">
-                      {subscription.note.length > 50 
-                        ? `${subscription.note.substring(0, 50)}...` 
+                      {subscription.note.length > 50
+                        ? `${subscription.note.substring(0, 50)}...`
                         : subscription.note}
                     </div>
                   ) : (
@@ -95,10 +104,11 @@ export default function NewsletterTable({
           </tbody>
         </table>
       </div>
-      
+
       <div className="results-info">
-        Showing {subscriptions.length} of {allSubscriptions.length} newsletter subscriptions
+        Showing {subscriptions.length} of {allSubscriptions.length} newsletter
+        subscriptions
       </div>
     </>
   );
-} 
+}

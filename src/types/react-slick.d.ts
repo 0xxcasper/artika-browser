@@ -1,6 +1,6 @@
 declare module 'react-slick' {
   import React from 'react';
-  
+
   interface Settings {
     dots?: boolean;
     infinite?: boolean;
@@ -16,11 +16,11 @@ declare module 'react-slick' {
     }>;
     [key: string]: any;
   }
-  
+
   interface SliderProps extends Settings {
     children: React.ReactNode;
   }
-  
+
   const Slider: React.ComponentType<SliderProps>;
   export default Slider;
-} 
+}

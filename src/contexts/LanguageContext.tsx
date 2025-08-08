@@ -8,14 +8,19 @@ interface LanguageContextType {
   language: Language;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined,
+);
 
 interface LanguageProviderProps {
   children: ReactNode;
   language: Language;
 }
 
-export function LanguageProvider({ children, language }: LanguageProviderProps) {
+export function LanguageProvider({
+  children,
+  language,
+}: LanguageProviderProps) {
   return (
     <LanguageContext.Provider value={{ language }}>
       {children}
@@ -29,4 +34,4 @@ export function useLanguage() {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
-} 
+}

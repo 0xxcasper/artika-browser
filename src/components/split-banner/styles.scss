@@ -21,15 +21,15 @@
   overflow: hidden;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: 0.1em;
     width: 100%; // Always display full width
     height: 2px;
-    background: #64603C;
+    background: #64603c;
     // transform: translateX(-100%); // Start from left (hidden)
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:hover::after,
@@ -42,19 +42,19 @@
   width: 100%;
   min-height: 600px;
   opacity: 0; // Ensure initial hidden state
-  
+
   // Desktop Layout (768px and up)
   .desktop-layout {
     display: block;
     width: 100%;
     height: 100%;
-    
+
     .content-wrapper {
       display: flex;
       align-items: stretch;
       min-height: 600px;
       gap: 133px;
-      
+
       &.text-first {
         .text-content {
           order: 1;
@@ -63,7 +63,7 @@
           order: 2;
         }
       }
-      
+
       &.image-first {
         .text-content {
           order: 2;
@@ -73,7 +73,7 @@
         }
       }
     }
-    
+
     .text-content {
       flex: 1;
       display: flex;
@@ -83,7 +83,6 @@
       gap: 40px;
       max-width: 400px;
 
-      
       .section-title {
         @include font-primary;
         font-family: 'Playfair', serif !important;
@@ -93,7 +92,7 @@
         line-height: 34px;
         letter-spacing: -2%;
       }
-      
+
       .section-description {
         @include font-secondary;
         font-size: 18px;
@@ -102,7 +101,7 @@
         font-weight: 500;
         line-height: 24px;
       }
-      
+
       .cta-button {
         @include font-secondary;
         color: #000;
@@ -114,21 +113,21 @@
         line-height: 24px;
       }
     }
-    
+
     .image-content {
       flex: 1;
       position: relative;
       aspect-ratio: 684/820;
       // overflow: hidden;
       cursor: pointer;
-      
+
       .image-wrapper {
         width: 100%;
         height: 100%;
         position: relative;
         // overflow: hidden;
         cursor: pointer;
-        
+
         .section-image {
           position: absolute;
           top: 50%;
@@ -142,7 +141,7 @@
       }
     }
   }
-  
+
   // Mobile Layout (below 768px)
   .mobile-layout {
     display: none;
@@ -167,7 +166,7 @@
 
     .mobile-cta-button {
       @include font-secondary;
-      color: #64603C;
+      color: #64603c;
       text-align: start;
       transition: all 0.3s ease;
       width: fit-content;

@@ -10,13 +10,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   // Smooth scroll optimizations
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   perspective: 1000px;
-  
+
   .hero-background {
     position: absolute;
     top: -10%;
@@ -24,13 +24,13 @@
     width: 120%;
     height: 120%;
     z-index: 1;
-    
+
     // Performance optimizations for smooth scrolling
     will-change: transform;
     transform: translate3d(0, 0, 0) scale(1.1);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    
+
     // Ensure the image always covers the full area
     img {
       width: 100% !important;
@@ -38,24 +38,24 @@
       object-fit: cover !important;
       object-position: center !important;
       display: block;
-      
+
       // Additional image optimizations
       transform: translate3d(0, 0, 0);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       image-rendering: optimizeQuality;
       -webkit-transform: translateZ(0);
-      
+
       // Prevent image jump on load
       opacity: 0;
       transition: opacity 0.3s ease-out;
-      
+
       &[src] {
         opacity: 1;
       }
     }
   }
-  
+
   .hero-content {
     position: relative;
     z-index: 10;
@@ -65,10 +65,10 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
-    
+
     // Text performance optimization
     transform: translate3d(0, 0, 0);
-    
+
     h1 {
       @include heading-1;
       @include font-primary;
@@ -76,7 +76,7 @@
       text-align: center;
       white-space: pre-line;
     }
-    
+
     p {
       @include body-large;
       @include font-secondary;
@@ -92,11 +92,11 @@
     position: absolute;
     z-index: 1000;
     bottom: 4rem;
-    
+
     // Performance optimization for logo animation
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
-    
+
     // animation up down
     animation: upDown 2s ease-in-out infinite;
     @keyframes upDown {
@@ -117,7 +117,7 @@
     @media (max-width: 768px) {
       width: 48px;
       height: 48px;
-      bottom: 2rem; 
+      bottom: 2rem;
     }
 
     @media (max-width: 640px) {
@@ -135,7 +135,6 @@ html {
 // Responsive design
 @media (max-width: 768px) {
   .hero {
-    
     .hero-content {
       padding: 0 2rem;
     }

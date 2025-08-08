@@ -10,7 +10,11 @@ interface DatePickerProps {
   selectedDate: Date | null;
 }
 
-export default function DatePicker({ onDateSelect, onClose, selectedDate }: DatePickerProps) {
+export default function DatePicker({
+  onDateSelect,
+  onClose,
+  selectedDate,
+}: DatePickerProps) {
   const { language } = useLanguage();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState<Date | null>(selectedDate);
@@ -35,26 +39,32 @@ export default function DatePicker({ onDateSelect, onClose, selectedDate }: Date
     const startingDayOfWeek = firstDay.getDay();
 
     const days = [];
-    
+
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < startingDayOfWeek; i++) {
       days.push(null);
     }
-    
+
     // Add all days of the month
     for (let i = 1; i <= daysInMonth; i++) {
       days.push(new Date(year, month, i));
     }
-    
+
     return days;
   };
 
   const getMonthName = (date: Date) => {
-    return date.toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US', { month: 'long', year: 'numeric' });
+    return date.toLocaleDateString(language === 'vi' ? 'vi-VN' : 'en-US', {
+      month: 'long',
+      year: 'numeric',
+    });
   };
 
   const getDayName = (dayIndex: number) => {
-    const days = language === 'vi' ? ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'] : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const days =
+      language === 'vi'
+        ? ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']
+        : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return days[dayIndex];
   };
 
@@ -84,11 +94,15 @@ export default function DatePicker({ onDateSelect, onClose, selectedDate }: Date
   };
 
   const previousMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1),
+    );
   };
 
   const nextMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1),
+    );
   };
 
   const days = getDaysInMonth(currentDate);
@@ -97,32 +111,24 @@ export default function DatePicker({ onDateSelect, onClose, selectedDate }: Date
     <div className="date-picker-overlay" onClick={onClose}>
       <div className="date-picker-modal" onClick={(e) => e.stopPropagation()}>
         <div className="date-picker-header">
-          <button 
-            type="button" 
-            className="nav-button" 
-            onClick={previousMonth}
-          >
+          <button type="button" className="nav-button" onClick={previousMonth}>
             ‹
           </button>
           <h3 className="month-year">{getMonthName(currentDate)}</h3>
-          <button 
-            type="button" 
-            className="nav-button" 
-            onClick={nextMonth}
-          >
+          <button type="button" className="nav-button" onClick={nextMonth}>
             ›
           </button>
         </div>
-        
+
         <div className="date-picker-body">
           <div className="weekdays">
-            {[0, 1, 2, 3, 4, 5, 6].map(dayIndex => (
+            {[0, 1, 2, 3, 4, 5, 6].map((dayIndex) => (
               <div key={dayIndex} className="weekday">
                 {getDayName(dayIndex)}
               </div>
             ))}
           </div>
-          
+
           <div className="days-grid">
             {days.map((day, index) => (
               <div
@@ -135,18 +141,14 @@ export default function DatePicker({ onDateSelect, onClose, selectedDate }: Date
             ))}
           </div>
         </div>
-        
+
         <div className="date-picker-footer">
-          <button 
-            type="button" 
-            className="cancel-button" 
-            onClick={onClose}
-          >
+          <button type="button" className="cancel-button" onClick={onClose}>
             {language === 'vi' ? 'Hủy' : 'Cancel'}
           </button>
-          <button 
-            type="button" 
-            className="confirm-button" 
+          <button
+            type="button"
+            className="confirm-button"
             onClick={() => {
               if (selectedDay) {
                 onDateSelect(selectedDay);
@@ -161,4 +163,4 @@ export default function DatePicker({ onDateSelect, onClose, selectedDate }: Date
       </div>
     </div>
   );
-} 
+}

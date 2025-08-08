@@ -8,4 +8,4 @@ const config = prismic.createConfig({
   client: './src/libs/prismic.ts',
 });
 
-export default config; 
+export default config;

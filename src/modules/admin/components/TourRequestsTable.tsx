@@ -11,12 +11,12 @@ interface TourRequestsTableProps {
   onAddNote: (submission: TourSubmission) => void;
 }
 
-export default function TourRequestsTable({ 
-  submissions, 
-  allSubmissions, 
-  onMarkAsRead, 
-  onDelete, 
-  onAddNote 
+export default function TourRequestsTable({
+  submissions,
+  allSubmissions,
+  onMarkAsRead,
+  onDelete,
+  onAddNote,
 }: TourRequestsTableProps) {
   if (!allSubmissions || allSubmissions.length === 0) {
     return (
@@ -54,9 +54,14 @@ export default function TourRequestsTable({
           </thead>
           <tbody>
             {submissions.map((submission) => (
-              <tr key={submission.id} className={!submission.read ? 'unread-row' : ''}>
+              <tr
+                key={submission.id}
+                className={!submission.read ? 'unread-row' : ''}
+              >
                 <td className="name-cell">
-                  <span className="name-text">{submission.name || 'Tour Request'}</span>
+                  <span className="name-text">
+                    {submission.name || 'Tour Request'}
+                  </span>
                 </td>
                 <td className="phone-cell">
                   <span className="phone-text">{submission.phone}</span>
@@ -80,7 +85,8 @@ export default function TourRequestsTable({
                 <td className="note-cell">
                   {submission.note ? (
                     <span className="note-text" title={submission.note}>
-                      {submission.note} shdjhfhjdf sgdsjgshghds hdjfhdjfhjdhjdh sjusjsgds
+                      {submission.note} shdjhfhjdf sgdsjgshghds hdjfhdjfhjdhjdh
+                      sjusjsgds
                     </span>
                   ) : (
                     '-'
@@ -120,10 +126,10 @@ export default function TourRequestsTable({
           </tbody>
         </table>
       </div>
-      
+
       <div className="results-info">
         Showing {submissions.length} of {allSubmissions.length} tour requests
       </div>
     </>
   );
-} 
+}

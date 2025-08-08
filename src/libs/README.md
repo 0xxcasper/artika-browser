@@ -5,7 +5,9 @@ This directory contains the Firebase configuration and Firestore utilities for t
 ## Files Overview
 
 ### `firebase.ts`
+
 Main Firebase configuration file that initializes:
+
 - Firebase App
 - Firestore Database
 - Authentication
@@ -13,7 +15,9 @@ Main Firebase configuration file that initializes:
 - Analytics (client-side only)
 
 ### `firestore.ts`
+
 Comprehensive Firestore utilities including:
+
 - Generic CRUD operations
 - Query helpers
 - Pagination support
@@ -21,7 +25,9 @@ Comprehensive Firestore utilities including:
 - Type-safe operations
 
 ### `useFirestore.ts` (in `../hooks/`)
+
 React hooks for using Firestore in components:
+
 - `useFirestoreCollection` - For fetching collections
 - `useFirestoreDocument` - For fetching single documents
 - `useFirestorePagination` - For paginated data
@@ -36,7 +42,7 @@ import { COLLECTIONS } from '@/libs/firestore';
 
 function MyComponent() {
   const { data, loading, error, addDocument } = useFirestoreCollection(
-    COLLECTIONS.ARTWORKS
+    COLLECTIONS.ARTWORKS,
   );
 
   if (loading) return <div>Loading...</div>;
@@ -44,7 +50,7 @@ function MyComponent() {
 
   return (
     <div>
-      {data?.map(item => (
+      {data?.map((item) => (
         <div key={item.id}>{item.title}</div>
       ))}
     </div>
@@ -66,12 +72,12 @@ const artwork = await FirestoreService.getById('artworks', 'doc-id');
 // Add document
 const id = await FirestoreService.add('artworks', {
   title: 'New Artwork',
-  artist: 'Artist Name'
+  artist: 'Artist Name',
 });
 
 // Update document
 await FirestoreService.update('artworks', 'doc-id', {
-  title: 'Updated Title'
+  title: 'Updated Title',
 });
 
 // Delete document
@@ -108,7 +114,9 @@ The following collections are predefined in `COLLECTIONS`:
 ## Data Types
 
 ### FirestoreDocument Interface
+
 All documents extend this base interface:
+
 ```tsx
 interface FirestoreDocument {
   id: string;
@@ -117,6 +125,7 @@ interface FirestoreDocument {
 ```
 
 ### Example Artwork Type
+
 ```tsx
 interface Artwork extends FirestoreDocument {
   title: string;
@@ -132,23 +141,25 @@ interface Artwork extends FirestoreDocument {
 ## Query Examples
 
 ### Filtering
+
 ```tsx
 import { where, orderBy } from 'firebase/firestore';
 
 // Get featured artworks
 const featured = await FirestoreService.query('artworks', [
   where('featured', '==', true),
-  orderBy('createdAt', 'desc')
+  orderBy('createdAt', 'desc'),
 ]);
 
 // Get artworks by artist
 const artistWorks = await FirestoreService.query('artworks', [
   where('artistId', '==', 'artist-id'),
-  orderBy('title', 'asc')
+  orderBy('title', 'asc'),
 ]);
 ```
 
 ### Pagination
+
 ```tsx
 import { useFirestorePagination } from '@/hooks/useFirestore';
 
@@ -156,15 +167,15 @@ function PaginatedList() {
   const { data, loading, hasMore, loadMore } = useFirestorePagination(
     'artworks',
     10, // page size
-    [where('featured', '==', true)]
+    [where('featured', '==', true)],
   );
 
   return (
     <div>
-      {data?.map(item => <div key={item.id}>{item.title}</div>)}
-      {hasMore && (
-        <button onClick={loadMore}>Load More</button>
-      )}
+      {data?.map((item) => (
+        <div key={item.id}>{item.title}</div>
+      ))}
+      {hasMore && <button onClick={loadMore}>Load More</button>}
     </div>
   );
 }
@@ -196,7 +207,7 @@ service cloud.firestore {
       allow read: if true;
       allow write: if request.auth != null;
     }
-    
+
     // Allow read access to artists
     match /artists/{document} {
       allow read: if true;
@@ -221,6 +232,7 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ```
 
 Then update `firebase.ts`:
+
 ```tsx
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -229,6 +241,6 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-``` 
+```

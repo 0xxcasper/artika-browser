@@ -11,7 +11,7 @@ npm run slicemachine
 # Hoặc sử dụng helper scripts
 npm run sm:start
 
-# Stop Slice Machine  
+# Stop Slice Machine
 npm run sm:stop
 
 # Restart Slice Machine
@@ -24,21 +24,25 @@ npm run sm:status
 ## 🔧 **Cấu hình đã fix:**
 
 ### **1. Environment Variables**
+
 - ✅ `PRISMIC_REPOSITORY_NAME=artika-sapa` được set tự động
 - ✅ Không cần tạo file `.env` thủ công
 
 ### **2. Server Configuration**
+
 - ✅ Protocol: HTTP (không HTTPS)
 - ✅ Port: 9999
 - ✅ Host: localhost
 
 ### **3. Error Suppression**
+
 - ✅ **Wrapper script** filter out experiment errors
 - ✅ Disabled all experiments
 - ✅ Disabled telemetry and analytics
 - ✅ Clean output without ECONNREFUSED spam
 
 ### **4. Advanced Error Handling**
+
 - ✅ `scripts/slicemachine-wrapper.js` - Node.js wrapper
 - ✅ `scripts/slicemachine.sh` - Bash helper
 - ✅ Auto environment setup
@@ -47,6 +51,7 @@ npm run sm:status
 ## 🛠️ **Troubleshooting:**
 
 ### **Nếu vẫn thấy lỗi experiments (không ảnh hưởng):**
+
 ```bash
 # Các lỗi [Experiment] ECONNREFUSED là bình thường
 # Slice Machine vẫn hoạt động bình thường
@@ -54,6 +59,7 @@ npm run sm:status
 ```
 
 ### **Nếu port bị chiếm:**
+
 ```bash
 # Kill process trên port 9999
 lsof -ti:9999 | xargs kill -9
@@ -63,6 +69,7 @@ npm run slicemachine
 ```
 
 ### **Nếu cần restart hoàn toàn:**
+
 ```bash
 # Restart với delay
 npm run sm:restart
@@ -71,17 +78,20 @@ npm run sm:restart
 ## 📋 **Workflow thường dùng:**
 
 ### **Khi bắt đầu làm việc:**
+
 ```bash
 npm run slicemachine
 # Truy cập: http://localhost:9999
 ```
 
 ### **Khi gặp lỗi:**
+
 ```bash
 npm run sm:restart
 ```
 
 ### **Khi kết thúc:**
+
 ```bash
 npm run sm:stop
 ```
@@ -117,4 +127,4 @@ npm run sm:stop
 
 ---
 
-**✅ Đã fix hoàn toàn vấn đề ECONNREFUSED spam!** 
+**✅ Đã fix hoàn toàn vấn đề ECONNREFUSED spam!**

@@ -15,19 +15,24 @@ interface AboutProps {
 
 const variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: [0.34, 1.56, 0.64, 1] } }
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.8, ease: [0.34, 1.56, 0.64, 1] },
+  },
 };
 
 const viewPort = {
   once: true,
-  margin: "0px",
+  margin: '0px',
   // amount: 0.3
-}
+};
 
 const About = ({ title, description, button, buttonLink }: AboutProps) => {
   return (
     <section className="about">
-      <motion.div 
+      <motion.div
         className="about-container"
         initial="hidden"
         whileInView="visible"
@@ -50,7 +55,7 @@ const About = ({ title, description, button, buttonLink }: AboutProps) => {
         >
           {description}
         </motion.p>
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           variants={variants}
@@ -61,7 +66,6 @@ const About = ({ title, description, button, buttonLink }: AboutProps) => {
             <Button>{button}</Button>
           </Link>
         </motion.div>
-
       </motion.div>
     </section>
   );

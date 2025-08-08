@@ -27,35 +27,35 @@
   background: transparent;
   display: flex;
   align-items: center;
-  
+
   // Desktop Carousel (768px and up)
   .desktop-carousel {
     display: block;
     width: 100%;
     height: 100%;
-    
+
     .slick-slider {
       height: 100%;
       width: 100%;
     }
-    
+
     .slick-list {
       height: 100%;
     }
-    
+
     .slick-track {
       display: flex !important;
       align-items: center;
       height: 100%;
     }
-    
+
     .slick-slide {
       margin: 0 32px;
       display: flex !important;
       align-items: center;
       justify-content: center;
     }
-    
+
     .slide-item {
       width: 300px;
       height: 360px;
@@ -64,7 +64,7 @@
       transition: all 0.3s ease;
       opacity: 0.7;
       flex-shrink: 0;
-      
+
       img {
         width: 100%;
         height: 100%;
@@ -78,7 +78,7 @@
         }
       }
     }
-    
+
     // Center slide - gấp đôi kích thước
     .slick-center .slide-item {
       width: 600px;
@@ -86,37 +86,37 @@
       opacity: 1;
       z-index: 2;
     }
-    
+
     // Ensure side slides stay in their position
     .slick-slide:not(.slick-center) .slide-item {
       position: relative;
       z-index: 1;
     }
   }
-  
+
   // Mobile Carousel (below 768px)
   .mobile-carousel {
     display: none;
     width: 100%;
     height: 100%;
     position: relative;
-    
+
     .slick-slider {
       height: 100%;
       width: 100%;
     }
-    
+
     .slick-list {
       height: 100%;
       overflow: hidden;
     }
-    
+
     .slick-track {
       display: flex !important;
       align-items: center;
       height: 100%;
     }
-    
+
     .slick-slide {
       display: flex !important;
       align-items: center;
@@ -124,7 +124,7 @@
       padding: 0;
       width: 100% !important;
     }
-    
+
     .slide-item.mobile-slide {
       width: 100%;
       height: 70vh;
@@ -132,7 +132,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       opacity: 1;
-      
+
       img {
         width: 100%;
         height: 100%;
@@ -165,25 +165,25 @@
     width: 100%;
     max-width: 100%;
     overflow: hidden;
-    
+
     .desktop-carousel {
       display: none;
-      
+
       .desktop-arrow {
         display: none !important;
       }
     }
-    
+
     .mobile-carousel {
       display: block;
       width: 100%;
-      
+
       .mobile-arrow {
         display: block !important;
       }
     }
   }
-  
+
   .container {
     margin-top: 8rem;
     gap: 2rem;
@@ -195,18 +195,18 @@
   .centered-carousel-container {
     height: 60vh;
     width: 100%;
-    
+
     .mobile-carousel {
       .slick-slide {
         padding: 0;
         width: 100% !important;
       }
-      
+
       .slide-item.mobile-slide {
         height: 60vh;
         width: 100%;
       }
-      
+
       .mobile-arrow {
         width: 45px !important;
         height: 45px !important;
@@ -214,7 +214,7 @@
       }
     }
   }
-  
+
   .container {
     margin-top: 100px;
     gap: 1.5rem;

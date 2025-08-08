@@ -1,17 +1,21 @@
 import { createClient } from '@/libs/prismic';
-import type { ArtwalkCategory, ArtwalkCategoryList, ArtwalkContent } from '@/types/artwalk';
+import type {
+  ArtwalkCategory,
+  ArtwalkCategoryList,
+  ArtwalkContent,
+} from '@/types/artwalk';
 
 // Transform Prismic collection document to ArtwalkCategory
 function transformToArtwalkCategory(doc: any): ArtwalkCategory {
   console.log('Transforming collection document:', doc);
-  
+
   const result = {
     slugId: doc.uid, // Use UID instead of slugId field
     title: doc.data.title || '',
     description: doc.data.description || '',
-    contents: []
+    contents: [],
   };
-  
+
   // Transform linked content items
   if (doc.data.contents && Array.isArray(doc.data.contents)) {
     result.contents = doc.data.contents
@@ -23,7 +27,7 @@ function transformToArtwalkCategory(doc: any): ArtwalkCategory {
       })
       .filter(Boolean);
   }
-  
+
   console.log('Transformed category result:', result);
   return result;
 }
@@ -31,7 +35,7 @@ function transformToArtwalkCategory(doc: any): ArtwalkCategory {
 // Transform Prismic content item document to ArtwalkContent
 function transformToArtwalkContent(doc: any): ArtwalkContent {
   console.log('Transforming content item document:', doc);
-  
+
   const result = {
     id: doc.uid,
     href: `/artwalk/content/${doc.uid}`,
@@ -44,15 +48,15 @@ function transformToArtwalkContent(doc: any): ArtwalkContent {
       title: '',
       info: '',
       author: '',
-      description: ''
-    }
+      description: '',
+    },
   };
-  
+
   // Transform linked detail if exists
   if (doc.data.detail && doc.data.detail.data) {
     result.detail = transformToArtwalkDetail(doc.data.detail);
   }
-  
+
   console.log('Transformed content result:', result);
   return result;
 }
@@ -60,41 +64,48 @@ function transformToArtwalkContent(doc: any): ArtwalkContent {
 // Transform Prismic detail document
 function transformToArtwalkDetail(doc: any): any {
   console.log('Transforming detail document:', doc);
-  
+
   const result = {
     title: doc.data.title || '',
     description: doc.data.description || '',
     info: doc.data.info || '',
     author: doc.data.author || '',
-    images: []
+    images: [],
   };
-  
+
   // Transform images
   if (doc.data.images && Array.isArray(doc.data.images)) {
     result.images = doc.data.images
       .map((img: any) => img.image?.url)
       .filter(Boolean);
   }
-  
+
   console.log('Transformed detail result:', result);
   return result;
 }
 
 // Fetch all collections
-export async function fetchAllArtwalkCategories(locale: string): Promise<ArtwalkCategoryList> {
+export async function fetchAllArtwalkCategories(
+  locale: string,
+): Promise<ArtwalkCategoryList> {
   try {
     const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
-    console.log('Fetching all artwalk categories for locale:', locale, 'prismic locale:', prismicLocale);
+    console.log(
+      'Fetching all artwalk categories for locale:',
+      locale,
+      'prismic locale:',
+      prismicLocale,
+    );
     console.log('Repository:', process.env.PRISMIC_REPOSITORY_NAME);
     console.log('Has access token:', !!process.env.PRISMIC_ACCESS_TOKEN);
     console.log('Environment:', process.env.NODE_ENV);
-    
+
     const client = createClient();
-    const docs = await (client as any).getAllByType('collection', { 
+    const docs = await (client as any).getAllByType('collection', {
       lang: prismicLocale,
       fetchLinks: [
         'content_item.name',
-        'content_item.subName', 
+        'content_item.subName',
         'content_item.thumb',
         'content_item.material',
         'content_item.detail',
@@ -102,10 +113,10 @@ export async function fetchAllArtwalkCategories(locale: string): Promise<Artwalk
         'detail.description',
         'detail.info',
         'detail.author',
-        'detail.images'
-      ]
+        'detail.images',
+      ],
     });
-    
+
     console.log('Found collection documents:', docs.length);
     return docs.map(transformToArtwalkCategory);
   } catch (error) {
@@ -115,26 +126,34 @@ export async function fetchAllArtwalkCategories(locale: string): Promise<Artwalk
       stack: error instanceof Error ? error.stack : undefined,
       repository: process.env.PRISMIC_REPOSITORY_NAME,
       hasToken: !!process.env.PRISMIC_ACCESS_TOKEN,
-      environment: process.env.NODE_ENV
+      environment: process.env.NODE_ENV,
     });
     return [];
   }
 }
 
 // Fetch specific collection by slugId (using UID)
-export async function fetchArtwalkCategory(slugId: string, prismicLocale: string): Promise<ArtwalkCategory | null> {
+export async function fetchArtwalkCategory(
+  slugId: string,
+  prismicLocale: string,
+): Promise<ArtwalkCategory | null> {
   try {
-    console.log('Fetching artwalk category by UID:', slugId, 'prismic locale:', prismicLocale);
+    console.log(
+      'Fetching artwalk category by UID:',
+      slugId,
+      'prismic locale:',
+      prismicLocale,
+    );
     console.log('Repository:', process.env.PRISMIC_REPOSITORY_NAME);
     console.log('Has access token:', !!process.env.PRISMIC_ACCESS_TOKEN);
-    
+
     const client = createClient();
-    
-    const doc = await (client as any).getByUID('collection', slugId, { 
+
+    const doc = await (client as any).getByUID('collection', slugId, {
       lang: prismicLocale,
       fetchLinks: [
         'content_item.name',
-        'content_item.subName', 
+        'content_item.subName',
         'content_item.thumb',
         'content_item.material',
         'content_item.detail',
@@ -142,17 +161,17 @@ export async function fetchArtwalkCategory(slugId: string, prismicLocale: string
         'detail.description',
         'detail.info',
         'detail.author',
-        'detail.images'
-      ]
+        'detail.images',
+      ],
     });
-    
+
     console.log('Found collection document by UID:', !!doc);
-    
+
     if (!doc) {
       console.log('No collection found for UID:', slugId);
       return null;
     }
-    
+
     return transformToArtwalkCategory(doc);
   } catch (error) {
     console.error('Error fetching artwalk category from Prismic:', error);
@@ -162,33 +181,43 @@ export async function fetchArtwalkCategory(slugId: string, prismicLocale: string
       slugId,
       prismicLocale,
       repository: process.env.PRISMIC_REPOSITORY_NAME,
-      hasToken: !!process.env.PRISMIC_ACCESS_TOKEN
+      hasToken: !!process.env.PRISMIC_ACCESS_TOKEN,
     });
     return null;
   }
 }
 
 // Fetch specific content item by ID
-export async function fetchArtwalkContent(contentId: string, locale: string): Promise<ArtwalkContent | null> {
+export async function fetchArtwalkContent(
+  contentId: string,
+  locale: string,
+): Promise<ArtwalkContent | null> {
   try {
     const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
-    console.log('Fetching artwalk content by ID:', contentId, 'locale:', locale, 'prismic locale:', prismicLocale);
+    console.log(
+      'Fetching artwalk content by ID:',
+      contentId,
+      'locale:',
+      locale,
+      'prismic locale:',
+      prismicLocale,
+    );
     const client = createClient();
-    const doc = await (client as any).getByUID('content_item', contentId, { 
+    const doc = await (client as any).getByUID('content_item', contentId, {
       lang: prismicLocale,
       fetchLinks: [
         'detail.title',
         'detail.description',
         'detail.info',
         'detail.author',
-        'detail.images'
-      ]
+        'detail.images',
+      ],
     });
-    
+
     console.log('Found content item document:', !!doc);
-    
+
     if (!doc) return null;
-    
+
     return transformToArtwalkContent(doc);
   } catch (error) {
     console.error('Error fetching artwalk content from Prismic:', error);
@@ -197,15 +226,22 @@ export async function fetchArtwalkContent(contentId: string, locale: string): Pr
 }
 
 // Get all collection UIDs
-export async function getArtwalkCategorySlugIds(locale: string): Promise<string[]> {
+export async function getArtwalkCategorySlugIds(
+  locale: string,
+): Promise<string[]> {
   try {
     const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
-    console.log('Fetching all collection UIDs for locale:', locale, 'prismic locale:', prismicLocale);
+    console.log(
+      'Fetching all collection UIDs for locale:',
+      locale,
+      'prismic locale:',
+      prismicLocale,
+    );
     const client = createClient();
-    const docs = await (client as any).getAllByType('collection', { 
-      lang: prismicLocale
+    const docs = await (client as any).getAllByType('collection', {
+      lang: prismicLocale,
     });
-    
+
     const uids = docs.map((doc: any) => doc.uid).filter(Boolean);
     console.log('Found UIDs:', uids);
     return uids;
@@ -216,22 +252,29 @@ export async function getArtwalkCategorySlugIds(locale: string): Promise<string[
 }
 
 // Legacy functions for backward compatibility
-export async function fetchAllArtwalkItems(locale: string): Promise<ArtwalkContent[]> {
+export async function fetchAllArtwalkItems(
+  locale: string,
+): Promise<ArtwalkContent[]> {
   try {
     const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
-    console.log('Fetching all artwalk items for locale:', locale, 'prismic locale:', prismicLocale);
+    console.log(
+      'Fetching all artwalk items for locale:',
+      locale,
+      'prismic locale:',
+      prismicLocale,
+    );
     const client = createClient();
-    const docs = await (client as any).getAllByType('content_item', { 
+    const docs = await (client as any).getAllByType('content_item', {
       lang: prismicLocale,
       fetchLinks: [
         'detail.title',
         'detail.description',
         'detail.info',
         'detail.author',
-        'detail.images'
-      ]
+        'detail.images',
+      ],
     });
-    
+
     console.log('Found content item documents:', docs.length);
     return docs.map(transformToArtwalkContent);
   } catch (error) {
@@ -240,6 +283,9 @@ export async function fetchAllArtwalkItems(locale: string): Promise<ArtwalkConte
   }
 }
 
-export async function fetchArtwalkItem(itemId: string, locale: string): Promise<ArtwalkContent | null> {
+export async function fetchArtwalkItem(
+  itemId: string,
+  locale: string,
+): Promise<ArtwalkContent | null> {
   return fetchArtwalkContent(itemId, locale);
-} 
+}

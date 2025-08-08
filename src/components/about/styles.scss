@@ -22,7 +22,7 @@
       text-align: center;
       white-space: pre-line;
     }
-    
+
     p {
       @include font-primary;
       font-size: 32px;
@@ -37,6 +37,5 @@
         @include body-large;
       }
     }
-
   }
 }

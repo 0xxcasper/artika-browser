@@ -83,12 +83,11 @@ export type NavigationData = {
 
 export enum SubMenuType {
   // Artwalk
-  outdoor = "outdoor-sculpture-park",
-  personal = "personal-art-museum",
-  artists = "artists-featured",
-  memories = "memories-of-stone",
-  whispers = "whispers-of-moss",
-  voices = "voices-of-bloom",
-  breathing = "breathing-guidance"
-
+  outdoor = 'outdoor-sculpture-park',
+  personal = 'personal-art-museum',
+  artists = 'artists-featured',
+  memories = 'memories-of-stone',
+  whispers = 'whispers-of-moss',
+  voices = 'voices-of-bloom',
+  breathing = 'breathing-guidance',
 }

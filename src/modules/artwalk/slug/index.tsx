@@ -20,48 +20,48 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.08,
-      delayChildren: 0.1
-    }
-  }
+      delayChildren: 0.1,
+    },
+  },
 };
 
 const itemVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 50
+  hidden: {
+    opacity: 0,
+    y: 50,
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { 
+    transition: {
       duration: 0.4,
-      ease: "easeOut"
-    } 
-  }
+      ease: 'easeOut',
+    },
+  },
 };
 
 const headerVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 20 
+  hidden: {
+    opacity: 0,
+    y: 20,
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { 
+    transition: {
       duration: 0.4,
-      ease: "easeOut"
-    } 
-  }
+      ease: 'easeOut',
+    },
+  },
 };
 
 const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
   const router = useRouter();
-  
+
   // Debug router
   console.log('categoryData object:', categoryData);
   console.log('artwalkRouter object:', artwalkRouter);
-  
+
   // Use Prismic data if available, otherwise fallback to hardcoded data
   const COLLECTIONS = useMemo(() => {
     if (categoryData && categoryData?.contents?.length > 0) {
@@ -74,22 +74,25 @@ const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
     try {
       console.log('Clicking item:', collection);
       console.log('Current slug:', slug);
-      
+
       if (!router) {
         console.error('Router is undefined');
         return;
       }
-      
+
       if (!artwalkRouter || !artwalkRouter.getDetailRouter) {
         console.error('artwalkRouter or getDetailRouter is undefined');
         return;
       }
-      
-      const detailPath = artwalkRouter.getDetailRouter({ 
-        id: collection.id, 
-        slug: slug 
-      }, lang);
-      
+
+      const detailPath = artwalkRouter.getDetailRouter(
+        {
+          id: collection.id,
+          slug: slug,
+        },
+        lang,
+      );
+
       console.log('Navigating to:', detailPath);
       router.push(detailPath);
     } catch (error) {
@@ -99,73 +102,76 @@ const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
 
   return (
     <div className="gallery-container">
-      <motion.div 
+      <motion.div
         className="gallery-container__header"
         variants={headerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: '-50px' }}
       >
         <div className="gallery-container__header__title">
-          <h1>
-            {categoryData?.title}
-          </h1>
-          <p>
-            {categoryData?.description}
-          </p>
+          <h1>{categoryData?.title}</h1>
+          <p>{categoryData?.description}</p>
         </div>
       </motion.div>
-      
-      <motion.div 
+
+      <motion.div
         className="gallery-container__grids"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: '-50px' }}
       >
         {COLLECTIONS.map((collection, index) => {
           const isDisabled = !collection?.detail?.description;
           return (
-            <motion.div 
-              className="gallery-container__grids__item" 
+            <motion.div
+              className="gallery-container__grids__item"
               key={`${collection.id}-${index}`}
               variants={itemVariants}
               initial="hidden"
               whileInView="visible"
-              whileHover={{ 
+              whileHover={{
                 y: -2,
-                transition: { 
+                transition: {
                   duration: 0.2,
-                  ease: "easeOut"
-                }
+                  ease: 'easeOut',
+                },
               }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: '-50px' }}
               style={{
-                cursor: isDisabled ? 'unset' : 'pointer'
+                cursor: isDisabled ? 'unset' : 'pointer',
               }}
               onClick={() => !isDisabled && handleItemClick(collection)}
             >
-              <Image 
-                 src={collection.thumb} 
-                alt={collection.name} 
-                width={400} 
-                height={480} 
+              <Image
+                src={collection.thumb}
+                alt={collection.name}
+                width={400}
+                height={480}
                 className="gallery-container__grids__item__image"
                 // priority={index < 6}
                 _placeholder={{
-                  blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEsMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  blurDataURL:
+                    'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEsMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==',
                 }}
                 draggable={false}
               />
               <div className="gallery-container__grids__item__content">
-                <Flex flexDirection='row' gap="1rem" justify="space-between">
-                  <p className='gallery-container__grids__item__content__title'>{collection.name}</p>
-                  <p className='gallery-container__grids__item__content__material'>{collection.material}</p>
+                <Flex flexDirection="row" gap="1rem" justify="space-between">
+                  <p className="gallery-container__grids__item__content__title">
+                    {collection.name}
+                  </p>
+                  <p className="gallery-container__grids__item__content__material">
+                    {collection.material}
+                  </p>
                 </Flex>
-                <p className='gallery-container__grids__item__content__description'>{collection.subName}</p>
+                <p className="gallery-container__grids__item__content__description">
+                  {collection.subName}
+                </p>
               </div>
             </motion.div>
-          )
+          );
         })}
       </motion.div>
     </div>

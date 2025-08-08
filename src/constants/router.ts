@@ -8,7 +8,10 @@ const getArtwalkRouter = (slug: string, locale?: string) => {
   return locale === 'vi' ? `/vi${basePath}` : basePath;
 };
 
-const getArtwalkDetailRouter = (params: { id: string, slug: string }, locale?: string) => {
+const getArtwalkDetailRouter = (
+  params: { id: string; slug: string },
+  locale?: string,
+) => {
   const basePath = `${Router.ARTWALK}/${params.slug}/${params.id}`;
   return locale === 'vi' ? `/vi${basePath}` : basePath;
 };
@@ -18,8 +21,6 @@ const artwalkRouter = {
   getDetailRouter: getArtwalkDetailRouter,
 };
 
-export {
-  artwalkRouter,
-};
+export { artwalkRouter };
 
 export default Router;

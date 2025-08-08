@@ -6,7 +6,8 @@
   min-height: 100vh;
   margin-top: 80px;
   padding: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   .loading-container,
   .error-container {
@@ -21,7 +22,7 @@
       width: 40px;
       height: 40px;
       border: 3px solid #f3f3f3;
-      border-top: 3px solid #64603C;
+      border-top: 3px solid #64603c;
       border-radius: 50%;
       animation: spin 1s linear infinite;
       margin-bottom: 1rem;
@@ -38,7 +39,7 @@
     }
 
     .retry-button {
-      background: #64603C;
+      background: #64603c;
       color: white;
       border: none;
       padding: 0.75rem 1.5rem;
@@ -97,7 +98,7 @@
           &.unread {
             background: #fef3c7;
             border-color: #f59e0b;
-            
+
             .stat-value {
               color: #92400e;
             }
@@ -106,7 +107,7 @@
           &.read {
             background: #d1fae5;
             border-color: #10b981;
-            
+
             .stat-value {
               color: #065f46;
             }
@@ -115,7 +116,7 @@
           &.active {
             background: #dbeafe;
             border-color: #3b82f6;
-            
+
             .stat-value {
               color: #1e40af;
             }
@@ -124,7 +125,7 @@
           &.unsubscribed {
             background: #fee2e2;
             border-color: #ef4444;
-            
+
             .stat-value {
               color: #991b1b;
             }
@@ -156,9 +157,9 @@
         }
 
         &.mark-all-read {
-          background: #64603C;
+          background: #64603c;
           color: white;
-          border-color: #64603C;
+          border-color: #64603c;
 
           &:hover {
             background: #52502f;
@@ -192,8 +193,8 @@
       }
 
       &.active {
-        color: #64603C;
-        border-bottom-color: #64603C;
+        color: #64603c;
+        border-bottom-color: #64603c;
         background: #f9fafb;
 
         &::after {
@@ -244,7 +245,7 @@
 
           &:focus {
             outline: none;
-            border-color: #64603C;
+            border-color: #64603c;
             box-shadow: 0 0 0 3px rgba(100, 96, 60, 0.1);
           }
         }
@@ -270,7 +271,7 @@
 
         &:focus {
           outline: none;
-          border-color: #64603C;
+          border-color: #64603c;
           box-shadow: 0 0 0 3px rgba(100, 96, 60, 0.1);
         }
       }
@@ -441,7 +442,7 @@
               padding: 0.25rem 0.5rem;
               background: #f3f4f6;
               border-radius: 4px;
-              border-left: 3px solid #64603C;
+              border-left: 3px solid #64603c;
             }
           }
 
@@ -541,7 +542,9 @@
     .note-modal {
       background: white;
       border-radius: 8px;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
       width: 100%;
       max-width: 500px;
       max-height: 90vh;
@@ -614,7 +617,7 @@
 
             &:focus {
               outline: none;
-              border-color: #64603C;
+              border-color: #64603c;
               box-shadow: 0 0 0 3px rgba(100, 96, 60, 0.1);
             }
 
@@ -664,8 +667,8 @@
         }
 
         .submit-button {
-          background: #64603C;
-          border: 1px solid #64603C;
+          background: #64603c;
+          border: 1px solid #64603c;
           color: white;
 
           &:hover:not(:disabled) {
@@ -689,8 +692,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 // Responsive design
@@ -769,4 +776,4 @@
       }
     }
   }
-} 
+}

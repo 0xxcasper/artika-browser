@@ -5,7 +5,7 @@
   .newsletter-content {
     max-width: 587px;
     margin: 0 auto;
-    
+
     .newsletter-title {
       @include heading-1;
       @include font-primary;
@@ -14,19 +14,19 @@
       line-height: 104%;
       letter-spacing: -0.02em;
     }
-    
+
     .newsletter-form-container {
       .input-group {
         display: flex;
         gap: 1rem;
         align-items: center;
         flex-wrap: wrap;
-        
+
         @media (max-width: $breakpoint-sm) {
           flex-direction: column;
           gap: 0.75rem;
         }
-        
+
         .newsletter-input {
           @include font-secondary;
           width: 400px;
@@ -38,33 +38,33 @@
           background: transparent;
           color: $text-inverse;
           transition: all 0.3s ease;
-          
+
           &::placeholder {
             color: $text-inverse;
             font-weight: 400;
           }
-          
+
           &:focus {
             outline: none;
             border-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
           }
-          
+
           &:disabled {
             opacity: 0.6;
             cursor: not-allowed;
           }
-          
+
           @media (max-width: $breakpoint-md) {
             width: 100%;
             max-width: 400px;
           }
-          
+
           @media (max-width: $breakpoint-sm) {
             width: 100%;
           }
         }
-        
+
         .newsletter-button {
           @include font-secondary;
           height: 48px;
@@ -78,30 +78,30 @@
           transition: all 0.3s ease;
           white-space: nowrap;
           color: $accent-primary;
-          
+
           &:hover:not(:disabled) {
             opacity: 0.8;
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
           }
-          
+
           &:active:not(:disabled) {
             transform: translateY(0);
           }
-          
+
           &:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
           }
-          
+
           @media (max-width: $breakpoint-sm) {
             width: 100%;
             max-width: 400px;
           }
         }
       }
-      
+
       .newsletter-error {
         margin-top: 1rem;
         padding: 0.75rem 1rem;
@@ -111,7 +111,7 @@
         font-size: 0.875rem;
         border: 1px solid #feb2b2;
       }
-      
+
       .newsletter-success {
         margin-top: 1rem;
         padding: 0.75rem 1rem;

@@ -40,7 +40,7 @@
         @include heading-1;
       }
     }
-    
+
     p {
       @include body-large;
       @include font-secondary;
@@ -80,13 +80,13 @@
 
       &:focus {
         outline: none;
-        border-color: #64603C;
+        border-color: #64603c;
         box-shadow: 0 0 0 4px rgba(100, 96, 60, 0.1);
       }
 
       &:disabled {
         background: #f9fafb;
-        color: #64603C;
+        color: #64603c;
         cursor: not-allowed;
       }
     }
@@ -118,8 +118,8 @@
       border-radius: 100px;
       color: white;
       cursor: pointer;
-      background: #64603C;
-      border: 1px solid #64603C;
+      background: #64603c;
+      border: 1px solid #64603c;
       font-weight: 600;
       transition: all 0.2s ease;
       margin-top: 0.5rem;

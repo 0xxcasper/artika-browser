@@ -11,12 +11,12 @@ interface AdminHeaderProps {
   onRefresh: () => void;
 }
 
-export default function AdminHeader({ 
-  activeTab, 
-  stats, 
-  unreadCount, 
-  onMarkAllAsRead, 
-  onRefresh 
+export default function AdminHeader({
+  activeTab,
+  stats,
+  unreadCount,
+  onMarkAllAsRead,
+  onRefresh,
 }: AdminHeaderProps) {
   return (
     <div className="admin-header">
@@ -50,7 +50,9 @@ export default function AdminHeader({
               </span>
               <span className="stat-item unsubscribed">
                 <span className="stat-label">Unsubscribed:</span>
-                <span className="stat-value">{stats.newsletter.unsubscribed}</span>
+                <span className="stat-value">
+                  {stats.newsletter.unsubscribed}
+                </span>
               </span>
             </>
           )}
@@ -58,7 +60,10 @@ export default function AdminHeader({
       </div>
       <div className="header-actions">
         {activeTab === 'tours' && unreadCount > 0 && (
-          <button onClick={onMarkAllAsRead} className="action-button mark-all-read">
+          <button
+            onClick={onMarkAllAsRead}
+            className="action-button mark-all-read"
+          >
             Mark All as Read
           </button>
         )}
@@ -68,4 +73,4 @@ export default function AdminHeader({
       </div>
     </div>
   );
-} 
+}

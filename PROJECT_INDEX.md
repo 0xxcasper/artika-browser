@@ -71,23 +71,27 @@ Artika-browser/
 ## Key Features
 
 ### 🌐 Internationalization
+
 - **Multi-language Support**: English and French
 - **Locale Routing**: SEO-friendly URL structure
 - **Dynamic Content**: Context-aware translations
 
 ### 🎨 Modern Design
+
 - **Tailwind CSS**: Utility-first styling
 - **Shadcn UI**: High-quality React components
 - **Responsive Design**: Mobile-first approach
 - **Dark Mode Support**: Theme switching capability
 
 ### ⚡ Performance
+
 - **Static Site Generation**: Fast loading times
 - **Image Optimization**: Next.js Image component
 - **Code Splitting**: Automatic bundle optimization
 - **SEO Optimized**: Meta tags and structured data
 
 ### 🚀 Development Experience
+
 - **Hot Reload**: Fast development iteration
 - **ESLint + Prettier**: Code quality and formatting
 - **TypeScript**: Type safety throughout
@@ -96,9 +100,11 @@ Artika-browser/
 ## Configuration
 
 ### Environment Variables
+
 - `NEXT_PUBLIC_APP_URL`: Application URL (optional)
 
 ### Application Configuration (`src/utils/AppConfig.ts`)
+
 - **App Name**: "Artika Browser"
 - **Description**: "A modern web browser experience"
 - **Supported Locales**: English (en), French (fr)
@@ -106,11 +112,13 @@ Artika-browser/
 ## Available Scripts
 
 ### Development
+
 - `npm run dev`: Start development server
 - `npm run build`: Create production build
 - `npm run start`: Start production server
 
 ### Code Quality
+
 - `npm run lint`: Run ESLint
 - `npm run lint:fix`: Fix ESLint issues
 - `npm run check-types`: TypeScript type checking
@@ -118,16 +126,19 @@ Artika-browser/
 ## Deployment
 
 ### Prerequisites
+
 - Node.js 20+
 - npm or yarn
 
 ### Environment Setup
+
 1. Clone the repository
 2. Install dependencies: `npm install`
 3. Start development: `npm run dev`
 4. Build for production: `npm run build`
 
 ### Static Site Generation
+
 - All pages are pre-rendered at build time
 - No server-side database or API calls
 - Can be deployed to any static hosting service
@@ -136,6 +147,7 @@ Artika-browser/
 ## Customization Points
 
 ### Quick Customization
+
 Search for `FIXME:` comments throughout the codebase for quick customization points:
 
 - **Favicon**: Update `public/favicon.ico` and related files
@@ -144,6 +156,7 @@ Search for `FIXME:` comments throughout the codebase for quick customization poi
 - **Styling**: Customize `src/styles/global.css`
 
 ### Content Management
+
 - **Hero Section**: `src/templates/Hero.tsx`
 - **Features**: `src/templates/Features.tsx`
 - **FAQ**: `src/templates/FAQ.tsx`
@@ -152,17 +165,20 @@ Search for `FIXME:` comments throughout the codebase for quick customization poi
 ## Technology Stack
 
 ### Frontend
+
 - **Next.js 14**: React framework with App Router
 - **TypeScript**: Type-safe JavaScript
 - **Tailwind CSS**: Utility-first CSS framework
 - **Shadcn UI**: High-quality React components
 
 ### Development Tools
+
 - **ESLint**: Code linting
 - **Prettier**: Code formatting
 - **TypeScript**: Type checking
 
 ### Deployment
+
 - **Static Site Generation**: Pre-rendered pages
 - **Image Optimization**: Next.js Image component
 - **SEO**: Built-in meta tags and sitemap
@@ -170,6 +186,7 @@ Search for `FIXME:` comments throughout the codebase for quick customization poi
 ## File Structure Details
 
 ### Templates (`src/templates/`)
+
 - **Hero.tsx**: Main landing section with call-to-action
 - **Features.tsx**: Product features showcase
 - **FAQ.tsx**: Frequently asked questions
@@ -179,6 +196,7 @@ Search for `FIXME:` comments throughout the codebase for quick customization poi
 - **Sponsors.tsx**: Sponsor logos section
 
 ### Components (`src/components/`)
+
 - **ui/**: Shadcn UI components (button, input, etc.)
 - **ActiveLink.tsx**: Navigation link component
 - **Background.tsx**: Background effects
@@ -186,7 +204,8 @@ Search for `FIXME:` comments throughout the codebase for quick customization poi
 - **ToggleMenuButton.tsx**: Mobile menu toggle
 
 ### Features (`src/features/`)
+
 - **landing/**: Landing page specific components
 - **sponsors/**: Sponsor-related components
 
-This static website provides a clean, modern foundation for showcasing content with beautiful animations and responsive design. 
+This static website provides a clean, modern foundation for showcasing content with beautiful animations and responsive design.

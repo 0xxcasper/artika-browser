@@ -2,14 +2,19 @@
 
 import { useState } from 'react';
 import { TourSubmission, NewsletterSubscription } from '@/libs/firestore';
-import { useTourSubmissions, useTourUnreadCount, useNewsletterSubscriptions, useNewsletterActiveCount } from '@/hooks/useFirestore';
-import { 
-  AdminHeader, 
-  AdminTabs, 
-  AdminControls, 
-  TourRequestsTable, 
-  NewsletterTable, 
-  NoteModal 
+import {
+  useTourSubmissions,
+  useTourUnreadCount,
+  useNewsletterSubscriptions,
+  useNewsletterActiveCount,
+} from '@/hooks/useFirestore';
+import {
+  AdminHeader,
+  AdminTabs,
+  AdminControls,
+  TourRequestsTable,
+  NewsletterTable,
+  NoteModal,
 } from './components';
 import { useAdminFilters, useAdminActions } from './hooks';
 import './styles.scss';
@@ -19,19 +24,22 @@ type TabType = 'tours' | 'newsletter';
 export default function AdminModule() {
   const [activeTab, setActiveTab] = useState<TabType>('tours');
   const [showNoteModal, setShowNoteModal] = useState(false);
-  const [selectedSubmission, setSelectedSubmission] = useState<TourSubmission | NewsletterSubscription | null>(null);
+  const [selectedSubmission, setSelectedSubmission] = useState<
+    TourSubmission | NewsletterSubscription | null
+  >(null);
 
   // Use the tour submission hooks
-  const { 
-    data: tourSubmissions, 
-    loading: tourLoading, 
-    error: tourError, 
+  const {
+    data: tourSubmissions,
+    loading: tourLoading,
+    error: tourError,
     refetch: refetchTours,
-    updateDocument: updateTourDocument, 
-    deleteDocument: deleteTourDocument 
+    updateDocument: updateTourDocument,
+    deleteDocument: deleteTourDocument,
   } = useTourSubmissions();
 
-  const { count: unreadCount, refetch: refetchUnreadCount } = useTourUnreadCount();
+  const { count: unreadCount, refetch: refetchUnreadCount } =
+    useTourUnreadCount();
 
   // Use the newsletter subscription hooks
   const {
@@ -40,18 +48,17 @@ export default function AdminModule() {
     error: newsletterError,
     refetch: refetchNewsletters,
     updateDocument: updateNewsletterDocument,
-    deleteDocument: deleteNewsletterDocument
+    deleteDocument: deleteNewsletterDocument,
   } = useNewsletterSubscriptions();
 
-  const { count: activeNewsletterCount, refetch: refetchActiveNewsletterCount } = useNewsletterActiveCount();
+  const {
+    count: activeNewsletterCount,
+    refetch: refetchActiveNewsletterCount,
+  } = useNewsletterActiveCount();
 
   // Use custom hooks for filters and actions
-  const { 
-    filteredSubmissions, 
-    filteredNewsletters, 
-    filters, 
-    setFilters 
-  } = useAdminFilters(tourSubmissions, newsletterSubscriptions);
+  const { filteredSubmissions, filteredNewsletters, filters, setFilters } =
+    useAdminFilters(tourSubmissions, newsletterSubscriptions);
 
   const {
     handleMarkAsReadSimple,
@@ -60,7 +67,7 @@ export default function AdminModule() {
     handleMarkAllAsRead,
     handleDelete,
     handleNewsletterDelete,
-    handleNewsletterAddNote
+    handleNewsletterAddNote,
   } = useAdminActions({
     tourSubmissions,
     updateTourDocument,
@@ -70,11 +77,14 @@ export default function AdminModule() {
     refetchUnreadCount,
     refetchActiveNewsletterCount,
     setSelectedSubmission,
-    setShowNoteModal
+    setShowNoteModal,
   });
 
   // Custom note submit handler that also refetches tour data
-  const handleNoteSubmit = async (note: string, submission: TourSubmission | NewsletterSubscription) => {
+  const handleNoteSubmit = async (
+    note: string,
+    submission: TourSubmission | NewsletterSubscription,
+  ) => {
     try {
       if ('name' in submission) {
         // Tour submission
@@ -107,7 +117,10 @@ export default function AdminModule() {
         <div className="error-container">
           <h2>Error</h2>
           <p>{tourError || newsletterError}</p>
-          <button onClick={activeTab === 'tours' ? refetchTours : refetchNewsletters} className="retry-button">
+          <button
+            onClick={activeTab === 'tours' ? refetchTours : refetchNewsletters}
+            className="retry-button"
+          >
             Try Again
           </button>
         </div>
@@ -118,19 +131,20 @@ export default function AdminModule() {
   const stats = {
     tours: {
       total: filteredSubmissions.length,
-      unread: filteredSubmissions.filter(sub => !sub.read).length,
-      read: filteredSubmissions.filter(sub => sub.read).length
+      unread: filteredSubmissions.filter((sub) => !sub.read).length,
+      read: filteredSubmissions.filter((sub) => sub.read).length,
     },
     newsletter: {
       total: newsletterSubscriptions?.length || 0,
       active: activeNewsletterCount,
-      unsubscribed: (newsletterSubscriptions?.length || 0) - activeNewsletterCount
-    }
+      unsubscribed:
+        (newsletterSubscriptions?.length || 0) - activeNewsletterCount,
+    },
   };
 
   return (
     <div className="admin-page">
-      <AdminHeader 
+      <AdminHeader
         activeTab={activeTab}
         stats={stats}
         unreadCount={unreadCount}
@@ -138,36 +152,38 @@ export default function AdminModule() {
         onRefresh={activeTab === 'tours' ? refetchTours : refetchNewsletters}
       />
 
-      <AdminTabs 
+      <AdminTabs
         activeTab={activeTab}
         onTabChange={setActiveTab}
         tourCount={tourSubmissions?.length || 0}
         newsletterCount={newsletterSubscriptions?.length || 0}
       />
 
-      <AdminControls 
+      <AdminControls
         filters={filters}
         onFiltersChange={setFilters}
         activeTab={activeTab}
       />
 
       {activeTab === 'tours' ? (
-        <TourRequestsTable 
+        <TourRequestsTable
           submissions={filteredSubmissions}
           allSubmissions={tourSubmissions}
           onMarkAsRead={handleMarkAsReadSimple}
           onDelete={handleDelete}
-          onAddNote={(submission: TourSubmission) => { 
-            setSelectedSubmission(submission); 
-            setShowNoteModal(true); 
+          onAddNote={(submission: TourSubmission) => {
+            setSelectedSubmission(submission);
+            setShowNoteModal(true);
           }}
         />
       ) : (
-        <NewsletterTable 
+        <NewsletterTable
           subscriptions={filteredNewsletters}
           allSubscriptions={newsletterSubscriptions}
           onAddNote={(subscription) => {
-            setSelectedSubmission(subscription as TourSubmission | NewsletterSubscription);
+            setSelectedSubmission(
+              subscription as TourSubmission | NewsletterSubscription,
+            );
             setShowNoteModal(true);
           }}
           onDelete={handleNewsletterDelete}
@@ -183,4 +199,4 @@ export default function AdminModule() {
       )}
     </div>
   );
-} 
+}
