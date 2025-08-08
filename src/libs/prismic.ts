@@ -98,12 +98,12 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
         ? {
             next: {
               tags: ['prismic'],
-              revalidate: 60, // Cache 1 phút trong production
+              revalidate: 60, // Cache 1 minute in production
             },
           }
         : {
             next: {
-              revalidate: 60, // Cache 1 phút trong development
+              revalidate: 60, // Cache 1 minute in development
             },
           },
     ...config,
@@ -256,5 +256,45 @@ export type DetailDocument = prismic.PrismicDocumentWithUID<{
   author: prismic.KeyTextField;
   images: prismic.GroupField<{
     image: prismic.ImageField;
+  }>;
+}>;
+
+export type ExperiencesDocument = prismic.PrismicDocumentWithUID<{
+  hero_title: prismic.TitleField;
+  hero_subtitle: prismic.RichTextField;
+  hero_background_image: prismic.ImageField;
+  hero_logo: prismic.ImageField;
+  about_title: prismic.TitleField;
+  about_description: prismic.RichTextField;
+  about_button_text: prismic.KeyTextField;
+  about_button_link: prismic.KeyTextField;
+  split_banner_sections: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    description: prismic.RichTextField;
+    cta_text: prismic.KeyTextField;
+    cta_link: prismic.KeyTextField;
+    image: prismic.ImageField;
+    image_alt: prismic.KeyTextField;
+  }>;
+  focus_title: prismic.TitleField;
+  focus_description: prismic.RichTextField;
+  focus_button_text: prismic.KeyTextField;
+  focus_button_link: prismic.KeyTextField;
+  focus_background_image: prismic.ImageField;
+  focus_aspect_ratio: prismic.KeyTextField;
+  second_split_banner_sections: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    description: prismic.RichTextField;
+    cta_text: prismic.KeyTextField;
+    cta_link: prismic.KeyTextField;
+    image: prismic.ImageField;
+    image_alt: prismic.KeyTextField;
+  }>;
+  grid_images_title: prismic.KeyTextField;
+  grid_images_items: prismic.GroupField<{
+    image: prismic.ImageField;
+    image_alt: prismic.KeyTextField;
+    title: prismic.KeyTextField;
+    description: prismic.RichTextField;
   }>;
 }>;

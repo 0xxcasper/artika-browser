@@ -14,7 +14,7 @@ interface HomePageProps {
 }
 
 export default function HomePage({ homepageData }: HomePageProps) {
-  // Sử dụng dữ liệu từ Prismic với localization
+  // Use data from Prismic with localization
   const heroTitle = asText(homepageData?.data?.hero_title) || '';
   const heroSubtitle = asText(homepageData?.data?.hero_subtitle) || '';
   const heroBackgroundImage =
@@ -34,7 +34,7 @@ export default function HomePage({ homepageData }: HomePageProps) {
   const focusBackgroundImage =
     asImageUrl(homepageData?.data?.focus_background_image) || '';
 
-  // Sử dụng data từ Prismic cho SplitBanner
+  // Use data from Prismic for SplitBanner
   const splitBannerSections: Array<SplitBannerSection> =
     homepageData?.data?.split_banner_sections?.map((section, index) => ({
       id: `section-${index + 1}`,
@@ -47,7 +47,7 @@ export default function HomePage({ homepageData }: HomePageProps) {
       textFirst: index % 2 === 0,
     })) || [];
 
-  // Sử dụng data từ Prismic cho GridImages
+  // Use data from Prismic for GridImages
   const gridImagesTitle =
     homepageData?.data?.grid_images_title || 'Collections';
   const gridImagesCards =

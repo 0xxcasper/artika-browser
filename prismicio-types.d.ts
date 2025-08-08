@@ -1065,13 +1065,349 @@ export type NavigationMenuDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Experiences → Split Banner Sections*
+ */
+export interface ExperiencesDocumentDataSplitBannerSectionsItem {
+  /**
+   * Section Title field in *Experiences → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Section title
+   * - **API ID Path**: experiences.split_banner_sections[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Section Description field in *Experiences → Split Banner Sections*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Section description
+   * - **API ID Path**: experiences.split_banner_sections[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * CTA Text field in *Experiences → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Call to action text
+   * - **API ID Path**: experiences.split_banner_sections[].cta_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *Experiences → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Call to action link
+   * - **API ID Path**: experiences.split_banner_sections[].cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_link: prismic.KeyTextField;
+
+  /**
+   * Section Image field in *Experiences → Split Banner Sections*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experiences.split_banner_sections[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Image Alt Text field in *Experiences → Split Banner Sections*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Image alt text
+   * - **API ID Path**: experiences.split_banner_sections[].image_alt
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image_alt: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Experiences → Grid Images Items*
+ */
+export interface ExperiencesDocumentDataGridImagesItemsItem {
+  /**
+   * Grid Image field in *Experiences → Grid Images Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experiences.grid_images_items[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Image Alt Text field in *Experiences → Grid Images Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Image alt text
+   * - **API ID Path**: experiences.grid_images_items[].image_alt
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image_alt: prismic.KeyTextField;
+
+  /**
+   * Image Title field in *Experiences → Grid Images Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Image title
+   * - **API ID Path**: experiences.grid_images_items[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Image Description field in *Experiences → Grid Images Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Image description
+   * - **API ID Path**: experiences.grid_images_items[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Content for Experiences documents
+ */
+interface ExperiencesDocumentData {
+  /**
+   * Hero Title field in *Experiences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Experiences hero title
+   * - **API ID Path**: experiences.hero_title
+   * - **Tab**: Hero Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  hero_title: prismic.KeyTextField;
+
+  /**
+   * Hero Subtitle field in *Experiences*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Experiences hero subtitle
+   * - **API ID Path**: experiences.hero_subtitle
+   * - **Tab**: Hero Section
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_subtitle: prismic.RichTextField;
+
+  /**
+   * Hero Background Image field in *Experiences*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experiences.hero_background_image
+   * - **Tab**: Hero Section
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_background_image: prismic.ImageField<never>;
+
+  /**
+   * Hero Logo field in *Experiences*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experiences.hero_logo
+   * - **Tab**: Hero Section
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_logo: prismic.ImageField<never>;
+
+  /**
+   * About Title field in *Experiences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Experiences about title
+   * - **API ID Path**: experiences.about_title
+   * - **Tab**: About Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_title: prismic.KeyTextField;
+
+  /**
+   * About Description field in *Experiences*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Experiences about description
+   * - **API ID Path**: experiences.about_description
+   * - **Tab**: About Section
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  about_description: prismic.RichTextField;
+
+  /**
+   * About Button Text field in *Experiences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: About section button text
+   * - **API ID Path**: experiences.about_button_text
+   * - **Tab**: About Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_button_text: prismic.KeyTextField;
+
+  /**
+   * About Button Link field in *Experiences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: About section button link
+   * - **API ID Path**: experiences.about_button_link
+   * - **Tab**: About Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_button_link: prismic.KeyTextField;
+
+  /**
+   * Split Banner Sections field in *Experiences*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experiences.split_banner_sections[]
+   * - **Tab**: Split Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  split_banner_sections: prismic.GroupField<
+    Simplify<ExperiencesDocumentDataSplitBannerSectionsItem>
+  >;
+
+  /**
+   * Focus Title field in *Experiences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Focus section title
+   * - **API ID Path**: experiences.focus_title
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_title: prismic.KeyTextField;
+
+  /**
+   * Focus Description field in *Experiences*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Focus section description
+   * - **API ID Path**: experiences.focus_description
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  focus_description: prismic.RichTextField;
+
+  /**
+   * Focus Button Text field in *Experiences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Focus section button text
+   * - **API ID Path**: experiences.focus_button_text
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_button_text: prismic.KeyTextField;
+
+  /**
+   * Focus Button Link field in *Experiences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Focus section button link
+   * - **API ID Path**: experiences.focus_button_link
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_button_link: prismic.KeyTextField;
+
+  /**
+   * Focus Background Image field in *Experiences*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experiences.focus_background_image
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  focus_background_image: prismic.ImageField<never>;
+
+  /**
+   * Focus Aspect Ratio field in *Experiences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Aspect ratio
+   * - **API ID Path**: experiences.focus_aspect_ratio
+   * - **Tab**: Focus Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  focus_aspect_ratio: prismic.KeyTextField;
+
+  /**
+   * Second Split Banner Sections field in *Experiences*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experiences.second_split_banner_sections[]
+   * - **Tab**: Second Split Banner Section
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  second_split_banner_sections: prismic.GroupField<
+    Simplify<ExperiencesDocumentDataSplitBannerSectionsItem>
+  >;
+
+  /**
+   * Grid Images Title field in *Experiences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Grid images section title
+   * - **API ID Path**: experiences.grid_images_title
+   * - **Tab**: Grid Images Section
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  grid_images_title: prismic.KeyTextField;
+
+  /**
+   * Grid Images Items field in *Experiences*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experiences.grid_images_items[]
+   * - **Tab**: Grid Images Section
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  grid_images_items: prismic.GroupField<
+    Simplify<ExperiencesDocumentDataGridImagesItemsItem>
+  >;
+}
+
+/**
+ * Experiences document from Prismic
+ *
+ * - **API ID**: `experiences`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ExperiencesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ExperiencesDocumentData>,
+    'experiences',
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | CollectionDocument
   | ContentItemDocument
   | DetailDocument
   | HomepageDocument
   | ForestBathingDocument
-  | NavigationMenuDocument;
+  | NavigationMenuDocument
+  | ExperiencesDocument;
 
 /**
  * Primary content in *About → Default → Primary*
@@ -1258,6 +1594,10 @@ declare module '@prismicio/client' {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      ExperiencesDocument,
+      ExperiencesDocumentData,
+      ExperiencesDocumentDataSplitBannerSectionsItem,
+      ExperiencesDocumentDataGridImagesItemsItem,
     };
   }
 }

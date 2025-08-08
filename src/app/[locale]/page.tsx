@@ -29,7 +29,7 @@ export default async function LocalePage({ params }: LocalePageProps) {
   } catch (error) {
     console.error('Error fetching homepage data:', error);
 
-    // Fallback khi không có dữ liệu từ Prismic
+    // Fallback when no data from Prismic
     return <HomePage homepageData={null} lang={locale} />;
   }
 }
