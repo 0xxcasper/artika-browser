@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
-import Navigation from '@/components/navigation';
-import '@/styles/global.scss';
 import Providers from '@/app/providers';
 import Footer from '@/components/footer';
+import Navigation from '@/components/navigation';
+import '@/styles/global.scss';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 const locales = ['en', 'vi'];
@@ -34,7 +34,7 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
   return (
     <Providers language={locale as 'en' | 'vi'}>
       <Navigation />
-      <main>{children}</main>
+      <main style={{ minHeight: '100dvh' }}>{children}</main>
       <Footer />
     </Providers>
   );
