@@ -1,3 +1,36 @@
+Offers content types
+
+This project defines two Prismic Custom Types used by the Offers feature:
+
+- offers_page (Singleton)
+  - title: Text
+  - description: Rich Text
+
+- offer (Repeatable)
+  - uid: UID
+  - title: Text
+  - short_description: Text
+  - thumbnail: Image
+  - images: Group(Image)
+  - button_text: Text (optional)
+  - button_link: Link (optional)
+  - detail_title: Text
+  - detail_description: Rich Text
+  - utilities: Group { title: Text, contents: Rich Text (list) }
+  - notes_title: Text
+  - notes_contents: Rich Text (list)
+  - notes_button_text: Text (optional)
+  - notes_button_link: Link (optional)
+
+Importing types
+
+1. Ensure Slice Machine is configured (slicemachine.config.json points to ./customtypes)
+2. Run Slice Machine and push models:
+
+   npx slicemachine --push --yes
+
+3. In Prismic, add content for `offers_page` and create some `offer` documents. UIDs become the detail URLs at /[locale]/offer/[uid].
+
 # Cấu hình Prismic cho Homepage
 
 ## Bước 1: Tạo Repository Prismic

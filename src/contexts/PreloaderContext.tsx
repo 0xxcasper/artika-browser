@@ -1,23 +1,23 @@
 'use client';
 
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  createContext,
-  useContext,
-  useMemo,
-} from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigation } from '@/hooks/useNavigation';
 import {
-  NavigationMenu,
-  NavigationCTA,
-  ScheduleTourFormData,
   FooterData,
+  NavigationCTA,
+  NavigationMenu,
   NewsletterFormData,
+  ScheduleTourFormData,
 } from '@/locales/types';
 import { Box } from '@chakra-ui/react';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 interface PreloaderContextType {
   menus: NavigationMenu[];

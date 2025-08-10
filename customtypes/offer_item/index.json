@@ -1,0 +1,137 @@
+{
+  "id": "offer_item",
+  "label": "Offer Item",
+  "repeatable": true,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": "Extended Stay"
+        }
+      },
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": "extended-stay"
+        }
+      },
+      "short_description": {
+        "type": "Text",
+        "config": {
+          "label": "Short Description",
+          "placeholder": "Stay for four nights or more and save up to 20% on our Best Flexible Rate."
+        }
+      },
+      "thumbnail": {
+        "type": "Image",
+        "config": {
+          "label": "Thumbnail"
+        }
+      },
+      "images": {
+        "type": "Group",
+        "config": {
+          "label": "Images",
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": { "label": "Image" }
+            }
+          }
+        }
+      },
+      "button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Button Text",
+          "placeholder": "View detail"
+        }
+      },
+      "button_link": {
+        "type": "Link",
+        "config": {
+          "label": "Button Link",
+          "placeholder": "https://example.com (optional)"
+        }
+      },
+
+      "detail_title": {
+        "type": "Text",
+        "config": {
+          "label": "Detail Title",
+          "placeholder": "Extended Stay"
+        }
+      },
+      "detail_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Detail Description",
+          "placeholder": "Longer description for the offer...",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+        }
+      },
+      "detail_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Detail Button Text",
+          "placeholder": "Check availability & book"
+        }
+      },
+      "detail_button_link": {
+        "type": "Link",
+        "config": {
+          "label": "Detail Button Link",
+          "placeholder": "https://example.com/booking (optional)"
+        }
+      },
+      "utilities": {
+        "type": "Group",
+        "config": {
+          "label": "Utilities",
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": { "label": "Title", "placeholder": "Inclusions" }
+            },
+            "contents": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Contents",
+                "placeholder": "• Daily breakfast at Artika restaurant\n• Round-trip shared airport transfers",
+                "single": "list-item,o-list-item,paragraph"
+              }
+            }
+          }
+        }
+      },
+      "notes_title": {
+        "type": "Text",
+        "config": { "label": "Notes Title", "placeholder": "Helpful Notes" }
+      },
+      "notes_contents": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Notes Contents",
+          "placeholder": "• Valid for bookings 10 days in advance\n• Offer is subject to change without notice",
+          "single": "list-item,o-list-item,paragraph"
+        }
+      },
+      "notes_button_text": {
+        "type": "Text",
+        "config": { "label": "Notes Button Text", "placeholder": "VIEW PROPERTY MAP" }
+      },
+      "notes_button_link": {
+        "type": "Link",
+        "config": { "label": "Notes Button Link", "placeholder": "https://maps.google.com/..." }
+      }
+    }
+  }
+}
+
+

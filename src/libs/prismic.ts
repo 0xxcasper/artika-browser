@@ -15,6 +15,12 @@ export function linkResolver(doc: any) {
   if (doc.type === 'detail') {
     return `/artwalk/detail/${doc.uid}`;
   }
+  if (doc.type === 'offers_page') {
+    return `/offers`;
+  }
+  if (doc.type === 'offer_item') {
+    return `/offers/${doc.uid}`;
+  }
   return '/';
 }
 
@@ -89,6 +95,35 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
       {
         type: 'detail',
         path: '/vi/artwalk/detail/:uid',
+        lang: 'vi',
+      },
+      // Offers routes
+      {
+        type: 'offers_page',
+        path: '/offers',
+      },
+      {
+        type: 'offers_page',
+        path: '/en/offers',
+        lang: 'en-us',
+      },
+      {
+        type: 'offers_page',
+        path: '/vi/offers',
+        lang: 'vi',
+      },
+      {
+        type: 'offer_item',
+        path: '/offers/:uid',
+      },
+      {
+        type: 'offer_item',
+        path: '/en/offers/:uid',
+        lang: 'en-us',
+      },
+      {
+        type: 'offer_item',
+        path: '/vi/offers/:uid',
         lang: 'vi',
       },
     ],

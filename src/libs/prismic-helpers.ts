@@ -1,6 +1,6 @@
-import { createClient } from './prismic';
-import { notFound } from 'next/navigation';
 import { SplitBannerSection } from '@/components/split-banner';
+import { notFound } from 'next/navigation';
+import { createClient } from './prismic';
 
 /**
  * Validates locale and returns normalized Prismic language code
@@ -212,3 +212,4 @@ export function asLink(field: any): string {
 
   return '';
 }
+

@@ -1,15 +1,15 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import './styles.scss';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { usePreloader } from '@/contexts/PreloaderContext';
+import type { NavigationMenu, NavigationSub } from '@/locales/types';
+import { Flex } from '@chakra-ui/react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import type { NavigationMenu, NavigationSub } from '@/locales/types';
-import { Flex } from '@chakra-ui/react';
-import { usePreloader } from '@/contexts/PreloaderContext';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useEffect, useMemo, useState } from 'react';
+import './styles.scss';
 
 const navVariants = {
   initial: { y: -200, opacity: 0 },
@@ -107,7 +107,7 @@ export default function Navigation() {
 
   // Smart text color detection
   const isTextDark = useMemo(() => {
-    const darkTextPaths = ['artwalk', 'admin'];
+    const darkTextPaths = ['artwalk', 'admin', 'offers'];
     return darkTextPaths.some((path) => pathname.includes(path));
   }, [pathname]);
 

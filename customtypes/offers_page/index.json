@@ -1,0 +1,29 @@
+{
+  "id": "offers_page",
+  "label": "Offers Page",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": "Special Offers"
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Description",
+          "placeholder": "From special discounts on accommodations...",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+        }
+      }
+    }
+  }
+}
+
+
