@@ -28,9 +28,6 @@ export default function OffersList({ data, lang }: OffersListProps) {
           <div
             key={item.id}
             className={styles['offers-list__card']}
-            onClick={() =>
-              router.push(offersRouter.getDetailRouter({ id: item.id }, lang))
-            }
           >
             <Image
               src={item.images?.[0] || '/images/home/banner-1.jpg'}

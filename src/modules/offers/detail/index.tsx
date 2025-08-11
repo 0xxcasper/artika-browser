@@ -11,6 +11,8 @@ interface OfferDetailProps {
 export default function OfferDetail({ item }: OfferDetailProps) {
   const d = item.detail;
 
+  console.log('d.utilities', d.utilities);
+
   return (
     <div className={styles['offer-detail']}>
       <div className={styles['offer-detail__content']}>
@@ -22,7 +24,7 @@ export default function OfferDetail({ item }: OfferDetailProps) {
             <div key={idx} className={styles['offer-detail__section']}>
               <h4>{u.title}</h4>
               <ul>
-                {u.contents?.map((c, i) => (
+                {[...u.contents]?.map((c, i) => (
                   <li key={i}>{c}</li>
                 ))}
               </ul>

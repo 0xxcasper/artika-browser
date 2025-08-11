@@ -2,11 +2,11 @@
 @import '@/styles/fonts';
 
 .offer-detail {
-  padding: 130px 16px 150px;
-  max-width: 1280px;
+  padding: 150px 1.5rem;
+  max-width: 1476px;
   margin: 0 auto;
   display: grid;
-  gap: 60px;
+  gap: 148px;
 
   &__content {
     display: grid;
@@ -19,18 +19,54 @@
     }
   }
 
-  &__left {
-    display: grid;
-    gap: 16px;
+      &__left {
+      display: flex;
+      flex-direction: column;
+      max-width: 536px;
+      gap: 0;
 
-    h2 { @include heading-2; @include font-primary; color: $text-primary; }
-    .lead { @include font-secondary; @include body-large; color: #353536; }
+    h2 { 
+      @include font-primary;
+      font-size: 50px;
+      margin-bottom: 45px
+    }
 
-    & .offer-detail__section {
-      display: grid; gap: 8px;
-      h4 { @include font-secondary; font-weight: 600; color: $text-primary; }
-      ul { padding-left: 18px; display: grid; gap: 4px; }
-      li { @include font-secondary; font-size: 14px; color: #353536; }
+    .lead { 
+      font-size: 24px;
+      line-height: 133%;
+      font-weight: 500;
+      @include body-large;
+      margin-bottom: 45px;
+    }
+
+    .offer-detail__section {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 45px;
+      
+      h4 { 
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
+        @include font-secondary;
+      }
+
+      ul { 
+        padding-left: 18px; 
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 100%;
+        max-width: 100%;
+      }
+      
+      li { 
+        @include font-secondary; 
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 32px;
+      }
     }
 
     .offer-detail__primary-link {

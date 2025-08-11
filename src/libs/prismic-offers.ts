@@ -1,4 +1,3 @@
-import { OFFERS_PAGE_MOCK } from '@/modules/offers/mock';
 import type { OfferItem, OfferPageData } from '@/types/offer';
 import { createClient } from './prismic';
 import {
@@ -7,6 +6,50 @@ import {
   asText,
   validateAndNormalizeLocale,
 } from './prismic-helpers';
+
+// Fallback data when Prismic API fails
+const FALLBACK_OFFERS_DATA: OfferPageData = {
+  title: 'Special Offers',
+  description: 'From special discounts on accommodations to complimentary amenities, our offers are designed to provide you with an unforgettable experience.',
+  items: [
+    {
+      id: 'extended-stay',
+      title: 'Extended Stay',
+      description: 'Short blurb for the offer. This is fallback content.',
+      images: ['/images/home/banner-1.jpg'],
+      buttonText: 'View detail',
+      buttonHref: '',
+      detail: {
+        title: 'Extended Stay',
+        description: 'Longer description for the offer. Replace with real copy later.',
+        utilities: [
+          {
+            title: 'Inclusions',
+            contents: [
+              'Daily breakfast at Artika restaurant',
+              'Round-trip shared airport transfers',
+            ],
+          },
+        ],
+        buttonText: 'Check availability & book',
+        buttonHref: '',
+        notes: {
+          title: 'Helpful Notes',
+          contents: [
+            'Valid for bookings 10 days in advance',
+            'A credit card guarantee is required at the time of booking',
+            'Offer is subject to change without notice',
+            'Rates are non-refundable and cannot be amended',
+            'Offer is subject to room availability and resort policy',
+          ],
+          buttonText: 'View property map',
+          buttonHref: '',
+        },
+        images: ['/images/home/banner-1.jpg'],
+      },
+    },
+  ],
+};
 
 export async function fetchOffersPage(locale: string): Promise<OfferPageData> {
   try {
@@ -39,14 +82,14 @@ export async function fetchOffersPage(locale: string): Promise<OfferPageData> {
         utilities:
           (doc.data.utilities || []).map((u: any) => ({
             title: asText(u.title) || '',
-            contents: [asText(u.contents) || ''].filter(Boolean),
+            contents: (asText(u.contents) || '')?.split('/').filter(Boolean),
           })) || [],
         buttonText: doc.data.detail_button_text || doc.data.button_text || '',
         buttonHref:
           asLink(doc.data.detail_button_link) || asLink(doc.data.button_link) || '',
         notes: {
           title: asText(doc.data.notes_title) || '',
-          contents: [asText(doc.data.notes_contents) || ''].filter(Boolean),
+          contents: (asText(doc.data.notes_contents) || '').split('/').filter(Boolean),
           buttonText: doc.data.notes_button_text || '',
           buttonHref: asLink(doc.data.notes_button_link) || '',
         },
@@ -61,11 +104,11 @@ export async function fetchOffersPage(locale: string): Promise<OfferPageData> {
       title: page ? asText((page as any).data?.title) || 'Special Offers' : 'Special Offers',
       description: page
         ? asText((page as any).data?.description) || ''
-        : OFFERS_PAGE_MOCK.description,
+        : FALLBACK_OFFERS_DATA.description,
       items,
     };
   } catch {
-    return OFFERS_PAGE_MOCK;
+    return FALLBACK_OFFERS_DATA;
   }
 }
 
@@ -77,7 +120,7 @@ export async function fetchOfferByUid(locale: string, uid: string) {
     const page = await fetchOffersPage(locale);
     return page.items.find((i) => i.id === doc.uid) || null;
   } catch {
-    const page = OFFERS_PAGE_MOCK;
+    const page = FALLBACK_OFFERS_DATA;
     return page.items.find((i) => i.id === uid) || null;
   }
 }
