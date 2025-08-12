@@ -24,7 +24,7 @@ export default function OfferDetail({ item }: OfferDetailProps) {
             <div key={idx} className={styles['offer-detail__section']}>
               <h4>{u.title}</h4>
               <ul>
-                {[...u.contents]?.map((c, i) => (
+                {u.contents?.map((c, i) => (
                   <li key={i}>{c}</li>
                 ))}
               </ul>

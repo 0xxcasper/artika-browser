@@ -15,7 +15,6 @@
   transform: translate3d(0, 0, 0);
   perspective: 1000px;
   backface-visibility: hidden;
-  backface-visibility: hidden;
 
   .hero-background {
     position: absolute;
@@ -25,7 +24,6 @@
     width: 120%;
     height: 120%;
     transform: translate3d(0, 0, 0) scale(1.1);
-    backface-visibility: hidden;
     backface-visibility: hidden;
 
     // Performance optimizations for smooth scrolling
@@ -46,7 +44,6 @@
       // Additional image optimizations
       transform: translateZ(0);
       transform: translate3d(0, 0, 0);
-      backface-visibility: hidden;
       backface-visibility: hidden;
       transition: opacity 0.3s ease-out;
 
