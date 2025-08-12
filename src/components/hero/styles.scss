@@ -4,50 +4,50 @@
 // Hero component styles
 .hero {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 
   // Smooth scroll optimizations
   transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   perspective: 1000px;
+  backface-visibility: hidden;
+  backface-visibility: hidden;
 
   .hero-background {
     position: absolute;
     top: -10%;
     left: -10%;
+    z-index: 1;
     width: 120%;
     height: 120%;
-    z-index: 1;
+    transform: translate3d(0, 0, 0) scale(1.1);
+    backface-visibility: hidden;
+    backface-visibility: hidden;
 
     // Performance optimizations for smooth scrolling
     will-change: transform;
-    transform: translate3d(0, 0, 0) scale(1.1);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 
     // Ensure the image always covers the full area
     img {
+      display: block;
       width: 100% !important;
       height: 100% !important;
       object-fit: cover !important;
       object-position: center !important;
-      display: block;
-
-      // Additional image optimizations
-      transform: translate3d(0, 0, 0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      image-rendering: optimizeQuality;
-      -webkit-transform: translateZ(0);
+      image-rendering: optimizequality;
 
       // Prevent image jump on load
       opacity: 0;
+
+      // Additional image optimizations
+      transform: translateZ(0);
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      backface-visibility: hidden;
       transition: opacity 0.3s ease-out;
 
       &[src] {
@@ -59,12 +59,12 @@
   .hero-content {
     position: relative;
     z-index: 10;
-    max-width: 50rem;
     display: flex;
     flex-direction: column;
+    gap: 4px;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    max-width: 50rem;
 
     // Text performance optimization
     transform: translate3d(0, 0, 0);
@@ -72,6 +72,7 @@
     h1 {
       @include heading-1;
       @include font-primary;
+
       color: $text-inverse;
       text-align: center;
       white-space: pre-line;
@@ -80,9 +81,10 @@
     p {
       @include body-large;
       @include font-secondary;
-      color: $text-inverse;
+
       max-width: 40rem;
       font-weight: 500;
+      color: $text-inverse;
       text-align: center;
       white-space: pre-line;
     }
@@ -90,8 +92,8 @@
 
   .hero-logo {
     position: absolute;
-    z-index: 1000;
     bottom: 4rem;
+    z-index: 1000;
 
     // Performance optimization for logo animation
     transform: translate3d(0, 0, 0);
@@ -99,28 +101,31 @@
 
     // animation up down
     animation: upDown 2s ease-in-out infinite;
+
     @keyframes upDown {
       0% {
-        transform: translate3d(0, 0, 0);
         opacity: 1;
+        transform: translate3d(0, 0, 0);
       }
+
       50% {
-        transform: translate3d(0, 10px, 0);
         opacity: 0.6;
+        transform: translate3d(0, 10px, 0);
       }
+
       100% {
-        transform: translate3d(0, 0, 0);
         opacity: 1;
+        transform: translate3d(0, 0, 0);
       }
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
+      bottom: 2rem;
       width: 48px;
       height: 48px;
-      bottom: 2rem;
     }
 
-    @media (max-width: 640px) {
+    @media (width <= 640px) {
       width: 32px;
       height: 32px;
     }
@@ -133,7 +138,7 @@ html {
 }
 
 // Responsive design
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .hero {
     .hero-content {
       padding: 0 2rem;

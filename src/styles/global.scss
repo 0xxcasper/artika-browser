@@ -21,9 +21,9 @@
   --font-raleway: 'Raleway', sans-serif;
 
   // Colors
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --background-primary: #ffffff;
+  --text-primary: #333;
+  --text-secondary: #666;
+  --background-primary: #fff;
   --background-secondary: #f8f8f8;
   --accent-primary: #d4af37;
   --accent-secondary: #b8860b;
@@ -43,10 +43,10 @@
   --border-radius-xl: 16px;
 
   // Shadows
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%);
 }
 
 * {
@@ -58,6 +58,8 @@ html {
 }
 
 body {
+  min-width: 100dvw;
+  min-height: 100dvh;
   font-family:
     var(--font-raleway),
     -apple-system,
@@ -69,9 +71,7 @@ body {
   background-color: var(--background-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  min-height: 100dvh;
-  min-width: 100dvw;
+  text-rendering: optimizelegibility;
 
   // hide scrollbar
   &::-webkit-scrollbar {

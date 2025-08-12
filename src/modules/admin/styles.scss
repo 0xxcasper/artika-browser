@@ -2,12 +2,12 @@
 @import '@/styles/variables';
 
 .admin-page {
-  background: white;
   min-height: 100vh;
-  margin-top: 80px;
   padding: 2rem;
+  margin-top: 80px;
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: white;
 
   .loading-container,
   .error-container {
@@ -21,31 +21,31 @@
     .loading-spinner {
       width: 40px;
       height: 40px;
+      margin-bottom: 1rem;
       border: 3px solid #f3f3f3;
       border-top: 3px solid #64603c;
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
     }
 
     h2 {
-      color: #333;
       margin-bottom: 0.5rem;
+      color: #333;
     }
 
     p {
-      color: #666;
       margin-bottom: 1rem;
+      color: #666;
     }
 
     .retry-button {
-      background: #64603c;
-      color: white;
-      border: none;
       padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      cursor: pointer;
       font-size: 0.9rem;
+      color: white;
+      cursor: pointer;
+      background: #64603c;
+      border: none;
+      border-radius: 6px;
 
       &:hover {
         background: #52502f;
@@ -55,18 +55,18 @@
 
   .admin-header {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 2rem;
+    justify-content: space-between;
     padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
     border-bottom: 1px solid #e5e7eb;
 
     .header-content {
       h1 {
+        margin: 0 0 1rem;
         font-size: 2rem;
         font-weight: 600;
         color: #111827;
-        margin: 0 0 1rem 0;
       }
 
       .admin-stats {
@@ -76,17 +76,17 @@
 
         .stat-item {
           display: flex;
-          align-items: center;
           gap: 0.5rem;
+          align-items: center;
           padding: 0.5rem 1rem;
           background: #f9fafb;
-          border-radius: 8px;
           border: 1px solid #e5e7eb;
+          border-radius: 8px;
 
           .stat-label {
             font-size: 0.875rem;
-            color: #6b7280;
             font-weight: 500;
+            color: #6b7280;
           }
 
           .stat-value {
@@ -142,13 +142,13 @@
       .action-button,
       .refresh-button {
         padding: 0.75rem 1.5rem;
-        border: 1px solid #d1d5db;
-        border-radius: 6px;
-        background: white;
-        color: #374151;
-        cursor: pointer;
         font-size: 0.875rem;
         font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        background: white;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
         transition: all 0.2s ease;
 
         &:hover {
@@ -157,8 +157,8 @@
         }
 
         &.mark-all-read {
-          background: #64603c;
           color: white;
+          background: #64603c;
           border-color: #64603c;
 
           &:hover {
@@ -176,16 +176,16 @@
     border-bottom: 1px solid #e5e7eb;
 
     .tab-button {
+      position: relative;
       padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #6b7280;
+      cursor: pointer;
       background: none;
       border: none;
       border-bottom: 3px solid transparent;
-      color: #6b7280;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
       transition: all 0.2s ease;
-      position: relative;
 
       &:hover {
         color: #374151;
@@ -194,16 +194,16 @@
 
       &.active {
         color: #64603c;
-        border-bottom-color: #64603c;
         background: #f9fafb;
+        border-bottom-color: #64603c;
 
         &::after {
-          content: '';
           position: absolute;
+          right: 0;
           bottom: -1px;
           left: 0;
-          right: 0;
           height: 1px;
+          content: '';
           background: #f9fafb;
         }
       }
@@ -212,10 +212,10 @@
 
   .admin-controls {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
     gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
 
     .filter-controls {
       display: flex;
@@ -224,8 +224,8 @@
 
       .filter-group {
         display: flex;
-        align-items: center;
         gap: 0.5rem;
+        align-items: center;
 
         label {
           font-size: 0.875rem;
@@ -235,18 +235,18 @@
         }
 
         .filter-select {
+          min-width: 140px;
           padding: 0.5rem 0.75rem;
+          font-size: 0.875rem;
+          color: #374151;
+          background: white;
           border: 1px solid #d1d5db;
           border-radius: 6px;
-          background: white;
-          color: #374151;
-          font-size: 0.875rem;
-          min-width: 140px;
 
           &:focus {
             outline: none;
             border-color: #64603c;
-            box-shadow: 0 0 0 3px rgba(100, 96, 60, 0.1);
+            box-shadow: 0 0 0 3px rgb(100 96 60 / 10%);
           }
         }
       }
@@ -259,16 +259,16 @@
       .search-input {
         width: 100%;
         padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        color: #374151;
+        background: white;
         border: 1px solid #d1d5db;
         border-radius: 6px;
-        background: white;
-        color: #374151;
-        font-size: 0.875rem;
 
         &:focus {
           outline: none;
           border-color: #64603c;
-          box-shadow: 0 0 0 3px rgba(100, 96, 60, 0.1);
+          box-shadow: 0 0 0 3px rgb(100 96 60 / 10%);
         }
 
         &::placeholder {
@@ -279,18 +279,18 @@
   }
 
   .table-container {
+    margin-bottom: 1rem;
+    overflow: hidden;
     background: white;
     border-radius: 8px;
     box-shadow:
-      0 1px 3px 0 rgba(0, 0, 0, 0.1),
-      0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    margin-bottom: 1rem;
+      0 1px 3px 0 rgb(0 0 0 / 10%),
+      0 1px 2px 0 rgb(0 0 0 / 6%);
 
     .submissions-table {
       width: 100%;
-      border-collapse: collapse;
       font-size: 0.875rem;
+      border-collapse: collapse;
 
       thead {
         background: #f9fafb;
@@ -298,14 +298,14 @@
 
         th {
           padding: 1rem;
-          text-align: left;
+          font-size: 0.75rem;
           font-weight: 600;
           color: #374151;
-          border-bottom: 1px solid #e5e7eb;
-          white-space: nowrap;
+          text-align: left;
           text-transform: uppercase;
-          font-size: 0.75rem;
           letter-spacing: 0.05em;
+          white-space: nowrap;
+          border-bottom: 1px solid #e5e7eb;
 
           &:nth-child(6),
           &:nth-child(3) {
@@ -316,9 +316,9 @@
 
       tbody {
         tr {
+          position: relative;
           border-bottom: 1px solid #f3f4f6;
           transition: background-color 0.2s ease;
-          position: relative;
 
           &:hover {
             background: #f9fafb;
@@ -375,9 +375,9 @@
 
           td {
             padding: 1rem;
-            border-bottom: 1px solid #f3f4f6;
             vertical-align: middle;
             text-align: left;
+            border-bottom: 1px solid #f3f4f6;
 
             &.name-cell {
               min-width: 120px;
@@ -385,8 +385,8 @@
             }
 
             &.phone-cell {
-              white-space: nowrap;
               min-width: 120px;
+              white-space: nowrap;
             }
 
             &.email-cell {
@@ -394,23 +394,23 @@
             }
 
             &.tour-date-cell {
-              white-space: nowrap;
               min-width: 120px;
-              color: #059669;
               font-weight: 500;
+              color: #059669;
+              white-space: nowrap;
             }
 
             &.date-cell {
-              white-space: nowrap;
               min-width: 140px;
-              color: #6b7280;
               font-size: 0.8rem;
+              color: #6b7280;
+              white-space: nowrap;
             }
 
             &.status-cell {
               min-width: 80px;
-              text-align: center !important;
               vertical-align: middle;
+              text-align: center !important;
 
               .status-badge {
                 display: inline-block;
@@ -423,14 +423,14 @@
               max-width: 200px;
 
               .note-text {
-                color: #374151;
-                font-size: 0.8rem;
-                line-height: 1.3;
                 display: block;
                 padding: 0.25rem 0.5rem;
+                font-size: 0.8rem;
+                line-height: 1.3;
+                color: #374151;
                 background: #f3f4f6;
-                border-radius: 4px;
                 border-left: 3px solid #64603c;
+                border-radius: 4px;
               }
             }
 
@@ -445,44 +445,44 @@
 
     .status-badge {
       display: inline-block;
+      min-width: 60px;
       padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
+      margin: 0 auto;
       font-size: 0.75rem;
       font-weight: 500;
+      text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      text-align: center;
-      min-width: 60px;
-      margin: 0 auto;
+      border-radius: 9999px;
 
       &.unread {
-        background: #fef3c7;
         color: #92400e;
+        background: #fef3c7;
       }
 
       &.read {
-        background: #d1fae5;
         color: #065f46;
+        background: #d1fae5;
       }
 
       &.active {
-        background: #dbeafe;
         color: #1e40af;
+        background: #dbeafe;
       }
 
       &.unsubscribed {
-        background: #fee2e2;
         color: #991b1b;
+        background: #fee2e2;
       }
 
       &.new {
-        background: #fef3c7;
         color: #92400e;
+        background: #fef3c7;
       }
 
       &.done {
-        background: #d1fae5;
         color: #065f46;
+        background: #d1fae5;
       }
     }
 
@@ -492,18 +492,18 @@
       align-items: center;
 
       .action-button {
-        width: 32px;
-        height: 32px;
-        border: 1px solid #d1d5db;
-        border-radius: 6px;
-        background: white;
-        color: #6b7280;
-        cursor: pointer;
-        font-size: 1rem;
-        font-weight: 600;
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #6b7280;
+        cursor: pointer;
+        background: white;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
         transition: all 0.2s ease;
 
         &:hover {
@@ -569,30 +569,30 @@
   }
 
   .empty-state {
-    text-align: center;
     padding: 4rem 2rem;
     color: #6b7280;
+    text-align: center;
 
     h3 {
+      margin-bottom: 0.5rem;
       font-size: 1.25rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
       color: #374151;
     }
 
     p {
-      font-size: 0.875rem;
       max-width: 400px;
       margin: 0 auto;
+      font-size: 0.875rem;
     }
   }
 
   .results-info {
-    margin-top: 1rem;
-    text-align: center;
-    color: #6b7280;
-    font-size: 0.875rem;
     padding: 1rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-align: center;
     background: #f9fafb;
     border-radius: 6px;
   }
@@ -600,33 +600,30 @@
   // Modal styles
   .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
     padding: 1rem;
+    background: rgb(0 0 0 / 50%);
 
     .note-modal {
-      background: white;
-      border-radius: 8px;
-      box-shadow:
-        0 20px 25px -5px rgba(0, 0, 0, 0.1),
-        0 10px 10px -5px rgba(0, 0, 0, 0.04);
       width: 100%;
       max-width: 500px;
       max-height: 90vh;
       overflow: hidden;
+      background: white;
+      border-radius: 8px;
+      box-shadow:
+        0 20px 25px -5px rgb(0 0 0 / 10%),
+        0 10px 10px -5px rgb(0 0 0 / 4%);
       animation: modalSlideIn 0.3s ease-out;
 
       .modal-header {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         padding: 1.5rem 1.5rem 0;
         border-bottom: 1px solid #e5e7eb;
 
@@ -638,18 +635,18 @@
         }
 
         .close-button {
-          background: none;
-          border: none;
+          padding: 0.25rem;
           font-size: 1.5rem;
           color: #6b7280;
           cursor: pointer;
-          padding: 0.25rem;
+          background: none;
+          border: none;
           border-radius: 4px;
           transition: all 0.2s ease;
 
           &:hover {
-            background: #f3f4f6;
             color: #374151;
+            background: #f3f4f6;
           }
         }
       }
@@ -658,9 +655,9 @@
         padding: 1.5rem;
 
         .modal-subtitle {
-          margin: 0 0 1rem 0;
-          color: #6b7280;
+          margin: 0 0 1rem;
           font-size: 0.875rem;
+          color: #6b7280;
         }
 
         .note-input-group {
@@ -673,23 +670,23 @@
 
           .note-textarea {
             width: 100%;
+            min-height: 100px;
             padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
             font-family: inherit;
             font-size: 0.875rem;
             resize: vertical;
-            min-height: 100px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
 
             &:focus {
               outline: none;
               border-color: #64603c;
-              box-shadow: 0 0 0 3px rgba(100, 96, 60, 0.1);
+              box-shadow: 0 0 0 3px rgb(100 96 60 / 10%);
             }
 
             &:disabled {
-              background: #f9fafb;
               cursor: not-allowed;
+              background: #f9fafb;
             }
           }
         }
@@ -697,30 +694,30 @@
 
       .modal-actions {
         display: flex;
-        justify-content: flex-end;
         gap: 1rem;
+        justify-content: flex-end;
         padding: 1rem 1.5rem 1.5rem;
         border-top: 1px solid #e5e7eb;
 
         .cancel-button,
         .submit-button {
           padding: 0.75rem 1.5rem;
-          border-radius: 6px;
           font-size: 0.875rem;
           font-weight: 500;
           cursor: pointer;
+          border-radius: 6px;
           transition: all 0.2s ease;
 
           &:disabled {
-            opacity: 0.5;
             cursor: not-allowed;
+            opacity: 0.5;
           }
         }
 
         .cancel-button {
+          color: #374151;
           background: white;
           border: 1px solid #d1d5db;
-          color: #374151;
 
           &:hover:not(:disabled) {
             background: #f9fafb;
@@ -729,9 +726,9 @@
         }
 
         .submit-button {
+          color: white;
           background: #64603c;
           border: 1px solid #64603c;
-          color: white;
 
           &:hover:not(:disabled) {
             background: #52502f;
@@ -747,6 +744,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -757,6 +755,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

@@ -212,4 +212,3 @@ export function asLink(field: any): string {
 
   return '';
 }
-

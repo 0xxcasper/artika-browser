@@ -10,7 +10,8 @@ import {
 // Fallback data when Prismic API fails
 const FALLBACK_OFFERS_DATA: OfferPageData = {
   title: 'Special Offers',
-  description: 'From special discounts on accommodations to complimentary amenities, our offers are designed to provide you with an unforgettable experience.',
+  description:
+    'From special discounts on accommodations to complimentary amenities, our offers are designed to provide you with an unforgettable experience.',
   items: [
     {
       id: 'extended-stay',
@@ -21,7 +22,8 @@ const FALLBACK_OFFERS_DATA: OfferPageData = {
       buttonHref: '',
       detail: {
         title: 'Extended Stay',
-        description: 'Longer description for the offer. Replace with real copy later.',
+        description:
+          'Longer description for the offer. Replace with real copy later.',
         utilities: [
           {
             title: 'Inclusions',
@@ -86,10 +88,14 @@ export async function fetchOffersPage(locale: string): Promise<OfferPageData> {
           })) || [],
         buttonText: doc.data.detail_button_text || doc.data.button_text || '',
         buttonHref:
-          asLink(doc.data.detail_button_link) || asLink(doc.data.button_link) || '',
+          asLink(doc.data.detail_button_link) ||
+          asLink(doc.data.button_link) ||
+          '',
         notes: {
           title: asText(doc.data.notes_title) || '',
-          contents: (asText(doc.data.notes_contents) || '').split('/').filter(Boolean),
+          contents: (asText(doc.data.notes_contents) || '')
+            .split('/')
+            .filter(Boolean),
           buttonText: doc.data.notes_button_text || '',
           buttonHref: asLink(doc.data.notes_button_link) || '',
         },
@@ -101,7 +107,9 @@ export async function fetchOffersPage(locale: string): Promise<OfferPageData> {
     }));
 
     return {
-      title: page ? asText((page as any).data?.title) || 'Special Offers' : 'Special Offers',
+      title: page
+        ? asText((page as any).data?.title) || 'Special Offers'
+        : 'Special Offers',
       description: page
         ? asText((page as any).data?.description) || ''
         : FALLBACK_OFFERS_DATA.description,
@@ -124,5 +132,3 @@ export async function fetchOfferByUid(locale: string, uid: string) {
     return page.items.find((i) => i.id === uid) || null;
   }
 }
-
-

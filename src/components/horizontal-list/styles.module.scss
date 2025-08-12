@@ -1,5 +1,5 @@
-@import '@/styles/variables.scss';
-@import '@/styles/fonts.scss';
+@import '@/styles/variables';
+@import '@/styles/fonts';
 
 .container {
   margin-top: 60px;
@@ -9,26 +9,30 @@
 .sectionTitle {
   @include text-2xl;
   @include font-secondary;
-  font-weight: 500;
+
   margin-bottom: 40px;
-  text-align: start;
   font-size: 24px;
+  font-weight: 500;
   color: var(--text-primary);
+  text-align: start;
 }
 
 .scrollWrapper {
+  position: relative;
   width: 100%;
   overflow: hidden;
-  position: relative;
 }
 
 .scrollContainer {
+  position: relative;
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto hidden;
   cursor: grab;
   user-select: none;
-  position: relative;
+
+  // Hide scrollbar for Firefox
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   &:active {
     cursor: grabbing;
@@ -39,10 +43,6 @@
     display: none;
   }
 
-  // Hide scrollbar for Firefox
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-
   // Prevent scroll events from bubbling up
   &:focus {
     outline: none;
@@ -52,15 +52,16 @@
 .scrollContent {
   display: flex;
   gap: 20px;
+
   // padding: 10px 0;
   min-width: max-content;
 }
 
 .item {
-  flex: 0 0 auto;
-  width: 375px;
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
+  width: 375px;
   cursor: pointer;
   transition:
     transform 0.2s ease,
@@ -79,10 +80,11 @@
 }
 
 .title {
+  margin-bottom: 2px;
   font-size: 16px;
   line-height: 125%;
   color: #353536;
-  margin-bottom: 2px;
+
   @include font-secondary;
 }
 
@@ -90,19 +92,21 @@
   font-size: 16px;
   line-height: 125%;
   color: #353536;
+
   @include font-secondary;
 }
 
 .material {
   font-size: 16px;
-  line-height: 125%;
   font-weight: 400;
-  @include font-secondary;
+  line-height: 125%;
   color: #a9a9a9;
+
+  @include font-secondary;
 }
 
 // Responsive adjustments
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .item {
     width: 240px;
   }
@@ -112,7 +116,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .item {
     width: 200px;
   }

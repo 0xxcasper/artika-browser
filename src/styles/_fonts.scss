@@ -3,10 +3,10 @@
 @import './variables';
 
 @font-face {
-  font-family: 'Playfair';
-  src: url('/fonts/Playfair.ttf') format('truetype');
-  font-weight: 300;
+  font-family: Playfair;
   font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/Playfair.ttf') format('truetype');
 }
 
 // Font Variables - Only Playfair and Raleway
@@ -52,20 +52,22 @@ $letter-spacing-widest: 0.1em;
 // Typography Mixins
 @mixin font-primary {
   // font-family: $font-primary;
-  font-family: 'Playfair', serif;
+  font-family: Playfair, serif;
+
   // font-feature-settings: "liga" 1, "kern" 1;
   font-weight: 300;
 }
 
 @mixin font-secondary {
   // font-family: $font-secondary;
-  font-family: 'Raleway', sans-serif;
+  font-family: Raleway, sans-serif;
+
   // font-feature-settings: "liga" 1, "kern" 1;
   font-weight: 500;
 }
 
 @mixin font-tertiary {
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 400;
 }
 
@@ -114,6 +116,7 @@ $letter-spacing-widest: 0.1em;
 @mixin text-3xl {
   font-size: $font-size-3xl;
   line-height: $line-height-tight;
+
   @media (max-width: $breakpoint-sm) {
     font-size: $font-size-2xl;
   }
@@ -131,6 +134,7 @@ $letter-spacing-widest: 0.1em;
   @media (max-width: $breakpoint-lg) {
     font-size: $font-size-4xl;
   }
+
   @media (max-width: $breakpoint-sm) {
     font-size: $font-size-3xl;
   }
@@ -143,6 +147,7 @@ $letter-spacing-widest: 0.1em;
   @media (max-width: $breakpoint-lg) {
     font-size: $font-size-5xl;
   }
+
   @media (max-width: $breakpoint-sm) {
     font-size: $font-size-3xl;
   }
@@ -152,6 +157,7 @@ $letter-spacing-widest: 0.1em;
 @mixin heading-1 {
   @include font-primary;
   @include text-6xl;
+
   font-weight: $font-weight-light;
   letter-spacing: $letter-spacing-tight;
 }
@@ -159,6 +165,7 @@ $letter-spacing-widest: 0.1em;
 @mixin heading-2 {
   @include font-primary;
   @include text-5xl;
+
   font-weight: $font-weight-light;
   letter-spacing: $letter-spacing-tight;
 }
@@ -166,6 +173,7 @@ $letter-spacing-widest: 0.1em;
 @mixin heading-3 {
   @include font-primary;
   @include text-4xl;
+
   font-weight: $font-weight-normal;
   letter-spacing: $letter-spacing-normal;
 }
@@ -173,6 +181,7 @@ $letter-spacing-widest: 0.1em;
 @mixin heading-4 {
   @include font-primary;
   @include text-3xl;
+
   font-weight: $font-weight-normal;
   letter-spacing: $letter-spacing-normal;
 }
@@ -180,6 +189,7 @@ $letter-spacing-widest: 0.1em;
 @mixin heading-5 {
   @include font-primary;
   @include text-2xl;
+
   font-weight: $font-weight-normal;
   letter-spacing: $letter-spacing-normal;
 }
@@ -187,6 +197,7 @@ $letter-spacing-widest: 0.1em;
 @mixin heading-6 {
   @include font-primary;
   @include text-xl;
+
   font-weight: $font-weight-medium;
   letter-spacing: $letter-spacing-normal;
 }
@@ -195,6 +206,7 @@ $letter-spacing-widest: 0.1em;
 @mixin body-large {
   @include font-secondary;
   @include text-lg;
+
   font-weight: $font-weight-normal;
   letter-spacing: $letter-spacing-normal;
 }
@@ -202,6 +214,7 @@ $letter-spacing-widest: 0.1em;
 @mixin body-base {
   @include font-secondary;
   @include text-base;
+
   font-weight: $font-weight-normal;
   letter-spacing: $letter-spacing-normal;
 }
@@ -209,6 +222,7 @@ $letter-spacing-widest: 0.1em;
 @mixin body-small {
   @include font-secondary;
   @include text-sm;
+
   font-weight: $font-weight-normal;
   letter-spacing: $letter-spacing-normal;
 }
@@ -216,6 +230,7 @@ $letter-spacing-widest: 0.1em;
 @mixin body-xs {
   @include font-secondary;
   @include text-xs;
+
   font-weight: $font-weight-normal;
   letter-spacing: $letter-spacing-normal;
 }
@@ -232,30 +247,39 @@ $letter-spacing-widest: 0.1em;
 .text-xs {
   @include text-xs;
 }
+
 .text-sm {
   @include text-sm;
 }
+
 .text-base {
   @include text-base;
 }
+
 .text-lg {
   @include text-lg;
 }
+
 .text-xl {
   @include text-xl;
 }
+
 .text-2xl {
   @include text-2xl;
 }
+
 .text-3xl {
   @include text-3xl;
 }
+
 .text-4xl {
   @include text-4xl;
 }
+
 .text-5xl {
   @include text-5xl;
 }
+
 .text-6xl {
   @include text-6xl;
 }
@@ -263,18 +287,23 @@ $letter-spacing-widest: 0.1em;
 .heading-1 {
   @include heading-1;
 }
+
 .heading-2 {
   @include heading-2;
 }
+
 .heading-3 {
   @include heading-3;
 }
+
 .heading-4 {
   @include heading-4;
 }
+
 .heading-5 {
   @include heading-5;
 }
+
 .heading-6 {
   @include heading-6;
 }
@@ -282,12 +311,15 @@ $letter-spacing-widest: 0.1em;
 .body-large {
   @include body-large;
 }
+
 .body-base {
   @include body-base;
 }
+
 .body-small {
   @include body-small;
 }
+
 .body-xs {
   @include body-xs;
 }

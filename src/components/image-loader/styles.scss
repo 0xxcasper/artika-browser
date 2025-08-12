@@ -8,19 +8,19 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
   }
 
   .loading-spinner {
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid rgb(255 255 255 / 30%);
     border-top: 3px solid white;
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -42,6 +42,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

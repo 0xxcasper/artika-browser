@@ -3,12 +3,12 @@
 
 // Home page styles
 .home-page {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  gap: 150px;
   align-items: center;
   justify-content: center;
-  gap: 150px;
+  min-height: 100vh;
 
   @media (max-width: $breakpoint-md) {
     gap: 100px;

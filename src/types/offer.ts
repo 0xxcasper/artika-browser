@@ -30,5 +30,3 @@ export interface OfferPageData {
   description: string;
   items: OfferItem[];
 }
-
-

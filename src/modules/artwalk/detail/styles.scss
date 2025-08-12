@@ -2,44 +2,48 @@
 @import '../../../styles/variables';
 
 .gallery-detail-container {
-  padding: 130px 1.5rem 150px 1.5rem;
-  max-width: 1616px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 80px;
+  max-width: 1616px;
   min-height: 100dvh;
+  padding: 130px 1.5rem 150px;
+  margin: 0 auto;
 
   @media screen and (max-width: $breakpoint-lg) {
-    padding-top: 80px;
     gap: 40px;
+    padding-top: 80px;
+
     .content {
       flex-direction: column;
       gap: 40px;
-      padding-left: 0;
       padding-right: 0;
+      padding-left: 0;
     }
   }
 
   .slick-dots {
     bottom: 20px;
+
     li {
       width: 12px;
       height: 12px;
       margin: auto 0;
+
       button {
         width: 12px;
         height: 12px;
       }
+
       button::before {
-        color: rgba(169, 169, 169, 0.5) !important;
-        opacity: 1 !important;
         font-size: 8px !important;
+        color: rgb(169 169 169 / 50%) !important;
+        opacity: 1 !important;
       }
 
       &.slick-active {
         button::before {
-          color: rgba(169, 169, 169, 1) !important;
+          color: rgb(169 169 169 / 100%) !important;
           opacity: 1 !important;
         }
       }
@@ -47,57 +51,67 @@
   }
 
   .content {
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 60px;
-    padding-left: 60px;
     padding-right: 60px;
-    position: relative;
+    padding-left: 60px;
 
     @media screen and (max-width: $breakpoint-md) {
       flex-direction: column;
-      padding: 0;
       gap: 24px;
+      padding: 0;
     }
 
     .info {
       display: flex;
-      flex-direction: column;
       flex: 1;
+      flex-direction: column;
       gap: 15px;
 
       @media screen and (max-width: $breakpoint-md) {
         gap: 12px;
       }
+
       .name {
         font-size: 50px;
         line-height: 104%;
-        letter-spacing: -0.02em;
         color: $text-primary;
+        letter-spacing: -0.02em;
         white-space: pre-line;
+
         @include font-primary;
+
         @media screen and (max-width: $breakpoint-md) {
           font-size: 32px;
           white-space: unset;
         }
       }
+
       .material {
         @include font-secondary;
-        color: #353536;
-        white-space: pre-line;
+
         font-size: 18px;
         line-height: 133%;
+        color: #353536;
         letter-spacing: 0%;
+        white-space: pre-line;
+
         @media screen and (max-width: $breakpoint-md) {
           font-size: 16px;
         }
       }
+
       .author {
         margin-top: 38px;
         font-size: 18px;
         line-height: 133%;
+
         @include font-secondary;
+
         color: $text-primary;
+
         @media screen and (max-width: $breakpoint-md) {
           font-size: 16px;
         }
@@ -113,7 +127,9 @@
         line-height: 133%;
         color: #353536;
         white-space: pre-line;
+
         @include font-secondary;
+
         @media screen and (max-width: $breakpoint-md) {
           font-size: 16px;
         }
@@ -122,8 +138,10 @@
       .read-more-btn {
         position: relative;
         margin-top: 40px;
+
         @include body-large;
         @include font-secondary;
+
         color: $text-primary;
         text-decoration: none;
         cursor: pointer;
@@ -132,12 +150,12 @@
         transition: color 0.3s;
 
         &::after {
-          content: '';
           position: absolute;
-          left: 0;
           bottom: 0;
+          left: 0;
           width: 100%;
           height: 2px;
+          content: '';
           background: $text-primary;
           transform: scaleX(0);
           transform-origin: left;
@@ -154,8 +172,9 @@
       }
     }
   }
+
   @media screen and (max-width: $breakpoint-md) {
-    padding-left: 16px;
     padding-right: 16px;
+    padding-left: 16px;
   }
 }

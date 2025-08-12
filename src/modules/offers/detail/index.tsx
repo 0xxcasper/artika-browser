@@ -76,5 +76,3 @@ export default function OfferDetail({ item }: OfferDetailProps) {
     </div>
   );
 }
-
-

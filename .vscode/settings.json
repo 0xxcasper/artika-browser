@@ -24,15 +24,17 @@
   "i18n-ally.localesPaths": ["src/locales"],
   "i18n-ally.keystyle": "nested",
 
-  // Disable the default formatter, use ESLint instead
+  // Do not format on save; format explicitly via commands
   "prettier.enable": false,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.formatOnSave": false,
 
-  // Auto fix with ESLint on save - including unused imports removal
+  // Run actions only when explicitly invoked (not automatically on save)
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit"
+    "source.organizeImports": "explicit",
+    "source.fixAll.stylelint": "explicit"
   },
 
   // Enable eslint for all supported languages
@@ -59,5 +61,5 @@
     "pcss",
     "postcss",
     "github-actions-workflow"
-  ]
+  ],
 }

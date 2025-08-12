@@ -9,5 +9,3 @@ export default async function OffersPage({
   const data = await fetchOffersPage(params.locale);
   return <OffersList data={data} lang={params.locale} />;
 }
-
-

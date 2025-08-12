@@ -9,18 +9,19 @@
     .newsletter-title {
       @include heading-1;
       @include font-primary;
-      color: $text-inverse;
+
       margin-bottom: 30px;
       line-height: 104%;
+      color: $text-inverse;
       letter-spacing: -0.02em;
     }
 
     .newsletter-form-container {
       .input-group {
         display: flex;
+        flex-wrap: wrap;
         gap: 1rem;
         align-items: center;
-        flex-wrap: wrap;
 
         @media (max-width: $breakpoint-sm) {
           flex-direction: column;
@@ -29,30 +30,31 @@
 
         .newsletter-input {
           @include font-secondary;
+
           width: 400px;
           height: 48px;
-          border-radius: 100px;
-          border: 1px solid #fff;
           padding: 14px 24px;
           font-size: 1rem;
-          background: transparent;
           color: $text-inverse;
+          background: transparent;
+          border: 1px solid #fff;
+          border-radius: 100px;
           transition: all 0.3s ease;
 
           &::placeholder {
-            color: $text-inverse;
             font-weight: 400;
+            color: $text-inverse;
           }
 
           &:focus {
             outline: none;
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+            border-color: rgb(255 255 255 / 50%);
+            box-shadow: 0 0 0 2px rgb(255 255 255 / 20%);
           }
 
           &:disabled {
-            opacity: 0.6;
             cursor: not-allowed;
+            opacity: 0.6;
           }
 
           @media (max-width: $breakpoint-md) {
@@ -67,22 +69,23 @@
 
         .newsletter-button {
           @include font-secondary;
+
           height: 48px;
           padding: 0 2rem;
-          border-radius: 100px;
-          border: none;
-          background: #fff;
           font-size: 1rem;
           font-weight: 500;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          white-space: nowrap;
           color: $accent-primary;
+          white-space: nowrap;
+          cursor: pointer;
+          background: #fff;
+          border: none;
+          border-radius: 100px;
+          transition: all 0.3s ease;
 
           &:hover:not(:disabled) {
+            box-shadow: 0 4px 12px rgb(255 255 255 / 10%);
             opacity: 0.8;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
           }
 
           &:active:not(:disabled) {
@@ -90,8 +93,8 @@
           }
 
           &:disabled {
-            opacity: 0.6;
             cursor: not-allowed;
+            opacity: 0.6;
             transform: none;
           }
 
@@ -103,23 +106,23 @@
       }
 
       .newsletter-error {
-        margin-top: 1rem;
         padding: 0.75rem 1rem;
-        background: #fee;
-        color: #c53030;
-        border-radius: 8px;
+        margin-top: 1rem;
         font-size: 0.875rem;
+        color: #c53030;
+        background: #fee;
         border: 1px solid #feb2b2;
+        border-radius: 8px;
       }
 
       .newsletter-success {
-        margin-top: 1rem;
         padding: 0.75rem 1rem;
-        background: #f0fff4;
-        color: #2f855a;
-        border-radius: 8px;
+        margin-top: 1rem;
         font-size: 0.875rem;
+        color: #2f855a;
+        background: #f0fff4;
         border: 1px solid #9ae6b4;
+        border-radius: 8px;
       }
     }
   }

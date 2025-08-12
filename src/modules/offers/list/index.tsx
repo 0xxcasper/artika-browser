@@ -25,10 +25,7 @@ export default function OffersList({ data, lang }: OffersListProps) {
 
       <div className={styles['offers-list__grid']}>
         {items.map((item) => (
-          <div
-            key={item.id}
-            className={styles['offers-list__card']}
-          >
+          <div key={item.id} className={styles['offers-list__card']}>
             <Image
               src={item.images?.[0] || '/images/home/banner-1.jpg'}
               alt={item.title}
@@ -58,5 +55,3 @@ export default function OffersList({ data, lang }: OffersListProps) {
     </div>
   );
 }
-
-

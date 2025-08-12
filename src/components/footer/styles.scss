@@ -1,27 +1,25 @@
-@import '@/styles/variables.scss';
-@import '@/styles/fonts.scss';
+@import '@/styles/variables';
+@import '@/styles/fonts';
 
 .footer-container {
-  background-color: #64603c;
   width: 100dvw;
+  background-color: #64603c;
 
   .content {
     display: flex;
     justify-content: space-between;
-
+    width: 100%;
     max-width: 1610px;
     padding: 100px;
+    margin: 0 auto;
 
     @media (max-width: $breakpoint-md) {
       padding: 50px 16px;
     }
 
-    margin: 0 auto;
-    width: 100%;
-
     @media (max-width: $breakpoint-md) {
-      gap: 40px;
       flex-wrap: wrap;
+      gap: 40px;
     }
   }
 
@@ -40,24 +38,26 @@
       font-size: 24px;
       font-weight: 500;
       line-height: 133%;
-      letter-spacing: 0em;
-      @include font-secondary;
       color: $text-inverse;
+      letter-spacing: 0;
+
+      @include font-secondary;
+
       @media screen and (max-width: $breakpoint-md) {
         font-size: 18px;
       }
     }
 
     .description {
+      width: fit-content;
       font-size: 18px;
       line-height: 133%;
-      letter-spacing: 0em;
-      @include font-secondary;
       color: $text-inverse;
-
-      transition: all 0.3s ease;
+      letter-spacing: 0;
       text-decoration: none;
-      width: fit-content;
+      transition: all 0.3s ease;
+
+      @include font-secondary;
 
       &__link {
         &:hover {
@@ -80,45 +80,48 @@
 
     &__content {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       max-width: 1610px;
-      margin: 0 auto;
       padding: 0 16px;
+      margin: 0 auto;
 
       @media (max-width: $breakpoint-md) {
-        padding: 0 16px;
         flex-direction: column;
         gap: 20px;
+        padding: 0 16px;
       }
     }
 
     &__logo {
       display: flex;
-      align-items: center;
       gap: 12px;
+      align-items: center;
 
       &-text {
         font-size: 18px;
         font-weight: 500;
         color: $text-inverse;
+
         @include font-secondary;
+
         letter-spacing: 0.5px;
       }
     }
 
     &__social {
       display: flex;
-      align-items: center;
       gap: 16px;
+      align-items: center;
 
       &-text {
         font-size: 14px;
         font-weight: 500;
         color: $text-inverse;
-        @include font-secondary;
-        letter-spacing: 1px;
         text-transform: uppercase;
+        letter-spacing: 1px;
+
+        @include font-secondary;
       }
 
       &-icons {
@@ -132,11 +135,12 @@
         font-size: 14px;
         font-weight: 500;
         color: $text-inverse;
-        @include font-secondary;
-        letter-spacing: 1px;
         text-transform: uppercase;
+        letter-spacing: 1px;
         text-decoration: none;
         transition: opacity 0.3s ease;
+
+        @include font-secondary;
 
         &:hover {
           opacity: 0.8;

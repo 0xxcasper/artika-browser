@@ -11,5 +11,3 @@ export default async function OffersDetailPage({
   if (!item) notFound();
   return <OfferDetail item={item} />;
 }
-
-

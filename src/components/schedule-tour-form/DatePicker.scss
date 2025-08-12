@@ -3,65 +3,64 @@
 
 .date-picker-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
   padding: 1rem;
+  background: rgb(0 0 0 / 50%);
   animation: fadeIn 0.2s ease-out;
 
   .date-picker-modal {
-    background: white;
-    border-radius: 12px;
-    box-shadow:
-      0 20px 25px -5px rgba(0, 0, 0, 0.1),
-      0 10px 10px -5px rgba(0, 0, 0, 0.04);
     width: 100%;
     max-width: 400px;
     overflow: hidden;
+    background: white;
+    border-radius: 12px;
+    box-shadow:
+      0 20px 25px -5px rgb(0 0 0 / 10%),
+      0 10px 10px -5px rgb(0 0 0 / 4%);
     animation: slideIn 0.3s ease-out;
 
     .date-picker-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 20px;
 
       .month-year {
         @include font-tertiary;
+
         margin: 0;
         font-size: 16px;
-        line-height: 20px;
         font-weight: 500;
-        color: rgba(18, 18, 18, 1);
-        letter-spacing: 0em;
+        line-height: 20px;
+        color: rgb(18 18 18 / 100%);
         text-transform: capitalize;
+        letter-spacing: 0;
       }
 
       .nav-button {
         @include font-tertiary;
-        background: none;
-        border: none;
-        font-size: 28px;
-        color: rgba(18, 18, 18, 1);
-        cursor: pointer;
-        padding: 0.5rem;
-        border-radius: 6px;
-        transition: all 0.2s ease;
-        width: 40px;
-        height: 40px;
+
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 40px;
+        height: 40px;
+        padding: 0.5rem;
+        font-size: 28px;
+        color: rgb(18 18 18 / 100%);
+        cursor: pointer;
+        background: none;
+        border: none;
+        border-radius: 6px;
+        transition: all 0.2s ease;
 
         &:hover {
-          background: #f3f4f6;
           color: #374151;
+          background: #f3f4f6;
         }
       }
     }
@@ -78,14 +77,15 @@
 
         .weekday {
           @include font-tertiary;
-          text-align: center;
+
+          padding: 0.5rem;
           font-size: 14px;
           font-weight: 400;
-          padding: 0.5rem;
+          text-align: center;
 
           &:nth-child(1),
           &:nth-child(7) {
-            color: rgba(243, 106, 106, 1);
+            color: rgb(243 106 106 / 100%);
           }
 
           &:nth-child(2),
@@ -93,7 +93,7 @@
           &:nth-child(4),
           &:nth-child(5),
           &:nth-child(6) {
-            color: rgba(18, 18, 18, 1);
+            color: rgb(18 18 18 / 100%);
           }
         }
       }
@@ -105,21 +105,22 @@
 
         .day-cell {
           @include font-tertiary;
-          aspect-ratio: 1;
+
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 6px;
-          cursor: pointer;
+          aspect-ratio: 1;
           font-size: 14px;
           font-weight: 400;
-          transition: all 0.2s ease;
+          cursor: pointer;
           border: 2px solid transparent;
+          border-radius: 6px;
+          transition: all 0.2s ease;
 
-          &:hover:not(.empty):not(.past) {
+          &:hover:not(.empty, .past) {
+            color: #111827;
             background: #f3f4f6;
             border-color: #d1d5db;
-            color: #111827;
           }
 
           &.empty {
@@ -127,15 +128,15 @@
           }
 
           &.today {
-            color: rgba(88, 168, 242, 1);
             font-weight: 600;
+            color: rgb(88 168 242 / 100%);
             background: transparent;
           }
 
           &.selected {
-            background: #64603c;
-            color: white;
             font-weight: 600;
+            color: white;
+            background: #64603c;
             border-color: #52502f;
           }
 
@@ -155,24 +156,25 @@
       .cancel-button,
       .confirm-button {
         @include font-tertiary;
+
         flex: 1;
         padding: 0.75rem 1rem;
-        border-radius: 6px;
         font-size: 16px;
         font-weight: 400;
         cursor: pointer;
+        border-radius: 6px;
         transition: all 0.2s ease;
 
         &:disabled {
-          opacity: 0.5;
           cursor: not-allowed;
+          opacity: 0.5;
         }
       }
 
       .cancel-button {
+        color: #374151;
         background: white;
         border: 1px solid #d1d5db;
-        color: #374151;
 
         &:hover:not(:disabled) {
           background: #f9fafb;
@@ -181,9 +183,9 @@
       }
 
       .confirm-button {
+        color: white;
         background: #64603c;
         border: 1px solid #64603c;
-        color: white;
 
         &:hover:not(:disabled) {
           background: #52502f;
@@ -197,6 +199,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -207,6 +210,7 @@
     opacity: 0;
     transform: translateY(-20px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -214,7 +218,7 @@
 }
 
 // Responsive design
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .date-picker-overlay {
     padding: 0.5rem;
 
@@ -238,8 +242,8 @@
 
         .weekdays {
           .weekday {
-            font-size: 0.75rem;
             padding: 0.25rem;
+            font-size: 0.75rem;
           }
         }
 

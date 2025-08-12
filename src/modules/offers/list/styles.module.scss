@@ -2,24 +2,25 @@
 @import '@/styles/fonts';
 
 .offers-list {
-  padding: 150px 1.5rem;
-  max-width: 1476px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 150px;
+  max-width: 1476px;
+  padding: 150px 1.5rem;
+  margin: 0 auto;
 
   &__header {
-    text-align: center;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 4px;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
 
     h1 {
       @include heading-1;
       @include font-primary;
+
       text-align: center;
       white-space: pre-line;
     }
@@ -27,6 +28,7 @@
     p {
       @include body-large;
       @include font-secondary;
+
       max-width: 740px;
       font-weight: 500;
       text-align: center;
@@ -58,14 +60,15 @@
       display: grid;
       gap: 20px;
 
-      h3 { 
+      h3 {
         @include text-3xl;
-        @include font-secondary; 
+        @include font-secondary;
       }
 
-      p { 
+      p {
         @include body-large;
-        @include font-secondary; 
+        @include font-secondary;
+
         line-height: 133%;
       }
     }
@@ -73,13 +76,12 @@
     &__link {
       @include font-secondary;
       @include body-small;
-      text-decoration: underline !important;
+
       width: fit-content;
-      text-underline-offset: 4px;
-      color: $accent-primary !important;
       font-weight: 500;
+      color: $accent-primary !important;
+      text-decoration: underline !important;
+      text-underline-offset: 4px;
     }
   }
 }
-
-

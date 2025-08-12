@@ -4,22 +4,23 @@
 
 .btn {
   @include font-secondary;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #64603c;
-  border-radius: 100px;
   padding: 1.75rem 5.5rem;
   font-size: 1.25rem;
   font-weight: 600;
   color: #64603c;
   background-color: transparent;
+  border: 1px solid #64603c;
+  border-radius: 100px;
   transition: all 0.3s ease;
 
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
-    background-color: #64603c;
     color: #c5cf98;
+    background-color: #64603c;
     border-color: #64603c;
   }
 
@@ -29,8 +30,8 @@
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
-      background-color: #fff;
       color: #000;
+      background-color: #fff;
       border-color: #fff;
     }
   }

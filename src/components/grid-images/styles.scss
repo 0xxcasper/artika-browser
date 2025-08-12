@@ -7,9 +7,10 @@
   &__title {
     @include heading-1;
     @include font-primary;
+
+    margin-bottom: 80px;
     text-align: center;
     white-space: pre-line;
-    margin-bottom: 80px;
 
     @media (max-width: $breakpoint-md) {
       margin-bottom: 42px;
@@ -22,8 +23,8 @@
 
   &__container {
     max-width: 1728px;
-    margin: 0 auto;
     padding: 0 24px;
+    margin: 0 auto;
 
     @media (max-width: $breakpoint-lg) {
       padding: 0 20px;
@@ -36,37 +37,38 @@
 
   &__grid {
     display: grid;
-    gap: 32px;
-    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
 
     @media (max-width: $breakpoint-lg) {
-      grid-template-columns: repeat(2, 1fr);
       grid-template-rows: auto;
+      grid-template-columns: repeat(2, 1fr);
       gap: 32px;
     }
 
     @media (max-width: $breakpoint-md) {
-      grid-template-columns: 1fr;
       grid-template-rows: auto;
+      grid-template-columns: 1fr;
       gap: 32px; // Touch-friendly spacing on mobile
     }
   }
 
   &__card {
     position: relative;
+
     // border-radius: 16px;
     overflow: hidden;
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.08),
-      0 2px 4px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    box-shadow:
+      0 4px 12px rgb(0 0 0 / 8%),
+      0 2px 4px rgb(0 0 0 / 6%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
       box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.12),
-        0 4px 8px rgba(0, 0, 0, 0.08);
+        0 8px 25px rgb(0 0 0 / 12%),
+        0 4px 8px rgb(0 0 0 / 8%);
       transform: translateY(-2px);
 
       .grid-images__image {
@@ -74,7 +76,7 @@
       }
 
       .grid-images__overlay {
-        background: rgba(0, 0, 0, 0.25);
+        background: rgb(0 0 0 / 25%);
         opacity: 1;
       }
 
@@ -93,6 +95,7 @@
       width: 100%;
       height: 100%;
       min-height: 320px;
+
       // height: 320px;
 
       @media (max-width: $breakpoint-md) {
@@ -102,21 +105,21 @@
 
     // Special grid positioning for layout: 1 2 3 / 4 2 5
     &:nth-child(1) {
-      grid-column: 1;
       grid-row: 1;
+      grid-column: 1;
     }
 
     &:nth-child(2) {
-      grid-column: 2;
       grid-row: 1 / 3; // Span 2 rows
+      grid-column: 2;
 
       .grid-images__card-inner {
         height: 100%; // Full height to span both rows
         min-height: 672px; // (320px * 2) + 32px gap
 
         @media (max-width: $breakpoint-lg) {
-          min-height: auto;
           height: 350px;
+          min-height: auto;
         }
 
         @media (max-width: $breakpoint-md) {
@@ -126,18 +129,18 @@
     }
 
     &:nth-child(3) {
-      grid-column: 3;
       grid-row: 1;
+      grid-column: 3;
     }
 
     &:nth-child(4) {
-      grid-column: 1;
       grid-row: 2;
+      grid-column: 1;
     }
 
     &:nth-child(5) {
-      grid-column: 3;
       grid-row: 2;
+      grid-column: 3;
     }
   }
 
@@ -155,24 +158,22 @@
     height: 100% !important;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
     // Ensure crisp images on all devices
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(45, 55, 72, 0);
+    inset: 0;
     display: flex;
     align-items: end;
+
     // justify-content: center;
     padding: 62px 32px;
+    background: rgb(45 55 72 / 0%);
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -182,9 +183,9 @@
   }
 
   &__overlay-content {
-    text-align: start;
-    color: #ffffff;
     max-width: 400px;
+    color: #fff;
+    text-align: start;
     transform: translateY(120px);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -197,17 +198,18 @@
   &__overlay-title {
     @include heading-4;
     @include font-secondary;
-    font-weight: 600;
-    overflow: hidden;
+
     width: fit-content;
+    overflow: hidden;
+    font-weight: 600;
 
     // underline animation left to right
     &::after {
-      content: '';
       display: block;
       width: 0;
       height: 1px;
-      background-color: #ffffff;
+      content: '';
+      background-color: #fff;
       transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       transition-delay: 0.2s;
     }
@@ -216,6 +218,7 @@
   &__overlay-body {
     @include body-small;
     @include font-secondary;
+
     margin: 0;
     margin-top: 8px;
   }
@@ -229,8 +232,8 @@
       &:nth-child(3),
       &:nth-child(4),
       &:nth-child(5) {
-        grid-column: unset;
         grid-row: unset;
+        grid-column: unset;
       }
     }
   }
@@ -243,8 +246,8 @@
       &:nth-child(3),
       &:nth-child(4),
       &:nth-child(5) {
-        grid-column: unset;
         grid-row: unset;
+        grid-column: unset;
       }
     }
   }
@@ -262,8 +265,8 @@
       // Show overlay on touch devices by default for overlay cards
       &--overlay {
         .grid-images__overlay {
+          background: rgb(45 55 72 / 75%);
           opacity: 1;
-          background: rgba(45, 55, 72, 0.75);
         }
 
         .grid-images__overlay-content {
@@ -281,8 +284,8 @@
   @media (hover: none) and (pointer: coarse) {
     &__card--overlay {
       .grid-images__overlay {
+        background: rgb(45 55 72 / 25%);
         opacity: 1;
-        background: rgba(45, 55, 72, 0.25);
       }
 
       .grid-images__overlay-content {
@@ -306,13 +309,13 @@
   // Print styles
   @media print {
     &__card {
-      box-shadow: none;
       border: 1px solid #e2e8f0;
+      box-shadow: none;
       break-inside: avoid;
     }
 
     &__overlay {
-      background: rgba(45, 55, 72, 0.9);
+      background: rgb(45 55 72 / 90%);
     }
   }
 }
@@ -326,8 +329,8 @@
 
       &:hover {
         box-shadow:
-          0 8px 25px rgba(0, 0, 0, 0.35),
-          0 4px 8px rgba(0, 0, 0, 0.2);
+          0 8px 25px rgb(0 0 0 / 35%),
+          0 4px 8px rgb(0 0 0 / 20%);
       }
     }
   }
