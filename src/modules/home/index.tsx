@@ -1,18 +1,18 @@
-import Hero from '@/components/hero';
-import './styles.scss';
 import About from '@/components/about';
 import FocusBanner from '@/components/focus-banner';
-import SplitBanner from '@/components/split-banner';
 import GridImages from '@/components/grid-images';
+import Hero from '@/components/hero';
 import EmailForm from '@/components/schedule-tour-form';
+import SplitBanner from '@/components/split-banner';
 import { HomepageDocument } from '@/libs/prismic';
 import {
-  extractHeroData,
   extractAboutData,
-  extractSplitBannerData,
   extractFocusBannerData,
   extractGridImagesData,
+  extractHeroData,
+  extractSplitBannerData,
 } from '@/libs/prismic-helpers';
+import './styles.scss';
 
 interface HomePageProps {
   homepageData: HomepageDocument | null;
@@ -56,6 +56,7 @@ export default function HomePage({ homepageData }: HomePageProps) {
       <SplitBanner sections={splitBannerData} />
       <GridImages title={gridImagesData.title} cards={gridImagesData.cards} />
       <EmailForm />
+      <div />
     </div>
   );
 }
