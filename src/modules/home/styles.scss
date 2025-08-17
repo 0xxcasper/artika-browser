@@ -3,14 +3,7 @@
 
 // Home page styles
 .home-page {
-  display: flex;
-  flex-direction: column;
-  gap: 150px;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-
-  @media (max-width: $breakpoint-md) {
-    gap: 100px;
-  }
+  // padding-top: 0;
+  // padding-left: 0;
+  // padding-right: 0;
 }

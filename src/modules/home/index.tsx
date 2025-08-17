@@ -34,7 +34,7 @@ export default function HomePage({ homepageData }: HomePageProps) {
   });
 
   return (
-    <div className="home-page">
+    <div className="container-no-padding home-page">
       <Hero
         title={heroData.title}
         subtitle={heroData.subtitle}
@@ -56,7 +56,6 @@ export default function HomePage({ homepageData }: HomePageProps) {
       <SplitBanner sections={splitBannerData} />
       <GridImages title={gridImagesData.title} cards={gridImagesData.cards} />
       <EmailForm />
-      <div />
     </div>
   );
 }

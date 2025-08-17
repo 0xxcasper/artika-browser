@@ -106,3 +106,27 @@ body {
     outline: none !important;
   }
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  align-items: center;
+  padding: 230px 24px 150px;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    gap: 80px;
+    padding-top: 150px;
+  }
+}
+
+.container-no-padding {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  align-items: center;
+
+  @media screen and (max-width: $breakpoint-lg) {
+    gap: 80px;
+  }
+}

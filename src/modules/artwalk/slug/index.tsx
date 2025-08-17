@@ -1,12 +1,12 @@
 'use client';
 
-import './styles.scss';
+import { artwalkRouter } from '@/constants/router';
+import type { ArtwalkCategory } from '@/types/artwalk';
 import { Flex, Image } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
-import { artwalkRouter } from '@/constants/router';
-import type { ArtwalkCategory } from '@/types/artwalk';
+import './styles.scss';
 
 interface SlugArtwalkPageProps {
   categoryData: ArtwalkCategory | null;
@@ -101,7 +101,7 @@ const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
   };
 
   return (
-    <div className="gallery-container">
+    <div className="container gallery-container">
       <motion.div
         className="gallery-container__header"
         variants={headerVariants}
@@ -132,7 +132,7 @@ const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
               initial="hidden"
               whileInView="visible"
               whileHover={{
-                y: -2,
+                y: -5,
                 transition: {
                   duration: 0.2,
                   ease: 'easeOut',
