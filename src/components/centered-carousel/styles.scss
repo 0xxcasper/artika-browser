@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/fonts';
+@import '@/styles/variables';
+@import '@/styles/fonts';
 
 .container {
   display: flex;
@@ -12,11 +12,8 @@
   background-color: transparent !important;
 
   h1 {
-    @include heading-1;
-    @include font-primary;
-
+    @include title-1;
     text-align: center;
-    white-space: pre-line;
   }
 }
 

@@ -24,8 +24,7 @@
 
     &__title {
       h1 {
-        @include heading-1;
-        @include font-primary;
+        @include title-1;
 
         color: $text-primary;
         text-align: center;

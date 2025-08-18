@@ -1,10 +1,8 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
-import './styles.scss';
 import Button from '../button';
-// import { Image } from '@chakra-ui/react';
+import styles from './styles.module.scss';
 
 interface FocusBannerProps {
   title?: string;
@@ -41,9 +39,9 @@ export default function FocusBanner({
   aspectRatio = '1728/720',
 }: FocusBannerProps) {
   return (
-    <div className="focus-banner">
+    <div className={styles.focusBanner}>
       <img
-        className="banner-background"
+        className={styles.bannerBackground}
         src={backgroundImage}
         alt="Focus Banner"
         style={{
@@ -54,10 +52,10 @@ export default function FocusBanner({
         }}
       />
 
-      <div className="banner-overlay">
-        <div className="banner-content">
+      <div className={styles.bannerOverlay}>
+        <div className={styles.bannerContent}>
           <motion.h1
-            className="banner-title"
+            className={styles.bannerTitle}
             variants={textVariants}
             initial="hidden"
             whileInView="visible"
@@ -67,7 +65,7 @@ export default function FocusBanner({
           </motion.h1>
 
           <motion.p
-            className="banner-description"
+            className={styles.bannerDescription}
             variants={textVariants}
             initial="hidden"
             whileInView="visible"
@@ -88,7 +86,6 @@ export default function FocusBanner({
               variant="secondary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              style={{ padding: '0.75rem 3.8125rem' }}
             >
               {buttonText}
             </Button>

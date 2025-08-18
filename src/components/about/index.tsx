@@ -1,9 +1,8 @@
 'use client';
 
-import Button from '@/components/button';
 import { Link } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 interface AboutProps {
   title: string;
@@ -30,9 +29,9 @@ const viewPort = {
 
 const About = ({ title, description, button, buttonLink }: AboutProps) => {
   return (
-    <section className="about">
+    <section className={styles.about}>
       <motion.div
-        className="about-container"
+        className={styles.aboutContainer}
         initial="hidden"
         whileInView="visible"
         variants={variants}
@@ -59,13 +58,12 @@ const About = ({ title, description, button, buttonLink }: AboutProps) => {
           whileInView="visible"
           variants={variants}
           viewport={viewPort}
-           className="about-button"
         >
           <Link
             href={buttonLink || ''}
             isExternal={!!buttonLink && buttonLink.startsWith('http')}
           >
-            <Button>{button}</Button>
+            <button className={styles.aboutButton}>{button}</button>
           </Link>
         </motion.div>
       </motion.div>

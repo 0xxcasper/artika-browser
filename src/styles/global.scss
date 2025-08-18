@@ -125,8 +125,10 @@ body {
   flex-direction: column;
   gap: 150px;
   align-items: center;
+  padding-bottom: 150px;
 
   @media screen and (max-width: $breakpoint-lg) {
     gap: 80px;
+    padding-bottom: 80px;
   }
 }

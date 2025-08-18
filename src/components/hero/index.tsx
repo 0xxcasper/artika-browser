@@ -1,23 +1,17 @@
 'use client';
 
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Image } from '@chakra-ui/react';
-import './styles.scss';
-import React, { useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import styles from './styles.module.scss';
 
 interface HeroProps {
   title: string;
   subtitle: string;
   backgroundImage: string;
-  className?: string;
 }
 
-export default function Hero({
-  title,
-  subtitle,
-  backgroundImage,
-  className = '',
-}: HeroProps) {
+export default function Hero({ title, subtitle, backgroundImage }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Track scroll progress relative to the hero component
@@ -86,14 +80,14 @@ export default function Hero({
   return (
     <motion.div
       ref={containerRef}
-      className={`hero ${className}`}
+      className={styles.hero}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       {/* Background Image with Smooth Scroll Transforms */}
       <motion.div
-        className="hero-background"
+        className={styles.heroBackground}
         variants={backgroundVariants}
         initial="hidden"
         animate="visible"
@@ -130,7 +124,11 @@ export default function Hero({
       {/* Overlay */}
 
       {/* Hero Content with Sequential Animations */}
-      <motion.div className="hero-content" initial="hidden" animate="visible">
+      <motion.div
+        className={styles.heroContent}
+        initial="hidden"
+        animate="visible"
+      >
         <motion.h1
           variants={textVariants}
           initial="hidden"
@@ -159,7 +157,7 @@ export default function Hero({
         alt="Logo"
         width={'48px'}
         height={'48px'}
-        className="hero-logo"
+        className={styles.heroLogo}
         draggable={false}
       ></motion.img>
     </motion.div>

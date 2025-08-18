@@ -3,7 +3,9 @@ import FocusBanner from '@/components/focus-banner';
 import GridImages from '@/components/grid-images';
 import Hero from '@/components/hero';
 import EmailForm from '@/components/schedule-tour-form';
-import SplitBanner from '@/components/split-banner';
+import SplitBanner, {
+  type SplitBannerSection,
+} from '@/components/split-banner';
 import { HomepageDocument } from '@/libs/prismic';
 import {
   extractAboutData,
@@ -24,7 +26,7 @@ export default function HomePage({ homepageData }: HomePageProps) {
   const aboutData = extractAboutData({ data: homepageData?.data });
   const focusBannerData = extractFocusBannerData({ data: homepageData?.data });
   const splitBannerData = extractSplitBannerData({
-    sections: homepageData?.data?.split_banner_sections,
+    sections: homepageData?.data?.split_banner_sections as SplitBannerSection[],
     fallbackImagePath: '/images/home/art',
     sectionPrefix: 'section',
   });
@@ -46,6 +48,7 @@ export default function HomePage({ homepageData }: HomePageProps) {
         button={aboutData.button}
         buttonLink={aboutData.buttonLink}
       />
+      <SplitBanner sections={splitBannerData.slice(0, 1)} />
       <FocusBanner
         title={focusBannerData.title}
         description={focusBannerData.description}
@@ -53,7 +56,7 @@ export default function HomePage({ homepageData }: HomePageProps) {
         buttonLink={focusBannerData.buttonLink}
         backgroundImage={focusBannerData.backgroundImage}
       />
-      <SplitBanner sections={splitBannerData} />
+      <SplitBanner sections={splitBannerData.slice(1)} />
       <GridImages title={gridImagesData.title} cards={gridImagesData.cards} />
       <EmailForm />
     </div>

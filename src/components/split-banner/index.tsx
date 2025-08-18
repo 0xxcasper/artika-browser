@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import React, { useRef, useState } from 'react';
 import './styles.scss';
 
 // Constants for parallax effect
-const PARALLAX_DISTANCE = 32; // 32px per direction = 64px total
+const PARALLAX_DISTANCE = 60; // 60px per direction = 120px total
 
 export interface SplitBannerSection {
   id: string;
@@ -176,17 +176,17 @@ export default function SplitBanner({
                   {section.description}
                 </motion.p>
                 <motion.button
-                  className="cta-button underline-animate"
+                  className="cta-button"
                   variants={buttonVariants}
                   whileHover={{
-                    y: -2,
                     opacity: 0.8,
-                    transition: { duration: 0.2, ease: 'easeInOut' },
+                    scale: 1.05,
+                    transition: { duration: 0.3, ease: 'easeInOut' },
                   }}
                   whileTap={{
                     scale: 0.95,
-                    y: -2,
-                    transition: { duration: 0.2, ease: 'easeInOut' },
+                    opacity: 0.8,
+                    transition: { duration: 0.3, ease: 'easeInOut' },
                   }}
                   onClick={() => {
                     if (section.ctaLink) {

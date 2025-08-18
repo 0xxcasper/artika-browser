@@ -38,15 +38,13 @@
       @include font-primary;
 
       @media screen and (max-width: $breakpoint-md) {
-        @include heading-1;
+        @include title-1;
       }
     }
 
     p {
-      @include body-large;
+      @include body-1;
       @include font-secondary;
-
-      white-space: pre-line;
     }
   }
 

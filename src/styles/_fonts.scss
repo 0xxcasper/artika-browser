@@ -153,55 +153,6 @@ $letter-spacing-widest: 0.1em;
   }
 }
 
-// Heading Styles
-@mixin heading-1 {
-  @include font-primary;
-  @include text-6xl;
-
-  font-weight: $font-weight-light;
-  letter-spacing: $letter-spacing-tight;
-}
-
-@mixin heading-2 {
-  @include font-primary;
-  @include text-5xl;
-
-  font-weight: $font-weight-light;
-  letter-spacing: $letter-spacing-tight;
-}
-
-@mixin heading-3 {
-  @include font-primary;
-  @include text-4xl;
-
-  font-weight: $font-weight-normal;
-  letter-spacing: $letter-spacing-normal;
-}
-
-@mixin heading-4 {
-  @include font-primary;
-  @include text-3xl;
-
-  font-weight: $font-weight-normal;
-  letter-spacing: $letter-spacing-normal;
-}
-
-@mixin heading-5 {
-  @include font-primary;
-  @include text-2xl;
-
-  font-weight: $font-weight-normal;
-  letter-spacing: $letter-spacing-normal;
-}
-
-@mixin heading-6 {
-  @include font-primary;
-  @include text-xl;
-
-  font-weight: $font-weight-medium;
-  letter-spacing: $letter-spacing-normal;
-}
-
 // Body Text Styles
 @mixin body-large {
   @include font-secondary;
@@ -284,29 +235,7 @@ $letter-spacing-widest: 0.1em;
   @include text-6xl;
 }
 
-.heading-1 {
-  @include heading-1;
-}
 
-.heading-2 {
-  @include heading-2;
-}
-
-.heading-3 {
-  @include heading-3;
-}
-
-.heading-4 {
-  @include heading-4;
-}
-
-.heading-5 {
-  @include heading-5;
-}
-
-.heading-6 {
-  @include heading-6;
-}
 
 .body-large {
   @include body-large;
@@ -322,4 +251,96 @@ $letter-spacing-widest: 0.1em;
 
 .body-xs {
   @include body-xs;
+}
+
+// Title Styles
+
+@mixin title-0 {
+  @include font-primary;
+  font-size: 64px;
+  line-height: 64px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  white-space: pre-line;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 32px;
+    line-height: 32px;
+  }
+}
+
+
+@mixin title-1 {
+  @include font-primary;
+  font-size: 40px;
+  line-height: 52px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  white-space: pre-line;
+  @media (max-width: $breakpoint-md) {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+}
+
+@mixin title-2 {
+  @include font-primary;
+  font-size: 32px;
+  line-height: 34px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  white-space: pre-line;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+// Body Styles
+
+@mixin body-1 {
+  @include font-secondary;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0rem;
+  white-space: pre-line;
+  
+  @media (max-width: $breakpoint-md) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@mixin body-2 {
+  @include font-secondary;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0rem;
+  white-space: pre-line;
+}
+
+// Title Styles
+.title-0 {
+  @include title-0;
+}
+
+.title-1 {
+  @include title-1;
+}
+
+.title-2 {
+  @include title-2;
+}
+
+// Body Styles
+.body-1 {
+  @include body-1;
+}
+
+.body-2 {
+  @include body-2;
 }

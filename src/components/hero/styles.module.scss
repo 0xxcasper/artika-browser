@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/fonts';
+@import '@/styles/variables';
+@import '@/styles/fonts';
 
 // Hero component styles
 .hero {
@@ -16,7 +16,7 @@
   perspective: 1000px;
   backface-visibility: hidden;
 
-  .hero-background {
+  .heroBackground {
     position: absolute;
     top: -10%;
     left: -10%;
@@ -53,7 +53,7 @@
     }
   }
 
-  .hero-content {
+  .heroContent {
     position: relative;
     z-index: 10;
     display: flex;
@@ -67,27 +67,22 @@
     transform: translate3d(0, 0, 0);
 
     h1 {
-      @include heading-1;
-      @include font-primary;
-
+      @include title-1;
       color: $text-inverse;
       text-align: center;
       white-space: pre-line;
     }
 
     p {
-      @include body-large;
-      @include font-secondary;
-
+      @include body-1;
       max-width: 40rem;
-      font-weight: 500;
       color: $text-inverse;
       text-align: center;
       white-space: pre-line;
     }
   }
 
-  .hero-logo {
+  .heroLogo {
     position: absolute;
     bottom: 4rem;
     z-index: 1000;
@@ -129,15 +124,10 @@
   }
 }
 
-// Global scroll performance optimization
-html {
-  scroll-behavior: smooth;
-}
-
 // Responsive design
 @media (width <= 768px) {
   .hero {
-    .hero-content {
+    .heroContent {
       padding: 0 2rem;
     }
   }

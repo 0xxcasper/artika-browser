@@ -7,13 +7,9 @@
     margin: 0 auto;
 
     .newsletter-title {
-      @include heading-1;
-      @include font-primary;
-
+      @include title-1;
       margin-bottom: 30px;
-      line-height: 104%;
       color: $text-inverse;
-      letter-spacing: -0.02em;
     }
 
     .newsletter-form-container {
