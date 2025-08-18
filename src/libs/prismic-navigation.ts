@@ -1,11 +1,11 @@
-import { createClient } from './prismic';
 import type {
-  NavigationData,
-  NavigationCTA,
-  ScheduleTourFormData,
   FooterData,
+  NavigationCTA,
+  NavigationData,
   NewsletterFormData,
+  ScheduleTourFormData,
 } from '@/locales/types';
+import { createClient } from './prismic';
 
 const defaultCta: NavigationCTA = {
   cta_label: '',

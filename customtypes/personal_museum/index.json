@@ -1,0 +1,140 @@
+{
+  "id": "personal_museum",
+  "label": "Personal Museum",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Hero Section": {
+      "hero_title": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Title",
+          "placeholder": "Personal Museum hero title"
+        }
+      },
+      "hero_subtitle": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Subtitle",
+          "placeholder": "Personal Museum hero subtitle",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      },
+      "hero_background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Background Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "hero_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    },
+    "About Section": {
+      "about_title": {
+        "type": "Text",
+        "config": {
+          "label": "About Title",
+          "placeholder": "Personal Museum about title"
+        }
+      },
+      "about_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Description",
+          "placeholder": "Personal Museum about description",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      },
+      "about_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "About Button Text",
+          "placeholder": "About section button text"
+        }
+      },
+      "about_button_link": {
+        "type": "Text",
+        "config": {
+          "label": "About Button Link",
+          "placeholder": "About section button link"
+        }
+      }
+    },
+    "Banner Image Section": {
+      "banner_image": {
+        "type": "Image",
+        "config": {
+          "label": "Banner Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    },
+    "Split Banner Section": {
+      "split_banner_sections": {
+        "type": "Group",
+        "config": {
+          "label": "Split Banner Sections",
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Section Title",
+                "placeholder": "Section title"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Description",
+                "placeholder": "Section description",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "cta_text": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Text",
+                "placeholder": "Call to action text"
+              }
+            },
+            "cta_link": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Link",
+                "placeholder": "Call to action link"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Section Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "image_alt": {
+              "type": "Text",
+              "config": {
+                "label": "Image Alt Text",
+                "placeholder": "Image alt text"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

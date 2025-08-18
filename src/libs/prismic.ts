@@ -126,6 +126,21 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
         path: '/vi/offers/:uid',
         lang: 'vi',
       },
+      // Personal Museum routes
+      {
+        type: 'personal_museum',
+        path: '/personal-museum',
+      },
+      {
+        type: 'personal_museum',
+        path: '/en/personal-museum',
+        lang: 'en-us',
+      },
+      {
+        type: 'personal_museum',
+        path: '/vi/personal-museum',
+        lang: 'vi',
+      },
     ],
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
     fetchOptions:
@@ -331,5 +346,25 @@ export type ExperiencesDocument = prismic.PrismicDocumentWithUID<{
     image_alt: prismic.KeyTextField;
     title: prismic.KeyTextField;
     description: prismic.RichTextField;
+  }>;
+}>;
+
+export type PersonalMuseumDocument = prismic.PrismicDocumentWithUID<{
+  hero_title: prismic.TitleField;
+  hero_subtitle: prismic.RichTextField;
+  hero_background_image: prismic.ImageField;
+  hero_logo: prismic.ImageField;
+  about_title: prismic.TitleField;
+  about_description: prismic.RichTextField;
+  about_button_text: prismic.KeyTextField;
+  about_button_link: prismic.KeyTextField;
+  banner_image: prismic.ImageField;
+  split_banner_sections: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    description: prismic.RichTextField;
+    cta_text: prismic.KeyTextField;
+    cta_link: prismic.KeyTextField;
+    image: prismic.ImageField;
+    image_alt: prismic.KeyTextField;
   }>;
 }>;
