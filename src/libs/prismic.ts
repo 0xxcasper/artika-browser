@@ -129,16 +129,16 @@ export function createClient(config?: prismicNext.CreateClientConfig) {
       // Personal Museum routes
       {
         type: 'personal_museum',
-        path: '/personal-museum',
+        path: '/artwalk/personal-museum',
       },
       {
         type: 'personal_museum',
-        path: '/en/personal-museum',
+        path: '/en/artwalk/personal-museum',
         lang: 'en-us',
       },
       {
         type: 'personal_museum',
-        path: '/vi/personal-museum',
+        path: '/vi/artwalk/personal-museum',
         lang: 'vi',
       },
     ],

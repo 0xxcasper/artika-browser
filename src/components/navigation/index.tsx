@@ -107,7 +107,7 @@ export default function Navigation() {
 
   // Smart text color detection
   const isTextDark = useMemo(() => {
-    const darkTextPaths = ['artwalk', 'admin', 'offers'];
+    const darkTextPaths = ['artwalk/outdoor-sculpture-park', 'admin', 'offers'];
     return darkTextPaths.some((path) => pathname.includes(path));
   }, [pathname]);
 

@@ -11,7 +11,7 @@ export default async function PersonalMuseum({ params }: PersonalMuseumProps) {
   const { locale } = params;
 
   const personalMuseum = await fetchPrismicDocument('personal_museum', locale);
-  
+
   // Log for debugging
   console.log('Personal Museum data:', personalMuseum);
   console.log('Locale:', locale);
