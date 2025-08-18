@@ -1,7 +1,9 @@
 'use client';
 
+import { offersRouter } from '@/constants/router';
 import type { OfferItem } from '@/types/offer';
 import { Image, Link } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
 import styles from './styles.module.scss';
 
 interface OfferDetailProps {
@@ -10,16 +12,27 @@ interface OfferDetailProps {
 
 export default function OfferDetail({ item }: OfferDetailProps) {
   const d = item.detail;
-
-  console.log('d.utilities', d.utilities);
-
+  const router = useRouter();
   return (
     <div className={styles['offer-detail']}>
       <div className={styles['offer-detail__content']}>
         <div className={styles['offer-detail__left']}>
+          <div
+            className={styles['offer-detail__left__back']}
+            onClick={() => router.push(offersRouter.getRouter())}
+          >
+            <Image
+              src="/icons/ic-arrow-right.svg"
+              alt="chevron-left"
+              width="12px"
+              height="12px"
+              draggable={false}
+              transform="rotate(180deg)"
+            />
+            <span>Special Offers</span>
+          </div>
           <h2>{d.title}</h2>
           <p className={styles['lead']}>{d.description}</p>
-
           {d.utilities?.map((u, idx) => (
             <div key={idx} className={styles['offer-detail__section']}>
               <h4>{u.title}</h4>

@@ -2,8 +2,8 @@
 
 import { offersRouter } from '@/constants/router';
 import type { OfferPageData } from '@/types/offer';
-import { Image, Link } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
+import { Image } from '@chakra-ui/react';
+import Link from 'next/link';
 import { useMemo } from 'react';
 import styles from './styles.module.scss';
 
@@ -13,7 +13,6 @@ interface OffersListProps {
 }
 
 export default function OffersList({ data, lang }: OffersListProps) {
-  const router = useRouter();
   const items = useMemo(() => data.items ?? [], [data]);
 
   return (
@@ -38,11 +37,12 @@ export default function OffersList({ data, lang }: OffersListProps) {
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               <Link
+                href={offersRouter.getDetailRouter({ id: item.id }, lang)}
                 onClick={(e) => {
                   e.stopPropagation();
-                  router.push(
-                    offersRouter.getDetailRouter({ id: item.id }, lang),
-                  );
+                  // router.push(
+                  //   offersRouter.getDetailRouter({ id: item.id }, lang),
+                  // );
                 }}
                 className={styles['offers-list__card__link']}
               >

@@ -31,9 +31,7 @@
       }
 
       p {
-        @include font-secondary;
-        @include body-large;
-
+        @include body-1;
         text-align: center;
       }
     }
@@ -79,27 +77,18 @@
         gap: 2px;
 
         &__title {
-          @include font-secondary;
-
-          font-size: 18px;
-          line-height: 140%;
-          color: rgb(53 53 54 / 100%);
+          @include body-1;
+          color: #000;
         }
 
         &__description {
-          @include font-secondary;
-
-          font-size: 18px;
-          line-height: 140%;
-          color: rgb(53 53 54 / 100%);
+          @include body-1;
+          color: #000;
         }
 
         &__material {
-          @include font-secondary;
-
-          font-size: 18px;
-          line-height: 140%;
-          color: rgb(169 169 169 / 100%);
+          @include body-1;
+          color: #A9A9A9;
         }
       }
     }
