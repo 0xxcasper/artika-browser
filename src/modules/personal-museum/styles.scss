@@ -1,0 +1,53 @@
+.personal-museum-page {
+  min-height: 100vh;
+  
+  // Ensure proper spacing between sections
+  > * {
+    margin-bottom: 0;
+  }
+  
+  // Add any specific styling for personal museum page
+  .hero-section {
+    position: relative;
+  }
+  
+  .about-section {
+    padding: 4rem 0;
+  }
+  
+  .split-banner-section {
+    padding: 2rem 0;
+  }
+  
+  .banner-image-section {
+    padding: 2rem 0;
+    text-align: center;
+    
+    .banner-image {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // Parallax effect styles
+  .parallax-container {
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+    
+    &:hover {
+      .parallax-image {
+        filter: brightness(1.05) contrast(1.02);
+      }
+    }
+  }
+
+  .parallax-image {
+    transition: filter 0.3s ease;
+    will-change: transform;
+  }
+}

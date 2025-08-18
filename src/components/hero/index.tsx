@@ -110,6 +110,7 @@ export default function Hero({ title, subtitle, backgroundImage }: HeroProps) {
           height="100%"
           objectFit="cover"
           objectPosition="center"
+          draggable={false}
           loading="eager"
           style={{
             width: '100%',
