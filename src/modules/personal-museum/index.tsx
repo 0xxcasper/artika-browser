@@ -12,7 +12,6 @@ import {
 } from '@/libs/prismic-helpers';
 import { Image } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import './styles.scss';
 
 interface PersonalMuseumPageProps {
   personalMuseumData: PersonalMuseumDocument | null;
