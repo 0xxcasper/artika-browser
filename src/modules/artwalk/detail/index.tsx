@@ -1,14 +1,14 @@
 'use client';
 
-import './styles.scss';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { Image } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import HorizontalList from '@/components/horizontal-list';
 import type { ArtwalkContent } from '@/types/artwalk';
+import { Image } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import './styles.scss';
 
 const MAX_LENGTH = 3000;
 

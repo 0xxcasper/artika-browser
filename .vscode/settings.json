@@ -24,20 +24,29 @@
   "i18n-ally.localesPaths": ["src/locales"],
   "i18n-ally.keystyle": "nested",
 
-  // Do not format on save; format explicitly via commands
+  // Use ESLint as the formatter and enable format on save
   "prettier.enable": false,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
 
-  // Run actions only when explicitly invoked (not automatically on save)
+  // Run ESLint fixes automatically on save
   "editor.codeActionsOnSave": {
-    "source.addMissingImports": "explicit",
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit",
-    "source.fixAll.stylelint": "explicit"
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
 
-  // Enable eslint for all supported languages
+  // Give ESLint enough time to run fixes; avoid timeout on larger files
+  "editor.codeActionsOnSaveTimeout": 5000,
+
+  // Apply all available ESLint fixes on save (not only for reported problems)
+  "eslint.codeActionsOnSave.mode": "all",
+
+  // Ensure ESLint uses eslintrc configuration (not flat config)
+  "eslint.useFlatConfig": false,
+  // Run ESLint on save to ensure fixes are applied automatically
+  "eslint.run": "onSave",
+
+  // Let ESLint handle formatting (via eslint-plugin-prettier)
   "eslint.format.enable": true,
   "eslint.validate": [
     "javascript",
@@ -55,11 +64,12 @@
     "gql",
     "graphql",
     "astro",
-    "css",
-    "less",
-    "scss",
-    "pcss",
-    "postcss",
     "github-actions-workflow"
+  ],
+
+  // Validate SCSS with Stylelint instead of ESLint
+  "stylelint.validate": [
+    "css",
+    "scss"
   ],
 }

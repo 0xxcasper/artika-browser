@@ -1,0 +1,23 @@
+@import '@/styles/variables';
+@import '@/styles/fonts';
+
+.rowTextContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+
+  @media (max-width: $breakpoint-lg) {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  h2 {
+    @include title-1;
+    max-width: 455px;
+    width: 100%;
+  }
+
+  p {
+    @include body-1;
+  }
+}
