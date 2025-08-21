@@ -174,10 +174,25 @@ export function extractGridImagesData(params: {
 export function asText(field: any): string {
   if (!field) return '';
 
+  // Handle Prismic rich text objects
+  if (field && typeof field === 'object' && field.type) {
+    // If it's a single rich text object
+    if (field.text) {
+      return field.text;
+    }
+
+    // If it's an array of rich text objects
+    if (Array.isArray(field)) {
+      return field.map((item) => item.text || '').join(' ');
+    }
+  }
+
+  // Handle arrays (fallback)
   if (Array.isArray(field)) {
     return field.map((item) => item.text || '').join(' ');
   }
 
+  // Handle plain strings
   if (typeof field === 'string') {
     return field;
   }

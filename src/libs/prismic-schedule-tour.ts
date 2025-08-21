@@ -1,5 +1,10 @@
 import type { ScheduleTourData } from '@/types/schedule-tour';
-import type { ForestBathingDocument, HomepageDocument } from './prismic';
+import type {
+  ForestBathingDocument,
+  HomepageDocument,
+  PersonalMuseumDocument,
+} from './prismic';
+import { asText } from './prismic-helpers';
 
 /**
  * Extract schedule tour data from homepage or forest bathing page data
@@ -7,7 +12,11 @@ import type { ForestBathingDocument, HomepageDocument } from './prismic';
  * @returns Formatted schedule tour data object
  */
 export function extractScheduleTourData(
-  pageData: HomepageDocument | ForestBathingDocument | null,
+  pageData:
+    | HomepageDocument
+    | ForestBathingDocument
+    | PersonalMuseumDocument
+    | null,
 ): ScheduleTourData | null {
   if (!pageData || !pageData.data) {
     return null;
@@ -17,8 +26,8 @@ export function extractScheduleTourData(
 
   return {
     // Basic tour info
-    title: data.schedule_tour_title || '',
-    description: data.schedule_tour_description || '',
+    title: asText(data.schedule_tour_title) || '',
+    description: asText(data.schedule_tour_description) || '',
 
     // Form configuration
     form: {
@@ -78,4 +87,15 @@ export function extractForestBathingScheduleTourData(
   forestBathingData: ForestBathingDocument | null,
 ): ScheduleTourData | null {
   return extractScheduleTourData(forestBathingData);
+}
+
+/**
+ * Extract schedule tour data specifically from personal museum page
+ * @param personalMuseumData - Personal museum page data from Prismic
+ * @returns Formatted schedule tour data object
+ */
+export function extractPersonalMuseumScheduleTourData(
+  personalMuseumData: PersonalMuseumDocument | null,
+): ScheduleTourData | null {
+  return extractScheduleTourData(personalMuseumData);
 }

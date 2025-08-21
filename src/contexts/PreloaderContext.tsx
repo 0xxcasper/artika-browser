@@ -5,7 +5,7 @@ import {
   FooterData,
   NavigationCTA,
   NavigationMenu,
-  NewsletterFormData
+  NewsletterFormData,
 } from '@/locales/types';
 import { Box } from '@chakra-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -66,8 +66,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasStarted = useRef(false);
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
-  const { menus, cta, newsletterForm, footerData } =
-    useNavigation();
+  const { menus, cta, newsletterForm, footerData } = useNavigation();
 
   const _updateAssetsLoaded = () => {
     setTimeout(() => {

@@ -1,6 +1,5 @@
 import About from '@/components/about';
 import FocusBanner from '@/components/focus-banner';
-import GridImages from '@/components/grid-images';
 import Hero from '@/components/hero';
 import EmailForm from '@/components/schedule-tour-form';
 import SplitBanner from '@/components/split-banner';
@@ -8,12 +7,10 @@ import { ForestBathingDocument } from '@/libs/prismic';
 import {
   extractAboutData,
   extractFocusBannerData,
-  extractGridImagesData,
   extractHeroData,
   extractSplitBannerData,
 } from '@/libs/prismic-helpers';
 import type { ScheduleTourData } from '@/types/schedule-tour';
-import './styles.scss';
 
 interface ForestBathingPageProps {
   forestBathingData: ForestBathingDocument | null;
@@ -40,13 +37,9 @@ export default function ForestBathingPage({
     fallbackImagePath: '/images/forest-bathing/second-section',
     sectionPrefix: 'second-section',
   });
-  const gridImagesData = extractGridImagesData({
-    data: forestBathingData?.data,
-    fallbackImagePath: '/images/forest-bathing/grid',
-  });
 
   return (
-    <div className="forest-bathing-page">
+    <div className="container-no-padding">
       <Hero
         title={heroData.title}
         subtitle={heroData.subtitle}
@@ -58,7 +51,12 @@ export default function ForestBathingPage({
         button={aboutData.button}
         buttonLink={aboutData.buttonLink}
       />
-      <SplitBanner sections={splitBannerData} />
+      <SplitBanner
+        sections={splitBannerData.map((section, index) => ({
+          ...section,
+          textFirst: index % 2 !== 0,
+        }))}
+      />
       <FocusBanner
         title={focusBannerData.title}
         description={focusBannerData.description}
@@ -66,14 +64,8 @@ export default function ForestBathingPage({
         buttonLink={focusBannerData.buttonLink}
         backgroundImage={focusBannerData.backgroundImage}
       />
-      <SplitBanner
-        sections={secondSplitBannerData.map((section, index) => ({
-          ...section,
-          textFirst: index % 2 !== 0,
-        }))}
-      />
-      <GridImages title={gridImagesData.title} cards={gridImagesData.cards} />
-      <EmailForm tourData={scheduleTourData} />
+      <SplitBanner sections={secondSplitBannerData} />
+      {!!scheduleTourData && <EmailForm tourData={scheduleTourData} />}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useScheduleTourSubmission } from '@/hooks/useFirestore';
 import type { ScheduleTourData } from '@/types/schedule-tour';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DatePicker from './DatePicker';
 import './styles.scss';
 
@@ -255,24 +255,5 @@ function ScheduleTourForm({ tourData }: ScheduleTourFormProps) {
 }
 
 export default function ClientWrapper({ tourData }: ScheduleTourFormProps) {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return (
-      <div className="schedule-tour-form">
-        <div className="form-content">
-          <div className="form-text">
-            <h1>Schedule Tour</h1>
-            <p>Loading tour form...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return <ScheduleTourForm tourData={tourData} />;
 }

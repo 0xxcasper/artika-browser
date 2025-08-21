@@ -6,3 +6,6 @@ out
 dist
 node_modules
 
+*.json
+customtypes/**/*.json
+

@@ -2,6 +2,7 @@ import About from '@/components/about';
 import FocusBanner from '@/components/focus-banner';
 import GridImages from '@/components/grid-images';
 import Hero from '@/components/hero';
+import EmailForm from '@/components/schedule-tour-form';
 import SplitBanner, {
   type SplitBannerSection,
 } from '@/components/split-banner';
@@ -39,8 +40,6 @@ export default function HomePage({
     fallbackImagePath: '/images/collections/collection',
   });
 
-  console.log('scheduleTourData', scheduleTourData);
-
   return (
     <div className="container-no-padding home-page">
       <Hero
@@ -64,7 +63,7 @@ export default function HomePage({
       />
       <SplitBanner sections={splitBannerData.slice(1)} />
       <GridImages title={gridImagesData.title} cards={gridImagesData.cards} />
-      {/* {scheduleTourData && <EmailForm tourData={scheduleTourData} />} */}
+      {!!scheduleTourData && <EmailForm tourData={scheduleTourData} />}
     </div>
   );
 }

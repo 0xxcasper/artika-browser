@@ -391,4 +391,24 @@ export type PersonalMuseumDocument = prismic.PrismicDocumentWithUID<{
     image: prismic.ImageField;
     image_alt: prismic.KeyTextField;
   }>;
+  schedule_tour_title: prismic.RichTextField;
+  schedule_tour_description: prismic.RichTextField;
+  schedule_tour_form_config: prismic.GroupField<{
+    phone_placeholder: prismic.KeyTextField;
+    email_placeholder: prismic.KeyTextField;
+    date_placeholder: prismic.KeyTextField;
+    button_text: prismic.KeyTextField;
+  }>;
+  schedule_tour_messages: prismic.GroupField<{
+    success_message: prismic.KeyTextField;
+    error_message: prismic.KeyTextField;
+  }>;
+  schedule_tour_validation_messages: prismic.GroupField<{
+    phone_required: prismic.KeyTextField;
+    email_required: prismic.KeyTextField;
+    date_required: prismic.KeyTextField;
+    phone_invalid: prismic.KeyTextField;
+    email_invalid: prismic.KeyTextField;
+    date_future: prismic.KeyTextField;
+  }>;
 }>;
