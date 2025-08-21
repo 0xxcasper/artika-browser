@@ -2,10 +2,12 @@
 
 import { offersRouter } from '@/constants/router';
 import type { OfferPageData } from '@/types/offer';
-import { Image } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useMemo } from 'react';
 import styles from './styles.module.scss';
+import About from '@/components/about';
+import { motion } from 'framer-motion';
 
 interface OffersListProps {
   data: OfferPageData;
@@ -17,14 +19,19 @@ export default function OffersList({ data, lang }: OffersListProps) {
 
   return (
     <div className={styles['offers-list']}>
-      <div className={styles['offers-list__header']}>
-        <h1>{data.title}</h1>
-        <p>{data.description}</p>
-      </div>
+      <Box maxW="772px" mx="auto">
+        <About title={data.title} description={data.description} button="" />
+      </Box>
 
       <div className={styles['offers-list__grid']}>
-        {items.map((item) => (
-          <div key={item.id} className={styles['offers-list__card']}>
+        {items.map((item, index) => (
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+            key={item.id}
+            className={styles['offers-list__card']}
+          >
             <Image
               src={item.images?.[0] || '/images/home/banner-1.jpg'}
               alt={item.title}
@@ -49,7 +56,7 @@ export default function OffersList({ data, lang }: OffersListProps) {
                 View detail
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

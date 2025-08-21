@@ -17,11 +17,17 @@ body {
 }
 
 body {
-  color: $text-color;
+  * {
+    @include body-base;
+
+    color: $text-primary;
+  }
+
   background: $background-color;
 }
 
+
 a {
-  color: inherit;
+  color: $text-primary;
   text-decoration: none;
 }

@@ -12,17 +12,17 @@ interface ParallaxImageProps {
   height?: string;
 }
 
-export default function ParallaxImage({ 
-  src, 
-  alt, 
-  width = "100%", 
-  height = "auto" 
+export default function ParallaxImage({
+  src,
+  alt,
+  width = '100%',
+  height = 'auto',
 }: ParallaxImageProps) {
   // Parallax effect for image
   const imageRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
+
   const rotateX = useTransform(mouseY, [-300, 300], [15, -15]);
   const rotateY = useTransform(mouseX, [-300, 300], [-15, 15]);
   const scale = useTransform(mouseX, [-300, 300], [0.95, 1.05]);
@@ -32,7 +32,7 @@ export default function ParallaxImage({
       const rect = imageRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
+
       mouseX.set(event.clientX - centerX);
       mouseY.set(event.clientY - centerY);
     }

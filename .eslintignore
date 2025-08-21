@@ -1,0 +1,8 @@
+**/*.css
+**/*.scss
+public
+.next
+out
+dist
+node_modules
+

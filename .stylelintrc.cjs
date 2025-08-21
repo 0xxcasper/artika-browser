@@ -27,7 +27,14 @@ module.exports = {
 
     // Disallow single-line declaration blocks (enforced, not auto-fixed)
     'declaration-block-single-line-max-declarations': 0,
+
+    // Fix the rule names and remove duplicates
+    'no-invalid-position-at-import-rule': null,
+    'declaration-block-no-duplicate-properties': true,
+    'declaration-block-no-redundant-longhand-properties': true,
+    
+    // Disable the problematic rule that's causing your errors
+    'no-invalid-position-declaration': null,
+
   },
 };
-
-

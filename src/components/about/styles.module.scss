@@ -19,22 +19,24 @@
 
     h1 {
       @include title-1;
+
       text-align: center;
       white-space: pre-line;
     }
 
     p {
       @include body-1;
-      margin-bottom: 20px;
+
       text-align: center;
       white-space: pre-line;
     }
 
     .aboutButton {
       @include body-1;
+
+      margin-top: 20px;
       text-decoration: underline;
       text-decoration-style: solid;
-      color: $text-secondary;
       transition: all 0.3s ease;
 
       &:hover {

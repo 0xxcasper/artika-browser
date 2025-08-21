@@ -4,10 +4,10 @@
 .offer-detail {
   display: grid;
   gap: 150px;
+  width: 100%;
   max-width: 1576px;
   padding: 230px 1.5rem;
   margin: 0 auto;
-  width: 100%;
 
   @media (max-width: $breakpoint-md) {
     gap: 80px;
@@ -28,9 +28,8 @@
   &__left {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 40px;
     max-width: 536px;
-    gap: 54px;
 
     @media (max-width: $breakpoint-sm) {
       gap: 32px;
@@ -38,10 +37,10 @@
 
     &__back {
       display: flex;
-      align-items: center;
       gap: 8px;
-      cursor: pointer;
+      align-items: center;
       width: fit-content;
+      cursor: pointer;
       transition: all 0.3s ease;
 
 
@@ -52,7 +51,7 @@
 
       span {
         @include body-1;
-        color: $accent-primary;
+
         transition: all 0.3s ease;
       }
     }
@@ -68,11 +67,10 @@
     .offer-detail__section {
       display: flex;
       flex-direction: column;
-      gap: 32px;
-      margin-bottom: 10px;
+      gap: 22px;
 
       h4 {
-        @include title-2;
+        @include body-1;
       }
 
       ul {
@@ -86,20 +84,16 @@
 
       li {
         @include body-1;
-        color: #000;
-        &::marker {
-          color: $accent-primary;
-        }
       }
     }
 
     .offer-detail__primary-link {
       @include body-1;
-      color: $accent-primary;
-      text-decoration: underline;
+
       width: fit-content;
-      transition: all 0.3s ease;
       font-weight: 600;
+      text-decoration: underline;
+      transition: all 0.3s ease;
 
       &:hover {
         opacity: 0.8;
@@ -116,7 +110,7 @@
 
   &__notes {
     display: grid;
-    gap: 50px;
+    gap: 40px;
     justify-items: center;
     text-align: center;
 
@@ -126,8 +120,8 @@
 
     h3 {
       @include title-2;
+
       text-align: center;
-      color: $accent-primary;
     }
 
     ul {
@@ -142,40 +136,39 @@
 
     li {
       @include body-1;
+
       position: relative;
-      text-align: center;
       width: fit-content;
+      text-align: center;
       list-style: none;
 
       &::before {
-        content: '•';
         position: absolute;
-        left: -20px;
-        top: -4px;
-        color: $text-primary;
+        top: -2px;
+        left: -16px;
         font-size: 28px;
         line-height: 1;
+        content: '•';
       }
 
 
       @media (max-width: $breakpoint-md) {
-        text-align: left;
         padding-left: 15px;
+        text-align: left;
+
         &::before {
-          left: -2px;
           top: -2px;
+          left: -2px;
         }
       }
     }
 
     .offer-detail__secondary-link {
       @include body-1;
-      margin-top: 10px;
-      color: $accent-primary;
-      text-decoration: underline;
+
       width: fit-content;
+      text-decoration: underline;
       transition: all 0.3s ease;
-      font-weight: 600;
 
       &:hover {
         opacity: 0.8;

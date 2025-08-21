@@ -53,19 +53,21 @@ const About = ({ title, description, button, buttonLink }: AboutProps) => {
         >
           {description}
         </motion.p>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={variants}
-          viewport={viewPort}
-        >
-          <Link
-            href={buttonLink || ''}
-            isExternal={!!buttonLink && buttonLink.startsWith('http')}
+        {!!button && (
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={variants}
+            viewport={viewPort}
           >
-            <button className={styles.aboutButton}>{button}</button>
-          </Link>
-        </motion.div>
+            <Link
+              href={buttonLink || ''}
+              isExternal={!!buttonLink && buttonLink.startsWith('http')}
+            >
+              <button className={styles.aboutButton}>{button}</button>
+            </Link>
+          </motion.div>
+        )}
       </motion.div>
     </section>
   );
