@@ -9,28 +9,6 @@
   padding: 150px 1.5rem;
   margin: 0 auto;
 
-  &__header {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    align-items: center;
-    margin: 0 auto;
-    text-align: center;
-
-    h1 {
-      @include title-1;
-
-      text-align: center;
-      white-space: pre-line;
-    }
-
-    p {
-      @include body-1;
-
-      max-width: 740px;
-      text-align: center;
-    }
-  }
 
   &__grid {
     display: grid;
@@ -45,11 +23,17 @@
   &__card {
     display: grid;
     gap: 32px;
+    overflow: hidden;
+
+    &:hover &__img {
+      transform: scale(1.02);
+    }
 
     &__img {
       width: 100%;
       aspect-ratio: 682/444;
       object-fit: cover;
+      transition: transform 0.3s linear;
     }
 
     &__content {
@@ -75,7 +59,7 @@
 
       &:hover {
         opacity: 0.8;
-        scale: 1.05;
+        transform: scale(1.05);
       }
     }
   }

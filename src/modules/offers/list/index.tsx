@@ -2,10 +2,11 @@
 
 import { offersRouter } from '@/constants/router';
 import type { OfferPageData } from '@/types/offer';
-import { Image } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useMemo } from 'react';
 import styles from './styles.module.scss';
+import About from '@/components/about';
 
 interface OffersListProps {
   data: OfferPageData;
@@ -17,10 +18,9 @@ export default function OffersList({ data, lang }: OffersListProps) {
 
   return (
     <div className={styles['offers-list']}>
-      <div className={styles['offers-list__header']}>
-        <h1>{data.title}</h1>
-        <p>{data.description}</p>
-      </div>
+      <Box maxW="772px" mx="auto">
+        <About title={data.title} description={data.description} button="" />
+      </Box>
 
       <div className={styles['offers-list__grid']}>
         {items.map((item) => (
