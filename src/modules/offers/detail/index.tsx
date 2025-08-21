@@ -5,6 +5,7 @@ import type { OfferItem } from '@/types/offer';
 import { Image, Link } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import styles from './styles.module.scss';
+import { motion } from 'framer-motion';
 
 interface OfferDetailProps {
   item: OfferItem;
@@ -16,7 +17,12 @@ export default function OfferDetail({ item }: OfferDetailProps) {
   return (
     <div className={styles['offer-detail']}>
       <div className={styles['offer-detail__content']}>
-        <div className={styles['offer-detail__left']}>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={styles['offer-detail__left']}
+        >
           <div
             className={styles['offer-detail__left__back']}
             onClick={() => router.push(offersRouter.getRouter())}
@@ -53,9 +59,14 @@ export default function OfferDetail({ item }: OfferDetailProps) {
               {d.buttonText}
             </Link>
           )}
-        </div>
+        </motion.div>
 
-        <div className={styles['offer-detail__right']}>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={styles['offer-detail__right']}
+        >
           <Image
             src={d.images?.[0] || '/images/home/banner-1.jpg'}
             alt={d.title}
@@ -63,10 +74,15 @@ export default function OfferDetail({ item }: OfferDetailProps) {
             height="auto"
             draggable={false}
           />
-        </div>
+        </motion.div>
       </div>
 
-      <div className={styles['offer-detail__notes']}>
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className={styles['offer-detail__notes']}
+      >
         <h3>{d.notes?.title}</h3>
         <ul>
           {d.notes?.contents?.map((c, i) => (
@@ -85,7 +101,7 @@ export default function OfferDetail({ item }: OfferDetailProps) {
             {d.notes?.buttonText}
           </Link>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }
