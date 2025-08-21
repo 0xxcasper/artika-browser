@@ -31,8 +31,8 @@
 
   // Run ESLint fixes automatically on save
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
   },
 
   // Give ESLint enough time to run fixes; avoid timeout on larger files

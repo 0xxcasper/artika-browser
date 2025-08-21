@@ -19,12 +19,14 @@
 
     h1 {
       @include title-1;
+
       text-align: center;
       white-space: pre-line;
     }
 
     p {
       @include body-1;
+
       max-width: 740px;
       text-align: center;
     }
@@ -55,7 +57,7 @@
       gap: 8px;
 
       h3 {
-        @include title-2;
+        @include title-4;
       }
 
       p {
@@ -65,10 +67,11 @@
 
     &__link {
       @include body-1;
+
+      width: fit-content;
       color: $accent-primary;
       text-decoration: underline;
       transition: all 0.3s ease;
-      width: fit-content;
 
       &:hover {
         opacity: 0.8;

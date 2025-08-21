@@ -109,7 +109,7 @@ $letter-spacing-widest: 0.1em;
   line-height: $line-height-snug;
 
   @media (max-width: $breakpoint-sm) {
-    font-size: $font-size-xl;
+    font-size: font-size-xl;
   }
 }
 
@@ -257,9 +257,10 @@ $letter-spacing-widest: 0.1em;
 
 @mixin title-0 {
   @include font-primary;
+
   font-size: 64px;
-  line-height: 64px;
   font-weight: 300;
+  line-height: 64px;
   letter-spacing: -0.02em;
   white-space: pre-line;
 
@@ -272,11 +273,13 @@ $letter-spacing-widest: 0.1em;
 
 @mixin title-1 {
   @include font-primary;
+
   font-size: 40px;
-  line-height: 52px;
   font-weight: 300;
+  line-height: 52px;
   letter-spacing: -0.02em;
   white-space: pre-line;
+
   @media (max-width: $breakpoint-md) {
     font-size: 32px;
     line-height: 40px;
@@ -286,9 +289,10 @@ $letter-spacing-widest: 0.1em;
 
 @mixin title-2 {
   @include font-primary;
+
   font-size: 32px;
-  line-height: 34px;
   font-weight: 400;
+  line-height: 34px;
   letter-spacing: -0.02em;
   white-space: pre-line;
 
@@ -298,14 +302,29 @@ $letter-spacing-widest: 0.1em;
   }
 }
 
+@mixin title-4 {
+  @include font-secondary;
+
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
 // Body Styles
 
 @mixin body-1 {
   @include font-secondary;
-  font-weight: 500;
+
   font-size: 18px;
+  font-weight: 500;
   line-height: 24px;
-  letter-spacing: 0rem;
+  letter-spacing: 0;
   white-space: pre-line;
   
   @media (max-width: $breakpoint-md) {
@@ -316,10 +335,11 @@ $letter-spacing-widest: 0.1em;
 
 @mixin body-2 {
   @include font-secondary;
-  font-weight: 500;
+
   font-size: 16px;
+  font-weight: 500;
   line-height: 20px;
-  letter-spacing: 0rem;
+  letter-spacing: 0;
   white-space: pre-line;
 }
 
@@ -334,6 +354,10 @@ $letter-spacing-widest: 0.1em;
 
 .title-2 {
   @include title-2;
+}
+
+.title-4 {
+  @include title-4;
 }
 
 // Body Styles
