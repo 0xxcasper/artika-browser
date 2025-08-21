@@ -158,7 +158,6 @@
     object-position: center;
 
     // Ensure crisp images on all devices
-    image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -195,8 +194,10 @@
 
   &__overlay-title {
     @include title-2;
+
     width: fit-content;
     overflow: hidden;
+    color: #fff;
 
     // underline animation left to right
     &::after {
@@ -216,6 +217,7 @@
 
     margin: 0;
     margin-top: 8px;
+    color: #fff;
   }
 
   // Responsive grid adjustments for tablet and mobile
