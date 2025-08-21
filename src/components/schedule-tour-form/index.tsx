@@ -83,7 +83,9 @@ function ScheduleTourForm({ tourData }: ScheduleTourFormProps) {
     if (!validatePhone(phone.trim())) {
       setMessage({
         type: 'error',
-        text: tourData?.validation?.phoneInvalid || 'Please enter a valid phone number',
+        text:
+          tourData?.validation?.phoneInvalid ||
+          'Please enter a valid phone number',
       });
       return;
     }
@@ -91,7 +93,9 @@ function ScheduleTourForm({ tourData }: ScheduleTourFormProps) {
     if (!validateEmail(email.trim())) {
       setMessage({
         type: 'error',
-        text: tourData?.validation?.emailInvalid || 'Please enter a valid email address',
+        text:
+          tourData?.validation?.emailInvalid ||
+          'Please enter a valid email address',
       });
       return;
     }
@@ -123,13 +127,16 @@ function ScheduleTourForm({ tourData }: ScheduleTourFormProps) {
       });
       setMessage({
         type: 'success',
-        text: tourData?.messages?.success || 'Thank you! We will contact you soon.',
+        text:
+          tourData?.messages?.success || 'Thank you! We will contact you soon.',
       });
     } catch (error) {
       console.error('Error submitting tour request:', error);
       setMessage({
         type: 'error',
-        text: tourData?.messages?.error || 'Something went wrong. Please try again.',
+        text:
+          tourData?.messages?.error ||
+          'Something went wrong. Please try again.',
       });
     }
   };
@@ -227,9 +234,7 @@ function ScheduleTourForm({ tourData }: ScheduleTourFormProps) {
               !formData.tourDate
             }
           >
-            {loading
-              ? 'Submitting...'
-              : tourData?.form?.buttonText || 'Submit'}
+            {loading ? 'Submitting...' : tourData?.form?.buttonText || 'Submit'}
           </button>
         </form>
       </div>
@@ -248,8 +253,6 @@ function ScheduleTourForm({ tourData }: ScheduleTourFormProps) {
     </div>
   );
 }
-
-
 
 export default function ClientWrapper({ tourData }: ScheduleTourFormProps) {
   const [isClient, setIsClient] = useState(false);

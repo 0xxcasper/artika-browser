@@ -1,4 +1,5 @@
-import { createClient } from '@/libs/prismic';
+import { type HomepageDocument } from '@/libs/prismic';
+import { fetchPrismicDocument } from '@/libs/prismic-helpers';
 import { extractHomepageScheduleTourData } from '@/libs/prismic-schedule-tour';
 import HomePage from '@/modules/home';
 import { notFound } from 'next/navigation';
@@ -18,18 +19,23 @@ export default async function LocalePage({ params }: LocalePageProps) {
   }
 
   try {
-    console.log('Fetching fresh data for:', locale);
-    const client = createClient();
-    const homepage = await client.getSingle('homepage', {
-      lang: locale === 'vi' ? 'vi' : 'en-us',
-    });
+    const homepage = (await fetchPrismicDocument(
+      'homepage',
+      locale,
+    )) as unknown as HomepageDocument;
 
     console.log('homepage data:', homepage.data);
 
     // Extract schedule tour data
-    const scheduleTourData = extractHomepageScheduleTourData(homepage as any);
+    const scheduleTourData = extractHomepageScheduleTourData(homepage);
 
-    return <HomePage homepageData={homepage as any} scheduleTourData={scheduleTourData} lang={locale} />;
+    return (
+      <HomePage
+        homepageData={homepage}
+        scheduleTourData={scheduleTourData}
+        lang={locale}
+      />
+    );
   } catch (error) {
     console.error('Error fetching homepage data:', error);
 

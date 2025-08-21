@@ -20,7 +20,7 @@ export interface ScheduleTourValidation {
 }
 
 export interface ScheduleTourData {
-  title: string;
+  title: any;
   description: any; // RichTextField from Prismic
   form: ScheduleTourFormConfig;
   messages: ScheduleTourMessages;

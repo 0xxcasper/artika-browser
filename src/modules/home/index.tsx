@@ -2,7 +2,6 @@ import About from '@/components/about';
 import FocusBanner from '@/components/focus-banner';
 import GridImages from '@/components/grid-images';
 import Hero from '@/components/hero';
-import EmailForm from '@/components/schedule-tour-form';
 import SplitBanner, {
   type SplitBannerSection,
 } from '@/components/split-banner';
@@ -23,7 +22,10 @@ interface HomePageProps {
   lang: string;
 }
 
-export default function HomePage({ homepageData, scheduleTourData }: HomePageProps) {
+export default function HomePage({
+  homepageData,
+  scheduleTourData,
+}: HomePageProps) {
   const heroData = extractHeroData({ data: homepageData?.data });
   const aboutData = extractAboutData({ data: homepageData?.data });
   const focusBannerData = extractFocusBannerData({ data: homepageData?.data });
@@ -62,9 +64,7 @@ export default function HomePage({ homepageData, scheduleTourData }: HomePagePro
       />
       <SplitBanner sections={splitBannerData.slice(1)} />
       <GridImages title={gridImagesData.title} cards={gridImagesData.cards} />
-      {scheduleTourData && (
-        <EmailForm tourData={scheduleTourData}  />
-      )}
+      {/* {scheduleTourData && <EmailForm tourData={scheduleTourData} />} */}
     </div>
   );
 }

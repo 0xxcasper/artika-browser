@@ -194,7 +194,7 @@ export type HomepageDocument = prismic.PrismicDocumentWithUID<{
     title: prismic.KeyTextField;
     description: prismic.RichTextField;
   }>;
-  schedule_tour_title: prismic.TitleField;
+  schedule_tour_title: prismic.RichTextField;
   schedule_tour_description: prismic.RichTextField;
   schedule_tour_form_config: prismic.GroupField<{
     phone_placeholder: prismic.KeyTextField;
@@ -247,7 +247,7 @@ export type ForestBathingDocument = prismic.PrismicDocumentWithUID<{
     image: prismic.ImageField;
     image_alt: prismic.KeyTextField;
   }>;
-  schedule_tour_title: prismic.TitleField;
+  schedule_tour_title: prismic.RichTextField;
   schedule_tour_description: prismic.RichTextField;
   schedule_tour_form_config: prismic.GroupField<{
     phone_placeholder: prismic.KeyTextField;
