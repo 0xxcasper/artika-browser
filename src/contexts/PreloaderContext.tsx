@@ -5,8 +5,7 @@ import {
   FooterData,
   NavigationCTA,
   NavigationMenu,
-  NewsletterFormData,
-  ScheduleTourFormData,
+  NewsletterFormData
 } from '@/locales/types';
 import { Box } from '@chakra-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -22,7 +21,6 @@ import React, {
 interface PreloaderContextType {
   menus: NavigationMenu[];
   cta: NavigationCTA;
-  scheduleTourForm?: ScheduleTourFormData;
   newsletterForm: NewsletterFormData;
   footerData: FooterData;
 }
@@ -68,7 +66,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasStarted = useRef(false);
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
-  const { menus, cta, scheduleTourForm, newsletterForm, footerData } =
+  const { menus, cta, newsletterForm, footerData } =
     useNavigation();
 
   const _updateAssetsLoaded = () => {
@@ -243,11 +241,10 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
     () => ({
       menus,
       cta,
-      scheduleTourForm,
       newsletterForm,
       footerData,
     }),
-    [menus, cta, scheduleTourForm, newsletterForm, footerData],
+    [menus, cta, newsletterForm, footerData],
   );
 
   return (

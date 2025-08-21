@@ -14,14 +14,16 @@ import {
   extractHeroData,
   extractSplitBannerData,
 } from '@/libs/prismic-helpers';
+import type { ScheduleTourData } from '@/types/schedule-tour';
 import './styles.scss';
 
 interface HomePageProps {
   homepageData: HomepageDocument | null;
+  scheduleTourData?: ScheduleTourData | null;
   lang: string;
 }
 
-export default function HomePage({ homepageData }: HomePageProps) {
+export default function HomePage({ homepageData, scheduleTourData }: HomePageProps) {
   const heroData = extractHeroData({ data: homepageData?.data });
   const aboutData = extractAboutData({ data: homepageData?.data });
   const focusBannerData = extractFocusBannerData({ data: homepageData?.data });
@@ -34,6 +36,8 @@ export default function HomePage({ homepageData }: HomePageProps) {
     data: homepageData?.data,
     fallbackImagePath: '/images/collections/collection',
   });
+
+  console.log('scheduleTourData', scheduleTourData);
 
   return (
     <div className="container-no-padding home-page">
@@ -58,7 +62,9 @@ export default function HomePage({ homepageData }: HomePageProps) {
       />
       <SplitBanner sections={splitBannerData.slice(1)} />
       <GridImages title={gridImagesData.title} cards={gridImagesData.cards} />
-      <EmailForm />
+      {scheduleTourData && (
+        <EmailForm tourData={scheduleTourData}  />
+      )}
     </div>
   );
 }

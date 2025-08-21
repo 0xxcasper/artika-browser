@@ -194,6 +194,26 @@ export type HomepageDocument = prismic.PrismicDocumentWithUID<{
     title: prismic.KeyTextField;
     description: prismic.RichTextField;
   }>;
+  schedule_tour_title: prismic.TitleField;
+  schedule_tour_description: prismic.RichTextField;
+  schedule_tour_form_config: prismic.GroupField<{
+    phone_placeholder: prismic.KeyTextField;
+    email_placeholder: prismic.KeyTextField;
+    date_placeholder: prismic.KeyTextField;
+    button_text: prismic.KeyTextField;
+  }>;
+  schedule_tour_messages: prismic.GroupField<{
+    success_message: prismic.KeyTextField;
+    error_message: prismic.KeyTextField;
+  }>;
+  schedule_tour_validation_messages: prismic.GroupField<{
+    phone_required: prismic.KeyTextField;
+    email_required: prismic.KeyTextField;
+    date_required: prismic.KeyTextField;
+    phone_invalid: prismic.KeyTextField;
+    email_invalid: prismic.KeyTextField;
+    date_future: prismic.KeyTextField;
+  }>;
 }>;
 
 export type ForestBathingDocument = prismic.PrismicDocumentWithUID<{
@@ -227,6 +247,26 @@ export type ForestBathingDocument = prismic.PrismicDocumentWithUID<{
     image: prismic.ImageField;
     image_alt: prismic.KeyTextField;
   }>;
+  schedule_tour_title: prismic.TitleField;
+  schedule_tour_description: prismic.RichTextField;
+  schedule_tour_form_config: prismic.GroupField<{
+    phone_placeholder: prismic.KeyTextField;
+    email_placeholder: prismic.KeyTextField;
+    date_placeholder: prismic.KeyTextField;
+    button_text: prismic.KeyTextField;
+  }>;
+  schedule_tour_messages: prismic.GroupField<{
+    success_message: prismic.KeyTextField;
+    error_message: prismic.KeyTextField;
+  }>;
+  schedule_tour_validation_messages: prismic.GroupField<{
+    phone_required: prismic.KeyTextField;
+    email_required: prismic.KeyTextField;
+    date_required: prismic.KeyTextField;
+    phone_invalid: prismic.KeyTextField;
+    email_invalid: prismic.KeyTextField;
+    date_future: prismic.KeyTextField;
+  }>;
 }>;
 
 export type NavigationMenuDocument = prismic.PrismicDocumentWithUID<{
@@ -241,22 +281,6 @@ export type NavigationMenuDocument = prismic.PrismicDocumentWithUID<{
   }>;
   cta_label: prismic.KeyTextField;
   cta_link: prismic.KeyTextField;
-  schedule_tour_title: prismic.KeyTextField;
-  schedule_tour_description: prismic.RichTextField;
-  schedule_tour_phone_placeholder: prismic.KeyTextField;
-  schedule_tour_email_placeholder: prismic.KeyTextField;
-  schedule_tour_date_placeholder: prismic.KeyTextField;
-  schedule_tour_button_text: prismic.KeyTextField;
-  schedule_tour_success_message: prismic.KeyTextField;
-  schedule_tour_error_message: prismic.KeyTextField;
-  schedule_tour_validation_messages: prismic.GroupField<{
-    schedule_tour_phone_required: prismic.KeyTextField;
-    schedule_tour_email_required: prismic.KeyTextField;
-    schedule_tour_date_required: prismic.KeyTextField;
-    schedule_tour_phone_invalid: prismic.KeyTextField;
-    schedule_tour_email_invalid: prismic.KeyTextField;
-    schedule_tour_date_future: prismic.KeyTextField;
-  }>;
   newsletter_title: prismic.KeyTextField;
   newsletter_email_placeholder: prismic.KeyTextField;
   newsletter_button_text: prismic.KeyTextField;

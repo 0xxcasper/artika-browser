@@ -1,25 +1,29 @@
-import Hero from '@/components/hero';
-import './styles.scss';
 import About from '@/components/about';
 import FocusBanner from '@/components/focus-banner';
-import SplitBanner from '@/components/split-banner';
 import GridImages from '@/components/grid-images';
+import Hero from '@/components/hero';
+import EmailForm from '@/components/schedule-tour-form';
+import SplitBanner from '@/components/split-banner';
 import { ForestBathingDocument } from '@/libs/prismic';
 import {
-  extractHeroData,
   extractAboutData,
-  extractSplitBannerData,
   extractFocusBannerData,
   extractGridImagesData,
+  extractHeroData,
+  extractSplitBannerData,
 } from '@/libs/prismic-helpers';
+import type { ScheduleTourData } from '@/types/schedule-tour';
+import './styles.scss';
 
 interface ForestBathingPageProps {
   forestBathingData: ForestBathingDocument | null;
+  scheduleTourData?: ScheduleTourData | null;
   lang: string;
 }
 
 export default function ForestBathingPage({
   forestBathingData,
+  scheduleTourData,
 }: ForestBathingPageProps) {
   const heroData = extractHeroData({ data: forestBathingData?.data });
   const aboutData = extractAboutData({ data: forestBathingData?.data });
@@ -69,6 +73,7 @@ export default function ForestBathingPage({
         }))}
       />
       <GridImages title={gridImagesData.title} cards={gridImagesData.cards} />
+      <EmailForm tourData={scheduleTourData} />
     </div>
   );
 }

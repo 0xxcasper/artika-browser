@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useScheduleTourSubmission } from '@/hooks/useFirestore';
+import type { ScheduleTourData } from '@/types/schedule-tour';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import DatePicker from './DatePicker';
 import './styles.scss';
-import Image from 'next/image';
-import { usePreloader } from '@/contexts/PreloaderContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ScheduleTourFormData {
   phone: string;
@@ -14,9 +14,12 @@ interface ScheduleTourFormData {
   tourDate: Date | null;
 }
 
-export default function ScheduleTourForm() {
+interface ScheduleTourFormProps {
+  tourData?: ScheduleTourData | null;
+}
+
+function ScheduleTourForm({ tourData }: ScheduleTourFormProps) {
   const { language } = useLanguage();
-  const { scheduleTourForm } = usePreloader();
   const [formData, setFormData] = useState<ScheduleTourFormData>({
     phone: '',
     email: '',
@@ -55,9 +58,7 @@ export default function ScheduleTourForm() {
     if (!phone.trim()) {
       setMessage({
         type: 'error',
-        text:
-          scheduleTourForm?.schedule_tour_validation_messages
-            .schedule_tour_phone_required || '',
+        text: tourData?.validation?.phoneRequired || 'Phone is required',
       });
       return;
     }
@@ -65,9 +66,7 @@ export default function ScheduleTourForm() {
     if (!email.trim()) {
       setMessage({
         type: 'error',
-        text:
-          scheduleTourForm?.schedule_tour_validation_messages
-            .schedule_tour_email_required || '',
+        text: tourData?.validation?.emailRequired || 'Email is required',
       });
       return;
     }
@@ -75,9 +74,7 @@ export default function ScheduleTourForm() {
     if (!tourDate) {
       setMessage({
         type: 'error',
-        text:
-          scheduleTourForm?.schedule_tour_validation_messages
-            .schedule_tour_date_required || '',
+        text: tourData?.validation?.dateRequired || 'Date is required',
       });
       return;
     }
@@ -86,9 +83,7 @@ export default function ScheduleTourForm() {
     if (!validatePhone(phone.trim())) {
       setMessage({
         type: 'error',
-        text:
-          scheduleTourForm?.schedule_tour_validation_messages
-            .schedule_tour_phone_invalid || '',
+        text: tourData?.validation?.phoneInvalid || 'Please enter a valid phone number',
       });
       return;
     }
@@ -96,9 +91,7 @@ export default function ScheduleTourForm() {
     if (!validateEmail(email.trim())) {
       setMessage({
         type: 'error',
-        text:
-          scheduleTourForm?.schedule_tour_validation_messages
-            .schedule_tour_email_invalid || '',
+        text: tourData?.validation?.emailInvalid || 'Please enter a valid email address',
       });
       return;
     }
@@ -109,9 +102,7 @@ export default function ScheduleTourForm() {
     if (tourDate < today) {
       setMessage({
         type: 'error',
-        text:
-          scheduleTourForm?.schedule_tour_validation_messages
-            .schedule_tour_date_future || '',
+        text: tourData?.validation?.dateFuture || 'Please select a future date',
       });
       return;
     }
@@ -132,13 +123,13 @@ export default function ScheduleTourForm() {
       });
       setMessage({
         type: 'success',
-        text: scheduleTourForm?.schedule_tour_success_message || '',
+        text: tourData?.messages?.success || 'Thank you! We will contact you soon.',
       });
     } catch (error) {
       console.error('Error submitting tour request:', error);
       setMessage({
         type: 'error',
-        text: scheduleTourForm?.schedule_tour_error_message || '',
+        text: tourData?.messages?.error || 'Something went wrong. Please try again.',
       });
     }
   };
@@ -165,12 +156,16 @@ export default function ScheduleTourForm() {
     });
   };
 
+  if (!tourData) {
+    return <div>Schedule tour form not available</div>;
+  }
+
   return (
     <div className="schedule-tour-form">
       <div className="form-content">
         <div className="form-text">
-          <h1>{scheduleTourForm?.schedule_tour_title}</h1>
-          <p>{scheduleTourForm?.schedule_tour_description}</p>
+          <h1>{tourData?.title || 'Schedule Tour'}</h1>
+          <p>{tourData?.description || 'Book your tour today!'}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="form-container">
@@ -178,7 +173,7 @@ export default function ScheduleTourForm() {
             type="tel"
             value={formData.phone}
             onChange={(e) => handleInputChange('phone', e.target.value)}
-            placeholder={scheduleTourForm?.schedule_tour_phone_placeholder}
+            placeholder={tourData?.form?.phonePlaceholder || 'Phone number'}
             className="form-input"
             disabled={loading}
             required
@@ -188,7 +183,7 @@ export default function ScheduleTourForm() {
             type="email"
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
-            placeholder={scheduleTourForm?.schedule_tour_email_placeholder}
+            placeholder={tourData?.form?.emailPlaceholder || 'Email address'}
             className="form-input"
             disabled={loading}
             required
@@ -201,7 +196,7 @@ export default function ScheduleTourForm() {
             <input
               type="text"
               value={formData.tourDate ? formatDate(formData.tourDate) : ''}
-              placeholder={scheduleTourForm?.schedule_tour_date_placeholder}
+              placeholder={tourData?.form?.datePlaceholder || 'Select date'}
               className="form-input date-input"
               disabled={loading}
               readOnly
@@ -234,7 +229,7 @@ export default function ScheduleTourForm() {
           >
             {loading
               ? 'Submitting...'
-              : scheduleTourForm?.schedule_tour_button_text}
+              : tourData?.form?.buttonText || 'Submit'}
           </button>
         </form>
       </div>
@@ -252,4 +247,29 @@ export default function ScheduleTourForm() {
       )}
     </div>
   );
+}
+
+
+
+export default function ClientWrapper({ tourData }: ScheduleTourFormProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <div className="schedule-tour-form">
+        <div className="form-content">
+          <div className="form-text">
+            <h1>Schedule Tour</h1>
+            <p>Loading tour form...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return <ScheduleTourForm tourData={tourData} />;
 }

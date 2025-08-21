@@ -1,9 +1,9 @@
 'use client';
 
-import { ChakraProvider } from '@chakra-ui/react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
-import { ReactNode } from 'react';
 import { PreloaderProvider } from '@/contexts/PreloaderContext';
+import { ChakraProvider } from '@chakra-ui/react';
+import { ReactNode } from 'react';
 
 interface ProvidersProps {
   children: ReactNode;

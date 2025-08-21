@@ -1,4 +1,5 @@
 import { createClient } from '@/libs/prismic';
+import { extractHomepageScheduleTourData } from '@/libs/prismic-schedule-tour';
 import HomePage from '@/modules/home';
 import { notFound } from 'next/navigation';
 
@@ -25,7 +26,10 @@ export default async function LocalePage({ params }: LocalePageProps) {
 
     console.log('homepage data:', homepage.data);
 
-    return <HomePage homepageData={homepage as any} lang={locale} />;
+    // Extract schedule tour data
+    const scheduleTourData = extractHomepageScheduleTourData(homepage as any);
+
+    return <HomePage homepageData={homepage as any} scheduleTourData={scheduleTourData} lang={locale} />;
   } catch (error) {
     console.error('Error fetching homepage data:', error);
 
