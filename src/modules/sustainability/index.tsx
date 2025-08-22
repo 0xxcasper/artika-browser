@@ -2,40 +2,79 @@
 
 import About from '@/components/about';
 import GalleryGrid from '@/components/gallery-grid';
+import SplitBanner from '@/components/split-banner';
 import RowText from '@/components/row-text';
 import { Box, Image } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import type { SustainabilityPageProps } from '@/types/sustainability';
 
-const SustainabilityPage = () => {
+const SustainabilityPage = ({
+  sustainabilityData,
+}: SustainabilityPageProps) => {
   return (
     <Box className="container" maxWidth="1568px" mx="auto">
       <About
-        title="Phát triển bền vững"
-        description={`Tinh thần phát triển bền vững và định hướng tác động xã hội của Artika
-khởi nguồn từ mong muốn kiến tạo trong sự hài hoà với thiên nhiên và văn hoá bản địa,
-thông qua các đóng góp dài hạn và có trách nhiệm`}
-        button=""
-      />
-      <Image
-        src="/images/home/banner.jpg"
-        alt="Sustainability"
-        width="100%"
-        height="auto"
-        objectFit="cover"
+        title={sustainabilityData.aboutSection1.title}
+        description={sustainabilityData.aboutSection1.description}
+        button={sustainabilityData.aboutSection1.buttonText}
       />
 
+      <motion.div
+        initial={{ opacity: 0, y: 50, scale: 0.95 }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: {
+            duration: 0.8,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            type: 'spring',
+            stiffness: 100,
+            damping: 15,
+          },
+        }}
+        viewport={{ once: true, amount: 0.3, margin: '-100px' }}
+        whileHover={{
+          scale: 1.02,
+          transition: { duration: 0.2 },
+        }}
+      >
+        <Image
+          src={sustainabilityData.mainBanner.image}
+          alt={sustainabilityData.mainBanner.alt}
+          width="100%"
+          height="auto"
+          objectFit="cover"
+          style={{ borderRadius: '8px' }}
+        />
+      </motion.div>
+
       <RowText
-        title={`Bảo tồn và\nkhai mở thiên nhiên`}
-        description={`Gìn giữ và khai mở nét đẹp tự nhiên là một trong những ưu tiên hàng đầu tại Artika. Các lớp nền đá cổ và hệ thống hang động bị vùi lấp hàng triệu năm được dần phơi lộ sau quá trình đào đất chủ yếu bằng thủ công, giúp giảm thiểu tác động tới cảnh quan xung quanh và tạo điều kiện để tăng cường thảm thực vật bản địa.\n\nHàng vạn cây như tùng, thông, đỗ quyên, anh đào, mận, táo mèo… được trồng bổ sung để làm giàu sinh cảnh núi rừng. Công việc gieo trồng, chăm sóc và bảo tồn này được thực hiện bằng lao động thủ công, với sự tham gia bền bỉ của người dân địa phương.\n\n Hệ thống đường đi bộ bằng đá – với tổng chiều dài hàng chục kilomet – được xây dựng men theo địa hình tự nhiên, giúp giữ nguyên độ dốc và cấu trúc sườn núi, hạn chế tối đa tác động đến hệ sinh thái xung quanh.`}
+        title={sustainabilityData.rowText.title}
+        description={sustainabilityData.rowText.description}
       />
 
       <GalleryGrid
-        images={[
-          '/images/home/banner-1.jpg',
-          '/images/home/banner-2.jpg',
-          '/images/home/banner.jpg',
-        ]}
+        images={sustainabilityData.galleryGrid.images.map((img) => img.image)}
         gap={24}
       />
+
+      <About
+        title={sustainabilityData.aboutSection2.title}
+        description={sustainabilityData.aboutSection2.description}
+        button={sustainabilityData.aboutSection2.buttonText}
+      />
+
+      {sustainabilityData.splitBanner.sections.length > 0 && (
+        <SplitBanner
+          sections={sustainabilityData.splitBanner.sections.map(
+            (section, index) => ({
+              ...section,
+              textFirst: index % 2 !== 0,
+            }),
+          )}
+        />
+      )}
     </Box>
   );
 };

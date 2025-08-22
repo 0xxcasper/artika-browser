@@ -166,9 +166,11 @@ export default function SplitBanner({
             >
               {/* Text Content */}
               <motion.div className="text-content" variants={textVariants}>
-                <motion.h2 className="section-title" variants={titleVariants}>
-                  {section.title}
-                </motion.h2>
+                {section.title && (
+                  <motion.h2 className="section-title" variants={titleVariants}>
+                    {section.title}
+                  </motion.h2>
+                )}
                 <motion.p
                   className="section-description"
                   variants={descriptionVariants}

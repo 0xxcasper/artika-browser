@@ -1,0 +1,195 @@
+{
+  "id": "sustainability",
+  "label": "Sustainability",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "About Section 1": {
+      "about_1_title": {
+        "type": "Text",
+        "config": {
+          "label": "About Section 1 - Title",
+          "placeholder": "Phát triển bền vững"
+        }
+      },
+      "about_1_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Section 1 - Description",
+          "placeholder": "Tinh thần phát triển bền vững và định hướng tác động xã hội của Artika khởi nguồn từ mong muốn kiến tạo trong sự hài hoà với thiên nhiên và văn hoá bản địa, thông qua các đóng góp dài hạn và có trách nhiệm",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      },
+      "about_1_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "About Section 1 - Button Text",
+          "placeholder": "Button text (optional)"
+        }
+      },
+      "about_1_button_link": {
+        "type": "Text",
+        "config": {
+          "label": "About Section 1 - Button Link",
+          "placeholder": "Button link (optional)"
+        }
+      }
+    },
+    "Main Banner Image": {
+      "main_banner_image": {
+        "type": "Image",
+        "config": {
+          "label": "Main Banner Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "main_banner_alt": {
+        "type": "Text",
+        "config": {
+          "label": "Main Banner Alt Text",
+          "placeholder": "Sustainability banner image"
+        }
+      }
+    },
+    "Row Text Section": {
+      "row_text_title": {
+        "type": "Text",
+        "config": {
+          "label": "Row Text - Title",
+          "placeholder": "Bảo tồn và khai mở thiên nhiên"
+        }
+      },
+      "row_text_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Row Text - Description",
+          "placeholder": "Gìn giữ và khai mở nét đẹp tự nhiên là một trong những ưu tiên hàng đầu tại Artika. Các lớp nền đá cổ và hệ thống hang động bị vùi lấp hàng triệu năm được dần phơi lộ sau quá trình đào đất chủ yếu bằng thủ công, giúp giảm thiểu tác động tới cảnh quan xung quanh và tạo điều kiện để tăng cường thảm thực vật bản địa.",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      }
+    },
+    "Gallery Grid Section": {
+      "gallery_grid_title": {
+        "type": "Text",
+        "config": {
+          "label": "Gallery Grid Title",
+          "placeholder": "Gallery section title (optional)"
+        }
+      },
+      "gallery_grid_items": {
+        "type": "Group",
+        "config": {
+          "label": "Gallery Grid Items",
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Gallery Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "image_alt": {
+              "type": "Text",
+              "config": {
+                "label": "Image Alt Text",
+                "placeholder": "Gallery image alt text"
+              }
+            }
+          }
+        }
+      }
+    },
+    "About Section 2": {
+      "about_2_title": {
+        "type": "Text",
+        "config": {
+          "label": "About Section 2 - Title",
+          "placeholder": "Đồng hành cùng cộng đồng bản địa"
+        }
+      },
+      "about_2_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Section 2 - Description",
+          "placeholder": "Người H'Mông và người Dao đóng vai trò quan trọng trong suốt quá trình hình thành và vận hành Artika, không chỉ là những người lao động mà là người gìn giữ đất, đồng hành trong từng bước kiến tạo công trình và cảnh quan.",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      },
+      "about_2_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "About Section 2 - Button Text",
+          "placeholder": "Button text (optional)"
+        }
+      },
+      "about_2_button_link": {
+        "type": "Text",
+        "config": {
+          "label": "About Section 2 - Button Link",
+          "placeholder": "Button link (optional)"
+        }
+      }
+    },
+    "Split Banner Section": {
+      "split_banner_sections": {
+        "type": "Group",
+        "config": {
+          "label": "Split Banner Sections",
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Section Title",
+                "placeholder": "Section title"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Description",
+                "placeholder": "Section description",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "cta_text": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Text",
+                "placeholder": "Call to action text"
+              }
+            },
+            "cta_link": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Link",
+                "placeholder": "Call to action link"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Section Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "image_alt": {
+              "type": "Text",
+              "config": {
+                "label": "Image Alt Text",
+                "placeholder": "Image alt text"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
