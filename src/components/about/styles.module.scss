@@ -17,6 +17,10 @@
       gap: 24px;
     }
 
+    &__unAcceptPaddingMb {
+      padding: 0;
+    }
+
     h1 {
       @include title-1;
 

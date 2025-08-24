@@ -20,6 +20,7 @@ export interface SplitBannerSection {
 interface SplitBannerProps {
   sections: Array<SplitBannerSection>;
   onCtaClick?: (sectionId: string) => void;
+  unAcceptPaddingMb?: boolean;
 }
 
 const containerVariants = {
@@ -116,6 +117,7 @@ const buttonVariants = {
 export default function SplitBanner({
   sections,
   onCtaClick,
+  unAcceptPaddingMb = false,
 }: SplitBannerProps) {
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -147,7 +149,7 @@ export default function SplitBanner({
 
   return (
     <motion.div
-      className="split-banner"
+      className={`split-banner ${unAcceptPaddingMb ? 'un-accept-padding-mb' : ''}`}
       initial="hidden"
       whileInView="visible"
       variants={containerVariants}

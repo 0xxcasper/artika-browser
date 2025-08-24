@@ -9,6 +9,7 @@ interface AboutProps {
   description: string;
   button: string;
   buttonLink?: string;
+  unAcceptPaddingMb?: boolean;
 }
 
 const variants = {
@@ -27,11 +28,17 @@ const viewPort = {
   // amount: 0.3
 };
 
-const About = ({ title, description, button, buttonLink }: AboutProps) => {
+const About = ({
+  title,
+  description,
+  button,
+  buttonLink,
+  unAcceptPaddingMb = false,
+}: AboutProps) => {
   return (
     <section className={styles.about}>
       <motion.div
-        className={styles.aboutContainer}
+        className={`${styles.aboutContainer} ${unAcceptPaddingMb ? styles.aboutContainer__unAcceptPaddingMb : ''}`}
         initial="hidden"
         whileInView="visible"
         variants={variants}

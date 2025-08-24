@@ -16,6 +16,12 @@
   }
 }
 
+.split-banner.un-accept-padding-mb {
+  @media (max-width: $breakpoint-xl) {
+    padding: 0;
+  }
+}
+
 .banner-section {
   width: 100%;
   min-height: 600px;
@@ -73,8 +79,9 @@
 
       .cta-button {
         @include body-1;
-        text-decoration: underline;
+
         width: fit-content;
+        text-decoration: underline;
       }
     }
 
@@ -99,6 +106,7 @@
           top: 50%;
           left: 50%;
           width: calc(100%);
+
           // height: calc(100%);
           height: auto;
           object-fit: cover;

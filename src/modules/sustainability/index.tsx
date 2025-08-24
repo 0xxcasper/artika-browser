@@ -19,6 +19,7 @@ const SustainabilityPage = ({
           title={sustainabilityData.aboutSection1.title}
           description={sustainabilityData.aboutSection1.description}
           button={sustainabilityData.aboutSection1.buttonText}
+          unAcceptPaddingMb={true}
         />
 
         <motion.div
@@ -64,6 +65,7 @@ const SustainabilityPage = ({
           title={sustainabilityData.aboutSection2.title}
           description={sustainabilityData.aboutSection2.description}
           button={sustainabilityData.aboutSection2.buttonText}
+          unAcceptPaddingMb={true}
         />
 
         {sustainabilityData.splitBanner.sections.length > 0 && (
@@ -74,10 +76,11 @@ const SustainabilityPage = ({
                 textFirst: index % 2 !== 0,
               }),
             )}
+            unAcceptPaddingMb={true}
           />
         )}
       </Box>
-      <Box mx="auto" px="24px">
+      <Box mx="auto" px="0">
         <HorizontalList
           title={sustainabilityData.horizontalList.title}
           items={sustainabilityData.horizontalList.items}

@@ -6,6 +6,11 @@
   flex-direction: column;
   gap: 100px;
   align-items: center;
+  max-width: calc(100dvw - 48px);
+
+  @media (max-width: $breakpoint-xl) {
+    max-width: calc(100dvw - var(--padding-horzontal) * 2);
+  }
 
   @media (max-width: $breakpoint-lg) {
     gap: 60px;
@@ -44,8 +49,8 @@
       width: 320px;
     }
 
-    @media (max-width: $breakpoint-md) {
-      width: calc(100dvw - 72px);
+    @media (max-width: $breakpoint-sm) {
+      width: calc(100dvw - 32px);
     }
 
     .title {

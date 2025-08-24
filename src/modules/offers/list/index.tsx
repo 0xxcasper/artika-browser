@@ -20,7 +20,12 @@ export default function OffersList({ data, lang }: OffersListProps) {
   return (
     <div className={styles['offers-list']}>
       <Box maxW="772px" mx="auto">
-        <About title={data.title} description={data.description} button="" />
+        <About
+          unAcceptPaddingMb={true}
+          title={data.title}
+          description={data.description}
+          button=""
+        />
       </Box>
 
       <div className={styles['offers-list__grid']}>
