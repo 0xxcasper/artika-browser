@@ -17,7 +17,7 @@ export default function GalleryGrid({ images, gap = 24 }: GalleryGridProps) {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1,
+        // delayChildren: 0.1,
       },
     },
   };
@@ -50,7 +50,7 @@ export default function GalleryGrid({ images, gap = 24 }: GalleryGridProps) {
       whileInView="visible"
       viewport={{
         once: true,
-        margin: '-150px', // Start animation slightly before fully in view
+        margin: '-100px', // Start animation slightly before fully in view
       }}
     >
       <Grid templateColumns="repeat(4, 1fr)" gap={`${gap}px`}>

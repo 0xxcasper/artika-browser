@@ -1,0 +1,52 @@
+@import '@/styles/variables';
+@import '@/styles/fonts';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  align-items: center;
+
+  @media (max-width: $breakpoint-lg) {
+    gap: 60px;
+  }
+
+  h2 {
+    @include title-1;
+
+    text-align: center;
+  }
+}
+
+.scrollContainer {
+  width: 100%;
+  max-width: 1674px;
+  overflow: auto hidden;
+
+  .list {
+    display: flex;
+    gap: 24px;
+    min-width: max-content;
+  }
+
+  .item {
+    flex-shrink: 0;
+    width: 542px;
+
+    @media (max-width: $breakpoint-xl) {
+      width: 320px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      width: calc(100dvw - 72px);
+    }
+
+    .title {
+      @include title-4;
+
+      margin: 0 auto;
+      margin-top: 24px;
+      text-align: center;
+    }
+  }
+}

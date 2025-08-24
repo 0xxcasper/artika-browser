@@ -7,7 +7,7 @@ import RowText from '@/components/row-text';
 import { Box, Image } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import type { SustainabilityPageProps } from '@/types/sustainability';
-import HorizontalMore from './components/HorizontalMore';
+import HorizontalList from './components/HorizontalList';
 
 const SustainabilityPage = ({
   sustainabilityData,
@@ -35,7 +35,7 @@ const SustainabilityPage = ({
               damping: 15,
             },
           }}
-          viewport={{ once: true, amount: 0.3, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px' }}
           whileHover={{
             scale: 1.02,
             transition: { duration: 0.2 },
@@ -47,7 +47,6 @@ const SustainabilityPage = ({
             width="100%"
             height="auto"
             objectFit="cover"
-            style={{ borderRadius: '8px' }}
           />
         </motion.div>
 
@@ -78,8 +77,8 @@ const SustainabilityPage = ({
           />
         )}
       </Box>
-      <Box maxWidth="1678px" mx="auto" px="24px">
-        <HorizontalMore />
+      <Box mx="auto" px="24px">
+        <HorizontalList />
       </Box>
     </Box>
   );
