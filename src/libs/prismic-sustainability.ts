@@ -59,6 +59,16 @@ export function extractSustainabilityData(
             textFirst: index % 2 === 0,
           })) || [],
       },
+      horizontalList: {
+        title: asText(data.horizontal_list_title) || 'More of Artika',
+        items:
+          data.horizontal_list_items?.map((item: any) => ({
+            href: item.href || '',
+            title: asText(item.title) || '',
+            image: asImageUrl(item.image) || '',
+            alt: item.image_alt || '',
+          })) || [],
+      },
     };
 
     console.log('Extracted sustainability data:', extractedData);

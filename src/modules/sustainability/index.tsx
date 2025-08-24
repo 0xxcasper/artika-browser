@@ -78,7 +78,10 @@ const SustainabilityPage = ({
         )}
       </Box>
       <Box mx="auto" px="24px">
-        <HorizontalList />
+        <HorizontalList
+          title={sustainabilityData.horizontalList.title}
+          items={sustainabilityData.horizontalList.items}
+        />
       </Box>
     </Box>
   );

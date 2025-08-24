@@ -31,6 +31,15 @@ export interface SustainabilityData {
   splitBanner: {
     sections: SplitBannerSection[];
   };
+  horizontalList: {
+    title: string;
+    items: Array<{
+      href: string;
+      title: string;
+      image: string;
+      alt: string;
+    }>;
+  };
 }
 
 export interface SustainabilityPageProps {

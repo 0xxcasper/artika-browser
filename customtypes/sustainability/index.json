@@ -190,6 +190,52 @@
           }
         }
       }
+    },
+    "Horizontal List Section": {
+      "horizontal_list_title": {
+        "type": "Text",
+        "config": {
+          "label": "Horizontal List Title",
+          "placeholder": "More of Artika"
+        }
+      },
+      "horizontal_list_items": {
+        "type": "Group",
+        "config": {
+          "label": "Horizontal List Items",
+          "fields": {
+            "href": {
+              "type": "Text",
+              "config": {
+                "label": "Item Link",
+                "placeholder": "Link destination (e.g., forest-bathing)"
+              }
+            },
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Item Title",
+                "placeholder": "Item title (e.g., Forest & Bamboo)"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Item Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "image_alt": {
+              "type": "Text",
+              "config": {
+                "label": "Image Alt Text",
+                "placeholder": "Image alt text for accessibility"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

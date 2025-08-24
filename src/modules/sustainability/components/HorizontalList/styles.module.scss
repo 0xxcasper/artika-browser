@@ -32,6 +32,13 @@
   .item {
     flex-shrink: 0;
     width: 542px;
+    cursor: pointer;
+
+    &:hover {
+      img {
+        transform: scale(1.02);
+      }
+    }
 
     @media (max-width: $breakpoint-xl) {
       width: 320px;
