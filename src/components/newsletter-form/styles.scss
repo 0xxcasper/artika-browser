@@ -8,6 +8,7 @@
 
     .newsletter-title {
       @include title-1;
+
       margin-bottom: 30px;
       color: $text-inverse;
     }
@@ -42,7 +43,8 @@
             color: $text-inverse;
           }
 
-          &:focus {
+          &:focus,
+          &:hover {
             outline: none;
             border-color: rgb(255 255 255 / 50%);
             box-shadow: 0 0 0 2px rgb(255 255 255 / 20%);

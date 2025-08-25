@@ -50,12 +50,6 @@ export default function OffersList({ data, lang }: OffersListProps) {
               <p>{item.description}</p>
               <Link
                 href={offersRouter.getDetailRouter({ id: item.id }, lang)}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  // router.push(
-                  //   offersRouter.getDetailRouter({ id: item.id }, lang),
-                  // );
-                }}
                 className={styles['offers-list__card__link']}
               >
                 View detail

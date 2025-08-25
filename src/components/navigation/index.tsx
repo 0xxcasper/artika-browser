@@ -249,6 +249,10 @@ export default function Navigation() {
             alt="arrow"
             width={7}
             height={7}
+            style={{
+              opacity: isActive ? 1 : 0.5,
+              transition: 'opacity 0.3s ease',
+            }}
             draggable={false}
           />
         </Flex>

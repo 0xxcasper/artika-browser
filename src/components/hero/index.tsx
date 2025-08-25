@@ -1,9 +1,9 @@
 'use client';
 
-import { Image } from '@chakra-ui/react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import styles from './styles.module.scss';
+import { Image } from '@chakra-ui/react';
 
 interface HeroProps {
   title: string;
@@ -39,6 +39,15 @@ export default function Hero({ title, subtitle, backgroundImage }: HeroProps) {
   const rotateX = useSpring(rotateXRaw, springConfig);
   const rotateY = useSpring(rotateYRaw, springConfig);
   const rotateZ = useSpring(rotateZRaw, springConfig);
+
+  // Function to detect media type from URL
+  const getMediaType = (url: string): 'image' | 'video' => {
+    const extension = url.split('.').pop()?.toLowerCase();
+    const videoExtensions = ['mp4', 'webm', 'ogg', 'mov', 'avi'];
+    return videoExtensions.includes(extension || '') ? 'video' : 'image';
+  };
+
+  const mediaType = getMediaType(backgroundImage);
 
   const containerVariants = {
     hidden: { opacity: 1 },
@@ -103,23 +112,48 @@ export default function Hero({ title, subtitle, backgroundImage }: HeroProps) {
           WebkitBackfaceVisibility: 'hidden',
         }}
       >
-        <Image
-          src={backgroundImage}
-          alt="Hero background"
-          width="100%"
-          height="100%"
-          objectFit="cover"
-          objectPosition="center"
-          draggable={false}
-          loading="eager"
-          style={{
-            width: '100%',
-            height: '100%',
-            minWidth: '100%',
-            minHeight: '100%',
-            transform: 'translate3d(0, 0, 0)',
-          }}
-        />
+        {mediaType === 'video' ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: '100%',
+              height: '100%',
+              minWidth: '100%',
+              minHeight: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              transform: 'translate3d(0, 0, 0)',
+            }}
+          >
+            <source
+              src={backgroundImage}
+              type={`video/${backgroundImage.split('.').pop()}`}
+            />
+            {/* Fallback image */}
+            <img src={backgroundImage} alt="Hero background" />
+          </video>
+        ) : (
+          <Image
+            src={backgroundImage}
+            alt="Hero background"
+            width="100%"
+            height="100%"
+            objectFit="cover"
+            objectPosition="center"
+            draggable={false}
+            loading="eager"
+            style={{
+              width: '100%',
+              height: '100%',
+              minWidth: '100%',
+              minHeight: '100%',
+              transform: 'translate3d(0, 0, 0)',
+            }}
+          />
+        )}
       </motion.div>
 
       {/* Overlay */}
