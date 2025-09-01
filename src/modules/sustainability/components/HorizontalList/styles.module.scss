@@ -28,6 +28,12 @@
   max-width: 1674px;
   overflow: auto hidden;
 
+  // hide scrollbar
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+
   .list {
     display: flex;
     gap: 24px;
