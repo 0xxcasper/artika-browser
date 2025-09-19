@@ -175,7 +175,7 @@ function ScheduleTourForm({ tourData }: ScheduleTourFormProps) {
           <p>{tourData?.description || 'Book your tour today!'}</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="form-container">
+        <form onSubmit={handleSubmit} className="form-container" noValidate>
           <input
             type="tel"
             value={formData.phone}
@@ -236,12 +236,11 @@ function ScheduleTourForm({ tourData }: ScheduleTourFormProps) {
           >
             {loading ? 'Submitting...' : tourData?.form?.buttonText || 'Submit'}
           </button>
+          {message && (
+            <div className={`message ${message.type}`}>{message.text}</div>
+          )}
         </form>
       </div>
-
-      {message && (
-        <div className={`message ${message.type}`}>{message.text}</div>
-      )}
 
       {showDatePicker && (
         <DatePicker

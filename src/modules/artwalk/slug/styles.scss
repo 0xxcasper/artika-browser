@@ -32,6 +32,7 @@
 
       p {
         @include body-1;
+
         text-align: center;
       }
     }
@@ -40,11 +41,13 @@
   &__grids {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 102px 32px;
+
+    // gap horizontal
     width: 100%;
     max-width: 1280px;
-    contain: layout style paint;
     padding: 5px 0;
+    contain: layout style paint;
     overflow: visible;
 
     @media screen and (max-width: $breakpoint-lg) {
@@ -53,6 +56,7 @@
 
     @media screen and (max-width: $breakpoint-md) {
       grid-template-columns: repeat(1, 1fr);
+      gap: 52px;
     }
 
     &__item {
@@ -78,16 +82,19 @@
 
         &__title {
           @include body-1;
+
           color: #000;
         }
 
         &__description {
           @include body-1;
+
           color: #000;
         }
 
         &__material {
           @include body-1;
+
           color: #A9A9A9;
         }
       }
