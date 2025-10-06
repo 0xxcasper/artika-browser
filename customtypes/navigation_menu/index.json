@@ -136,6 +136,93 @@
           "label": "Contact Address"
         }
       },
+      "footer_menu_1_title": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Menu 1",
+          "placeholder": "ARTIKA"
+        }
+      },
+      "footer_menu_1_items": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Footer Menu 1 Item",
+                "placeholder": "Menu 1 Item"
+              }
+            },
+            "href": {
+              "type": "Text",
+              "config": {
+                "label": "Footer Menu 1 Item Link",
+                "placeholder": "https://www.google.com"
+              }
+            }
+          },
+          "label": "Footer Menu 1 Items"
+        }
+      },
+      "footer_menu_2_title": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Menu 2",
+          "placeholder": "ARTIKA"
+        }
+      },
+      "footer_menu_2_items": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Footer Menu 2 Item",
+                "placeholder": "Menu 2 Item"
+              }
+            },
+            "href": {
+              "type": "Text",
+              "config": {
+                "label": "Footer Menu 2 Item Link",
+                "placeholder": "https://www.google.com"
+              }
+            }
+          },
+          "label": "Footer Menu 2 Items"
+        }
+      },
+      "footer_menu_3_title": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Menu 3",
+          "placeholder": "ARTIKA"
+        }
+      },
+      "footer_menu_3_items": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Footer Menu 3 Item",
+                "placeholder": "Menu 3 Item"
+              }
+            },
+            "href": {
+              "type": "Text",
+              "config": {
+                "label": "Footer Menu 3 Item Link",
+                "placeholder": "https://www.google.com"
+              }
+            }
+          },
+          "label": "Footer Menu 3 Items"
+        }
+      },
       "footer_contact_info": {
         "type": "Group",
         "config": {
@@ -182,6 +269,13 @@
                 "label": "Facebook URL",
                 "placeholder": "https://www.facebook.com/artikasapa"
               }
+            },
+            "twitter_url": {
+              "type": "Text",
+              "config": {
+                "label": "Twitter URL",
+                "placeholder": "https://www.twitter.com/artikasapa"
+              }
             }
           },
           "label": "Social Media Links"
@@ -207,6 +301,13 @@
             }
           },
           "label": "Privacy Policy"
+        }
+      },
+      "footer_copyright": {
+        "type": "Text",
+        "config": {
+          "label": "Footer Copyright",
+          "placeholder": "Artika – Valley of Arts. Bản quyền thuộc về Artika.."
         }
       }
     }

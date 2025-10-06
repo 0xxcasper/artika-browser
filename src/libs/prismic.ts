@@ -300,11 +300,29 @@ export type NavigationMenuDocument = prismic.PrismicDocumentWithUID<{
   footer_social_links: prismic.GroupField<{
     instagram_url: prismic.KeyTextField;
     facebook_url: prismic.KeyTextField;
+    twitter_url: prismic.KeyTextField;
   }>;
   footer_privacy_policy: prismic.GroupField<{
     privacy_policy_text: prismic.KeyTextField;
     privacy_policy_link: prismic.KeyTextField;
   }>;
+
+  footer_menu_1_title: prismic.KeyTextField;
+  footer_menu_1_items: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    href: prismic.KeyTextField;
+  }>;
+  footer_menu_2_title: prismic.KeyTextField;
+  footer_menu_2_items: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    href: prismic.KeyTextField;
+  }>;
+  footer_menu_3_title: prismic.KeyTextField;
+  footer_menu_3_items: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    href: prismic.KeyTextField;
+  }>;
+  footer_copyright: prismic.KeyTextField;
 }>;
 
 export type CollectionDocument = prismic.PrismicDocumentWithUID<{

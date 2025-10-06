@@ -7,11 +7,14 @@
 
   .content {
     display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
     justify-content: space-between;
     width: 100%;
     max-width: 1610px;
     padding: 100px;
     margin: 0 auto;
+
 
     @media (max-width: $breakpoint-md) {
       padding: 50px 16px;
@@ -135,7 +138,6 @@
         font-size: 14px;
         font-weight: 500;
         color: $text-inverse;
-        text-transform: uppercase;
         letter-spacing: 1px;
         text-decoration: none;
         transition: opacity 0.3s ease;
@@ -156,6 +158,19 @@
 
       &:hover {
         opacity: 0.8;
+      }
+    }
+
+    &__copyright {
+      &-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: $text-inverse;
+        letter-spacing: 1px;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+
+        @include font-secondary;
       }
     }
   }

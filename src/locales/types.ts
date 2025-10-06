@@ -56,11 +56,17 @@ export type FooterContactInfo = {
 export type FooterSocialLinks = {
   instagram_url: string;
   facebook_url: string;
+  twitter_url: string;
 };
 
 export type FooterPrivacyPolicy = {
   privacy_policy_text: string;
   privacy_policy_link: string;
+};
+
+export type FooterMenu = {
+  title: string;
+  href: string;
 };
 
 export type FooterData = {
@@ -71,6 +77,13 @@ export type FooterData = {
   footer_social_title: string;
   footer_social_links: FooterSocialLinks;
   footer_privacy_policy: FooterPrivacyPolicy;
+  footer_menu_1_title: string;
+  footer_menu_1_items: FooterMenu[];
+  footer_menu_2_title: string;
+  footer_menu_2_items: FooterMenu[];
+  footer_menu_3_title: string;
+  footer_menu_3_items: FooterMenu[];
+  footer_copyright: string;
 };
 
 export type NavigationData = {

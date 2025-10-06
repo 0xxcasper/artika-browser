@@ -60,11 +60,19 @@ const defaultFooterData: FooterData = {
   footer_social_links: {
     instagram_url: 'https://www.instagram.com/artikasapa',
     facebook_url: 'https://www.facebook.com/artikasapa',
+    twitter_url: 'https://www.twitter.com/artikasapa',
   },
   footer_privacy_policy: {
     privacy_policy_text: 'PRIVACY POLICY',
     privacy_policy_link: '/privacy-policy',
   },
+  footer_menu_1_title: '',
+  footer_menu_1_items: [],
+  footer_menu_2_title: '',
+  footer_menu_2_items: [],
+  footer_menu_3_title: '',
+  footer_menu_3_items: [],
+  footer_copyright: 'Artika – Valley of Arts. Bản quyền thuộc về Artika.',
 };
 
 const defaultNavigationItems = [
@@ -199,6 +207,9 @@ function extractFooterData(doc: any): FooterData {
       facebook_url:
         doc.data.footer_social_links?.[0]?.facebook_url ||
         defaultFooterData.footer_social_links.facebook_url,
+      twitter_url:
+        doc.data.footer_social_links?.[0]?.twitter_url ||
+        defaultFooterData.footer_social_links.twitter_url,
     },
     footer_privacy_policy: {
       privacy_policy_text:
@@ -208,6 +219,29 @@ function extractFooterData(doc: any): FooterData {
         doc.data.footer_privacy_policy?.[0]?.privacy_policy_link ||
         defaultFooterData.footer_privacy_policy.privacy_policy_link,
     },
+    footer_menu_1_title:
+      doc.data.footer_menu_1_title || defaultFooterData.footer_menu_1_title,
+    footer_menu_1_items:
+      doc.data.footer_menu_1_items?.map((item: any) => ({
+        title: item.title || '',
+        href: item.href || '',
+      })) || defaultFooterData.footer_menu_1_items,
+    footer_menu_2_title:
+      doc.data.footer_menu_2_title || defaultFooterData.footer_menu_2_title,
+    footer_menu_2_items:
+      doc.data.footer_menu_2_items?.map((item: any) => ({
+        title: item.title || '',
+        href: item.href || '',
+      })) || defaultFooterData.footer_menu_2_items,
+    footer_menu_3_title:
+      doc.data.footer_menu_3_title || defaultFooterData.footer_menu_3_title,
+    footer_menu_3_items:
+      doc.data.footer_menu_3_items?.map((item: any) => ({
+        title: item.title || '',
+        href: item.href || '',
+      })) || defaultFooterData.footer_menu_3_items,
+    footer_copyright:
+      doc.data.footer_copyright || defaultFooterData.footer_copyright,
   };
 }
 

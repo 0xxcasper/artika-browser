@@ -44,11 +44,19 @@ const defaultFooterData: FooterData = {
   footer_social_links: {
     instagram_url: 'https://www.instagram.com/artikasapa',
     facebook_url: 'https://www.facebook.com/artikasapa',
+    twitter_url: 'https://www.twitter.com/artikasapa',
   },
   footer_privacy_policy: {
     privacy_policy_text: 'PRIVACY POLICY',
     privacy_policy_link: '/privacy-policy',
   },
+  footer_menu_1_title: '',
+  footer_menu_1_items: [],
+  footer_menu_2_title: '',
+  footer_menu_2_items: [],
+  footer_menu_3_title: '',
+  footer_menu_3_items: [],
+  footer_copyright: 'Artika – Valley of Arts. Bản quyền thuộc về Artika.',
 };
 
 export function useNavigation() {
