@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Image } from '@chakra-ui/react';
 import './styles.scss';
+import { useRouter } from 'next/navigation';
 
 export interface GridCard {
   id: number;
@@ -11,6 +12,7 @@ export interface GridCard {
   title?: string;
   description?: string;
   hasOverlay?: boolean;
+  link?: string;
   overlayText?: {
     title: string;
     body: string;
@@ -69,6 +71,8 @@ export default function GridImages({
     },
   };
 
+  const router = useRouter();
+
   return (
     <section className={`grid-images ${className}`}>
       {title && (
@@ -86,6 +90,17 @@ export default function GridImages({
         <div className="grid-images__grid">
           {cards.map((card) => (
             <motion.div
+              style={{ cursor: card.link ? 'pointer' : 'default' }}
+              onClick={() => {
+                if (card.link) {
+                  // same domain push, diff open in new tab
+                  if (card.link.includes(window.location.origin)) {
+                    router.push(card.link);
+                  } else {
+                    window.open(card.link, '_blank');
+                  }
+                }
+              }}
               key={card.id}
               className={`grid-images__card ${card.hasOverlay ? 'grid-images__card--overlay' : ''}`}
               variants={{

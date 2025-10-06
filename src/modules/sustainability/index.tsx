@@ -68,12 +68,29 @@ const SustainabilityPage = ({
           unAcceptPaddingMb={true}
         />
 
-        {sustainabilityData.splitBanner.sections.length > 0 && (
+        {sustainabilityData?.splitBanner?.sections?.length > 0 && (
           <SplitBanner
-            sections={sustainabilityData.splitBanner.sections.map(
-              (section, index) => ({
+            sections={[sustainabilityData.splitBanner.sections[0]!].map(
+              (section) => ({
                 ...section,
-                textFirst: index % 2 !== 0,
+                textFirst: false,
+              }),
+            )}
+            unAcceptPaddingMb={true}
+          />
+        )}
+        <About
+          title={sustainabilityData.aboutSection3.title}
+          description={sustainabilityData.aboutSection3.description}
+          button={sustainabilityData.aboutSection3.buttonText}
+          unAcceptPaddingMb={true}
+        />
+        {sustainabilityData?.splitBanner?.sections?.length > 1 && (
+          <SplitBanner
+            sections={[sustainabilityData.splitBanner.sections[1]!].map(
+              (section) => ({
+                ...section,
+                textFirst: true,
               }),
             )}
             unAcceptPaddingMb={true}

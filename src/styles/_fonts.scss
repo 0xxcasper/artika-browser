@@ -258,11 +258,13 @@ $letter-spacing-widest: 0.1em;
 @mixin title-0 {
   @include font-primary;
 
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 300;
-  line-height: 64px;
+  line-height: 44px;
+  text-align: center;
   letter-spacing: -0.02em;
   white-space: pre-line;
+  leading-trim: cap_height;
 
   @media (max-width: $breakpoint-md) {
     font-size: 32px;

@@ -163,6 +163,7 @@ export function extractGridImagesData(params: {
         title: asText(item.title) || '',
         description: asText(item.description) || '',
         hasOverlay: !!item?.title,
+        link: asLink(item.link) || '',
         overlayText: {
           title: asText(item.title) || '',
           body: asText(item.description) || '',

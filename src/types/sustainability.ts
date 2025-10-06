@@ -28,6 +28,12 @@ export interface SustainabilityData {
     buttonText: string;
     buttonLink: string;
   };
+  aboutSection3: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+  };
   splitBanner: {
     sections: SplitBannerSection[];
   };

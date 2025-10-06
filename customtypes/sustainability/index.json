@@ -136,6 +136,36 @@
         }
       }
     },
+    "About Section 3": {
+      "about_3_title": {
+        "type": "Text",
+        "config": {
+          "label": "About Section 3 - Title",
+          "placeholder": "Đồng hành cùng cộng đồng bản địa"
+        }
+      },
+      "about_3_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Section 3 - Description",
+          "placeholder": "Đồng hành cùng cộng đồng bản địa"
+        }
+      },
+      "about_3_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "About Section 3 - Button Text",
+          "placeholder": "Button text (optional)"
+        }
+      },
+      "about_3_button_link": {
+        "type": "Text",
+        "config": {
+          "label": "About Section 3 - Button Link",
+          "placeholder": "Button link (optional)"
+        }
+      }
+    },
     "Split Banner Section": {
       "split_banner_sections": {
         "type": "Group",

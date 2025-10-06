@@ -1173,6 +1173,16 @@ export interface ExperiencesDocumentDataGridImagesItemsItem {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
+
+  /**
+   * Link field in *Experiences → Grid Images Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Link
+   * - **API ID Path**: experiences.grid_images_items[].link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  link: prismic.KeyTextField;
 }
 
 /**

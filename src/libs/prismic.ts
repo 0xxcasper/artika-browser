@@ -193,6 +193,7 @@ export type HomepageDocument = prismic.PrismicDocumentWithUID<{
     image_alt: prismic.KeyTextField;
     title: prismic.KeyTextField;
     description: prismic.RichTextField;
+    link: prismic.KeyTextField;
   }>;
   schedule_tour_title: prismic.RichTextField;
   schedule_tour_description: prismic.RichTextField;
@@ -370,6 +371,7 @@ export type ExperiencesDocument = prismic.PrismicDocumentWithUID<{
     image_alt: prismic.KeyTextField;
     title: prismic.KeyTextField;
     description: prismic.RichTextField;
+    link: prismic.KeyTextField;
   }>;
 }>;
 

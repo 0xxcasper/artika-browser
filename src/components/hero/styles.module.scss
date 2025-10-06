@@ -42,7 +42,6 @@
       opacity: 0;
 
       // Additional image optimizations
-      transform: translateZ(0);
       transform: translate3d(0, 0, 0);
       backface-visibility: hidden;
       transition: opacity 0.3s ease-out;
@@ -67,7 +66,8 @@
     transform: translate3d(0, 0, 0);
 
     h1 {
-      @include title-1;
+      @include title-0;
+
       color: $text-inverse;
       text-align: center;
       white-space: pre-line;
@@ -75,6 +75,7 @@
 
     p {
       @include body-1;
+
       max-width: 40rem;
       color: $text-inverse;
       text-align: center;
@@ -92,9 +93,9 @@
     backface-visibility: hidden;
 
     // animation up down
-    animation: upDown 2s ease-in-out infinite;
+    animation: up-down 2s ease-in-out infinite;
 
-    @keyframes upDown {
+    @keyframes up-down {
       0% {
         opacity: 1;
         transform: translate3d(0, 0, 0);

@@ -271,9 +271,16 @@
                 "allowTargetBlank": true,
                 "single": "paragraph"
               }
+            },
+            "link": {
+              "type": "Text",
+              "config": {
+                "label": "Link",
+                "placeholder": "https://example.com (optional)"
+              }
             }
           }
-        }
+        } 
       }
     }
   }

@@ -46,6 +46,12 @@ export function extractSustainabilityData(
         buttonText: data.about_2_button_text || '',
         buttonLink: data.about_2_button_link || '',
       },
+      aboutSection3: {
+        title: asText(data.about_3_title) || '',
+        description: asText(data.about_3_description) || '',
+        buttonText: data.about_3_button_text || '',
+        buttonLink: data.about_3_button_link || '',
+      },
       splitBanner: {
         sections:
           data.split_banner_sections?.map((section: any, index: number) => ({
