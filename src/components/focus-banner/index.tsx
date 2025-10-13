@@ -36,7 +36,7 @@ export default function FocusBanner({
   buttonLink,
   backgroundImage = '/assets/images/meditation-bg.jpg',
   onExploreClick,
-  aspectRatio = '1728/720',
+  // aspectRatio = '1728/720',
 }: FocusBannerProps) {
   return (
     <div className={styles.focusBanner}>
