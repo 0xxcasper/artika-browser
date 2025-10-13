@@ -48,7 +48,7 @@ export default function FocusBanner({
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          aspectRatio: aspectRatio,
+          // aspectRatio: aspectRatio,
         }}
       />
 
@@ -74,22 +74,24 @@ export default function FocusBanner({
             {description}
           </motion.p>
 
-          <motion.div
-            variants={textVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-          >
-            <Button
-              href={buttonLink}
-              onClick={onExploreClick}
-              variant="secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          {buttonText && (
+            <motion.div
+              variants={textVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
             >
-              {buttonText}
-            </Button>
-          </motion.div>
+              <Button
+                href={buttonLink}
+                onClick={onExploreClick}
+                variant="secondary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {buttonText}
+              </Button>
+            </motion.div>
+          )}
         </div>
       </div>
     </div>

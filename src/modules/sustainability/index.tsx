@@ -14,12 +14,22 @@ const SustainabilityPage = ({
 }: SustainabilityPageProps) => {
   return (
     <Box className="container-no-padding">
-      <Box className="container" maxWidth="1568px" mx="auto" pb="0px">
+      <Box
+        className="container"
+        maxWidth="1568px"
+        mx="auto"
+        pb="0px"
+        gap={{
+          base: '80px',
+          md: '100px',
+        }}
+      >
         <About
           title={sustainabilityData.aboutSection1.title}
           description={sustainabilityData.aboutSection1.description}
           button={sustainabilityData.aboutSection1.buttonText}
           unAcceptPaddingMb={true}
+          type="header"
         />
 
         <motion.div

@@ -17,22 +17,23 @@
   &__header {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
     align-items: center;
     justify-content: center;
     max-width: 740px;
 
     &__title {
       h1 {
-        @include title-1;
-
-        color: $text-primary;
+        @include title-0;
         text-align: center;
+        margin-bottom: 24px;
+
+        @media (max-width: $breakpoint-md) {
+          margin-bottom: 16px;
+        }
       }
 
       p {
         @include body-1;
-
         text-align: center;
       }
     }
@@ -41,7 +42,7 @@
   &__grids {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 102px 32px;
+    grid-gap: 80px 32px;
 
     // gap horizontal
     width: 100%;
@@ -82,14 +83,10 @@
 
         &__title {
           @include body-1;
-
-          color: #000;
         }
 
         &__description {
           @include body-1;
-
-          color: #000;
         }
 
         &__material {

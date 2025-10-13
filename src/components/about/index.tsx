@@ -10,6 +10,7 @@ interface AboutProps {
   button: string;
   buttonLink?: string;
   unAcceptPaddingMb?: boolean;
+  type?: 'section' | 'header';
 }
 
 const variants = {
@@ -34,11 +35,19 @@ const About = ({
   button,
   buttonLink,
   unAcceptPaddingMb = false,
+  type = 'section',
 }: AboutProps) => {
   return (
     <section className={styles.about}>
       <motion.div
-        className={`${styles.aboutContainer} ${unAcceptPaddingMb ? styles.aboutContainer__unAcceptPaddingMb : ''}`}
+        className={`
+          ${styles.aboutContainer} 
+          ${unAcceptPaddingMb ? styles.aboutContainer__unAcceptPaddingMb : ''} 
+          ${
+            type === 'header'
+              ? styles.aboutContainer__header
+              : styles.aboutContainer__section
+          }`}
         initial="hidden"
         whileInView="visible"
         variants={variants}
