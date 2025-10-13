@@ -1,0 +1,337 @@
+{
+  "id": "guide",
+  "label": "Guide",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Hero Section": {
+      "hero_title": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Title",
+          "placeholder": "Guide hero title"
+        }
+      },
+      "hero_subtitle": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Subtitle",
+          "placeholder": "Guide hero subtitle",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      },
+      "hero_background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Background Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "hero_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    },
+    "About Section": {
+      "about_title": {
+        "type": "Text",
+        "config": {
+          "label": "About Title",
+          "placeholder": "Guide about title"
+        }
+      },
+      "about_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Description",
+          "placeholder": "Guide about description",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      },
+      "about_button_text": {
+        "type": "Text",
+        "config": {
+          "label": "About Button Text",
+          "placeholder": "About section button text"
+        }
+      },
+      "about_button_link": {
+        "type": "Text",
+        "config": {
+          "label": "About Button Link",
+          "placeholder": "About section button link"
+        }
+      }
+    },
+    "Split Banner Section": {
+      "split_banner_sections": {
+        "type": "Group",
+        "config": {
+          "label": "Split Banner Sections",
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Section Title",
+                "placeholder": "Section title"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Description",
+                "placeholder": "Section description",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "cta_text": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Text",
+                "placeholder": "Call to action text"
+              }
+            },
+            "cta_link": {
+              "type": "Text",
+              "config": {
+                "label": "CTA Link",
+                "placeholder": "Call to action link"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Section Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "image_alt": {
+              "type": "Text",
+              "config": {
+                "label": "Image Alt Text",
+                "placeholder": "Image alt text"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Prepare Title Section": {
+      "prepare_title_section": {
+        "type": "Text",
+        "config": {
+          "label": "Prepare Title Section",
+          "placeholder": "Prepare title section"
+        }
+      }
+    },
+    "Prepare Items Section": {
+      "prepare_items_sections": {
+        "type": "Group",
+        "config": {
+          "label": "Prepare Items Sections",
+          "fields": {
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Description",
+                "placeholder": "Section description",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Section Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "Map Section": {
+      "map_sections": {
+        "type": "Group",
+        "config": {
+          "label": "Map Sections",
+          "fields": {
+            "title": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Title",
+                "placeholder": "Section title",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Description",
+                "placeholder": "Section description",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "link": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Section Link",
+                "placeholder": "Section link",
+                "allowTargetBlank": true,
+                "single": "paragraph"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Section Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "Schedule Tour Section": {
+      "schedule_tour_title": {
+        "type": "Text",
+        "config": {
+          "label": "Schedule Tour Title",
+          "placeholder": "Guide schedule tour title"
+        }
+      },
+      "schedule_tour_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Schedule Tour Description",
+          "placeholder": "Guide schedule tour description",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+        }
+      },
+      "schedule_tour_form_config": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "phone_placeholder": {
+              "type": "Text",
+              "config": {
+                "label": "Phone Input Placeholder",
+                "placeholder": "Số điện thoại"
+              }
+            },
+            "email_placeholder": {
+              "type": "Text",
+              "config": {
+                "label": "Email Input Placeholder",
+                "placeholder": "Email"
+              }
+            },
+            "date_placeholder": {
+              "type": "Text",
+              "config": {
+                "label": "Date Input Placeholder",
+                "placeholder": "Select Date"
+              }
+            },
+            "button_text": {
+              "type": "Text",
+              "config": {
+                "label": "Submit Button Text",
+                "placeholder": "Đặt lịch ngay!"
+              }
+            }
+          },
+          "label": "Form Configuration"
+        }
+      },
+      "schedule_tour_messages": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "success_message": {
+              "type": "Text",
+              "config": {
+                "label": "Success Message",
+                "placeholder": "Thank you! We will contact you soon to confirm your tour schedule."
+              }
+            },
+            "error_message": {
+              "type": "Text",
+              "config": {
+                "label": "Error Message",
+                "placeholder": "Something went wrong. Please try again."
+              }
+            }
+          },
+          "label": "Messages"
+        }
+      },
+      "schedule_tour_validation_messages": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "phone_required": {
+              "type": "Text",
+              "config": {
+                "label": "Phone Required Message",
+                "placeholder": "Please enter your phone number"
+              }
+            },
+            "email_required": {
+              "type": "Text",
+              "config": {
+                "label": "Email Required Message",
+                "placeholder": "Please enter your email address"
+              }
+            },
+            "date_required": {
+              "type": "Text",
+              "config": {
+                "label": "Date Required Message",
+                "placeholder": "Please select a tour date"
+              }
+            },
+            "phone_invalid": {
+              "type": "Text",
+              "config": {
+                "label": "Phone Invalid Message",
+                "placeholder": "Please enter a valid phone number"
+              }
+            },
+            "email_invalid": {
+              "type": "Text",
+              "config": {
+                "label": "Email Invalid Message",
+                "placeholder": "Please enter a valid email address"
+              }
+            },
+            "date_future": {
+              "type": "Text",
+              "config": {
+                "label": "Date Future Message",
+                "placeholder": "Please select a future date"
+              }
+            }
+          },
+          "label": "Validation Messages"
+        }
+      }
+    }
+  }
+}

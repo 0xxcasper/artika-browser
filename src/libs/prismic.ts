@@ -432,3 +432,54 @@ export type PersonalMuseumDocument = prismic.PrismicDocumentWithUID<{
     date_future: prismic.KeyTextField;
   }>;
 }>;
+
+export type GuideDocument = prismic.PrismicDocumentWithUID<{
+  hero_title: prismic.TitleField;
+  hero_subtitle: prismic.RichTextField;
+  hero_background_image: prismic.ImageField;
+  hero_logo: prismic.ImageField;
+
+  about_title: prismic.TitleField;
+  about_description: prismic.RichTextField;
+  about_button_text: prismic.KeyTextField;
+  about_button_link: prismic.KeyTextField;
+  split_banner_sections: prismic.GroupField<{
+    title: prismic.KeyTextField;
+    description: prismic.RichTextField;
+    cta_text: prismic.KeyTextField;
+    cta_link: prismic.KeyTextField;
+    image: prismic.ImageField;
+    image_alt: prismic.KeyTextField;
+  }>;
+  prepare_title_section: prismic.KeyTextField;
+  prepare_items_sections: prismic.GroupField<{
+    description: prismic.RichTextField;
+    image: prismic.ImageField;
+  }>;
+  map_sections: prismic.GroupField<{
+    title: prismic.RichTextField;
+    description: prismic.RichTextField;
+    link: prismic.RichTextField;
+    image: prismic.ImageField;
+  }>;
+  schedule_tour_title: prismic.KeyTextField;
+  schedule_tour_description: prismic.RichTextField;
+  schedule_tour_form_config: prismic.GroupField<{
+    phone_placeholder: prismic.KeyTextField;
+    email_placeholder: prismic.KeyTextField;
+    date_placeholder: prismic.KeyTextField;
+    button_text: prismic.KeyTextField;
+  }>;
+  schedule_tour_messages: prismic.GroupField<{
+    success_message: prismic.KeyTextField;
+    error_message: prismic.KeyTextField;
+  }>;
+  schedule_tour_validation_messages: prismic.GroupField<{
+    phone_required: prismic.KeyTextField;
+    email_required: prismic.KeyTextField;
+    date_required: prismic.KeyTextField;
+    phone_invalid: prismic.KeyTextField;
+    email_invalid: prismic.KeyTextField;
+    date_future: prismic.KeyTextField;
+  }>;
+}>;

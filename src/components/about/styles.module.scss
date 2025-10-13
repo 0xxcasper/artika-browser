@@ -19,26 +19,32 @@
 
     &__header {
       gap: 32px;
+
       h1 {
         @include title-0;
+
         text-align: center;
       }
 
       p {
         @include body-1;
+
         text-align: center;
       }
     }
 
     &__section {
       gap: 24px;
+
       h1 {
         @include title-1;
+
         text-align: center;
       }
   
       p {
         @include body-1;
+
         text-align: center;
       }
     }

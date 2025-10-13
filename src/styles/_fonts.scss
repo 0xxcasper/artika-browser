@@ -306,9 +306,9 @@ $letter-spacing-widest: 0.1em;
 
 @mixin title-3 {
   @include font-secondary;
-  font-family: Raleway;
-  font-weight: 600;
+
   font-size: 24px;
+  font-weight: 600;
   line-height: 40px;
   letter-spacing: 0%;
   white-space: pre-line;

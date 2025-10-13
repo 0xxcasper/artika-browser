@@ -1,0 +1,57 @@
+@import '@/styles/variables';
+@import '@/styles/fonts';
+
+.prepareSection {
+  display: flex;
+  flex-direction: column;
+  gap: 73px;
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 0 1rem;
+  }
+}
+
+.title {
+  @include title-0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 80px;
+
+
+  @media (max-width: $breakpoint-xl) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+}
+
+.icon {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+.description {
+  @include body-2;
+}
+
+

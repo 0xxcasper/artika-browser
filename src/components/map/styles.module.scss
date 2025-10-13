@@ -1,0 +1,94 @@
+@import '@/styles/variables';
+@import '@/styles/fonts';
+
+.mapSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  max-width: 1566px;
+  margin: 0 1rem;
+  text-align: center
+}
+
+.title {
+  @include title-0;
+}
+
+.description {
+  @include body-2;
+
+  color: $text-secondary;
+}
+
+.downloadLink {
+  @include body-2;
+
+  color: $accent-primary;
+  text-decoration: underline;
+}
+
+.viewer {
+  position: relative;
+  width: 100%;
+
+  // height: 640px;
+  overflow: hidden;
+  background: $bg-muted;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+}
+
+.toolbar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px;
+  background: rgb(255 255 255 / 85%);
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  box-shadow: 0 2px 8px $shadow-color;
+
+  button {
+    @include body-2;
+
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    cursor: pointer;
+    background: $bg-primary;
+    border: 1px solid $border-color;
+    border-radius: $radius-sm;
+    transition: transform $transition-fast, background $transition-fast;
+
+    &:hover {
+      background: $bg-secondary;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .divider {
+    width: 1px;
+    height: 24px;
+    margin: 0 4px;
+    background: $border-color;
+  }
+}
+
+.image {
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
