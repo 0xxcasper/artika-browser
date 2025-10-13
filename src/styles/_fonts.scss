@@ -23,11 +23,11 @@ $font-weight-bold: 700;
 $font-weight-extrabold: 800;
 
 // Font Sizes
-$font-size-xs: 0.75rem; // 12px
-$font-size-sm: 0.875rem; // 14px
-$font-size-base: 1rem; // 16px
-$font-size-lg: 1.125rem; // 18px
-$font-size-xl: 1.25rem; // 20px
+$font-size-xs: 12px; // 12px
+$font-size-sm: 14px; // 14px
+$font-size-base: 16px; // 16px
+$font-size-lg: 18px; // 18px
+$font-size-xl: 20px; // 20px
 $font-size-2xl: 1.75rem; // 28px
 $font-size-3xl: 1.875rem; // 30px
 $font-size-4xl: 2.25rem; // 36px
@@ -303,6 +303,22 @@ $letter-spacing-widest: 0.1em;
     line-height: 32px;
   }
 }
+
+@mixin title-3 {
+  @include font-secondary;
+  font-family: Raleway;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: 0%;
+  white-space: pre-line;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
 
 @mixin title-4 {
   @include font-secondary;
