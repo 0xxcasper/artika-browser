@@ -1,4 +1,5 @@
 import type { SplitBannerSection } from '@/components/split-banner';
+import type { ScheduleTourData } from './schedule-tour';
 
 export interface SustainabilityData {
   aboutSection1: {
@@ -46,6 +47,7 @@ export interface SustainabilityData {
       alt: string;
     }>;
   };
+  scheduleTour: ScheduleTourData;
 }
 
 export interface SustainabilityPageProps {

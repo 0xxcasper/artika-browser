@@ -21,6 +21,7 @@ export interface TourSubmission {
   read: boolean;
   note?: string;
   readAt?: Date;
+  link?: string;
 }
 
 // Newsletter subscription interface
@@ -52,6 +53,7 @@ export class TourSubmissionService {
     try {
       const submissionData = {
         ...data,
+        link: window.location.href,
         submittedAt: new Date(),
         read: false,
       };
@@ -87,6 +89,7 @@ export class TourSubmissionService {
           name: data.name,
           phone: data.phone,
           email: data.email,
+          link: data.link,
           // Convert Firestore timestamp to Date
           tourDate: data.tourDate?.toDate
             ? data.tourDate.toDate()

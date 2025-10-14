@@ -2,6 +2,7 @@
 
 import { TourSubmission } from '@/libs/firestore';
 import { formatDate, formatTourDate } from '@/modules/admin/utils/dateUtils';
+import { Box, Text } from '@chakra-ui/react';
 
 interface TourRequestsTableProps {
   submissions: TourSubmission[];
@@ -73,7 +74,21 @@ export default function TourRequestsTable({
                   {formatTourDate(submission.tourDate)}
                 </td>
                 <td className="date-cell">
-                  {formatDate(submission.submittedAt)}
+                  <Box h="42px">
+                    <Text>{formatDate(submission.submittedAt)}</Text>
+                    <Text>
+                      {(() => {
+                        try {
+                          if (!submission.link) return null;
+                          const url = new URL(submission.link);
+                          // + url.search + url.hash;
+                          return url.pathname;
+                        } catch {
+                          return submission.link;
+                        }
+                      })()}
+                    </Text>
+                  </Box>
                 </td>
                 <td className="status-cell">
                   {!submission.read ? (
@@ -85,8 +100,7 @@ export default function TourRequestsTable({
                 <td className="note-cell">
                   {submission.note ? (
                     <span className="note-text" title={submission.note}>
-                      {submission.note} shdjhfhjdf sgdsjgshghds hdjfhdjfhjdhjdh
-                      sjusjsgds
+                      {submission.note}
                     </span>
                   ) : (
                     '-'
@@ -110,15 +124,22 @@ export default function TourRequestsTable({
                         >
                           📝
                         </button>
+                        <button
+                          onClick={() => onDelete(submission.id)}
+                          className="action-button delete"
+                          title="Delete"
+                        >
+                          ×
+                        </button>
                       </>
                     )}
-                    <button
+                    {/* <button
                       onClick={() => onDelete(submission.id)}
                       className="action-button delete"
                       title="Delete"
                     >
                       ×
-                    </button>
+                    </button> */}
                   </div>
                 </td>
               </tr>

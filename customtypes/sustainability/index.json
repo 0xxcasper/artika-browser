@@ -266,6 +266,132 @@
           }
         }
       }
+    },
+    "Schedule Tour Section": {
+      "schedule_tour_title": {
+        "type": "Text",
+        "config": {
+          "label": "Schedule Tour Title",
+          "placeholder": "Guide schedule tour title"
+        }
+      },
+      "schedule_tour_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Schedule Tour Description",
+          "placeholder": "Guide schedule tour description",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+        }
+      },
+      "schedule_tour_form_config": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "phone_placeholder": {
+              "type": "Text",
+              "config": {
+                "label": "Phone Input Placeholder",
+                "placeholder": "Số điện thoại"
+              }
+            },
+            "email_placeholder": {
+              "type": "Text",
+              "config": {
+                "label": "Email Input Placeholder",
+                "placeholder": "Email"
+              }
+            },
+            "date_placeholder": {
+              "type": "Text",
+              "config": {
+                "label": "Date Input Placeholder",
+                "placeholder": "Select Date"
+              }
+            },
+            "button_text": {
+              "type": "Text",
+              "config": {
+                "label": "Submit Button Text",
+                "placeholder": "Đặt lịch ngay!"
+              }
+            }
+          },
+          "label": "Form Configuration"
+        }
+      },
+      "schedule_tour_messages": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "success_message": {
+              "type": "Text",
+              "config": {
+                "label": "Success Message",
+                "placeholder": "Thank you! We will contact you soon to confirm your tour schedule."
+              }
+            },
+            "error_message": {
+              "type": "Text",
+              "config": {
+                "label": "Error Message",
+                "placeholder": "Something went wrong. Please try again."
+              }
+            }
+          },
+          "label": "Messages"
+        }
+      },
+      "schedule_tour_validation_messages": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "phone_required": {
+              "type": "Text",
+              "config": {
+                "label": "Phone Required Message",
+                "placeholder": "Please enter your phone number"
+              }
+            },
+            "email_required": {
+              "type": "Text",
+              "config": {
+                "label": "Email Required Message",
+                "placeholder": "Please enter your email address"
+              }
+            },
+            "date_required": {
+              "type": "Text",
+              "config": {
+                "label": "Date Required Message",
+                "placeholder": "Please select a tour date"
+              }
+            },
+            "phone_invalid": {
+              "type": "Text",
+              "config": {
+                "label": "Phone Invalid Message",
+                "placeholder": "Please enter a valid phone number"
+              }
+            },
+            "email_invalid": {
+              "type": "Text",
+              "config": {
+                "label": "Email Invalid Message",
+                "placeholder": "Please enter a valid email address"
+              }
+            },
+            "date_future": {
+              "type": "Text",
+              "config": {
+                "label": "Date Future Message",
+                "placeholder": "Please select a future date"
+              }
+            }
+          },
+          "label": "Validation Messages"
+        }
+      }
     }
   }
 }

@@ -7,7 +7,7 @@ import RowText from '@/components/row-text';
 import { Box, Image } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import type { SustainabilityPageProps } from '@/types/sustainability';
-import HorizontalList from './components/HorizontalList';
+import ScheduleTourForm from '@/components/schedule-tour-form';
 
 const SustainabilityPage = ({
   sustainabilityData,
@@ -107,12 +107,14 @@ const SustainabilityPage = ({
           />
         )}
       </Box>
-      <Box mx="auto" px="0">
+      {/* <Box mx="auto" px="0">
         <HorizontalList
           title={sustainabilityData.horizontalList.title}
           items={sustainabilityData.horizontalList.items}
         />
-      </Box>
+      </Box> */}
+
+      <ScheduleTourForm tourData={sustainabilityData.scheduleTour} />
     </Box>
   );
 };
