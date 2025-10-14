@@ -54,7 +54,9 @@ export function extractGuideData(guideDoc: any): GuideData | null {
       scheduleTour: {
         title: data.schedule_tour_title || '',
         description: asText(data.schedule_tour_description) || '',
-        formConfig: {
+        subtitle: data.schedule_tour_subtitle || '',
+        subDescription: asText(data.schedule_tour_sub_description) || '',
+        form: {
           phonePlaceholder:
             data.schedule_tour_form_config?.[0]?.phone_placeholder || '',
           emailPlaceholder:
@@ -68,7 +70,7 @@ export function extractGuideData(guideDoc: any): GuideData | null {
             data.schedule_tour_messages?.[0]?.success_message || '',
           errorMessage: data.schedule_tour_messages?.[0]?.error_message || '',
         },
-        validationMessages: {
+        validation: {
           phoneRequired:
             data.schedule_tour_validation_messages?.[0]?.phone_required || '',
           emailRequired:

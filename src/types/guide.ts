@@ -44,7 +44,9 @@ export interface GuideData {
   scheduleTour: {
     title: string;
     description: string;
-    formConfig: {
+    subtitle: string;
+    subDescription: string;
+    form: {
       phonePlaceholder: string;
       emailPlaceholder: string;
       datePlaceholder: string;
@@ -54,7 +56,7 @@ export interface GuideData {
       successMessage: string;
       errorMessage: string;
     };
-    validationMessages: {
+    validation: {
       phoneRequired: string;
       emailRequired: string;
       dateRequired: string;

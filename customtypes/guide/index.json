@@ -224,6 +224,22 @@
           "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
         }
       },
+      "schedule_tour_subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Schedule Tour Subtitle",
+          "placeholder": "Guide schedule tour subtitle"
+        }
+      },
+      "schedule_tour_sub_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Schedule Tour Sub Description",
+          "placeholder": "Guide schedule tour sub description",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+        }
+      },
       "schedule_tour_form_config": {
         "type": "Group",
         "config": {

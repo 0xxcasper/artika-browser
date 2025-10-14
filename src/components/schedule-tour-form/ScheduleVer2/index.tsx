@@ -5,7 +5,7 @@ import { useScheduleTourSubmission } from '@/hooks/useFirestore';
 import type { ScheduleTourData } from '@/types/schedule-tour';
 import Image from 'next/image';
 import { useState } from 'react';
-import DatePicker from './DatePicker';
+import DatePicker from '@/components/schedule-tour-form/DatePicker';
 import styles from './styles.module.scss';
 
 interface ScheduleTourFormData {
@@ -18,7 +18,7 @@ interface ScheduleTourFormProps {
   tourData?: ScheduleTourData | null;
 }
 
-const ScheduleTourForm = ({ tourData }: ScheduleTourFormProps) => {
+const ScheduleTourFormVer2 = ({ tourData }: ScheduleTourFormProps) => {
   const { language } = useLanguage();
   const [formData, setFormData] = useState<ScheduleTourFormData>({
     phone: '',
@@ -170,11 +170,14 @@ const ScheduleTourForm = ({ tourData }: ScheduleTourFormProps) => {
   return (
     <div className={styles.scheduleTourForm}>
       <div className={styles.formContent}>
-        <div className={styles.formText}>
+        <div className={styles.formTitle}>
           <h1>{tourData?.title || 'Schedule Tour'}</h1>
           <p>{tourData?.description || 'Book your tour today!'}</p>
         </div>
-
+        <div className={styles.formSubtitle}>
+          <h1>{tourData?.subtitle || 'Schedule Tour'}</h1>
+          <p>{tourData?.subDescription || 'Book your tour today!'}</p>
+        </div>
         <form
           onSubmit={handleSubmit}
           className={styles.formContainer}
@@ -259,4 +262,4 @@ const ScheduleTourForm = ({ tourData }: ScheduleTourFormProps) => {
   );
 };
 
-export default ScheduleTourForm;
+export default ScheduleTourFormVer2;

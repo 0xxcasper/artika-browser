@@ -3,6 +3,7 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { motion } from 'framer-motion';
 
 interface MapProps {
   title?: string;
@@ -16,19 +17,55 @@ interface MapProps {
   initialScale?: number;
 }
 
-export default function Map({
-  title,
-  description,
-  linkHref,
-  linkLabel = 'Tải bản đồ ở đây',
-  image,
-  alt = 'map',
-  maxScale = 3,
-  minScale = 0.6,
-  initialScale = 1,
-}: MapProps) {
+const initProps: MapProps = {
+  maxScale: 3,
+  minScale: 0.6,
+  initialScale: 1,
+  linkHref: '',
+  linkLabel: 'Tải bản đồ ở đây',
+  image: '',
+  alt: 'map',
+};
+
+const variants = {
+  hidden: { opacity: 0, y: 40, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    damping: 10,
+    stiffness: 100,
+    mass: 0.8,
+    transition: { duration: 0.8, ease: [0.34, 1.56, 0.64, 1] },
+  },
+};
+
+const viewPort = {
+  once: true,
+  margin: '0px',
+};
+
+const Map = ({ ...props }: MapProps) => {
+  const {
+    title,
+    description,
+    linkHref,
+    linkLabel,
+    image,
+    alt,
+    maxScale,
+    minScale,
+    initialScale,
+  } = { ...initProps, ...props };
+
   return (
-    <section className={styles.mapSection}>
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      variants={variants}
+      viewport={viewPort}
+      className={styles.mapSection}
+    >
       {title ? <h2 className={styles.title}>{title}</h2> : null}
       {description ? <p className={styles.description}>{description}</p> : null}
       {linkHref ? (
@@ -80,6 +117,8 @@ export default function Map({
           )}
         </TransformWrapper>
       </div>
-    </section>
+    </motion.section>
   );
-}
+};
+
+export default Map;

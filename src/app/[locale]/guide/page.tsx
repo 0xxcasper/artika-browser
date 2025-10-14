@@ -15,6 +15,7 @@ const GuidePage = async ({ params }: { params: { locale: 'en' | 'vi' } }) => {
   if (!guideData) {
     return null;
   }
+
   return <Guide guideData={guideData} />;
 };
 

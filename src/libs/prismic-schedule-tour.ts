@@ -12,11 +12,7 @@ import { asText } from './prismic-helpers';
  * @returns Formatted schedule tour data object
  */
 export function extractScheduleTourData(
-  pageData:
-    | HomepageDocument
-    | ForestBathingDocument
-    | PersonalMuseumDocument
-    | null,
+  pageData: any | null,
 ): ScheduleTourData | null {
   if (!pageData || !pageData.data) {
     return null;
@@ -28,6 +24,10 @@ export function extractScheduleTourData(
     // Basic tour info
     title: asText(data.schedule_tour_title) || '',
     description: asText(data.schedule_tour_description) || '',
+    subtitle: data?.schedule_tour_subtitle || '',
+    subDescription:
+      data?.schedule_tour_sub_description ??
+      (asText(data?.schedule_tour_sub_description) || ''),
 
     // Form configuration
     form: {

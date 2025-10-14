@@ -21,7 +21,9 @@ export interface ScheduleTourValidation {
 
 export interface ScheduleTourData {
   title: any;
-  description: any; // RichTextField from Prismic
+  description: any;
+  subtitle?: any;
+  subDescription?: any;
   form: ScheduleTourFormConfig;
   messages: ScheduleTourMessages;
   validation: ScheduleTourValidation;

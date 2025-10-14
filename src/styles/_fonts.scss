@@ -334,6 +334,22 @@ $letter-spacing-widest: 0.1em;
   }
 }
 
+@mixin title-5 {
+  @include font-primary;
+
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 64px;
+  letter-spacing: -0.02em;
+  white-space: pre-line;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+
 // Body Styles
 
 @mixin body-1 {
@@ -376,6 +392,10 @@ $letter-spacing-widest: 0.1em;
 
 .title-4 {
   @include title-4;
+}
+
+.title-5 {
+  @include title-5;
 }
 
 // Body Styles

@@ -1,55 +1,64 @@
 @import '@/styles/fonts';
 @import '@/styles/variables';
 
-.schedule-tour-form {
+.scheduleTourForm {
   width: 100%;
+  max-width: 792px;
+  padding: 0 16px;
+  margin: 0 auto;
 
-  .form-content {
+  .formContent {
     display: flex;
-    gap: 4rem;
+    flex-direction: column;
+    gap: 60px;
     align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    padding: 0 2rem;
-    margin: 0 auto;
 
-
-    @media (max-width: $breakpoint-lg) {
-      flex-direction: column;
-      gap: 2rem;
-      align-items: flex-start;
-      padding: 0 1rem;
+    @media (max-width: $breakpoint-md) {
+      gap: 40px;
     }
   }
 
-  .form-text {
+  .formTitle {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 1.5rem;
-    max-width: 698px;
+    gap: 24px;
 
     h1 {
-      font-size: 64px;
-      font-weight: 300;
-      line-height: 64px;
-      letter-spacing: -0.02em;
-      white-space: pre-line;
+      @include title-5;
 
-      @include font-primary;
-
-      @media screen and (max-width: $breakpoint-md) {
-        @include title-1;
-      }
+      text-align: center
     }
 
     p {
       @include body-1;
-      @include font-secondary;
+
+      text-align: center;
     }
   }
 
-  .form-container {
+  .formSubtitle {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 18px;
+
+    h1 {
+      @include title-4;
+
+      font-weight: 600;
+      text-align: center
+    }
+
+    p {
+      @include body-1;
+
+      text-align: center;
+    }
+  }
+
+
+  .formContainer {
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
@@ -61,7 +70,7 @@
       max-width: 100%;
     }
 
-    .form-input {
+    .formInput {
       width: 100%;
       height: 48px;
       padding: 0 1.5rem;
@@ -94,25 +103,25 @@
       }
     }
 
-    .date-input-container {
+    .dateInputContainer {
       position: relative;
       display: flex;
       align-items: center;
 
-      .date-input {
+      .dateInput {
         padding-right: 3rem;
         cursor: pointer;
         background: white;
       }
 
-      .date-picker-button {
+      .datePickerButton {
         position: absolute;
         top: calc(50% - 5px);
         right: 1rem;
       }
     }
 
-    .submit-button {
+    .submitButton {
       @include text-lg;
       @include font-secondary;
 
@@ -152,12 +161,9 @@
     margin: 1rem auto 0;
     font-size: 0.9rem;
     text-align: center;
+    background: red;
     border-radius: 6px;
     animation: slide-in 0.3s ease-out;
-
-    @media (max-width: $breakpoint-md) {
-      max-width: 100%;
-    }
 
     &.success {
       color: #166534;
@@ -169,6 +175,10 @@
       color: #dc2626;
       background: #fef2f2;
       border: 1px solid #fecaca;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      max-width: 100%;
     }
   }
 }
