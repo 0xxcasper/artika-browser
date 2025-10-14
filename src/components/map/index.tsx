@@ -47,7 +47,7 @@ export default function Map({
           initialScale={initialScale}
           minScale={minScale}
           maxScale={maxScale}
-          wheel={{ step: 0.1 }}
+          wheel={{ disabled: true }}
           doubleClick={{ disabled: true }}
         >
           {({ zoomIn, zoomOut, resetTransform, centerView }) => (
