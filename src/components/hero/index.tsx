@@ -61,9 +61,11 @@ export default function Hero({ title, subtitle, backgroundImage }: HeroProps) {
 
   const backgroundVariants = {
     hidden: {
+      scale: 1.1,
       opacity: 0,
     },
     visible: {
+      scale: 1.0,
       opacity: 1,
       transition: {
         duration: 1.2,
