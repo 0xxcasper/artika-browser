@@ -17,11 +17,11 @@ export default function Hero({ title, subtitle, backgroundImage }: HeroProps) {
   // Track scroll progress relative to the hero component
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ['start start', 'end start'],
   });
 
   // Raw transform values
-  const scaleRaw = useTransform(scrollYProgress, [0, 1], [1.1, 1.6]);
+  const scaleRaw = useTransform(scrollYProgress, [0, 1], [1.0, 1.6]);
   const yRaw = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const rotateXRaw = useTransform(scrollYProgress, [0, 1], [0, 15]);
   const rotateYRaw = useTransform(scrollYProgress, [0, 1], [0, -8]);
@@ -61,11 +61,9 @@ export default function Hero({ title, subtitle, backgroundImage }: HeroProps) {
 
   const backgroundVariants = {
     hidden: {
-      scale: 1.1,
       opacity: 0,
     },
     visible: {
-      scale: 1.1,
       opacity: 1,
       transition: {
         duration: 1.2,
