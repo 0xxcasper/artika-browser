@@ -141,7 +141,7 @@ export default function Hero({ title, subtitle, backgroundImage }: HeroProps) {
             alt="Hero background"
             width="100%"
             height="100%"
-            objectFit="cover"
+            objectFit="initial"
             objectPosition="center"
             draggable={false}
             loading="eager"
