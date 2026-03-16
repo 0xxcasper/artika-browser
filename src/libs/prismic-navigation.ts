@@ -292,7 +292,7 @@ export async function fetchNavigation(locale: string): Promise<NavigationData> {
         newsletterForm,
         footerData,
       };
-    } catch (docError) {
+    } catch {
       // Return fallback navigation
       return {
         items: defaultNavigationItems,
@@ -331,7 +331,7 @@ export async function fetchScheduleTourForm(
 
       const scheduleTourForm = extractScheduleTourFormData(doc);
       return scheduleTourForm;
-    } catch (docError) {
+    } catch {
       return defaultScheduleTourForm;
     }
   } catch (error) {
@@ -356,7 +356,7 @@ export async function fetchNewsletterForm(
 
       const newsletterForm = extractNewsletterFormData(doc);
       return newsletterForm;
-    } catch (docError) {
+    } catch {
       return defaultNewsletterForm;
     }
   } catch (error) {
@@ -379,7 +379,7 @@ export async function fetchFooterData(locale: string): Promise<FooterData> {
 
       const footerData = extractFooterData(doc);
       return footerData;
-    } catch (docError) {
+    } catch {
       return defaultFooterData;
     }
   } catch (error) {

@@ -20,7 +20,9 @@ interface ExperiencesPageProps {
 export default function ExperiencesPage({
   experiencesData,
 }: ExperiencesPageProps) {
-  const { hero, about } = extractCommonPageData({ data: experiencesData?.data });
+  const { hero, about } = extractCommonPageData({
+    data: experiencesData?.data,
+  });
   const splitBannerData = extractSplitBannerData({
     sections: experiencesData?.data?.split_banner_sections,
     fallbackImagePath: '/images/experiences/section',

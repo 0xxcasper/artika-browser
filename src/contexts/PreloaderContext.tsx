@@ -137,7 +137,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
         await Promise.all([checkFonts(), checkImages()]);
 
         _updateAssetsLoaded();
-      } catch (error) {
+      } catch {
         _updateAssetsLoaded();
       }
     };
@@ -192,7 +192,7 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
 
       try {
         await Promise.all(imagePromises);
-      } catch (error) {
+      } catch {
         // Image loading failed, proceed anyway
       }
     };

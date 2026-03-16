@@ -7,10 +7,7 @@ import type { PrismicApiResponse } from '@/types/prismic';
  * @param documentType - The Prismic document type to fetch
  * @param label - Human-readable label for error messages
  */
-export function createPrismicSingleRoute(
-  documentType: string,
-  label: string,
-) {
+export function createPrismicSingleRoute(documentType: string, label: string) {
   return async function GET() {
     try {
       const client = createClient();

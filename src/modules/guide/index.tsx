@@ -45,10 +45,7 @@ const Guide = ({ guideData }: GuideProps) => {
         />
       )}
       {!!guideData.scheduleTour && (
-        <ScheduleTourForm
-          tourData={guideData.scheduleTour}
-          variant="v2"
-        />
+        <ScheduleTourForm tourData={guideData.scheduleTour} variant="v2" />
       )}
     </Box>
   );
