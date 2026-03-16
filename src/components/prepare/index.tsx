@@ -3,6 +3,11 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { motion } from 'framer-motion';
+import {
+  fadeInUp,
+  staggeredItem,
+  defaultViewport,
+} from '@/utils/animationVariants';
 
 export interface PrepareItem {
   description: string;
@@ -14,35 +19,6 @@ interface PrepareProps {
   items: Array<PrepareItem>;
 }
 
-const variants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.8, ease: [0.34, 1.56, 0.64, 1] },
-  },
-};
-
-const itemVariants = (index: number) => ({
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 1,
-      ease: [0.34, 1.56, 0.64, 1],
-      delay: index * 0.2,
-    },
-  },
-});
-
-const viewPort = {
-  once: true,
-  margin: '0px',
-};
-
 export default function Prepare({ title, items }: PrepareProps) {
   if (!title && (!items || items.length === 0)) return null;
 
@@ -52,8 +28,8 @@ export default function Prepare({ title, items }: PrepareProps) {
         <motion.h2
           initial="hidden"
           whileInView="visible"
-          variants={variants}
-          viewport={viewPort}
+          variants={fadeInUp}
+          viewport={defaultViewport}
           className={styles.title}
         >
           {title}
@@ -67,8 +43,8 @@ export default function Prepare({ title, items }: PrepareProps) {
             className={styles.card}
             initial="hidden"
             whileInView="visible"
-            variants={itemVariants(index)}
-            viewport={viewPort}
+            variants={staggeredItem(index)}
+            viewport={defaultViewport}
           >
             {item.image ? (
               <div className={styles.iconWrapper}>

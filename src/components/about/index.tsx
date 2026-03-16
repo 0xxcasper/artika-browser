@@ -2,6 +2,7 @@
 
 import { Link } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import { fadeInUp, defaultViewport } from '@/utils/animationVariants';
 import styles from './styles.module.scss';
 
 interface AboutProps {
@@ -12,22 +13,6 @@ interface AboutProps {
   unAcceptPaddingMb?: boolean;
   type?: 'section' | 'header';
 }
-
-const variants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.8, ease: [0.34, 1.56, 0.64, 1] },
-  },
-};
-
-const viewPort = {
-  once: true,
-  margin: '0px',
-  // amount: 0.3
-};
 
 const About = ({
   title,
@@ -50,22 +35,22 @@ const About = ({
           }`}
         initial="hidden"
         whileInView="visible"
-        variants={variants}
-        viewport={viewPort}
+        variants={fadeInUp}
+        viewport={defaultViewport}
       >
         <motion.h1
           initial="hidden"
           whileInView="visible"
-          variants={variants}
-          viewport={viewPort}
+          variants={fadeInUp}
+          viewport={defaultViewport}
         >
           {title}
         </motion.h1>
         <motion.p
           initial="hidden"
           whileInView="visible"
-          variants={variants}
-          viewport={viewPort}
+          variants={fadeInUp}
+          viewport={defaultViewport}
         >
           {description}
         </motion.p>
@@ -73,8 +58,8 @@ const About = ({
           <motion.div
             initial="hidden"
             whileInView="visible"
-            variants={variants}
-            viewport={viewPort}
+            variants={fadeInUp}
+            viewport={defaultViewport}
           >
             <Link
               href={buttonLink || ''}

@@ -3,6 +3,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Image } from '@chakra-ui/react';
+import {
+  fadeInUpLight,
+  fadeIn,
+  hoverSpring,
+  deepOffsetViewport,
+} from '@/utils/animationVariants';
 import './styles.scss';
 import { useRouter } from 'next/navigation';
 
@@ -62,15 +68,6 @@ export default function GridImages({
   title = '',
   cards = defaultCards,
 }: GridImagesProps) {
-  const titleVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
   const router = useRouter();
 
   return (
@@ -78,7 +75,7 @@ export default function GridImages({
       {title && (
         <motion.h2
           className="grid-images__title"
-          variants={titleVariants}
+          variants={fadeInUpLight}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -103,30 +100,11 @@ export default function GridImages({
               }}
               key={card.id}
               className={`grid-images__card ${card.hasOverlay ? 'grid-images__card--overlay' : ''}`}
-              variants={{
-                hidden: {
-                  opacity: 0,
-                },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    duration: 0.4,
-                    ease: 'easeOut',
-                  },
-                },
-              }}
+              variants={fadeIn}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-              whileHover={{
-                scale: 1.02,
-                transition: {
-                  type: 'spring',
-                  stiffness: 400,
-                  damping: 25,
-                  mass: 0.5,
-                },
-              }}
+              viewport={deepOffsetViewport}
+              whileHover={hoverSpring}
             >
               <div className="grid-images__card-inner">
                 <div className="grid-images__image-container">

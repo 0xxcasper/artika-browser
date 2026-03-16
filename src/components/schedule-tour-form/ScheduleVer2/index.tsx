@@ -5,6 +5,7 @@ import { useScheduleTourSubmission } from '@/hooks/useFirestore';
 import type { ScheduleTourData } from '@/types/schedule-tour';
 import Image from 'next/image';
 import { useState } from 'react';
+import { validateEmail, validatePhone } from '@/utils/formValidation';
 import DatePicker from '@/components/schedule-tour-form/DatePicker';
 import styles from './styles.module.scss';
 
@@ -32,22 +33,6 @@ const ScheduleTourFormVer2 = ({ tourData }: ScheduleTourFormProps) => {
     text: string;
   } | null>(null);
 
-  // Validation functions
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePhone = (phone: string): boolean => {
-    // Remove all non-digit characters for validation
-    const cleanPhone = phone.replace(/[^\d]/g, '');
-    // Check if it's at least 7 digits and at most 15 digits
-    return (
-      cleanPhone.length >= 7 &&
-      cleanPhone.length <= 15 &&
-      /^\d+$/.test(cleanPhone)
-    );
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

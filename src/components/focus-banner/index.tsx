@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { fadeInUpLight } from '@/utils/animationVariants';
 import Button from '../button';
 import styles from './styles.module.scss';
 
@@ -14,27 +15,12 @@ interface FocusBannerProps {
   aspectRatio?: string;
 }
 
-const textVariants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-};
-
 export default function FocusBanner({
   title = 'Nourish to flourish.',
   description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   buttonText = 'Explore',
   buttonLink,
-  backgroundImage = '/assets/images/meditation-bg.jpg',
+  backgroundImage = '/images/home/focus-banner.jpg',
   onExploreClick,
   // aspectRatio = '1728/720',
 }: FocusBannerProps) {
@@ -56,7 +42,7 @@ export default function FocusBanner({
         <div className={styles.bannerContent}>
           <motion.h1
             className={styles.bannerTitle}
-            variants={textVariants}
+            variants={fadeInUpLight}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
@@ -66,7 +52,7 @@ export default function FocusBanner({
 
           <motion.p
             className={styles.bannerDescription}
-            variants={textVariants}
+            variants={fadeInUpLight}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
@@ -76,7 +62,7 @@ export default function FocusBanner({
 
           {buttonText && (
             <motion.div
-              variants={textVariants}
+              variants={fadeInUpLight}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}

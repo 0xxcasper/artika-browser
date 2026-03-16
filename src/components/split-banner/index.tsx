@@ -2,6 +2,18 @@
 
 import { motion } from 'framer-motion';
 import React, { useRef, useState } from 'react';
+import {
+  staggerContainer,
+  staggerSection,
+  slideInLeft,
+  slideInRight,
+  titleReveal,
+  descriptionReveal,
+  buttonReveal,
+  offsetViewport,
+  hoverScale,
+  tapScale,
+} from '@/utils/animationVariants';
 import './styles.scss';
 
 // Constants for parallax effect
@@ -22,97 +34,6 @@ interface SplitBannerProps {
   onCtaClick?: (sectionId: string) => void;
   unAcceptPaddingMb?: boolean;
 }
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      ease: [0.34, 1.56, 0.64, 1],
-      staggerChildren: 0.3,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1,
-      ease: [0.34, 1.56, 0.64, 1],
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const textVariants = {
-  hidden: { opacity: 0, x: -60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.34, 1.56, 0.64, 1],
-    },
-  },
-};
-
-const imageVariants = {
-  hidden: { opacity: 0, scale: 1.1, x: 60 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    x: 0,
-    transition: {
-      duration: 1.2,
-      ease: [0.34, 1.56, 0.64, 1],
-    },
-  },
-};
-
-const titleVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.34, 1.56, 0.64, 1],
-      delay: 0.1,
-    },
-  },
-};
-
-const descriptionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.34, 1.56, 0.64, 1],
-      delay: 0.2,
-    },
-  },
-};
-
-const buttonVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: [0.34, 1.56, 0.64, 1],
-      delay: 0.3,
-    },
-  },
-};
 
 export default function SplitBanner({
   sections,
@@ -152,14 +73,14 @@ export default function SplitBanner({
       className={`split-banner ${unAcceptPaddingMb ? 'un-accept-padding-mb' : ''}`}
       initial="hidden"
       whileInView="visible"
-      variants={containerVariants}
-      viewport={{ once: true, margin: '-50px' }}
+      variants={staggerContainer}
+      viewport={offsetViewport}
     >
       {sections.map((section) => (
         <motion.div
           key={section.id}
           className="banner-section"
-          variants={sectionVariants}
+          variants={staggerSection}
         >
           {/* Desktop Layout */}
           <div className="desktop-layout">
@@ -167,31 +88,23 @@ export default function SplitBanner({
               className={`content-wrapper ${section.textFirst ? 'text-first' : 'image-first'}`}
             >
               {/* Text Content */}
-              <motion.div className="text-content" variants={textVariants}>
+              <motion.div className="text-content" variants={slideInLeft}>
                 {section.title && (
-                  <motion.h2 className="section-title" variants={titleVariants}>
+                  <motion.h2 className="section-title" variants={titleReveal}>
                     {section.title}
                   </motion.h2>
                 )}
                 <motion.p
                   className="section-description"
-                  variants={descriptionVariants}
+                  variants={descriptionReveal}
                 >
                   {section.description}
                 </motion.p>
                 <motion.button
                   className="cta-button"
-                  variants={buttonVariants}
-                  whileHover={{
-                    opacity: 0.8,
-                    scale: 1.05,
-                    transition: { duration: 0.3, ease: 'easeInOut' },
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                    opacity: 0.8,
-                    transition: { duration: 0.3, ease: 'easeInOut' },
-                  }}
+                  variants={buttonReveal}
+                  whileHover={hoverScale}
+                  whileTap={tapScale}
                   onClick={() => {
                     if (section.ctaLink) {
                       window.open(section.ctaLink, '_blank');
@@ -214,7 +127,7 @@ export default function SplitBanner({
                 onMouseLeave={handleImageMouseLeave}
                 initial="hidden"
                 whileInView="visible"
-                variants={imageVariants}
+                variants={slideInRight}
                 viewport={{ once: true }}
               >
                 <motion.div
@@ -243,12 +156,12 @@ export default function SplitBanner({
           </div>
           {/* Mobile Layout */}
           <div className="mobile-layout">
-            <motion.h2 className="mobile-text-title" variants={titleVariants}>
+            <motion.h2 className="mobile-text-title" variants={titleReveal}>
               {section.title}
             </motion.h2>
             <motion.p
               className="mobile-text-description"
-              variants={descriptionVariants}
+              variants={descriptionReveal}
             >
               {section.description}
             </motion.p>
@@ -267,7 +180,7 @@ export default function SplitBanner({
 
             <motion.div
               className="mobile-image-wrapper"
-              variants={imageVariants}
+              variants={slideInRight}
             >
               <img
                 src={section.image}
