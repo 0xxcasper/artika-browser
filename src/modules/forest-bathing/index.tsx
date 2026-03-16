@@ -5,9 +5,8 @@ import EmailForm from '@/components/schedule-tour-form';
 import SplitBanner from '@/components/split-banner';
 import { ForestBathingDocument } from '@/libs/prismic';
 import {
-  extractAboutData,
+  extractCommonPageData,
   extractFocusBannerData,
-  extractHeroData,
   extractSplitBannerData,
 } from '@/libs/prismic-helpers';
 import type { ScheduleTourData } from '@/types/schedule-tour';
@@ -22,8 +21,9 @@ export default function ForestBathingPage({
   forestBathingData,
   scheduleTourData,
 }: ForestBathingPageProps) {
-  const heroData = extractHeroData({ data: forestBathingData?.data });
-  const aboutData = extractAboutData({ data: forestBathingData?.data });
+  const { hero, about } = extractCommonPageData({
+    data: forestBathingData?.data,
+  });
   const splitBannerData = extractSplitBannerData({
     sections: forestBathingData?.data?.split_banner_sections,
     fallbackImagePath: '/images/forest-bathing/section',
@@ -41,15 +41,15 @@ export default function ForestBathingPage({
   return (
     <div className="container-no-padding">
       <Hero
-        title={heroData.title}
-        subtitle={heroData.subtitle}
-        backgroundImage={heroData.backgroundImage}
+        title={hero.title}
+        subtitle={hero.subtitle}
+        backgroundImage={hero.backgroundImage}
       />
       <About
-        title={aboutData.title}
-        description={aboutData.description}
-        button={aboutData.button}
-        buttonLink={aboutData.buttonLink}
+        title={about.title}
+        description={about.description}
+        button={about.button}
+        buttonLink={about.buttonLink}
       />
       <SplitBanner
         sections={splitBannerData.map((section, index) => ({

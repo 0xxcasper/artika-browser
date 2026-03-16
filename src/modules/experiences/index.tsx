@@ -6,8 +6,7 @@ import SplitBanner from '@/components/split-banner';
 import GridImages from '@/components/grid-images';
 import { ExperiencesDocument } from '@/libs/prismic';
 import {
-  extractHeroData,
-  extractAboutData,
+  extractCommonPageData,
   extractSplitBannerData,
   extractFocusBannerData,
   extractGridImagesData,
@@ -21,8 +20,7 @@ interface ExperiencesPageProps {
 export default function ExperiencesPage({
   experiencesData,
 }: ExperiencesPageProps) {
-  const heroData = extractHeroData({ data: experiencesData?.data });
-  const aboutData = extractAboutData({ data: experiencesData?.data });
+  const { hero, about } = extractCommonPageData({ data: experiencesData?.data });
   const splitBannerData = extractSplitBannerData({
     sections: experiencesData?.data?.split_banner_sections,
     fallbackImagePath: '/images/experiences/section',
@@ -44,15 +42,15 @@ export default function ExperiencesPage({
   return (
     <div className="experiences-page">
       <Hero
-        title={heroData.title}
-        subtitle={heroData.subtitle}
-        backgroundImage={heroData.backgroundImage}
+        title={hero.title}
+        subtitle={hero.subtitle}
+        backgroundImage={hero.backgroundImage}
       />
       <About
-        title={aboutData.title}
-        description={aboutData.description}
-        button={aboutData.button}
-        buttonLink={aboutData.buttonLink}
+        title={about.title}
+        description={about.description}
+        button={about.button}
+        buttonLink={about.buttonLink}
       />
       <SplitBanner sections={splitBannerData} />
       <FocusBanner

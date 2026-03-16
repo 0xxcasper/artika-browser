@@ -1,4 +1,5 @@
 import { SplitBannerSection } from '@/components/split-banner';
+import type { CommonPageData } from '@/types/prismic';
 import { notFound } from 'next/navigation';
 import { createClient } from './prismic';
 
@@ -169,6 +170,16 @@ export function extractGridImagesData(params: {
           body: asText(item.description) || '',
         },
       })) || [],
+  };
+}
+
+/**
+ * Extracts common page sections (hero + about) shared by most pages
+ */
+export function extractCommonPageData(params: { data?: any }): CommonPageData {
+  return {
+    hero: extractHeroData(params),
+    about: extractAboutData(params),
   };
 }
 

@@ -1,5 +1,6 @@
 @import '@/styles/variables';
 @import '@/styles/fonts';
+@import '@/styles/mixins';
 
 /* Performance optimization for animations */
 @media (prefers-reduced-motion: reduce) {
@@ -15,10 +16,8 @@
   will-change: scroll-position;
 
   &__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flex-column-center;
+
     max-width: 740px;
 
     &__title {

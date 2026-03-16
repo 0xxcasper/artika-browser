@@ -8,10 +8,9 @@ import SplitBanner, {
 } from '@/components/split-banner';
 import { HomepageDocument } from '@/libs/prismic';
 import {
-  extractAboutData,
+  extractCommonPageData,
   extractFocusBannerData,
   extractGridImagesData,
-  extractHeroData,
   extractSplitBannerData,
 } from '@/libs/prismic-helpers';
 import type { ScheduleTourData } from '@/types/schedule-tour';
@@ -27,8 +26,7 @@ export default function HomePage({
   homepageData,
   scheduleTourData,
 }: HomePageProps) {
-  const heroData = extractHeroData({ data: homepageData?.data });
-  const aboutData = extractAboutData({ data: homepageData?.data });
+  const { hero, about } = extractCommonPageData({ data: homepageData?.data });
   const focusBannerData = extractFocusBannerData({ data: homepageData?.data });
   const splitBannerData = extractSplitBannerData({
     sections: homepageData?.data?.split_banner_sections as SplitBannerSection[],
@@ -43,15 +41,15 @@ export default function HomePage({
   return (
     <div className="container-no-padding home-page">
       <Hero
-        title={heroData.title}
-        subtitle={heroData.subtitle}
-        backgroundImage={heroData.backgroundImage}
+        title={hero.title}
+        subtitle={hero.subtitle}
+        backgroundImage={hero.backgroundImage}
       />
       <About
-        title={aboutData.title}
-        description={aboutData.description}
-        button={aboutData.button}
-        buttonLink={aboutData.buttonLink}
+        title={about.title}
+        description={about.description}
+        button={about.button}
+        buttonLink={about.buttonLink}
       />
       <SplitBanner sections={splitBannerData.slice(0, 1)} />
       <FocusBanner

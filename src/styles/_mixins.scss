@@ -1,0 +1,88 @@
+@import 'variables';
+
+// Flex utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Responsive gap
+@mixin gap-responsive($lg, $md: null, $sm: null) {
+  gap: $lg;
+
+  @if $md {
+    @media (max-width: $breakpoint-md) {
+      gap: $md;
+    }
+  }
+
+  @if $sm {
+    @media (max-width: $breakpoint-sm) {
+      gap: $sm;
+    }
+  }
+}
+
+// Full-cover element (for backgrounds, overlays)
+@mixin cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+// Responsive padding
+@mixin section-padding($desktop: 150px, $tablet: 80px, $mobile: 40px) {
+  padding-top: $desktop;
+  padding-bottom: $desktop;
+
+  @media (max-width: $breakpoint-md) {
+    padding-top: $tablet;
+    padding-bottom: $tablet;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding-top: $mobile;
+    padding-bottom: $mobile;
+  }
+}
+
+// Truncate text
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+// Smooth transition
+@mixin transition($properties: all, $duration: $transition-normal) {
+  transition: $properties $duration;
+}

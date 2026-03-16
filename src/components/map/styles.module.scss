@@ -1,14 +1,14 @@
 @import '@/styles/variables';
 @import '@/styles/fonts';
+@import '@/styles/mixins';
 
 .mapSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex-column-center;
+
   width: 100%;
   max-width: 1566px;
   margin: 0 1rem;
-  text-align: center
+  text-align: center;
 }
 
 .title {

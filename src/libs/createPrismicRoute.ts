@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/libs/prismic';
+import type { PrismicApiResponse } from '@/types/prismic';
 
 /**
  * Factory function to create a GET route handler for fetching a single Prismic document.
@@ -15,11 +16,12 @@ export function createPrismicSingleRoute(
       const client = createClient();
       const doc = await client.getSingle(documentType as any);
 
-      return NextResponse.json({
+      const response: PrismicApiResponse = {
         data: doc.data,
         id: doc.id,
         uid: doc.uid,
-      });
+      };
+      return NextResponse.json(response);
     } catch (error) {
       console.error(`Error fetching ${label} data:`, error);
       return NextResponse.json(

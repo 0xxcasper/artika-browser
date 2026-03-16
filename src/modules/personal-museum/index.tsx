@@ -7,8 +7,7 @@ import SplitBanner from '@/components/split-banner';
 import { PersonalMuseumDocument } from '@/libs/prismic';
 import {
   asImageUrl,
-  extractAboutData,
-  extractHeroData,
+  extractCommonPageData,
   extractSplitBannerData,
 } from '@/libs/prismic-helpers';
 import type { ScheduleTourData } from '@/types/schedule-tour';
@@ -31,8 +30,9 @@ export default function PersonalMuseumPage({
   }
 
   // Extract data from Prismic
-  const heroData = extractHeroData({ data: personalMuseumData.data });
-  const aboutData = extractAboutData({ data: personalMuseumData.data });
+  const { hero, about } = extractCommonPageData({
+    data: personalMuseumData.data,
+  });
   const bannerImage = personalMuseumData.data.banner_image;
   const splitBannerSections = personalMuseumData.data.split_banner_sections;
 
@@ -48,15 +48,15 @@ export default function PersonalMuseumPage({
   return (
     <div className="container-no-padding">
       <Hero
-        title={heroData.title}
-        subtitle={heroData.subtitle}
-        backgroundImage={heroData.backgroundImage}
+        title={hero.title}
+        subtitle={hero.subtitle}
+        backgroundImage={hero.backgroundImage}
       />
       <About
-        title={aboutData.title}
-        description={aboutData.description}
-        button={aboutData.button}
-        buttonLink={aboutData.buttonLink}
+        title={about.title}
+        description={about.description}
+        button={about.button}
+        buttonLink={about.buttonLink}
       />
       {bannerImage && (
         <motion.div
@@ -67,7 +67,7 @@ export default function PersonalMuseumPage({
         >
           <Image
             src={asImageUrl(bannerImage)}
-            alt={heroData.title}
+            alt={hero.title}
             width="100%"
             height="auto"
           />
