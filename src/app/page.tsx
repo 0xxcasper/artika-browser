@@ -13,13 +13,10 @@ export default async function RootPage() {
   }
 
   try {
-    console.log('Fetching fresh data for:', locale);
     const client = createClient();
     const homepage = await client.getSingle('homepage', {
       lang: locale === 'vi' ? 'vi' : 'en-us',
     });
-
-    console.log('homepage data:', homepage.data);
 
     return <HomePage homepageData={homepage as any} lang={locale} />;
   } catch (error) {

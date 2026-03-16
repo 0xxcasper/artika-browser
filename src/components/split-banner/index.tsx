@@ -58,7 +58,6 @@ export default function SplitBanner({
     const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2; // -1 to 1
     const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2; // -1 to 1
 
-    console.log('Mouse move:', { sectionId, x, y, mousePosition: { x, y } });
     setMousePosition({ x, y });
     setHoveredImage(sectionId);
   };

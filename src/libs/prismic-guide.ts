@@ -4,7 +4,6 @@ import { extractScheduleTourData } from './prismic-schedule-tour';
 
 export function extractGuideData(guideDoc: any): GuideData | null {
   if (!guideDoc || !guideDoc.data) {
-    console.warn('No guide data available');
     return null;
   }
 

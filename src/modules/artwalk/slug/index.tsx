@@ -58,10 +58,6 @@ const headerVariants = {
 const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
   const router = useRouter();
 
-  // Debug router
-  console.log('categoryData object:', categoryData);
-  console.log('artwalkRouter object:', artwalkRouter);
-
   // Use Prismic data if available, otherwise fallback to hardcoded data
   const COLLECTIONS = useMemo(() => {
     if (categoryData && categoryData?.contents?.length > 0) {
@@ -72,16 +68,11 @@ const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
 
   const handleItemClick = (collection: any) => {
     try {
-      console.log('Clicking item:', collection);
-      console.log('Current slug:', slug);
-
       if (!router) {
-        console.error('Router is undefined');
         return;
       }
 
       if (!artwalkRouter || !artwalkRouter.getDetailRouter) {
-        console.error('artwalkRouter or getDetailRouter is undefined');
         return;
       }
 
@@ -93,7 +84,6 @@ const GalleryPage = ({ categoryData, slug, lang }: SlugArtwalkPageProps) => {
         lang,
       );
 
-      console.log('Navigating to:', detailPath);
       router.push(detailPath);
     } catch (error) {
       console.error('Error navigating to detail:', error);

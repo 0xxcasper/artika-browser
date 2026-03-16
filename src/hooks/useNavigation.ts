@@ -81,10 +81,8 @@ export function useNavigation() {
       // Convert language to Prismic locale format
       const locale = language; // Currently only English is supported
 
-      console.log('useNavigation', { locale });
       try {
         const navigationData: NavigationData = await fetchNavigation(locale);
-        console.log('useNavigation', { navigationData });
 
         // Fallback to default navigation if Prismic data is empty
         if (navigationData.items.length === 0) {
@@ -114,8 +112,6 @@ export function useNavigation() {
         setScheduleTourForm(undefined);
         setNewsletterForm(defaultNewsletterForm);
         setFooterData(defaultFooterData);
-
-        console.log('useNavigation', { menus, cta });
       }
 
       setLoading(false);

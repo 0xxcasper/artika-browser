@@ -248,18 +248,14 @@ function extractFooterData(doc: any): FooterData {
 export async function fetchNavigation(locale: string): Promise<NavigationData> {
   try {
     const client = createClient();
-    console.log('Fetching navigation for locale:', locale);
 
     // Try to fetch navigation_menu document
     try {
       const prismicLang = locale === 'vi' ? 'vi' : 'en-us';
-      console.log('Using Prismic language:', prismicLang);
 
       const doc = await (client as any).getSingle('navigation_menu', {
         lang: prismicLang,
       });
-      console.log('Navigation document found:', doc);
-      console.log('Navigation data:', doc.data);
 
       // Extract menus data
       const items =
@@ -274,8 +270,6 @@ export async function fetchNavigation(locale: string): Promise<NavigationData> {
             })) || [],
         })) || [];
 
-      console.log('Extracted navigation items:', items);
-
       // Extract CTA data
       const cta = {
         cta_label: doc.data.cta_label || defaultCta.cta_label,
@@ -284,15 +278,12 @@ export async function fetchNavigation(locale: string): Promise<NavigationData> {
 
       // Extract schedule tour form data
       const scheduleTourForm = extractScheduleTourFormData(doc);
-      console.log('Extracted schedule tour form data:', scheduleTourForm);
 
       // Extract newsletter form data
       const newsletterForm = extractNewsletterFormData(doc);
-      console.log('Extracted newsletter form data:', newsletterForm);
 
       // Extract footer data
       const footerData = extractFooterData(doc);
-      console.log('Extracted footer data:', footerData);
 
       return {
         items: items.length > 0 ? items : defaultNavigationItems,
@@ -302,13 +293,6 @@ export async function fetchNavigation(locale: string): Promise<NavigationData> {
         footerData,
       };
     } catch (docError) {
-      console.warn(
-        'Navigation menu document not found, using fallback navigation',
-      );
-      console.warn('Error details:', docError);
-      console.warn('Locale:', locale);
-      console.warn('Prismic language used:', locale === 'vi' ? 'vi' : 'en-us');
-
       // Return fallback navigation
       return {
         items: defaultNavigationItems,
@@ -337,28 +321,17 @@ export async function fetchScheduleTourForm(
 ): Promise<ScheduleTourFormData> {
   try {
     const client = createClient();
-    console.log('Fetching schedule tour form for locale:', locale);
 
     try {
       const prismicLang = locale === 'vi' ? 'vi' : 'en-us';
-      console.log('Using Prismic language:', prismicLang);
 
       const doc = await (client as any).getSingle('navigation_menu', {
         lang: prismicLang,
       });
-      console.log('Navigation document found for schedule tour form:', doc);
 
       const scheduleTourForm = extractScheduleTourFormData(doc);
-      console.log('Extracted schedule tour form data:', scheduleTourForm);
       return scheduleTourForm;
     } catch (docError) {
-      console.warn(
-        'Navigation menu document not found for schedule tour form, using fallback data',
-      );
-      console.warn('Error details:', docError);
-      console.warn('Locale:', locale);
-      console.warn('Prismic language used:', locale === 'vi' ? 'vi' : 'en-us');
-
       return defaultScheduleTourForm;
     }
   } catch (error) {
@@ -373,28 +346,17 @@ export async function fetchNewsletterForm(
 ): Promise<NewsletterFormData> {
   try {
     const client = createClient();
-    console.log('Fetching newsletter form for locale:', locale);
 
     try {
       const prismicLang = locale === 'vi' ? 'vi' : 'en-us';
-      console.log('Using Prismic language:', prismicLang);
 
       const doc = await (client as any).getSingle('navigation_menu', {
         lang: prismicLang,
       });
-      console.log('Navigation document found for newsletter form:', doc);
 
       const newsletterForm = extractNewsletterFormData(doc);
-      console.log('Extracted newsletter form data:', newsletterForm);
       return newsletterForm;
     } catch (docError) {
-      console.warn(
-        'Navigation menu document not found for newsletter form, using fallback data',
-      );
-      console.warn('Error details:', docError);
-      console.warn('Locale:', locale);
-      console.warn('Prismic language used:', locale === 'vi' ? 'vi' : 'en-us');
-
       return defaultNewsletterForm;
     }
   } catch (error) {
@@ -407,28 +369,17 @@ export async function fetchNewsletterForm(
 export async function fetchFooterData(locale: string): Promise<FooterData> {
   try {
     const client = createClient();
-    console.log('Fetching footer data for locale:', locale);
 
     try {
       const prismicLang = locale === 'vi' ? 'vi' : 'en-us';
-      console.log('Using Prismic language:', prismicLang);
 
       const doc = await (client as any).getSingle('navigation_menu', {
         lang: prismicLang,
       });
-      console.log('Navigation document found for footer data:', doc);
 
       const footerData = extractFooterData(doc);
-      console.log('Extracted footer data:', footerData);
       return footerData;
     } catch (docError) {
-      console.warn(
-        'Navigation menu document not found for footer data, using fallback data',
-      );
-      console.warn('Error details:', docError);
-      console.warn('Locale:', locale);
-      console.warn('Prismic language used:', locale === 'vi' ? 'vi' : 'en-us');
-
       return defaultFooterData;
     }
   } catch (error) {

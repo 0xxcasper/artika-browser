@@ -27,13 +27,11 @@ export async function fetchPrismicDocument(
   locale: string,
 ) {
   try {
-    console.log(`Fetching fresh ${documentType} data for:`, locale);
     const client = createClient();
     const document = await client.getSingle(documentType as any, {
       lang: validateAndNormalizeLocale(locale),
     });
 
-    console.log(`${documentType} data:`, document.data);
     return document;
   } catch (error) {
     console.error(`Error fetching ${documentType} data:`, error);

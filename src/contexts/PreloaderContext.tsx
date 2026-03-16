@@ -86,15 +86,13 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
     const video = videoRef.current;
 
     const handleCanPlay = () => {
-      console.log('Video can play');
       setVideoLoaded(true);
 
       // Force play on mobile
       if (isMobileDevice) {
         const playPromise = video.play();
         if (playPromise !== undefined) {
-          playPromise.catch((error) => {
-            console.log('Autoplay failed:', error);
+          playPromise.catch(() => {
             // Fallback: try to play on user interaction
             const handleUserInteraction = () => {
               video.play().catch(console.error);
@@ -108,13 +106,9 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
       }
     };
 
-    const handleLoadStart = () => {
-      console.log('Video load started');
-    };
+    const handleLoadStart = () => {};
 
-    const handleLoadedData = () => {
-      console.log('Video data loaded');
-    };
+    const handleLoadedData = () => {};
 
     const handleError = (e: Event) => {
       console.error('Video error:', e);
@@ -144,7 +138,6 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
 
         _updateAssetsLoaded();
       } catch (error) {
-        console.log('Asset loading error:', error);
         _updateAssetsLoaded();
       }
     };
@@ -153,18 +146,13 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
       if (fonts.length === 0) return;
 
       return new Promise((resolve) => {
-        console.log('🔍 Starting font loading check...');
-
         let fontTimeoutId: NodeJS.Timeout | null = null;
 
         // Use document.fonts.ready for reliable font loading
         document.fonts.ready
           .then(() => {
-            console.log('✅ document.fonts.ready resolved');
-
             // Wait a reasonable time for fonts to be fully available
             setTimeout(() => {
-              console.log('✅ Fonts loading complete');
               document.body.classList.add('fonts-loaded');
 
               // Clear the fallback timeout
@@ -175,14 +163,12 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
               resolve();
             }, 1000); // Wait 1 second after fonts.ready
           })
-          .catch((error) => {
-            console.log('❌ Font loading error:', error);
+          .catch(() => {
             resolve(); // Proceed anyway
           });
 
         // Fallback timeout for fonts
         fontTimeoutId = setTimeout(() => {
-          console.log('⚠️ Font loading timeout, proceeding anyway');
           resolve();
         }, 5000); // Reduced to 5 seconds
       });
@@ -195,11 +181,9 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
         return new Promise<boolean>((resolve) => {
           const img = new Image();
           img.onload = () => {
-            console.log(`✅ Image loaded: ${src}`);
             resolve(true);
           };
           img.onerror = () => {
-            console.log(`❌ Image failed to load: ${src}`);
             resolve(false);
           };
           img.src = src;
@@ -207,12 +191,9 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
       });
 
       try {
-        console.log('Starting image loading');
-        const results = await Promise.all(imagePromises);
-        const loadedCount = results.filter((r) => r).length;
-        console.log(`✅ Images loaded: ${loadedCount}/${images.length}`);
+        await Promise.all(imagePromises);
       } catch (error) {
-        console.log('❌ Image loading error:', error);
+        // Image loading failed, proceed anyway
       }
     };
 
@@ -221,7 +202,6 @@ export const PreloaderProvider: React.FC<PreloaderProviderProps> = ({
 
     // Set timeout as fallback
     timeoutIdRef.current = setTimeout(() => {
-      console.log('⏰ Asset loading timeout, proceeding anyway');
       _updateAssetsLoaded();
     }, timeout);
 

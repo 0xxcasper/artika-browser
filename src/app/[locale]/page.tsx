@@ -24,8 +24,6 @@ export default async function LocalePage({ params }: LocalePageProps) {
       locale,
     )) as unknown as HomepageDocument;
 
-    console.log('homepage data:', homepage.data);
-
     // Extract schedule tour data
     const scheduleTourData = extractHomepageScheduleTourData(homepage);
 

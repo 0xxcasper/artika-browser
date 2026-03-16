@@ -17,18 +17,12 @@ export default async function LocaleArtwalkSlugPage({
 
   const normalizedLocale = validateAndNormalizeLocale(locale);
 
-  console.log('Artwalk page params:', { locale, slug });
-
   try {
     // Fetch from Prismic with locale
-    console.log('Fetching fresh artwalk category data for:', slug, locale);
     const categoryData = await fetchArtwalkCategory(slug, normalizedLocale);
-
-    console.log('artwalk category data', categoryData);
 
     // If no data found, return 404
     if (!categoryData) {
-      console.log('Collection not found, returning 404');
       notFound();
     }
 
@@ -43,12 +37,10 @@ export default async function LocaleArtwalkSlugPage({
       error instanceof Error &&
       error.message.includes('No documents were returned')
     ) {
-      console.log('Collection not found, returning 404');
       notFound();
     }
 
     // For other errors, return fallback
-    console.log('Using fallback data for artwalk category');
     return <SlugArtwalkPage categoryData={null} slug={slug} lang={locale} />;
   }
 }

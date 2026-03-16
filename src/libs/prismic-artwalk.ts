@@ -7,8 +7,6 @@ import type {
 
 // Transform Prismic collection document to ArtwalkCategory
 function transformToArtwalkCategory(doc: any): ArtwalkCategory {
-  console.log('Transforming collection document:', doc);
-
   const result = {
     slugId: doc.uid, // Use UID instead of slugId field
     title: doc.data.title || '',
@@ -28,14 +26,11 @@ function transformToArtwalkCategory(doc: any): ArtwalkCategory {
       .filter(Boolean);
   }
 
-  console.log('Transformed category result:', result);
   return result;
 }
 
 // Transform Prismic content item document to ArtwalkContent
 function transformToArtwalkContent(doc: any): ArtwalkContent {
-  console.log('Transforming content item document:', doc);
-
   const result = {
     id: doc.uid,
     href: `/artwalk/content/${doc.uid}`,
@@ -57,14 +52,11 @@ function transformToArtwalkContent(doc: any): ArtwalkContent {
     result.detail = transformToArtwalkDetail(doc.data.detail);
   }
 
-  console.log('Transformed content result:', result);
   return result;
 }
 
 // Transform Prismic detail document
 function transformToArtwalkDetail(doc: any): any {
-  console.log('Transforming detail document:', doc);
-
   const result = {
     title: doc.data.title || '',
     description: doc.data.description || '',
@@ -80,7 +72,6 @@ function transformToArtwalkDetail(doc: any): any {
       .filter(Boolean);
   }
 
-  console.log('Transformed detail result:', result);
   return result;
 }
 
@@ -90,15 +81,6 @@ export async function fetchAllArtwalkCategories(
 ): Promise<ArtwalkCategoryList> {
   try {
     const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
-    console.log(
-      'Fetching all artwalk categories for locale:',
-      locale,
-      'prismic locale:',
-      prismicLocale,
-    );
-    console.log('Repository:', process.env.PRISMIC_REPOSITORY_NAME);
-    console.log('Has access token:', !!process.env.PRISMIC_ACCESS_TOKEN);
-    console.log('Environment:', process.env.NODE_ENV);
 
     const client = createClient();
     const docs = await (client as any).getAllByType('collection', {
@@ -117,7 +99,6 @@ export async function fetchAllArtwalkCategories(
       ],
     });
 
-    console.log('Found collection documents:', docs.length);
     return docs.map(transformToArtwalkCategory);
   } catch (error) {
     console.error('Error fetching artwalk categories from Prismic:', error);
@@ -138,15 +119,6 @@ export async function fetchArtwalkCategory(
   prismicLocale: string,
 ): Promise<ArtwalkCategory | null> {
   try {
-    console.log(
-      'Fetching artwalk category by UID:',
-      slugId,
-      'prismic locale:',
-      prismicLocale,
-    );
-    console.log('Repository:', process.env.PRISMIC_REPOSITORY_NAME);
-    console.log('Has access token:', !!process.env.PRISMIC_ACCESS_TOKEN);
-
     const client = createClient();
 
     const doc = await (client as any).getByUID('collection', slugId, {
@@ -165,10 +137,7 @@ export async function fetchArtwalkCategory(
       ],
     });
 
-    console.log('Found collection document by UID:', !!doc);
-
     if (!doc) {
-      console.log('No collection found for UID:', slugId);
       return null;
     }
 
@@ -194,14 +163,6 @@ export async function fetchArtwalkContent(
 ): Promise<ArtwalkContent | null> {
   try {
     const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
-    console.log(
-      'Fetching artwalk content by ID:',
-      contentId,
-      'locale:',
-      locale,
-      'prismic locale:',
-      prismicLocale,
-    );
     const client = createClient();
     const doc = await (client as any).getByUID('content_item', contentId, {
       lang: prismicLocale,
@@ -213,8 +174,6 @@ export async function fetchArtwalkContent(
         'detail.images',
       ],
     });
-
-    console.log('Found content item document:', !!doc);
 
     if (!doc) return null;
 
@@ -231,19 +190,12 @@ export async function getArtwalkCategorySlugIds(
 ): Promise<string[]> {
   try {
     const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
-    console.log(
-      'Fetching all collection UIDs for locale:',
-      locale,
-      'prismic locale:',
-      prismicLocale,
-    );
     const client = createClient();
     const docs = await (client as any).getAllByType('collection', {
       lang: prismicLocale,
     });
 
     const uids = docs.map((doc: any) => doc.uid).filter(Boolean);
-    console.log('Found UIDs:', uids);
     return uids;
   } catch (error) {
     console.error('Error fetching artwalk category UIDs from Prismic:', error);
@@ -257,12 +209,6 @@ export async function fetchAllArtwalkItems(
 ): Promise<ArtwalkContent[]> {
   try {
     const prismicLocale = locale === 'vi' ? 'vi' : 'en-us';
-    console.log(
-      'Fetching all artwalk items for locale:',
-      locale,
-      'prismic locale:',
-      prismicLocale,
-    );
     const client = createClient();
     const docs = await (client as any).getAllByType('content_item', {
       lang: prismicLocale,
@@ -275,7 +221,6 @@ export async function fetchAllArtwalkItems(
       ],
     });
 
-    console.log('Found content item documents:', docs.length);
     return docs.map(transformToArtwalkContent);
   } catch (error) {
     console.error('Error fetching all artwalk items from Prismic:', error);

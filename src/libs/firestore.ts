@@ -62,7 +62,6 @@ export class TourSubmissionService {
         collection(db, COLLECTIONS.TOUR_SUBMISSIONS),
         submissionData,
       );
-      console.log('Tour request submitted successfully with ID:', docRef.id);
       return docRef.id;
     } catch (error) {
       console.error('Error submitting tour request:', error);
@@ -75,7 +74,6 @@ export class TourSubmissionService {
   // Get all tour submissions (for admin)
   static async getAllSubmissions(): Promise<TourSubmission[]> {
     try {
-      console.log('Fetching all tour submissions...');
       const q = query(
         collection(db, COLLECTIONS.TOUR_SUBMISSIONS),
         orderBy('submittedAt', 'desc'),
@@ -109,9 +107,6 @@ export class TourSubmissionService {
         };
       }) as TourSubmission[];
 
-      console.log(
-        `Successfully fetched ${submissions.length} tour submissions`,
-      );
       return submissions;
     } catch (error) {
       console.error('Error getting tour submissions:', error);
@@ -134,7 +129,6 @@ export class TourSubmissionService {
         read: true,
         readAt: new Date(),
       });
-      console.log('Tour submission marked as read:', submissionId);
     } catch (error) {
       console.error('Error marking tour submission as read:', error);
       throw new Error(
@@ -155,7 +149,6 @@ export class TourSubmissionService {
         note: note,
         readAt: new Date(),
       });
-      console.log('Tour submission updated with note:', submissionId);
     } catch (error) {
       console.error('Error updating tour submission with note:', error);
       throw new Error(
@@ -169,7 +162,6 @@ export class TourSubmissionService {
     try {
       const docRef = doc(db, COLLECTIONS.TOUR_SUBMISSIONS, submissionId);
       await deleteDoc(docRef);
-      console.log('Tour submission deleted:', submissionId);
     } catch (error) {
       console.error('Error deleting tour submission:', error);
       throw new Error(
@@ -181,7 +173,6 @@ export class TourSubmissionService {
   // Get count of unread submissions
   static async getUnreadCount(): Promise<number> {
     try {
-      console.log('Fetching unread tour submissions count...');
       const q = query(
         collection(db, COLLECTIONS.TOUR_SUBMISSIONS),
         orderBy('submittedAt', 'desc'),
@@ -193,7 +184,6 @@ export class TourSubmissionService {
         return !data.read;
       }).length;
 
-      console.log(`Found ${unreadCount} unread tour submissions`);
       return unreadCount;
     } catch (error) {
       console.error('Error getting unread tour submissions count:', error);
@@ -223,10 +213,6 @@ export class NewsletterSubscriptionService {
         collection(db, COLLECTIONS.NEWSLETTER_SUBSCRIPTIONS),
         subscriptionData,
       );
-      console.log(
-        'Newsletter subscription submitted successfully with ID:',
-        docRef.id,
-      );
       return docRef.id;
     } catch (error) {
       console.error('Error submitting newsletter subscription:', error);
@@ -239,7 +225,6 @@ export class NewsletterSubscriptionService {
   // Get all newsletter subscriptions (for admin)
   static async getAllSubscriptions(): Promise<NewsletterSubscription[]> {
     try {
-      console.log('Fetching all newsletter subscriptions...');
       const q = query(
         collection(db, COLLECTIONS.NEWSLETTER_SUBSCRIPTIONS),
         orderBy('subscribedAt', 'desc'),
@@ -267,9 +252,6 @@ export class NewsletterSubscriptionService {
         };
       }) as NewsletterSubscription[];
 
-      console.log(
-        `Successfully fetched ${subscriptions.length} newsletter subscriptions`,
-      );
       return subscriptions;
     } catch (error) {
       console.error('Error getting newsletter subscriptions:', error);
@@ -299,7 +281,6 @@ export class NewsletterSubscriptionService {
         note: note,
         status: 'unsubscribed', // Mark as done when note is added
       });
-      console.log('Newsletter subscription updated with note:', subscriptionId);
     } catch (error) {
       console.error('Error updating newsletter subscription with note:', error);
       throw new Error(
@@ -322,7 +303,6 @@ export class NewsletterSubscriptionService {
         status: 'unsubscribed',
         unsubscribedAt: new Date(),
       });
-      console.log('Newsletter subscription unsubscribed:', subscriptionId);
     } catch (error) {
       console.error('Error unsubscribing from newsletter:', error);
       throw new Error(
@@ -340,7 +320,6 @@ export class NewsletterSubscriptionService {
         subscriptionId,
       );
       await deleteDoc(docRef);
-      console.log('Newsletter subscription deleted:', subscriptionId);
     } catch (error) {
       console.error('Error deleting newsletter subscription:', error);
       throw new Error(
@@ -352,7 +331,6 @@ export class NewsletterSubscriptionService {
   // Get count of active subscriptions
   static async getActiveCount(): Promise<number> {
     try {
-      console.log('Fetching active newsletter subscriptions count...');
       const q = query(
         collection(db, COLLECTIONS.NEWSLETTER_SUBSCRIPTIONS),
         orderBy('subscribedAt', 'desc'),
@@ -364,7 +342,6 @@ export class NewsletterSubscriptionService {
         return data.status === 'active';
       }).length;
 
-      console.log(`Found ${activeCount} active newsletter subscriptions`);
       return activeCount;
     } catch (error) {
       console.error(

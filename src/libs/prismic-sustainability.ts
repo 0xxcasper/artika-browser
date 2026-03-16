@@ -11,7 +11,6 @@ export function extractSustainabilityData(
   sustainabilityData: any,
 ): SustainabilityData | null {
   if (!sustainabilityData || !sustainabilityData.data) {
-    console.warn('No sustainability data available');
     return null;
   }
 
@@ -79,7 +78,6 @@ export function extractSustainabilityData(
       scheduleTour: extractScheduleTourData(sustainabilityData)!,
     };
 
-    console.log('Extracted sustainability data:', extractedData);
     return extractedData;
   } catch (error) {
     console.error('Error extracting sustainability data:', error);

@@ -64,14 +64,11 @@ export function useAdminActions({
         throw new Error('Please enter a note message');
       }
 
-      console.log('Submitting note:', { note, submissionId: submission.id });
-
       try {
         await TourSubmissionService.updateSubmissionWithNote(
           submission.id,
           note.trim(),
         );
-        console.log('Note updated successfully');
         await refetchUnreadCount();
         setShowNoteModal(false);
         setSelectedSubmission(null);

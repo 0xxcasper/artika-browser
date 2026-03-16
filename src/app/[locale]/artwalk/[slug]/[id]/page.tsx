@@ -25,17 +25,13 @@ export default async function LocaleArtwalkDetailPage({
 
   try {
     // Fetch from Prismic with locale
-    console.log('Fetching fresh artwalk content data for:', id, locale);
     const contentData = await fetchArtwalkContent(
       id,
       locale === 'vi' ? 'vi' : 'en-us',
     );
 
-    console.log('artwalk content data', contentData);
-
     // If no data found, return 404
     if (!contentData) {
-      console.log('Content item not found, returning 404');
       notFound();
     }
 
@@ -69,12 +65,10 @@ export default async function LocaleArtwalkDetailPage({
       error instanceof Error &&
       error.message.includes('No documents were returned')
     ) {
-      console.log('Content item not found, returning 404');
       notFound();
     }
 
     // For other errors, return fallback
-    console.log('Using fallback data for artwalk content');
     return (
       <GalleryDetailPage contentData={null} slug={slug} id={id} lang={locale} />
     );
