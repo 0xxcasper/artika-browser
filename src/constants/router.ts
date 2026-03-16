@@ -41,5 +41,3 @@ const offersRouter = {
 };
 
 export { artwalkRouter as defaultArtwalkRouter, offersRouter };
-
-export default Router;
