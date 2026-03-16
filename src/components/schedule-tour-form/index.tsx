@@ -17,9 +17,13 @@ interface ScheduleTourFormData {
 
 interface ScheduleTourFormProps {
   tourData?: ScheduleTourData | null;
+  variant?: 'v1' | 'v2';
 }
 
-const ScheduleTourForm = ({ tourData }: ScheduleTourFormProps) => {
+const ScheduleTourForm = ({
+  tourData,
+  variant = 'v1',
+}: ScheduleTourFormProps) => {
   const { language } = useLanguage();
   const [formData, setFormData] = useState<ScheduleTourFormData>({
     phone: '',
@@ -32,7 +36,6 @@ const ScheduleTourForm = ({ tourData }: ScheduleTourFormProps) => {
     type: 'success' | 'error';
     text: string;
   } | null>(null);
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,7 +101,7 @@ const ScheduleTourForm = ({ tourData }: ScheduleTourFormProps) => {
 
     try {
       await submitScheduleTour({
-        name: 'Tour Request', // Default name since we removed the name field
+        name: 'Tour Request',
         phone: phone.trim(),
         email: email.trim(),
         tourDate: tourDate,
@@ -153,12 +156,27 @@ const ScheduleTourForm = ({ tourData }: ScheduleTourFormProps) => {
   }
 
   return (
-    <div className={styles.scheduleTourForm}>
+    <div
+      className={`${styles.scheduleTourForm} ${variant === 'v2' ? styles.scheduleTourFormV2 : ''}`}
+    >
       <div className={styles.formContent}>
-        <div className={styles.formText}>
-          <h1>{tourData?.title || 'Schedule Tour'}</h1>
-          <p>{tourData?.description || 'Book your tour today!'}</p>
-        </div>
+        {variant === 'v1' ? (
+          <div className={styles.formText}>
+            <h1>{tourData?.title || 'Schedule Tour'}</h1>
+            <p>{tourData?.description || 'Book your tour today!'}</p>
+          </div>
+        ) : (
+          <>
+            <div className={styles.formTitle}>
+              <h1>{tourData?.title || 'Schedule Tour'}</h1>
+              <p>{tourData?.description || 'Book your tour today!'}</p>
+            </div>
+            <div className={styles.formSubtitle}>
+              <h1>{tourData?.subtitle || 'Schedule Tour'}</h1>
+              <p>{tourData?.subDescription || 'Book your tour today!'}</p>
+            </div>
+          </>
+        )}
 
         <form
           onSubmit={handleSubmit}

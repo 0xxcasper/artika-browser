@@ -1,5 +1,6 @@
 import type { GuideData } from '@/types/guide';
 import { asText, asImageUrl } from './prismic-helpers';
+import { extractScheduleTourData } from './prismic-schedule-tour';
 
 export function extractGuideData(guideDoc: any): GuideData | null {
   if (!guideDoc || !guideDoc.data) {
@@ -51,40 +52,7 @@ export function extractGuideData(guideDoc: any): GuideData | null {
           link: asText(item.link) || '',
           image: asImageUrl(item.image) || '',
         })) || [],
-      scheduleTour: {
-        title: data.schedule_tour_title || '',
-        description: asText(data.schedule_tour_description) || '',
-        subtitle: data.schedule_tour_subtitle || '',
-        subDescription: asText(data.schedule_tour_sub_description) || '',
-        form: {
-          phonePlaceholder:
-            data.schedule_tour_form_config?.[0]?.phone_placeholder || '',
-          emailPlaceholder:
-            data.schedule_tour_form_config?.[0]?.email_placeholder || '',
-          datePlaceholder:
-            data.schedule_tour_form_config?.[0]?.date_placeholder || '',
-          buttonText: data.schedule_tour_form_config?.[0]?.button_text || '',
-        },
-        messages: {
-          successMessage:
-            data.schedule_tour_messages?.[0]?.success_message || '',
-          errorMessage: data.schedule_tour_messages?.[0]?.error_message || '',
-        },
-        validation: {
-          phoneRequired:
-            data.schedule_tour_validation_messages?.[0]?.phone_required || '',
-          emailRequired:
-            data.schedule_tour_validation_messages?.[0]?.email_required || '',
-          dateRequired:
-            data.schedule_tour_validation_messages?.[0]?.date_required || '',
-          phoneInvalid:
-            data.schedule_tour_validation_messages?.[0]?.phone_invalid || '',
-          emailInvalid:
-            data.schedule_tour_validation_messages?.[0]?.email_invalid || '',
-          dateFuture:
-            data.schedule_tour_validation_messages?.[0]?.date_future || '',
-        },
-      },
+      scheduleTour: extractScheduleTourData(guideDoc) as any,
     };
 
     return extracted;

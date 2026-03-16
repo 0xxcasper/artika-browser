@@ -1,5 +1,6 @@
 import type { SustainabilityData } from '@/types/sustainability';
 import { asText, asImageUrl } from './prismic-helpers';
+import { extractScheduleTourData } from './prismic-schedule-tour';
 
 /**
  * Extract sustainability data from Prismic document
@@ -75,39 +76,7 @@ export function extractSustainabilityData(
             alt: item.image_alt || '',
           })) || [],
       },
-      scheduleTour: {
-        title: asText(data.schedule_tour_title) || '',
-        description: asText(data.schedule_tour_description) || '',
-        subtitle: data.schedule_tour_subtitle || '',
-        subDescription: asText(data.schedule_tour_sub_description) || '',
-        form: {
-          phonePlaceholder:
-            data.schedule_tour_form_config?.[0]?.phone_placeholder || '',
-          emailPlaceholder:
-            data.schedule_tour_form_config?.[0]?.email_placeholder || '',
-          datePlaceholder:
-            data.schedule_tour_form_config?.[0]?.date_placeholder || '',
-          buttonText: data.schedule_tour_form_config?.[0]?.button_text || '',
-        },
-        messages: {
-          success: data.schedule_tour_messages?.[0]?.success_message || '',
-          error: data.schedule_tour_messages?.[0]?.error_message || '',
-        },
-        validation: {
-          phoneRequired:
-            data.schedule_tour_validation_messages?.[0]?.phone_required || '',
-          emailRequired:
-            data.schedule_tour_validation_messages?.[0]?.email_required || '',
-          dateRequired:
-            data.schedule_tour_validation_messages?.[0]?.date_required || '',
-          phoneInvalid:
-            data.schedule_tour_validation_messages?.[0]?.phone_invalid || '',
-          emailInvalid:
-            data.schedule_tour_validation_messages?.[0]?.email_invalid || '',
-          dateFuture:
-            data.schedule_tour_validation_messages?.[0]?.date_future || '',
-        },
-      },
+      scheduleTour: extractScheduleTourData(sustainabilityData)!,
     };
 
     console.log('Extracted sustainability data:', extractedData);

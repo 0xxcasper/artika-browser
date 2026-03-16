@@ -1,3 +1,5 @@
+import type { ScheduleTourData } from './schedule-tour';
+
 export interface GuideData {
   hero: {
     title: string;
@@ -41,28 +43,5 @@ export interface GuideData {
     image: string;
   }>;
 
-  scheduleTour: {
-    title: string;
-    description: string;
-    subtitle: string;
-    subDescription: string;
-    form: {
-      phonePlaceholder: string;
-      emailPlaceholder: string;
-      datePlaceholder: string;
-      buttonText: string;
-    };
-    messages: {
-      successMessage: string;
-      errorMessage: string;
-    };
-    validation: {
-      phoneRequired: string;
-      emailRequired: string;
-      dateRequired: string;
-      phoneInvalid: string;
-      emailInvalid: string;
-      dateFuture: string;
-    };
-  };
+  scheduleTour: ScheduleTourData;
 }

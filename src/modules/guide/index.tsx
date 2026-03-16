@@ -5,8 +5,7 @@ import About from '@/components/about';
 import SplitBanner from '@/components/split-banner';
 import Prepare from '@/components/prepare';
 import Map from '@/components/map';
-import ScheduleTourFormVer2 from '@/components/schedule-tour-form/ScheduleVer2';
-import type { ScheduleTourData } from '@/types/schedule-tour';
+import ScheduleTourForm from '@/components/schedule-tour-form';
 
 interface GuideProps {
   guideData: GuideData;
@@ -46,8 +45,9 @@ const Guide = ({ guideData }: GuideProps) => {
         />
       )}
       {!!guideData.scheduleTour && (
-        <ScheduleTourFormVer2
-          tourData={guideData.scheduleTour as unknown as ScheduleTourData}
+        <ScheduleTourForm
+          tourData={guideData.scheduleTour}
+          variant="v2"
         />
       )}
     </Box>
